@@ -18,14 +18,14 @@ export class AlltimesComponent implements OnInit {
 
   allTimesheetData = [
 
-    { user: 'Glen', project: 'Payroll App', category: 'Backend', startTime: 1000, endTime: 1700, date: 1434243 },
-    { user: 'Karen', project: 'Agile Times', category: 'Frontend', startTime: 900, endTime: 1700, date: 1434243 },
-    { user: 'Si', project: 'Mobile App', category: 'Operations', startTime: 1100, endTime: 1700, date: 1434243 },
-    { user: 'Rohit', project: 'Agile Times', category: 'Backend', startTime: 800, endTime: 1700, date: 1434243 },
+    { user: 'Glen', project: 'Cargo Space', category: 'Road Transit', startTime: 1000, endTime: 1700, date: 1434243 },
+    { user: 'Karen', project: 'Paasenger Space', category: 'Sea Transit', startTime: 900, endTime: 1700, date: 1434243 },
+    { user: 'Si', project: 'Storage Space', category: 'Air Transit', startTime: 1100, endTime: 1700, date: 1434243 },
+    { user: 'Rohit', project: 'Mixed Space', category: 'Rail Transit', startTime: 800, endTime: 1700, date: 1434243 },
 
   ];
 
-  allProjectNames = ['', 'Payroll App', 'Mobile App', 'Agile Times'];
+  allProjectNames = ['', 'Cargo Space', 'Passenger Space', 'Storage Space', 'Mixed Space'];
 
   allProjects = this.allProjectNames.map((proj) => {
     return { label: proj, value: proj }
@@ -53,7 +53,7 @@ export class AlltimesComponent implements OnInit {
     this.db = new Dexie('AgileTimes');
 
     // Define a schema
-    this.db.version(1).stores({
+    this.db.version(2).stores({
       timesheet: 'id,user,project,category,startTime,endTime,date'
     });
 
@@ -73,8 +73,8 @@ export class AlltimesComponent implements OnInit {
   generateRandomUser(id: number) {
 
     var names = ["Joe", "Mary", "Phil", "Karen", "Si", "Tim", "Rohit", "Jenny", "Kim", "Greg", "Danni"]
-    var allProjectNames = ['Payroll App', 'Mobile App', 'Agile Times'];
-    var allCategories = ['Frontend', 'Backend', 'Operations'];
+    var allProjectNames = ['Cargo Space', 'Passenger Space', 'Storage Space', 'Mixed Space'];
+    var allCategories = ['Road Transit', 'Air Transit', 'Sea Transit', 'Rail Transit'];
 
     let newUser = {
       id: id,
@@ -86,7 +86,6 @@ export class AlltimesComponent implements OnInit {
       date: Math.round(Math.random() * 100000)
     };
     newUser.endTime += newUser.startTime; // to make sure it's later
-
     return newUser;
 
   }
