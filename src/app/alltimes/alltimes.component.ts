@@ -18,10 +18,10 @@ export class AlltimesComponent implements OnInit {
 
   allTimesheetData = [
 
-    { user: 'Glen', project: 'Cargo Space', category: 'Road Transit', startTime: 1000, endTime: 1700, date: 1434243 },
-    { user: 'Karen', project: 'Paasenger Space', category: 'Sea Transit', startTime: 900, endTime: 1700, date: 1434243 },
-    { user: 'Si', project: 'Storage Space', category: 'Air Transit', startTime: 1100, endTime: 1700, date: 1434243 },
-    { user: 'Rohit', project: 'Mixed Space', category: 'Rail Transit', startTime: 800, endTime: 1700, date: 1434243 },
+    { user: 'Glen', project: 'Cargo Space', category: 'Road Transit', startTime: 'Johannesburg', endTime: 'Pretoria', date: 1434243 },
+    { user: 'Karen', project: 'Paasenger Space', category: 'Sea Transit', startTime: 'Cape Town', endTime: 'Mosselbay', date: 1434243 },
+    { user: 'Si', project: 'Storage Space', category: 'Air Transit', startTime: 'Bloemfontein', endTime: 'Harrismith', date: 1434243 },
+    { user: 'Rohit', project: 'Mixed Space', category: 'Rail Transit', startTime: 'Kimberley', endTime: 'Upington', date: 1434243 },
 
   ];
 
@@ -41,8 +41,8 @@ export class AlltimesComponent implements OnInit {
     // for (let x = 0; x < 5; x++) {
     //   this.allTimesheetData = this.allTimesheetData.concat(this.allTimesheetData);
     // }
+    
     this.recordCount = this.allTimesheetData.length;
-
     this.configureDatabase();
     this.populateDatabase();
 
@@ -53,7 +53,7 @@ export class AlltimesComponent implements OnInit {
     this.db = new Dexie('AgileTimes');
 
     // Define a schema
-    this.db.version(2).stores({
+    this.db.version(1).stores({
       timesheet: 'id,user,project,category,startTime,endTime,date'
     });
 
@@ -75,20 +75,24 @@ export class AlltimesComponent implements OnInit {
     var names = ["Joe", "Mary", "Phil", "Karen", "Si", "Tim", "Rohit", "Jenny", "Kim", "Greg", "Danni"]
     var allProjectNames = ['Cargo Space', 'Passenger Space', 'Storage Space', 'Mixed Space'];
     var allCategories = ['Road Transit', 'Air Transit', 'Sea Transit', 'Rail Transit'];
-
+    var startLocations = ['Pretoria', 'Bloemfontein', 'Johannesburg', 'Durban', 'Cape Town', 'Kimberley', 'Upington', 'Harrismith', 'East London', 'Port Elizabeth', 'Pierter Maritzburg', 'Rustenburg', 'Mosselbay', 'George', 'Knysna', 'Pletenburg Bay', 'Wellington'];
+ 
+      var endLocations = ['Wellington', 'Pletenburg Bay', 'Knysna','George','Mosselbay','Pierter Maritzburg','Rustenburg','Port Elizabeth','East London','Harrismith', 'Upington','Kimberley','Cape Town','Durban','Johannesburg','Bloemfontein', 'Pretoria'];
     let newUser = {
       id: id,
       user: names[id % names.length],
       project: allProjectNames[id % allProjectNames.length],
       category: allCategories[id % allCategories.length],
-      startTime: Math.round(Math.random() * 1000),
-      endTime: Math.round(Math.random() * 1000),
+      startTime: startLocations[id % startLocations.length],
+      endTime: endLocations[id % endLocations.length],
       date: Math.round(Math.random() * 100000)
     };
-    newUser.endTime += newUser.startTime; // to make sure it's later
+    
     return newUser;
 
   }
+
+ 
 
   getRecordCount(): Dexie.Promise<number> {
     return this.db.table("timesheet").count();
