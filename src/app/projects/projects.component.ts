@@ -5,7 +5,7 @@ import { FormBuilder, FormGroup, Validators } from "@angular/forms";
 @Component({
   selector: 'at-projects',
   templateUrl: './projects.component.html',
-  styleUrls: ['./projects.component.css']
+  styleUrls: ['./projects.component.css', '../../../node_modules/material-icons/iconfont/material-icons.css']
 })
 export class ProjectsComponent implements OnInit {
 
@@ -32,8 +32,9 @@ export class ProjectsComponent implements OnInit {
 
   ngOnInit() {
     this.projectForm = this.fb.group({
-      projectId: ['', [Validators.required, Validators.minLength(5)]],
-      description: ['My cool project', [Validators.required, Validators.maxLength(140)]],
+      projectId: ['', [Validators.required, Validators.minLength(10)]],
+      projectEmail: ['', [Validators.required, Validators.minLength(10)]],
+      description: ['Road Cargo Transit Supllier', [Validators.required, Validators.maxLength(140)]],
       startDate: [new Date(), Validators.required],
       projectType: ['B'],
       selectedDevs: [[]],
