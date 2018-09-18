@@ -7,7 +7,7 @@
       Marketplace
     </h2>
     <h3>
-      Find the perfect space for you or your packages
+      Deliveries | Trips | Storage
     </h3>
 
   </div>
@@ -18,8 +18,8 @@
     [editable]="true" (onEditComplete)="onEditComplete($event)" [(selection)]="selectedRows" (onRowSelect)="onRowSelect($event)"
     [contextMenu]="tableContextMenu" [paginator]="true" [rows]="100" [rowsPerPageOptions]="[5,10,15,20]" [totalRecords]="recordCount"
     [pageLinks]="8" [lazy]="true" (onLazyLoad)="loadTimes($event)">
-
-    <p-column selectionMode="multiple" styleClass="selectBoxColumn"></p-column>
+<p-column selectionMode="multiple" styleClass="selectBoxColumn"></p-column>
+    <p-column field="avatar" header="Avatar" ></p-column>
 
     <p-column field="user" header="Supplier" [sortable]="true" [editable]="true"></p-column>
     <p-column field="project" header="Space Type" [filter]="true" filterPlaceholder="Looking For Space..." filterMatchMode="equals" [style]="{'overflow':'visible'}"

@@ -18,10 +18,10 @@ export class AlltimesComponent implements OnInit {
 
   allTimesheetData = [
 
-    { user: 'Glen', project: 'Cargo Space', category: 'Road Transit', startTime: 'Johannesburg', endTime: 'Pretoria', date: 1434243 },
-    { user: 'Karen', project: 'Paasenger Space', category: 'Sea Transit', startTime: 'Cape Town', endTime: 'Mosselbay', date: 1434243 },
-    { user: 'Si', project: 'Storage Space', category: 'Air Transit', startTime: 'Bloemfontein', endTime: 'Harrismith', date: 1434243 },
-    { user: 'Rohit', project: 'Mixed Space', category: 'Rail Transit', startTime: 'Kimberley', endTime: 'Upington', date: 1434243 },
+    {avatar: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSePYH0l73i-OgzhmHIgztXFb6p2wZFfcAETx9-AL4Y3ndU-KLt', user: 'Glen', project: 'Cargo Space', category: 'Road Transit', startTime: 'Johannesburg', endTime: 'Pretoria', date: 1434243 },
+    { avatar: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSePYH0l73i-OgzhmHIgztXFb6p2wZFfcAETx9-AL4Y3ndU-KLt', user: 'Karen', project: 'Paasenger Space', category: 'Sea Transit', startTime: 'Cape Town', endTime: 'Mosselbay', date: 1434243 },
+    { avatar: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSePYH0l73i-OgzhmHIgztXFb6p2wZFfcAETx9-AL4Y3ndU-KLt', user: 'Si', project: 'Storage Space', category: 'Air Transit', startTime: 'Bloemfontein', endTime: 'Harrismith', date: 1434243 },
+    { avatar: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSePYH0l73i-OgzhmHIgztXFb6p2wZFfcAETx9-AL4Y3ndU-KLt', user: 'Rohit', project: 'Mixed Space', category: 'Rail Transit', startTime: 'Kimberley', endTime: 'Upington', date: 1434243 },
 
   ];
 

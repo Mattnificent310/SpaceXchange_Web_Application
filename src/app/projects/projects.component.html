@@ -26,7 +26,7 @@
                         <i class="material-icons">mail_outline</i>
                     </div>
                     
-                        <input style="height: 36px;" class="ui-md-10 inputHolder" type="email" id="projectId" required formControlName="emailAddress"  placeholder="myname.mysurname" >
+                        <input style="height: 36px;" class="ui-md-10 inputHolder" type="email" id="projectId" required formControlName="emailAddress"  placeholder="name.surname@example.com" >
                     
                 </div>
             </div>
@@ -67,14 +67,14 @@
     </p-panel>
 <p-panel header="Update Contacts" class="ui-g-10">
         <div class="ui-g">
-            <label for="devs" class="ui-g-12 ui-md-2">Update Contact</label>
+     <p-fieldset class="ui-g-10">
             <p-listbox id="devs" [options]="allDevs" [multiple]="true" [filter]="true" formControlName="selectedContacts" class="ui-g-12 ui-md-10">
                 <ng-template let-dev pTemplate="item">
                     <img src="http://i.pravatar.cc/100?u={{dev.label}}" class="avatar" />
                     <span class="devName">{{dev.value}}</span>
                 </ng-template>
             </p-listbox>
-
+</p-fieldset>
 
         </div>
     </p-panel>
