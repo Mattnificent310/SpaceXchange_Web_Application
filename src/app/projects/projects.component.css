@@ -94,4 +94,6 @@ p-rating {
   
 }
 
-
+p-fieldset[legend] {
+  text-decoration: none !important;
+}

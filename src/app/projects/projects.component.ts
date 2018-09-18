@@ -32,12 +32,12 @@ export class ProjectsComponent implements OnInit {
 
   ngOnInit() {
     this.projectForm = this.fb.group({
-      projectId: ['', [Validators.required, Validators.minLength(10)]],
-      projectEmail: ['', [Validators.required, Validators.minLength(10)]],
-      description: ['Road Cargo Transit Supllier', [Validators.required, Validators.maxLength(140)]],
-      startDate: [new Date(), Validators.required],
-      projectType: ['B'],
-      selectedDevs: [[]],
+      phoneNumber: ['', [Validators.required, Validators.minLength(10)]],
+      emailAddress: ['', [Validators.required, Validators.minLength(10)]],
+      description: ['Add Description Here...', [Validators.required, Validators.maxLength(140)]],
+      verificationDate: [new Date(), Validators.required],
+      contactType: ['B'],
+      selectedContacts: [[]],
       rating: [3]
     })
 
