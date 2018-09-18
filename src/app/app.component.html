@@ -1,0 +1,59 @@
+<div class="ui-g ui-g-nopad" id="header">
+
+  <div class="ui-g-10  responsive collapse">
+
+      <p-menubar styleClass="menubar" [model]="items">
+          <img src="./assets/img/side-shop.png" id="top-logo"/>
+         
+                
+          </p-menubar>
+
+        </div>
+        <form class="search-container" id="search">
+            <input type="text" id="search-bar" placeholder="I'm looking for...">
+            <a href="#" class="search-icon">
+                <i class="fa fa-search"></i>
+            </a>
+          </form><div class="ui-g-2" id="notifications">
+
+  </div>
+
+</div>
+
+<div class="ui-g ui-g-nopad">
+
+  <div class="ui-g-2 ui-g-nopad" id="sidegutter">
+
+    <div id="sidenav">
+
+      <p-menu #bigMenu [model]="menuItems"></p-menu>
+
+    </div>
+
+  </div>
+
+  <div class="ui-g-2 ui-g-nopad" id="minigutter">
+
+    <div id="sidenav-mini">
+
+      <p-menu #smallMenu [model]="miniMenuItems"></p-menu>
+
+    </div>
+
+  </div>
+
+
+  <div class="ui black big launch right attached fixed button">
+    <i class="content icon"></i>
+    <span class="text">Menu</span>
+  </div>
+
+
+
+  <div id="content-body" class="ui-g-10 ui-g-nopad">
+
+    <router-outlet></router-outlet>
+
+  </div>
+</div>
+
