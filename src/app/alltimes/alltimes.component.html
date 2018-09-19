@@ -19,7 +19,7 @@
     [contextMenu]="tableContextMenu" [paginator]="true" [rows]="100" [rowsPerPageOptions]="[5,10,15,20]" [totalRecords]="recordCount"
     [pageLinks]="8" [lazy]="true" (onLazyLoad)="loadTimes($event)">
 <p-column selectionMode="multiple" styleClass="selectBoxColumn"></p-column>
-    <p-column field="avatar" header="Avatar" ></p-column>
+    <img field="avatar" header="Avatar" />
 
     <p-column field="user" header="Supplier" [sortable]="true" [editable]="true"></p-column>
     <p-column field="project" header="Space Type" [filter]="true" filterPlaceholder="Looking For Space..." filterMatchMode="equals" [style]="{'overflow':'visible'}"

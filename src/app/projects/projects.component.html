@@ -4,7 +4,16 @@
         <div class="ui-g">
 
            
-            <div class="ui-md-5 inputContainers">
+            <div class="ui-g-5 inputContainers">
+                    <div class="inputContainer">
+                            <div class="iconContainer" >
+                                <i class="material-icons">perm_identity</i>
+                            </div>
+                            
+                                <input class="inputHolder" type="text" id="projectId" required formControlName="names"  placeholder="  Name Surname" />
+                            
+                        
+                    </div>
                 <div class="inputContainer">
                     <div class="iconContainer" >
                         <i class="material-icons">phone_android</i>
@@ -26,10 +35,11 @@
                         <i class="material-icons">mail_outline</i>
                     </div>
                     
-                        <input style="height: 36px;" class="ui-md-10 inputHolder" type="email" id="projectId" required formControlName="emailAddress"  placeholder="name.surname@example.com" >
-                    
+                        <input class="inputHolder" type="email" id="projectId" required formControlName="emailAddress"  placeholder="  name.surname@example.com" />
+                
                 </div>
             </div>
+        
             <div class="ui-g-12 ui-md-5">
 
                 <at-fielderrors [form]="projectForm" field="emailAddress" nicename="Email Address"> </at-fielderrors>
@@ -37,10 +47,10 @@
 
             </div>
         </div>
-        <p-panel header="Description" class="ui-g-10">
-        <div class="ui-g">
+<p-panel header="Description" class="ui-g-10">
+    <div class="ui-g">
                 
-<p-fieldset class="ui-g-12">
+        <p-fieldset class="ui-g-12">
             <p-editor id="description" formControlName="description" class="ui-g-12" [style]="{'height':'200px'}"></p-editor>
 
             <div class="ui-g-12">
@@ -48,11 +58,11 @@
             </div>
         </p-fieldset>
         
-        </div> 
-    </p-panel>
+    </div> 
+</p-panel>
         
         <h1></h1>
-        <p-panel header="Types" class="ui-g-10">
+<p-panel header="Types" class="ui-g-10">
                
         <div class="ui-g">           
                  <p-fieldset class="ui-g-10">
@@ -64,28 +74,28 @@
 
             </p-fieldset>      
         </div>
-    </p-panel>
+</p-panel>
 <p-panel header="Update Contacts" class="ui-g-10">
         <div class="ui-g">
-     <p-fieldset class="ui-g-10">
-            <p-listbox id="devs" [options]="allDevs" [multiple]="true" [filter]="true" formControlName="selectedContacts" class="ui-g-12 ui-md-10">
-                <ng-template let-dev pTemplate="item">
-                    <img src="http://i.pravatar.cc/100?u={{dev.label}}" class="avatar" />
-                    <span class="devName">{{dev.value}}</span>
-                </ng-template>
-            </p-listbox>
-</p-fieldset>
+            <p-fieldset class="ui-g-10">
+                <p-listbox id="devs" [options]="allDevs" [multiple]="true" [filter]="true" formControlName="selectedContacts" class="ui-g-12 ui-md-10">
+                    <ng-template let-dev pTemplate="item">
+                        <img src="http://i.pravatar.cc/100?u={{dev.label}}" class="avatar" />
+                        <span class="devName">{{dev.value}}</span>
+                    </ng-template>
+                </p-listbox>
+            </p-fieldset>
 
         </div>
-    </p-panel>
-    <p-panel header="Ratings" class="ui-g-10">
+</p-panel>
+<p-panel header="Ratings" class="ui-g-10">
         <div class="ui-g">
             <label id="ratingLabel" for="rating" class="ui-g-12 ui-md-2">Contact Rating</label>
             <p-rating id="rating" formControlName="rating" class="ui-g-12 ui-md-5" [cancel]="false"></p-rating>
             <pre class="ui-g-12 ui-md-5">{{ projectForm.getRawValue() | json }}</pre>
 
         </div>
-    </p-panel>
+</p-panel>
 
 
 
