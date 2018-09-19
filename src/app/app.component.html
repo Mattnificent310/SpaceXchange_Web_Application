@@ -5,9 +5,13 @@
       <p-menubar styleClass="menubar" [model]="items">
           <img src="./assets/img/side-shop.png" id="top-logo"/>
          
-                
+          <div class="iconContainer" style="background: #3366ff; border-color: slategray;" ><i class="material-icons" style="color: lightgray;">fingerprint</i></div><button style="margin: -10px 60px 10px 0" type="button" (click)="showDialog()" pButton label="Login" ></button>
+  
           </p-menubar>
-
+         
+  
+ 
+  
         </div>
         <form class="search-container" id="search">
             <input type="text" id="search-bar" placeholder="I'm looking for...">
@@ -19,7 +23,76 @@
   </div>
 
 </div>
+<p-dialog [(visible)]="display" [modal]="true" [responsive]="true" [width]="650" [minWidth]="450" 
+[baseZIndex]="9999999999">
+  <p-header class="header">Login</p-header>
 
+<div [formGroup]="loginForm" class="ui-g">
+  <div class="ui-md-12 inputContainers">
+    <div class="inputContainer">
+            <div class="iconContainer" >
+                <i class="material-icons">perm_identity</i>
+            </div>
+            
+                <input class="ui-md-10 inputHolder" type="email" id="projectId" required formControlName="names"  placeholder="Username" />
+            
+        </div>
+        <div class="ui-g-12 ui-md-5">
+
+                <at-fielderrors [form]="loginForm" field="names" nicename="Name & Surname"> </at-fielderrors>
+
+
+            </div>
+<div class="inputContainer">
+    <div class="iconContainer" >
+        <i class="material-icons">phone_android</i>
+    </div>
+    
+        <p-inputMask width="100" class="inputHolder" mask="999-999-9999" id="projectId" formControlName="phoneNumber" placeholder="123-456-7890" slotChar="X" ></p-inputMask>
+
+   
+</div>
+<div class="ui-g-12 ui-md-5">
+
+    <at-fielderrors [form]="loginForm" field="phoneNumber" nicename="Phone Number"> </at-fielderrors>
+
+
+</div>
+
+<div class="inputContainer">
+    <div class="iconContainer" >
+        <i class="material-icons">mail_outline</i>
+    </div>
+    
+        <input class="ui-md-10 inputHolder" type="email" id="projectId" required formControlName="emailAddress"  placeholder="name.surname@example.com" />
+    
+</div>
+
+<div class="ui-g-12 ui-md-5">
+<at-fielderrors [form]="loginForm" field="emailAddress" nicename="Email Address"> </at-fielderrors>
+</div>
+
+<div class="inputContainer">
+    <div class="iconContainer" >
+        <i class="material-icons">lock_outline</i>
+    </div>
+    
+        <input class="ui-md-10 inputHolder" type="password" id="projectId" required formControlName="password"  placeholder="•••••••••••" />
+    
+  </div>
+
+<div class="ui-g-12 ui-md-5">
+<at-fielderrors [form]="loginForm" field="emailAddress" nicename="Email Address"> </at-fielderrors>  </div>
+</div>
+
+</div>
+
+<p-footer>
+    <button type="button" pButton icon="pi pi-check" (click)="display=false" label="Login"></button>
+    <button type="button" pButton icon="pi pi-close" (click)="display=false" label="Cancel" class="ui-button-secondary"></button>
+</p-footer>
+
+</p-dialog>
 <div class="ui-g ui-g-nopad">
 
   <div class="ui-g-2 ui-g-nopad" id="sidegutter">

@@ -3,29 +3,39 @@ import {MenuItem} from "primeng/primeng";
 import {Menu} from "primeng/components/menu/menu";
 import {ActivatedRoute, Router} from "@angular/router";
 import {MenuModule, MenubarModule} from 'primeng/primeng';
+import { FormBuilder, FormGroup, Validators } from "@angular/forms";
+
 declare var jQuery :any;
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
-  styleUrls: ['./app.component.css']
+  styleUrls: ['./app.component.css','../../node_modules/material-icons/iconfont/material-icons.css']
 })
 export class AppComponent implements OnInit, AfterViewInit {
 
   menuItems: MenuItem[];
   miniMenuItems: MenuItem[];
   items: MenuItem[];
-
+  loginForm: FormGroup;
+  
   @ViewChild('bigMenu') bigMenu : Menu;
   @ViewChild('smallMenu') smallMenu : Menu;
 
-  constructor(private router : Router) {
+  constructor(private router : Router,private fb: FormBuilder) {
 
   }
   
 
   ngOnInit() {
-    
+    this.loginForm = this.fb.group({
+      names: ['', [Validators.required, Validators.minLength(3)]],      
+      phoneNumber: ['', [Validators.required, Validators.minLength(10)]],
+      emailAddress: ['', [Validators.required, Validators.minLength(10)]],
+      password: ['', [Validators.required, Validators.minLength(10)]],
+      
+    })
+
     let handleSelected = function(event) {
       let allMenus = jQuery(event.originalEvent.target).closest('ul');
       let allLinks = allMenus.find('.menu-selected');
