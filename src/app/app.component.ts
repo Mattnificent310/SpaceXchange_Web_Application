@@ -18,11 +18,13 @@ export class AppComponent implements OnInit, AfterViewInit {
   miniMenuItems: MenuItem[];
   items: MenuItem[];
   loginForm: FormGroup;
+  registerForm: FormGroup;
+  supplierForm: FormGroup;
   
   @ViewChild('bigMenu') bigMenu : Menu;
   @ViewChild('smallMenu') smallMenu : Menu;
 
-  constructor(private router : Router,private fb: FormBuilder) {
+  constructor(private router : Router,private fb: FormBuilder, private fb2: FormBuilder,private fb3: FormBuilder) {
 
   }
   
@@ -35,7 +37,20 @@ export class AppComponent implements OnInit, AfterViewInit {
       password: ['', [Validators.required, Validators.minLength(10)]],
       
     })
-
+    this.registerForm = this.fb2.group({
+      regName: ['', [Validators.required, Validators.minLength(3)]],      
+      regSurname: ['', [Validators.required, Validators.minLength(3)]],      
+      regPhoneNumber: ['', [Validators.required, Validators.minLength(10)]],
+      regEmailAddress: ['', [Validators.required, Validators.minLength(10)]],
+      regPassword: ['', [Validators.required, Validators.minLength(10)]],      
+    })
+    this.supplierForm = this.fb3.group({
+      supName: ['', [Validators.required, Validators.minLength(3)]],      
+      supSurname: ['', [Validators.required, Validators.minLength(3)]],      
+      supPhoneNumber: ['', [Validators.required, Validators.minLength(10)]],
+      supEmailAddress: ['', [Validators.required, Validators.minLength(10)]],
+      supPassword: ['', [Validators.required, Validators.minLength(10)]],      
+    })
     let handleSelected = function(event) {
       let allMenus = jQuery(event.originalEvent.target).closest('ul');
       let allLinks = allMenus.find('.menu-selected');
@@ -79,13 +94,19 @@ export class AppComponent implements OnInit, AfterViewInit {
     this.selectInitialMenuItemBasedOnUrl();
   }
   display: boolean = false;
-
+  register: boolean = false;
+  dispSup: boolean = false;
 showDialog() {
-    this.display = true;
+    this.display = true;    
+}
+showRegister() {
+  this.register = true;
 }
 
 onDialogClose(event) {
    this.display = event;
+  
+  
 }
 
 

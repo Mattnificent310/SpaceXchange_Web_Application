@@ -5,8 +5,18 @@
       <p-menubar styleClass="menubar" [model]="items">
           <img src="./assets/img/side-shop.png" id="top-logo"/>
          
-          <div class="iconContainer" style="background: #3366ff; border-color: slategray;" ><i class="material-icons" style="color: lightgray;">fingerprint</i></div><button style="margin: -10px 60px 10px 0" type="button" (click)="showDialog()" pButton label="Login" ></button>
-  
+          <div class="inputContainer responsive collapse" style="height: 36px; background: linear-gradient(to top, rgba(10,10,10,0.5) 0%,rgba(10,10,10,0.5) 100%), url() repeat 0 0; border: none; margin-right: 60px; margin-top: -5px;">
+            <div class="iconContainer" style="/*#3366ff;*/ border-color: darkslategray;" >
+                <i class="material-icons" style="color: silver;">fingerprint</i>
+            </div>
+            <button style="background-color: transparent; height: 36.5px; border-right: 1px darkslategray inset;" type="button" (click)="showDialog()" pButton label="Sign In" ></button>
+          <div class="iconContainer" style="/*#3366ff;*/ border-color: darkslategray;" >
+            <i class="material-icons" style="color: silver;">power_settings_new</i>
+        </div>
+        <button style="background-color: transparent; height: 36.5px;" type="button" (click)="showRegister()" pButton label="Sign Up" ></button>
+        </div>
+         
+         
           </p-menubar>
          
   
@@ -23,15 +33,15 @@
   </div>
 
 </div>
-<p-dialog [(visible)]="display" [modal]="true" [responsive]="true" [width]="650" [minWidth]="450" 
+<p-dialog [(visible)]="display" [modal]="true" [responsive]="true" [width]="700" [minWidth]="450" 
 [baseZIndex]="9999999999">
-  <p-header class="header">Login</p-header>
+  <p-header class="header">Sign In</p-header>
 
 <div [formGroup]="loginForm" class="ui-g">
   <div class="ui-md-12 inputContainers">
     <div class="inputContainer">
             <div class="iconContainer" >
-                <i class="material-icons">perm_identity</i>
+                <i class="material-icons">account_circle</i>
             </div>
             
                 <input class="ui-md-10 inputHolder" type="email" id="projectId" required formControlName="names"  placeholder="Username" />
@@ -82,15 +92,187 @@
   </div>
 
 <div class="ui-g-12 ui-md-5">
-<at-fielderrors [form]="loginForm" field="emailAddress" nicename="Email Address"> </at-fielderrors>  </div>
+<at-fielderrors [form]="loginForm" field="password" nicename="Password"> </at-fielderrors>  </div>
 </div>
 
 </div>
 
 <p-footer>
-    <button type="button" pButton icon="pi pi-check" (click)="display=false" label="Login"></button>
+    <button type="button" pButton icon="pi pi-check" (click)="display=false" label="Sign In"></button>
     <button type="button" pButton icon="pi pi-close" (click)="display=false" label="Cancel" class="ui-button-secondary"></button>
 </p-footer>
+
+</p-dialog>
+<p-dialog [(visible)]="register" [modal]="true" [responsive]="true" [width]="750" [minWidth]="450" 
+[baseZIndex]="9999999999">
+  <p-header class="header">Sign Up</p-header>
+  <p-tabView>
+      <p-tabPanel header="Buyer" leftIcon="pi pi-calendar">
+          <div [formGroup]="registerForm" class="ui-g">
+    
+        <div class="ui-md-12 inputContainers">
+              <div class="inputContainer">
+                      <div class="iconContainer" >
+                          <i class="material-icons">account_circle</i>
+                      </div>
+                      
+                          <input class="ui-md-10 inputHolder" type="email" id="projectId" required formControlName="regName"  placeholder="Name" />
+                      
+                  </div>
+                  <div class="ui-g-12 ui-md-5">
+          
+                          <at-fielderrors [form]="registerForm" field="regName" nicename="Name"> </at-fielderrors>
+          
+          
+                      </div>
+                      <div class="inputContainer">
+                        <div class="iconContainer" >
+                            <i class="material-icons">account_circle</i>
+                        </div>
+                        
+                            <input class="ui-md-10 inputHolder" type="email" id="projectId" required formControlName="regSurname"  placeholder="Surname" />
+                        
+                    </div>
+                    <div class="ui-g-12 ui-md-5">
+            
+                            <at-fielderrors [form]="registerForm" field="regSurname" nicename="Surname"> </at-fielderrors>
+            
+            
+                        </div>
+          <div class="inputContainer">
+              <div class="iconContainer" >
+                  <i class="material-icons">phone_android</i>
+              </div>
+              
+                  <p-inputMask width="100" class="inputHolder" mask="999-999-9999" id="projectId" formControlName="regPhoneNumber" placeholder="123-456-7890" slotChar="X" ></p-inputMask>
+          
+             
+          </div>
+          <div class="ui-g-12 ui-md-5">
+          
+              <at-fielderrors [form]="registerForm" field="regPhoneNumber" nicename="Phone Number"> </at-fielderrors>
+          
+          
+          </div>
+          
+          <div class="inputContainer">
+              <div class="iconContainer" >
+                  <i class="material-icons">mail_outline</i>
+              </div>
+              
+                  <input class="ui-md-10 inputHolder" type="email" id="projectId" required formControlName="regEmailAddress"  placeholder="name.surname@example.com" />
+              
+          </div>
+          
+          <div class="ui-g-12 ui-md-5">
+          <at-fielderrors [form]="registerForm" field="regEmailAddress" nicename="Email Address"> </at-fielderrors>
+          </div>
+          
+          <div class="inputContainer">
+              <div class="iconContainer" >
+                  <i class="material-icons">lock_outline</i>
+              </div>
+              
+                  <input class="ui-md-10 inputHolder" type="password" id="projectId" required formControlName="regPassword"  placeholder="•••••••••••" />
+              
+            </div>
+          
+          <div class="ui-g-12 ui-md-5">
+          <at-fielderrors [form]="registerForm" field="regPassword" nicename="Password"> </at-fielderrors>  </div>
+          </div>
+          
+          </div>
+          
+          <p-footer>
+              <button type="button" pButton icon="pi pi-check" (click)="register=false" label="Sign Up"></button>
+              <button type="button" pButton icon="pi pi-close" (click)="register=false" label="Cancel" class="ui-button-secondary"></button>
+          </p-footer>
+      </p-tabPanel>
+      <p-tabPanel header="Supplier" leftIcon="pi pi-inbox">
+            <div [formGroup]="supplierForm" class="ui-g">
+    
+                    <div class="ui-md-12 inputContainers">         
+            <div class="inputContainer">
+                    <div class="iconContainer" >
+                        <i class="material-icons">account_box</i>
+                    </div>
+                    
+                        <input class="ui-md-10 inputHolder" type="email" id="projectId" required formControlName="supName"  placeholder="Name" />
+                    
+                </div>
+        <div class="ui-g-12 ui-md-5">
+
+                <at-fielderrors [form]="supplierForm" field="supName" nicename="Name"> </at-fielderrors>
+
+
+            </div>
+            <div class="inputContainer">
+              <div class="iconContainer" >
+                  <i class="material-icons">account_box</i>
+              </div>
+              
+                  <input class="ui-md-10 inputHolder" type="email" id="projectId" required formControlName="supSurname"  placeholder="Surname" />
+              
+          </div>
+          <div class="ui-g-12 ui-md-5">
+  
+                  <at-fielderrors [form]="supplierForm" field="supSurname" nicename="Surname"> </at-fielderrors>
+  
+  
+          </div>
+<div class="inputContainer">
+    <div class="iconContainer" >
+        <i class="material-icons">phone_iphone</i>
+    </div>
+    
+        <p-inputMask width="100" class="inputHolder" mask="999-999-9999" id="projectId" formControlName="supPhoneNumber" placeholder="123-456-7890" slotChar="X" ></p-inputMask>
+
+   
+</div>
+<div class="ui-g-12 ui-md-5">
+
+    <at-fielderrors [form]="supplierForm" field="supPhoneNumber" nicename="Phone Number"> </at-fielderrors>
+
+
+</div>
+
+<div class="inputContainer">
+    <div class="iconContainer" >
+        <i class="material-icons">email</i>
+    </div>
+    
+        <input class="ui-md-10 inputHolder" type="email" id="projectId" required formControlName="supEmailAddress"  placeholder="name.surname@example.com" />
+    
+</div>
+
+<div class="ui-g-12 ui-md-5">
+<at-fielderrors [form]="supplierForm" field="supEmailAddress" nicename="Email Address"> </at-fielderrors>
+</div>
+
+<div class="inputContainer">
+    <div class="iconContainer" >
+        <i class="material-icons">https</i>
+    </div>
+    
+        <input class="ui-md-10 inputHolder" type="password" id="projectId" required formControlName="supPassword"  placeholder="•••••••••••" />
+    
+  </div>
+
+<div class="ui-g-12 ui-md-5">
+<at-fielderrors [form]="supplierForm" field="supPassword" nicename="Password"> </at-fielderrors>  </div>
+</div>
+</div>
+
+<p-footer>
+    <button type="button" pButton icon="pi pi-check" (click)="dispSup=false" label="Sign Up"></button>
+    <button type="button" pButton icon="pi pi-close" (click)="dispSup=false" label="Cancel" class="ui-button-secondary"></button>
+</p-footer>
+      </p-tabPanel>
+      
+  </p-tabView>
+  
+  
+  
 
 </p-dialog>
 <div class="ui-g ui-g-nopad">
