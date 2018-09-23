@@ -21,7 +21,7 @@ import {DataScrollerModule} from 'primeng/datascroller';
 import {AccordionModule} from 'primeng/accordion';
 import {PasswordModule} from 'primeng/password';
 import {AutoCompleteModule} from 'primeng/autocomplete';
-import { OverlayPanel, OverlayPanelModule } from 'primeng/overlaypanel';
+import {OverlayPanelModule} from 'primeng/overlaypanel';
 
 const appRoutes: Routes = [
   { path: "", redirectTo: "/dashboard", pathMatch: "full" },

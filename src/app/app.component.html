@@ -26,7 +26,7 @@
         <i class="fa fa-search" id="search" (mouseenter)="op2.show($event)" style="font-size:24px"></i>
 
         <p-overlayPanel #op2 [showCloseIcon]="true" [dismissable]="false" >
-        <div >
+        
             <p-autoComplete [(ngModel)]="brand" [suggestions]="filteredBrands" (completeMethod)="filterBrands($event)" [size]="30"
     [minLength]="1" placeholder="Search..." [dropdown]="false">
     <ng-template let-brand pTemplate="item">
@@ -36,7 +36,7 @@
         </div>
     </ng-template>
 </p-autoComplete> 
-          </div>
+          
         </p-overlayPanel>
   </div>
 

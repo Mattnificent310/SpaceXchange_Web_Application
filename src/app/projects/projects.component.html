@@ -89,14 +89,14 @@
 </p-accordionTab>
 </p-panel>
 <p-panel header="Rating">
-        <p-accordionTab>
+        <p-accordionTab >
        <p-fieldset>
-            <label id="ratingLabel" for="rating" class="ui-g-12 ui-md-2">Contact Rating</label>
-             <p-rating [(ngModel)]="val2" (onRate)="handleRate($event)" (onCancel)="handleCancel($event)"></p-rating> <span *ngIf="msg" style="margin-left:10px">{{msg}}</span>
+              <p-rating (onRate)="handleRate($event)" (onCancel)="handleCancel($event)"></p-rating> <span *ngIf="msg" style="margin-left:10px">{{msg}}</span>
             <pre class="ui-g-12 ui-md-5">{{ projectForm.getRawValue() | json }}</pre>
 
         </p-fieldset>
 </p-accordionTab>
+
 </p-panel>
 </p-accordion>
 
