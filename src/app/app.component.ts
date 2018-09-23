@@ -72,8 +72,8 @@ export class AppComponent implements OnInit, AfterViewInit {
       {label: 'Dashboard', icon: 'fa-home', routerLink: ['/dashboard'], command: (event) => handleSelected(event)},
       {label: 'Marketplace', icon: 'fa-money', routerLink: ['/marketplace'], command: (event) => handleSelected(event)},
       {label: 'My Exchanges', icon: 'fa-clock-o', routerLink: ['/history'], command: (event) => handleSelected(event)},
-      {label: 'My Contacts', icon: 'fa-users', routerLink: ['/contacts'], command: (event) => handleSelected(event)},
-      {label: 'My Profile', icon: 'fa-profile', routerLink: ['/profile'], command: (event) => handleSelected(event)},
+      {label: 'My Contacts', icon: 'fa-address-book', routerLink: ['/contacts'], command: (event) => handleSelected(event)},
+      {label: 'My Profile', icon: 'fa-user-cog', routerLink: ['/profile'], command: (event) => handleSelected(event)},
       {label: 'Settings', icon: 'fa-sliders', routerLink: ['/settings'], command: (event) => handleSelected(event)},
     ]
     this.items = [
