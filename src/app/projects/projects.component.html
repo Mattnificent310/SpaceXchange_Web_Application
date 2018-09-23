@@ -51,60 +51,58 @@
 
             </div>
         </div>
-        <p-panel header="Description" class="ui-g-10">
-        <div class="ui-g">
-                
-<p-fieldset class="ui-g-12">
-            <p-editor id="description" formControlName="description" class="ui-g-12" [style]="{'height':'200px'}"></p-editor>
+        <p-accordion class="ui-g-10">
+              <p-panel header="Description">  
+<p-accordionTab>
+        <p-fieldset>  
+        <p-editor id="description" formControlName="description" class="ui-g-12" [style]="{'height':'200px'}"></p-editor>
 
             <div class="ui-g-12">
                 <at-fielderrors [form]="projectForm" field="description" nicename="Description"> </at-fielderrors>
             </div>
         </p-fieldset>
-        
-        </div> 
+        </p-accordionTab>
     </p-panel>
         
-        <h1></h1>
-        <p-panel header="Types" class="ui-g-10">
-               
-        <div class="ui-g">           
-                 <p-fieldset class="ui-g-10">
+        
+                <p-panel header="Types">
+              <p-accordionTab>
+                  <p-fieldset>
                 <p-radioButton name="projGroup" label="Buyer" value="B" formControlName="contactType"></p-radioButton>
                 <p-radioButton name="projGroup" label="Passenger" value="P" formControlName="contactType"></p-radioButton>
                 <p-radioButton name="projGroup" label="Supplier" value="S" formControlName="contactType"></p-radioButton>
                 <p-radioButton name="projGroup" label="Driver" value="D" formControlName="contactType"></p-radioButton>
 
-
-            </p-fieldset>      
-        </div>
-    </p-panel>
-<p-panel header="Update Contacts" class="ui-g-10">
-        <div class="ui-g">
-     <p-fieldset class="ui-g-10">
+            </p-fieldset>
+            </p-accordionTab>      
+        </p-panel>
+    <p-panel header="Update Contacts">
+     <p-accordionTab>
+         <p-fieldset>
             <p-listbox id="devs" [options]="allDevs" [multiple]="true" [filter]="true" formControlName="selectedContacts" class="ui-g-12 ui-md-10">
                 <ng-template let-dev pTemplate="item">
                     <img src="http://i.pravatar.cc/100?u={{dev.label}}" class="avatar" />
                     <span class="devName">{{dev.value}}</span>
                 </ng-template>
             </p-listbox>
-</p-fieldset>
-
-        </div>
-    </p-panel>
-    <p-panel header="Ratings" class="ui-g-10">
-        <div class="ui-g">
+        </p-fieldset>
+</p-accordionTab>
+</p-panel>
+<p-panel header="Rating">
+        <p-accordionTab>
+       <p-fieldset>
             <label id="ratingLabel" for="rating" class="ui-g-12 ui-md-2">Contact Rating</label>
-            <p-rating id="rating" formControlName="rating" class="ui-g-12 ui-md-5" [cancel]="false"></p-rating>
+             <p-rating [(ngModel)]="val2" (onRate)="handleRate($event)" (onCancel)="handleCancel($event)"></p-rating> <span *ngIf="msg" style="margin-left:10px">{{msg}}</span>
             <pre class="ui-g-12 ui-md-5">{{ projectForm.getRawValue() | json }}</pre>
 
-        </div>
-    </p-panel>
-
+        </p-fieldset>
+</p-accordionTab>
+</p-panel>
+</p-accordion>
 
 
 
         <button class="ui-g-2" pButton type="submit" [disabled]="hasFormErrors()" label="Save" icon="fa-floppy-o"></button>
 
-    </p-panel>
+    </p-panel>>
 </form>

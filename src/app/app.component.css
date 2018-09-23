@@ -4,9 +4,9 @@
   position: fixed;
   top: 0px;
   bottom: 5px;
-  padding-left: 8%;
+  padding-left: 12%;
   z-index: 99;
-  width: 95%;
+  width: 100%;
   background: linear-gradient(to top, rgba(10,10,10,0.8) 0%,rgba(10,10,10,0.8) 100%), url() repeat 0 0;
     background-size: 100% 85px;
 
@@ -15,12 +15,12 @@
 #search
 {
   position: fixed;
-  top: 15px;
-  left: 85%;
-  
+  top: 30px;
+  left: 95%;
+  color: darkorange;
 }
 .search-container{
-  width: 12%;
+  width: 13%;
   display: block;
   margin: 0 auto;
 }
@@ -64,7 +64,7 @@ input#search-bar{
 }
 #top-logo {
   position: absolute;
-  left: -9%;
+  left: 2%;
   top: 0px;
   height: 60px;
 }

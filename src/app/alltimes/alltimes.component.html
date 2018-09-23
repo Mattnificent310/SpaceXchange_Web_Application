@@ -12,36 +12,40 @@
 
   </div>
 
+  <p-dataScroller [value]="allTimesheetData" [rows]="10">
+    
+    <ng-template let-car pTemplate="item" let-i="index" >
+        <div class="ui-g-10">
+            <div class="ui-g-5 ui-sm-1">
+                <img src="data:image/png;base64,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">
+            </div>
+            <div class="ui-g-12 ui-md-7">
+                <div class="ui-g-12">
+                    <div class="ui-g-2 ui-sm-6">Name: </div>
+                    <div class="ui-g-10 ui-sm-12">{{car.user}}</div>
 
-  <p-dataTable #dt [value]="allTimesheetData" class="ui-g-12"  sortOrder="1" emptyMessage="No entries found"
-    [reorderableColumns]="true" columnResizeMode="fit" [resizableColumns]="true" [globalFilter]="tableSearch" exportFilename="users"
-    [editable]="true" (onEditComplete)="onEditComplete($event)" [(selection)]="selectedRows" (onRowSelect)="onRowSelect($event)"
-    [contextMenu]="tableContextMenu" [paginator]="true" [rows]="100" [rowsPerPageOptions]="[5,10,15,20]" [totalRecords]="recordCount"
-    [pageLinks]="8" [lazy]="true" (onLazyLoad)="loadTimes($event)">
-<p-column selectionMode="multiple" styleClass="selectBoxColumn"></p-column>
-    <img field="avatar" header="Avatar" />
+                    <div class="ui-g-2 ui-sm-6">Type: </div>
+                    <div class="ui-g-10 ui-sm-12">{{car.project}}</div>
 
-    <p-column field="user" header="Supplier" [sortable]="true" [editable]="true"></p-column>
-    <p-column field="project" header="Space Type" [filter]="true" filterPlaceholder="Looking For Space..." filterMatchMode="equals" [style]="{'overflow':'visible'}"
-      [editable]="true">
-      <ng-template pTemplate="filter" let-col>
-        <p-dropdown [options]="allProjects" [style]="{'width':'100%'}" (onChange)="dt.filter($event.value,col.field,col.filterMatchMode)"
-          styleClass="ui-column-filter"></p-dropdown>
-      </ng-template>
-      <ng-template let-col let-project="rowData" pTemplate="editor">
-        <p-dropdown [(ngModel)]="project[col.field]" [options]="allProjects" [autoWidth]="false" [style]="{'width':'100%'}" required="true"></p-dropdown>
-      </ng-template>
+                    <div class="ui-g-2 ui-sm-6">Category: </div>
+                    <div class="ui-g-10 ui-sm-12">{{car.category}}</div>
 
-    </p-column>
-    <p-column field="category" header="Category" [sortable]="true" [editable]="true"></p-column>
-    <p-column field="startTime" header="Start Location" [sortable]="true" [editable]="true"></p-column>
-    <p-column field="endTime" header="End Location" [sortable]="true" [editable]="true"></p-column>
-    <p-footer>
-      <label for="tableSearch">Search: </label>
-      <input id="tableSearch" #tableSearch type="text" placeholder="Filter Suppliers...">
-      <button type="button" pButton icon="fa-table" label="Export" (click)="dt.exportCSV()" style="float:right;"></button>
-    </p-footer>
-  </p-dataTable>
+                    <div class="ui-g-2 ui-sm-6">Departure: </div>
+                    <div class="ui-g-10 ui-sm-12">{{car.startTime}}</div>
+
+                    <div class="ui-g-2 ui-sm-6">Arrival: </div>
+                    <div class="ui-g-10 ui-sm-12">{{car.endTime}}</div>
+                </div>
+            </div>
+            <div class="ui-grid-col-5" style="margin-left: 42%"  >
+              <button class="ui-md-5" style="height: 36px;" type="button" pButton icon="pi pi-search" (click)="selectCar(car)">Book</button>
+              <button class="ui-md-5" style="height: 36px;" type="button" pButton icon="pi pi-search" (click)="selectCar(car)">Details</button>
+         
+            </div>
+        </div>
+    </ng-template>
+</p-dataScroller>
+ 
 
   <p-contextMenu #tableContextMenu [model]="contextMenu"></p-contextMenu>
 

@@ -21,6 +21,13 @@ export class AppComponent implements OnInit, AfterViewInit {
   registerForm: FormGroup;
   supplierForm: FormGroup;
   
+    brands: string[] = ['Audi','BMW','Fiat','Ford','Honda','Jaguar','Mercedes','Renault','Volvo','VW'];
+
+    filteredBrands: any[];
+
+    brand: string;  
+    
+  
   @ViewChild('bigMenu') bigMenu : Menu;
   @ViewChild('smallMenu') smallMenu : Menu;
 
@@ -62,10 +69,10 @@ export class AppComponent implements OnInit, AfterViewInit {
 
     this.menuItems = [
       {label: 'Dashboard', icon: 'fa-home', routerLink: ['/dashboard'], command: (event) => handleSelected(event)},
-      {label: 'Marketplace', icon: 'fa-money', routerLink: ['/alltimes'], command: (event) => handleSelected(event)},
-      {label: 'My Exchanges', icon: 'fa-clock-o', routerLink: ['/timesheet'], command: (event) => handleSelected(event)},
-      {label: 'My Contacts', icon: 'fa-tasks', routerLink: ['/projects'], command: (event) => handleSelected(event)},
-      {label: 'My Profile', icon: 'fa-users', routerLink: ['/profile'], command: (event) => handleSelected(event)},
+      {label: 'Marketplace', icon: 'fa-money', routerLink: ['/marketplace'], command: (event) => handleSelected(event)},
+      {label: 'My Exchanges', icon: 'fa-clock-o', routerLink: ['/history'], command: (event) => handleSelected(event)},
+      {label: 'My Contacts', icon: 'fa-users', routerLink: ['/contacts'], command: (event) => handleSelected(event)},
+      {label: 'My Profile', icon: 'fa-profile', routerLink: ['/profile'], command: (event) => handleSelected(event)},
       {label: 'Settings', icon: 'fa-sliders', routerLink: ['/settings'], command: (event) => handleSelected(event)},
     ]
     this.items = [
@@ -80,7 +87,19 @@ export class AppComponent implements OnInit, AfterViewInit {
     })
 
   }
-
+  filterBrands(event) {
+    this.filteredBrands = [];
+    for(let i = 0; i < this.brands.length; i++) {
+        let brand = this.brands[i];
+        if (brand.toLowerCase().indexOf(event.query.toLowerCase()) == 0) {
+            this.filteredBrands.push(brand);
+        }
+    }
+}
+selectCar(event, overlaypanel: OverlayPanel) {
+  
+  overlaypanel.toggle(event);
+}
   selectInitialMenuItemBasedOnUrl() {
     let path = document.location.pathname;
     let menuItem = this.menuItems.find( (item) => { return item.routerLink[0] == path });
