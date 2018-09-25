@@ -24,11 +24,11 @@ export class TimesheetComponent {
 
   private userTimeData = [
 
-    { month: 'January', day: '10', startTime: '9:00', endTime: '17:00', project: 'Cargo Transit', category: 'Road Freight' },
-    { month: 'February', day: '27', startTime: '9:00', endTime: '17:00', project: 'Passenger Transit', category: 'Car Pool' },
-    { month: 'March', day: '6', startTime: '9:00', endTime: '17:00', project: 'Cargo Transit', category: 'Air Freight' },
-    { month: 'April', day: '16', startTime: '9:00', endTime: '17:00', project: 'Passenger Transit', category: 'Bus Trip' },
-    { month: 'May', day: '23', startTime: '9:00', endTime: '17:00', project: 'Cargo Transit', category: 'Sea Freight' },
+    { month: 'January', day: '10', startTime: 'Pretoria', endTime: 'Bloemfontein', project: 'Cargo Transit', category: 'Road Freight' },
+    { month: 'February', day: '27', startTime: 'Johannesburg', endTime: 'Durban', project: 'Passenger Transit', category: 'Car Pool' },
+    { month: 'March', day: '6', startTime: 'Rustenburg', endTime: 'Brits', project: 'Cargo Transit', category: 'Air Freight' },
+    { month: 'April', day: '16', startTime: 'Krugersdorp', endTime: 'Witbank', project: 'Passenger Transit', category: 'Bus Trip' },
+    { month: 'May', day: '23', startTime: 'Harrismith', endTime: 'Clarens', project: 'Cargo Transit', category: 'Sea Freight' },
 
   ]
 

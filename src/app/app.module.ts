@@ -22,6 +22,7 @@ import {AccordionModule} from 'primeng/accordion';
 import {PasswordModule} from 'primeng/password';
 import {AutoCompleteModule} from 'primeng/autocomplete';
 import {OverlayPanelModule} from 'primeng/overlaypanel';
+import {CarouselModule} from 'primeng/carousel';
 
 const appRoutes: Routes = [
   { path: "", redirectTo: "/dashboard", pathMatch: "full" },
@@ -91,7 +92,8 @@ const appRoutes: Routes = [
     AccordionModule,
     PasswordModule,
     AutoCompleteModule,
-    OverlayPanelModule
+    OverlayPanelModule,
+    CarouselModule
     ],
   providers: [ ConfirmationService, BuyerService ],
   bootstrap: [AppComponent]

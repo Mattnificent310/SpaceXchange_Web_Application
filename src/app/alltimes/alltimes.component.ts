@@ -18,14 +18,18 @@ export class AlltimesComponent implements OnInit {
 
   allTimesheetData = [
 
-    {avatar: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSePYH0l73i-OgzhmHIgztXFb6p2wZFfcAETx9-AL4Y3ndU-KLt', user: 'Glen', project: 'Cargo Space', category: 'Road Transit', startTime: 'Johannesburg', endTime: 'Pretoria', date: 1434243 },
-    { avatar: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSePYH0l73i-OgzhmHIgztXFb6p2wZFfcAETx9-AL4Y3ndU-KLt', user: 'Karen', project: 'Paasenger Space', category: 'Sea Transit', startTime: 'Cape Town', endTime: 'Mosselbay', date: 1434243 },
-    { avatar: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSePYH0l73i-OgzhmHIgztXFb6p2wZFfcAETx9-AL4Y3ndU-KLt', user: 'Si', project: 'Storage Space', category: 'Air Transit', startTime: 'Bloemfontein', endTime: 'Harrismith', date: 1434243 },
-    { avatar: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSePYH0l73i-OgzhmHIgztXFb6p2wZFfcAETx9-AL4Y3ndU-KLt', user: 'Rohit', project: 'Mixed Space', category: 'Rail Transit', startTime: 'Kimberley', endTime: 'Upington', date: 1434243 },
+    {avatar: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSePYH0l73i-OgzhmHIgztXFb6p2wZFfcAETx9-AL4Y3ndU-KLt', user: 'Glen',
+     project: 'Cargo Space', category: 'Road Transit', startTime: 'Johannesburg', endTime: 'Pretoria', date: 1434243 },
+    { avatar: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSePYH0l73i-OgzhmHIgztXFb6p2wZFfcAETx9-AL4Y3ndU-KLt', user: 'Karen',
+     project: 'Paasenger Space', category: 'Sea Transit', startTime: 'Cape Town', endTime: 'Mosselbay', date: 1434243 },
+    { avatar: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSePYH0l73i-OgzhmHIgztXFb6p2wZFfcAETx9-AL4Y3ndU-KLt', user: 'Si',
+     project: 'Storage Space', category: 'Air Transit', startTime: 'Bloemfontein', endTime: 'Harrismith', date: 1434243 },
+    { avatar: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSePYH0l73i-OgzhmHIgztXFb6p2wZFfcAETx9-AL4Y3ndU-KLt', user: 'Rohit',
+     project: 'Mixed Space', category: 'Rail Transit', startTime: 'Kimberley', endTime: 'Upington', date: 1434243 },
 
   ];
 
-  allProjectNames = ['', 'Cargo Space', 'Passenger Space', 'Storage Space', 'Mixed Space'];
+  allProjectNames = ['Recent', 'Cargo Space', 'Passenger Space', 'Storage Space', 'Mixed Space'];
 
   allProjects = this.allProjectNames.map((proj) => {
     return { label: proj, value: proj }
@@ -35,13 +39,23 @@ export class AlltimesComponent implements OnInit {
 
   contextMenu: MenuItem[];
 
-  recordCount : number;
-
+  recordCount: number;
+  cars: Car[];
   constructor() {
     // for (let x = 0; x < 5; x++) {
     //   this.allTimesheetData = this.allTimesheetData.concat(this.allTimesheetData);
     // }
-    
+    this.cars = [
+      {vin: 'r3278r2', year: 2010, brand: 'Audi', color: 'Black'},
+      {vin: 'jhto2g2', year: 2015, brand: 'BMW', color: 'White'},
+      {vin: 'h453w54', year: 2012, brand: 'Honda', color: 'Blue'},
+      {vin: 'g43gwwg', year: 1998, brand: 'Renault', color: 'White'},
+      {vin: 'gf45wg5', year: 2011, brand: 'VW', color: 'Red'},
+      {vin: 'bhv5y5w', year: 2015, brand: 'Jaguar', color: 'Blue'},
+      {vin: 'ybw5fsd', year: 2012, brand: 'Ford', color: 'Yellow'},
+      {vin: '45665e5', year: 2011, brand: 'Mercedes', color: 'Brown'},
+      {vin: 'he6sb5v', year: 2015, brand: 'Ford', color: 'Black'}
+  ];
     this.recordCount = this.allTimesheetData.length;
     this.configureDatabase();
     this.populateDatabase();
