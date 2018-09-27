@@ -1,13 +1,16 @@
 <form [formGroup]="projectForm" (ngSubmit)="onSubmit()" class="ui-g-12" style="margin-top: 8px;" >
-    <p-panel header="Add Contact" class="ui-g-12">
-
-        <div class="ui-g">
-
+        
+                
+    <p-panel header="Contact Management" class="ui-g">
+                        
+           <p-tabView class="ui-g-12">
+                
+<p-tabPanel header="New Contact">
            
-            <div class="ui-md-5 inputContainers">
+            <div class="ui-md-6 inputContainers">
                     <div class="inputContainer">
                             <div class="iconContainer" >
-                                <i class="material-icons">perm_identity</i>
+                                <i class="material-icons">account_circle</i>
                             </div>
                             
                                 <input style="height: 36px;" class="ui-md-10 inputHolder" type="email" id="projectId" required formControlName="names"  placeholder="Name Surname" >
@@ -50,7 +53,7 @@
 
 
             </div>
-        
+       
         <p-accordion class="ui-g-10">
               <p-panel header="Description">  
 <p-accordionTab>
@@ -103,6 +106,29 @@
 
 
         <button class="ui-g-2" pButton type="submit" [disabled]="hasFormErrors()" label="Save" icon="fa-floppy-o"></button>
-    </div>
+    
+    </p-tabPanel>
+    <p-tabPanel header="Contact List">
+<div  style="width: 133%; padding-right: 475px">
+          <p-panel class="ui-md-12" header="Contact List" >
+               
+                        <p-fieldset>
+                           <p-listbox id="devs" [options]="allDevs" [multiple]="true" [filter]="true" formControlName="selectedContacts" class="ui-g-12 ui-md-10">
+                               <ng-template let-dev pTemplate="item">
+                                   <img src="http://i.pravatar.cc/100?u={{dev.label}}" class="avatar" />
+                                   <span class="devName">{{dev.value}}</span>
+                               </ng-template>
+                           </p-listbox>
+                       </p-fieldset>
+              
+               </p-panel>
+            </div>
+    </p-tabPanel>
+
+
+</p-tabView>
+
     </p-panel>
-</form>
+
+    
+    </form>
