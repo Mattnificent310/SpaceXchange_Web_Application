@@ -1,10 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { Galleria, Message } from "primeng/primeng";
+import { FormBuilder, FormGroup, Validators } from "@angular/forms";
 
 @Component({
   selector: 'at-profile',
   templateUrl: './profile.component.html',
-  styleUrls: ['./profile.component.css']
+  styleUrls: ['./profile.component.css', '../../../node_modules/material-icons/iconfont/material-icons.css']
 })
 export class ProfileComponent implements OnInit {
 
@@ -20,11 +21,18 @@ export class ProfileComponent implements OnInit {
 
   selectedProfile: any;
 
-  messages : Message[] = [];
-
-  constructor() { }
+  messages: Message[] = [];
+registerForm: FormGroup;
+  constructor(private fb: FormBuilder) { }
 
   ngOnInit() {
+    this.registerForm = this.fb.group({
+      regName: ['', [Validators.required, Validators.minLength(3)]],      
+      regSurname: ['', [Validators.required, Validators.minLength(3)]],      
+      regPhoneNumber: ['', [Validators.required, Validators.minLength(10)]],
+      regEmailAddress: ['', [Validators.required, Validators.minLength(10)]],
+      regPassword: ['', [Validators.required, Validators.minLength(10)]],      
+    })
   }
 
   onImageSelected(event) {

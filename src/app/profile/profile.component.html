@@ -22,5 +22,91 @@
 <p-galleria #galleria [images]="images" class="ui-g-12 ui-md-7" panelWidth="300" panelHeight="298" [showCaption]="true" pDraggable="profilePic" dragHandle=".ui-panel-images" (onImageClicked)="onImageSelected($event)"
 (onDragStart)="onDragStart(galleria)">
 </p-galleria>
-
+<div class="ui-g-12">
+<p-panel header="Profile Editor" class="ui-g">
+<p-tabView>
+        <p-tabPanel header="General Info" leftIcon="pi pi-calendar">
+            <div [formGroup]="registerForm" class="ui-g">
+      
+          <div class="ui-md-12 inputContainers">
+                <div class="inputContainer">
+                        <div class="iconContainer" >
+                            <i class="material-icons">account_circle</i>
+                        </div>
+                        
+                            <input class="ui-md-10 inputHolder" type="email" id="projectId" required formControlName="regName"  placeholder="Name" />
+                        
+                    </div>
+                    <div class="ui-g-12 ui-md-5">
+            
+                            <at-fielderrors [form]="registerForm" field="regName" nicename="Name"> </at-fielderrors>
+            
+            
+                        </div>
+                        <div class="inputContainer">
+                          <div class="iconContainer" >
+                              <i class="material-icons">account_circle</i>
+                          </div>
+                          
+                              <input class="ui-md-10 inputHolder" type="email" id="projectId" required formControlName="regSurname"  placeholder="Surname" />
+                          
+                      </div>
+                      <div class="ui-g-12 ui-md-5">
+              
+                              <at-fielderrors [form]="registerForm" field="regSurname" nicename="Surname"> </at-fielderrors>
+              
+              
+                          </div>
+            <div class="inputContainer">
+                <div class="iconContainer" >
+                    <i class="material-icons">phone_android</i>
+                </div>
+                
+                    <p-inputMask width="100" class="inputHolder" mask="999-999-9999" id="projectId" formControlName="regPhoneNumber" placeholder="123-456-7890" slotChar="X" ></p-inputMask>
+            
+               
+            </div>
+            <div class="ui-g-12 ui-md-5">
+            
+                <at-fielderrors [form]="registerForm" field="regPhoneNumber" nicename="Phone Number"> </at-fielderrors>
+            
+            
+            </div>
+            
+            <div class="inputContainer">
+                <div class="iconContainer" >
+                    <i class="material-icons">mail_outline</i>
+                </div>
+                
+                    <input class="ui-md-10 inputHolder" type="email" id="projectId" required formControlName="regEmailAddress"  placeholder="name.surname@example.com" />
+                
+            </div>
+            
+            <div class="ui-g-12 ui-md-5">
+            <at-fielderrors [form]="registerForm" field="regEmailAddress" nicename="Email Address"> </at-fielderrors>
+            </div>
+            
+            <div class="inputContainer">
+                <div class="iconContainer" >
+                    <i class="material-icons">lock_outline</i>
+                </div>
+                
+                    <input class="ui-md-10 inputHolder" pPassword type="password" id="projectId" required formControlName="regPassword"  placeholder="•••••••••••" />
+                
+              </div>
+            
+            <div class="ui-g-12 ui-md-5">
+            <at-fielderrors [form]="registerForm" field="regPassword" nicename="Password"> </at-fielderrors>  </div>
+            </div>
+            
+            </div>
+            
+            <p-footer>
+                <button type="button" pButton icon="pi pi-check" (click)="register=false" label="Save"></button>
+                <button type="button" pButton icon="pi pi-close" (click)="register=false" label="Cancel" class="ui-button-secondary"></button>
+            </p-footer>
+        </p-tabPanel>
+        </p-tabView>
+        </p-panel>
+    </div>
 <p-growl [value]="messages"></p-growl>

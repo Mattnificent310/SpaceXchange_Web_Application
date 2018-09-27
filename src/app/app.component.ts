@@ -11,7 +11,7 @@ declare var jQuery :any;
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
-  styleUrls: ['./app.component.css','../../node_modules/material-icons/iconfont/material-icons.css']
+  styleUrls: ['./app.component.css', '../../node_modules/material-icons/iconfont/material-icons.css']
 })
 export class AppComponent implements OnInit, AfterViewInit {
 
