@@ -26,7 +26,7 @@
         <div class="ui-g">
  
     <p-tabView class="ui-g-12">
-        <p-tabPanel header="General Info" leftIcon="pi pi-calendar" class="ui-g">
+        <p-tabPanel header="General Info" leftIcon="pi pi-calendar" class="ui-g-7">
             <div [formGroup]="registerForm" class="ui-g-12">
       
           <div class="inputContainers">
@@ -35,11 +35,11 @@
                             <i class="material-icons">account_circle</i>
                         </div>
                         
-                            <input class="ui-md-10 inputHolder" type="email" id="projectId" required formControlName="regName"  placeholder="Name" />
+                            <input *ngIf="editName == true" class="ui-md-10 inputHolder" type="email" id="projectId" required formControlName="regName"  placeholder="Name" />
                            
                     </div>
-                    <button type="button" pButton icon="fa fa-edit" (click)="register=false" class="ui-g-2 btnEdit" label="Edit"></button>
-             
+                    <button type="button" pButton icon="{{iconName}}" (click)="editNames();" label="{{labelName}}" class="ui-g-2 btnEdit" ></button>
+            
                     <div class="ui-g-12 ui-md-5">
             
                             <at-fielderrors [form]="registerForm" field="regName" nicename="Name"> </at-fielderrors>
@@ -51,11 +51,11 @@
                               <i class="material-icons">account_circle</i>
                           </div>
                           
-                              <input class="ui-md-10 inputHolder" type="email" id="projectId" required formControlName="regSurname"  placeholder="Surname" />
+                              <input *ngIf="editSurname == true" class="ui-md-10 inputHolder" type="email" id="projectId" required formControlName="regSurname"  placeholder="Surname" />
                           
                       </div>
-                      <button type="button" pButton icon="fa fa-edit" (click)="register=false" class="ui-g-2 btnEdit" label="Edit"></button>
-             
+                      <button type="button" pButton icon="{{iconSurname}}" (click)="editSurnames();" label="{{labelSurname}}" class="ui-g-2 btnEdit" ></button>
+            
                       <div class="ui-g-12 ui-md-5">
               
                               <at-fielderrors [form]="registerForm" field="regSurname" nicename="Surname"> </at-fielderrors>
@@ -67,12 +67,12 @@
                     <i class="material-icons">phone_android</i>
                 </div>
                 
-                    <p-inputMask width="100" class="inputHolder" mask="999-999-9999" id="projectId" formControlName="regPhoneNumber" placeholder="123-456-7890" slotChar="X" ></p-inputMask>
+                    <p-inputMask *ngIf="editPhone == true" width="100" class="inputHolder" mask="999-999-9999" id="projectId" formControlName="regPhoneNumber" placeholder="123-456-7890" slotChar="X" ></p-inputMask>
             
                
             </div>
-            <button type="button" pButton icon="fa fa-edit" (click)="register=false" class="ui-g-2 btnEdit" label="Edit"></button>
-                    
+            <button type="button" pButton icon="{{iconPhone}}" (click)="editPhones();" label="{{labelPhone}}" class="ui-g-2 btnEdit" ></button>
+                   
             <div class="ui-g-12 ui-md-5">
             
                 <at-fielderrors [form]="registerForm" field="regPhoneNumber" nicename="Phone Number"> </at-fielderrors>
@@ -85,26 +85,27 @@
                     <i class="material-icons">mail_outline</i>
                 </div>
                 
-                    <input class="ui-md-10 inputHolder" type="email" id="projectId" required formControlName="regEmailAddress"  placeholder="name.surname@example.com" />
+                    <input *ngIf="editEmail == true" class="ui-md-10 inputHolder" type="email" id="projectId" required formControlName="regEmailAddress"  placeholder="name.surname@example.com" />
                 
             </div>
-            <button type="button" pButton icon="fa fa-edit" (click)="register=false" class="ui-g-2 btnEdit" label="Edit"></button>
-                    
+            <button type="button" pButton icon="{{iconEmail}}" (click)="editEmails();" label="{{labelEmail}}" class="ui-g-2 btnEdit" ></button>
+                       
             <div class="ui-g-12 ui-md-5">
             <at-fielderrors [form]="registerForm" field="regEmailAddress" nicename="Email Address"> </at-fielderrors>
             </div>
             
-            <div class="inputContainer">
+            <div class="inputContainer" >
                 <div class="iconContainer" >
-                    <i class="fa fa-calendar"></i>
+                    <i class="material-icons">date_range</i>
                 </div>
                 
-                <p-calendar [(ngModel)]="date" class="inputHolder" formControlName="regDOB" [showIcon]="true"></p-calendar>
                 
               </div>
-              <button type="button" pButton icon="fa fa-edit" (click)="register=false" class="ui-g-2 btnEdit" label="Edit"></button>
+              <p-calendar width="200" *ngIf="editDate == true" [(ngModel)]="date" class="inputHolder" formControlName="regDOB" [inline]="true" ></p-calendar>
+                
+              <button type="button" pButton icon="{{iconDate}}" (click)="editDates();" label="{{labelDate}}" class="ui-g-2 btnEdit" ></button>
                   
-            <div class="ui-g-12 ui-md-5">
+            <div class="ui-g-12 ui-md-5 ">
             <at-fielderrors [form]="registerForm" field="regDOB" nicename="Birth Date"> </at-fielderrors>  </div>
             </div>
             
