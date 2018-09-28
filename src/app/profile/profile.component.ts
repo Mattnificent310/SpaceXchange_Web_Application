@@ -34,7 +34,7 @@ labelDate: String;
 iconEmail: String;
 labelEmail: String;
 iconPhone: String;
-labelEmail: String;
+labelPhone: String;
 iconName: String;
 labelName: String;
 iconSurname: String;
