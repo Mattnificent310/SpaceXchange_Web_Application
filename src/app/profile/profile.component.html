@@ -101,7 +101,7 @@
                 
                 
               </div>
-              <p-calendar width="200" *ngIf="editDate == true" [(ngModel)]="date" class="inputHolder" formControlName="regDOB" [inline]="true" ></p-calendar>
+              <p-calendar *ngIf="editDate == true" [(ngModel)]="date" class="inputHolder" formControlName="regDOB" [inline]="true" ></p-calendar>
                 
               <button type="button" pButton icon="{{iconDate}}" (click)="editDates();" label="{{labelDate}}" class="ui-g-2 btnEdit" ></button>
                   

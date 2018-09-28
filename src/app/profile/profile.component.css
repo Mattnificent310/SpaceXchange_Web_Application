@@ -25,16 +25,14 @@ h3 {
   font-size: xx-large;
   display: inline;
 }
-.panel-content >>> .ui-panel-content{
+.panel-content >>> .ui-panel-content{ 
   height: 550px;
 }
 /* p-panel >>> .ui-panel-content {
   height: 500px;
 } */
 
-p-panel img {
-  width: 100%;
-}
+
 
 .btnEdit {
    margin-bottom: 10px;
