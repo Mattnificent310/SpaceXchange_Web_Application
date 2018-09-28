@@ -25,16 +25,27 @@ h3 {
   font-size: xx-large;
   display: inline;
 }
-
-p-panel >>> .ui-panel-content {
-  height: 320px;
+.panel-content >>> .ui-panel-content{
+  height: 550px;
 }
+/* p-panel >>> .ui-panel-content {
+  height: 500px;
+} */
 
 p-panel img {
   width: 100%;
 }
 
-
+.btnEdit {
+   margin: 5px 0 10px 0;
+   float: right;
+   background-color:transparent; 
+   color: black;
+   
+}
+.btnEdit:hover{
+  color: white;
+}
 #drop-message {
   font-size: xx-large;
   color: #2D353C;

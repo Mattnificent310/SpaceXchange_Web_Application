@@ -23,6 +23,7 @@ export class ProfileComponent implements OnInit {
 
   messages: Message[] = [];
 registerForm: FormGroup;
+date: Date;
   constructor(private fb: FormBuilder) { }
 
   ngOnInit() {
@@ -31,7 +32,7 @@ registerForm: FormGroup;
       regSurname: ['', [Validators.required, Validators.minLength(3)]],      
       regPhoneNumber: ['', [Validators.required, Validators.minLength(10)]],
       regEmailAddress: ['', [Validators.required, Validators.minLength(10)]],
-      regPassword: ['', [Validators.required, Validators.minLength(10)]],      
+      regDOB: ['', [Validators.required, Validators.minLength(10)]],      
     })
   }
 
