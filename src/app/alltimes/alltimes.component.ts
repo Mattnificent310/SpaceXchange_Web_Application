@@ -8,23 +8,44 @@ const MAX_EXAMPLE_RECORDS = 1000;
 @Component({
   selector: 'at-alltimes',
   templateUrl: './alltimes.component.html',
-  styleUrls: ['./alltimes.component.css']
+  styleUrls: ['./alltimes.component.css', '../../../node_modules/material-icons/iconfont/material-icons.css']
 })
 export class AlltimesComponent implements OnInit {
 
   @ViewChild("dt") dt : DataTable;
 
   db: Dexie;
+  viewDetail: boolean;
+  avatar: String;
+  user: String;
+  project: String;
+  category: String;
+  startDate: String;
+  endDate: String;
+  depDate: String;
+  email: String;
 
   allTimesheetData = [
 
-    {avatar: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSePYH0l73i-OgzhmHIgztXFb6p2wZFfcAETx9-AL4Y3ndU-KLt', user: 'Glen',
+    {id: 1, avatar: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSePYH0l73i-OgzhmHIgztXFb6p2wZFfcAETx9-AL4Y3ndU-KLt', user: 'Glen',
+     project: 'Cargo Space', email: 'glen@gmail.com', category: 'Road Transit', startTime: 'Johannesburg', endTime: 'Pretoria', date: '2018-11-14' },
+    {id: 2, avatar: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSePYH0l73i-OgzhmHIgztXFb6p2wZFfcAETx9-AL4Y3ndU-KLt', user: 'Karen',
+     project: 'Paasenger Space', email: 'karen@gmail.com', category: 'Sea Transit', startTime: 'Cape Town', endTime: 'Mosselbay', date: '2018-12-16' },
+    {id: 3,avatar: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSePYH0l73i-OgzhmHIgztXFb6p2wZFfcAETx9-AL4Y3ndU-KLt', user: 'Si',
+     project: 'Storage Space', email: 'sisi@gmail.com', category: 'Air Transit', startTime: 'Bloemfontein', endTime: 'Harrismith', date: '2018-10-26' },
+    {id: 4, avatar: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSePYH0l73i-OgzhmHIgztXFb6p2wZFfcAETx9-AL4Y3ndU-KLt', user: 'Rohit',
+     project: 'Mixed Space',email: 'rohit@gmail.com', category: 'Rail Transit', startTime: 'Kimberley', endTime: 'Upington', date: '2018-09-14' },
+
+  ];
+  allData = [
+
+    {id: 1, avatar: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSePYH0l73i-OgzhmHIgztXFb6p2wZFfcAETx9-AL4Y3ndU-KLt', user: 'Glen',
      project: 'Cargo Space', category: 'Road Transit', startTime: 'Johannesburg', endTime: 'Pretoria', date: 1434243 },
-    { avatar: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSePYH0l73i-OgzhmHIgztXFb6p2wZFfcAETx9-AL4Y3ndU-KLt', user: 'Karen',
+    {id: 2, avatar: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSePYH0l73i-OgzhmHIgztXFb6p2wZFfcAETx9-AL4Y3ndU-KLt', user: 'Karen',
      project: 'Paasenger Space', category: 'Sea Transit', startTime: 'Cape Town', endTime: 'Mosselbay', date: 1434243 },
-    { avatar: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSePYH0l73i-OgzhmHIgztXFb6p2wZFfcAETx9-AL4Y3ndU-KLt', user: 'Si',
+    {id: 3, avatar: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSePYH0l73i-OgzhmHIgztXFb6p2wZFfcAETx9-AL4Y3ndU-KLt', user: 'Si',
      project: 'Storage Space', category: 'Air Transit', startTime: 'Bloemfontein', endTime: 'Harrismith', date: 1434243 },
-    { avatar: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSePYH0l73i-OgzhmHIgztXFb6p2wZFfcAETx9-AL4Y3ndU-KLt', user: 'Rohit',
+    {id: 4, avatar: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSePYH0l73i-OgzhmHIgztXFb6p2wZFfcAETx9-AL4Y3ndU-KLt', user: 'Rohit',
      project: 'Mixed Space', category: 'Rail Transit', startTime: 'Kimberley', endTime: 'Upington', date: 1434243 },
 
   ];
@@ -49,7 +70,7 @@ export class AlltimesComponent implements OnInit {
     this.recordCount = this.allTimesheetData.length;
     this.configureDatabase();
     this.populateDatabase();
-
+    this.viewDetail = false;
   }
 
   private configureDatabase() {
@@ -73,7 +94,17 @@ export class AlltimesComponent implements OnInit {
     });
 
   }
-
+  viewDetails(id: number) {
+    this.avatar = this.allTimesheetData[id].avatar;
+    this.user = this.allTimesheetData[id].user;
+    this.project = this.allTimesheetData[id].project;
+    this.category = this.allTimesheetData[id].category;
+    this.startDate = this.allTimesheetData[id].startTime;
+    this.endDate = this.allTimesheetData[id].endTime;
+    this.depDate = this.allTimesheetData[id].date;
+    this.email = this.allTimesheetData[id].email;
+    this.viewDetail = true;
+  }
   generateRandomUser(id: number) {
 
     var names = ["Joe", "Mary", "Phil", "Karen", "Si", "Tim", "Rohit", "Jenny", "Kim", "Greg", "Danni"]
@@ -201,6 +232,7 @@ export class AlltimesComponent implements OnInit {
   onRowSelect(rowInfo) {
     //console.log(JSON.stringify(rowInfo.data)); // or this.selectedRow
   }
+ 
 
 
 

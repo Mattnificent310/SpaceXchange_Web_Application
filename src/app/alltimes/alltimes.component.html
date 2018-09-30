@@ -12,6 +12,7 @@
     
    
   </div>
+  </div>
 <div class="ui-g-12">
   <p-dataScroller [value]="allProjectNames" [rows]="3">
     
@@ -42,10 +43,10 @@
                 </div>
                 <div class="ui-grid-row ui-g-12">
                     <div class="ui-grid-col-10" >
-                        <h2> </h2>
+                        <h1> </h1>
                   
                         <button type="button" class="ui-g-5" label="Book" pButton icon="fa fa-shopping-cart" (click)="selectCar(car)"></button>
-                        <button type="button" class="ui-g-5" label="View" pButton icon="fa fa-street-view" (click)="selectCar(car)"></button>
+                        <button type="button" class="ui-g-5" label="View" pButton icon="fa fa-street-view" (click)="viewDetails(car.id -1)"></button>
                     
                       </div>
                 </div>
@@ -58,6 +59,74 @@
 </p-dataScroller>
 </div>
 
-  <p-contextMenu #tableContextMenu [model]="contextMenu"></p-contextMenu>
+<p-dialog [(visible)]="viewDetail" [modal]="true" [responsive]="true" [width]="750" [minWidth]="450" 
+[baseZIndex]="9999999999">
+  <p-header class="header">Profile</p-header>
+  
+             
+    <div class="ui-md-12 inputContainers">
+            <img class="ui-g-offset-2" src="{{avatar}}" width="150" height="150"/>
+  
+          <div class="inputContainer">
+                  <div class="iconContainer" >
+                      <i class="material-icons">account_circle</i>
+                  </div>
+                  
+                      <label class="ui-md-10 inputHolder">{{user}}</label>
+              </div>
+              
+                  <div class="inputContainer">
+                    <div class="iconContainer" >
+                        <i class="material-icons">mail_outline</i>
+                    </div>
+                    
+                        <a href="{{email}}" class="ui-md-10 inputHolder">{{email}}</a>
+                </div>
+               
+      <div class="inputContainer">
+          <div class="iconContainer" >
+              <i class="material-icons">phone_android</i>
+          </div>
+          
+              <pre>{{category}}</pre>
+         
+      </div>         
+      
+      <div class="inputContainer">
+          <div class="iconContainer" >
+              <i class="material-icons">location_on</i>
+          </div>
+          
+              <a class="ui-md-10 inputHolder unstyled" href="#" id="projectId" >{{startDate}}</a>
+               >>>  <a class="ui-md-10 inputHolder unstyled" href="#" id="projectId" >{{endDate}}</a>
+          
+      </div>
+      
+      
+      <div class="inputContainer">
+          <div class="iconContainer" >
+              <i class="material-icons">local_shipping</i>
+          </div>
+          
+              <label class="ui-md-10 inputHolder">{{category}}</label>
+       </div>
+       <div class="inputContainer">
+        <div class="iconContainer" >
+            <i class="material-icons">update</i>
+        </div>
+        
+            <label class="ui-md-10 inputHolder">{{depDate}}</label>
+     </div>
+     <div class="inputContainer">
+            <div class="iconContainer" >
+                <i class="material-icons">stars</i>
+            </div>
+    <div class="inputHolder"> <p-rating  [ngModel]="3" readonly="true" stars="5" [cancel]="false"></p-rating>
+    </div>
+    </div>
+       </div>
+       </p-dialog>
 
-</div>
+<p-contextMenu #tableContextMenu [model]="contextMenu"></p-contextMenu>
+
+<p-growl [value]="messages"></p-growl>
