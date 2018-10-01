@@ -24,17 +24,35 @@ export class AlltimesComponent implements OnInit {
   endDate: String;
   depDate: String;
   email: String;
-
+  names: string[] = ['Joe', 'Mary', 'Phil', 'Karen', 'Si', 'Tim', 'Rohit', 'Jenny', 'Kim', 'Greg', 'Danni'];
+  phone: String;
+  rating: number;
   allTimesheetData = [
 
-    {id: 1, avatar: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSePYH0l73i-OgzhmHIgztXFb6p2wZFfcAETx9-AL4Y3ndU-KLt', user: 'Glen',
-     project: 'Cargo Space', email: 'glen@gmail.com', category: 'Road Transit', startTime: 'Johannesburg', endTime: 'Pretoria', date: '2018-11-14' },
-    {id: 2, avatar: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSePYH0l73i-OgzhmHIgztXFb6p2wZFfcAETx9-AL4Y3ndU-KLt', user: 'Karen',
-     project: 'Paasenger Space', email: 'karen@gmail.com', category: 'Sea Transit', startTime: 'Cape Town', endTime: 'Mosselbay', date: '2018-12-16' },
-    {id: 3,avatar: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSePYH0l73i-OgzhmHIgztXFb6p2wZFfcAETx9-AL4Y3ndU-KLt', user: 'Si',
-     project: 'Storage Space', email: 'sisi@gmail.com', category: 'Air Transit', startTime: 'Bloemfontein', endTime: 'Harrismith', date: '2018-10-26' },
-    {id: 4, avatar: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSePYH0l73i-OgzhmHIgztXFb6p2wZFfcAETx9-AL4Y3ndU-KLt', user: 'Rohit',
-     project: 'Mixed Space',email: 'rohit@gmail.com', category: 'Rail Transit', startTime: 'Kimberley', endTime: 'Upington', date: '2018-09-14' },
+    {id: 1, avatar: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSePYH0l73i-OgzhmHIgztXFb6p2wZFfcAETx9-AL4Y3ndU-KLt',
+    user: this.names[0], project: 'Cargo Space', email: 'joe@gmail.com', category: 'Road Transit', startTime: 'Johannesburg',
+    endTime: 'Pretoria', date: '2018-11-14', phone: '+27864253815', rating: 3 },
+    {id: 2, avatar: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSePYH0l73i-OgzhmHIgztXFb6p2wZFfcAETx9-AL4Y3ndU-KLt',
+    user: this.names[1], project: 'Paasenger Space', email: 'mary@gmail.com', category: 'Sea Transit', startTime: 'Cape Town',
+     endTime: 'Mosselbay', date: '2018-12-16', phone: '+44851364917', rating: 4 },
+    {id: 3,avatar: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSePYH0l73i-OgzhmHIgztXFb6p2wZFfcAETx9-AL4Y3ndU-KLt',
+    user: this.names[2], project: 'Storage Space', email: 'phil@gmail.com', category: 'Air Transit', startTime: 'Bloemfontein',
+    endTime: 'Harrismith', date: '2018-10-26', phone: '+11694235187', rating: 4.5 },
+    {id: 4, avatar: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSePYH0l73i-OgzhmHIgztXFb6p2wZFfcAETx9-AL4Y3ndU-KLt',
+    user: this.names[3], project: 'Mixed Space', email: 'karen@gmail.com', category: 'Rail Transit', startTime: 'Kimberley', 
+    endTime: 'Upington', date: '2018-09-14', phone: '+37810549376', rating: 3 },
+    {id: 5, avatar: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSePYH0l73i-OgzhmHIgztXFb6p2wZFfcAETx9-AL4Y3ndU-KLt',
+    user: this.names[4], project: 'Cargo Space', email: 'si@gmail.com', category: 'Road Transit', startTime: 'Johannesburg',
+    endTime: 'Pretoria', date: '2018-11-14', phone: '+27864253815', rating: 4 },
+    {id: 6, avatar: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSePYH0l73i-OgzhmHIgztXFb6p2wZFfcAETx9-AL4Y3ndU-KLt',
+    user: this.names[5], project: 'Paasenger Space', email: 'tim@gmail.com', category: 'Sea Transit', startTime: 'Cape Town',
+     endTime: 'Mosselbay', date: '2018-12-16', phone: '+44851364917', rating: 3 },
+    {id: 7,avatar: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSePYH0l73i-OgzhmHIgztXFb6p2wZFfcAETx9-AL4Y3ndU-KLt',
+    user: this.names[6], project: 'Storage Space', email: 'rohit@gmail.com', category: 'Air Transit', startTime: 'Bloemfontein',
+    endTime: 'Harrismith', date: '2018-10-26', phone: '+11694235187', rating: 3.5 },
+    {id: 8, avatar: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSePYH0l73i-OgzhmHIgztXFb6p2wZFfcAETx9-AL4Y3ndU-KLt',
+    user: this.names[7], project: 'Mixed Space', email: 'jenny@gmail.com', category: 'Rail Transit', startTime: 'Kimberley', 
+    endTime: 'Upington', date: '2018-10-14', phone: '+35781049376', rating: 4 },
 
   ];
   allData = [
@@ -103,6 +121,8 @@ export class AlltimesComponent implements OnInit {
     this.endDate = this.allTimesheetData[id].endTime;
     this.depDate = this.allTimesheetData[id].date;
     this.email = this.allTimesheetData[id].email;
+    this.phone = this.allTimesheetData[id].phone;
+    this.rating = this.allTimesheetData[id].rating;
     this.viewDetail = true;
   }
   generateRandomUser(id: number) {

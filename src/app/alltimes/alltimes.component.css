@@ -85,10 +85,11 @@ p-contextMenu >>> .ui-menuitem-active a {
 }
 
 .inputHolder {
-  
+  text-decoration: none;
   border: none;
   background: none;
   margin-left: -5px;
   width: 90%;
   height: 36px;
+  z-index: 99999999999999;
 }

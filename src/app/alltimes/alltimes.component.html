@@ -1,7 +1,7 @@
 <div class="alltimesheets ui-g">
 
 
-  <div class="header ui-g-12">
+  <div class="header ui-g-12 ">
 
     <h2>
       Marketplace
@@ -11,7 +11,7 @@
     </h3>
     
    
-  </div>
+  
   </div>
 <div class="ui-g-12">
   <p-dataScroller [value]="allProjectNames" [rows]="3">
@@ -88,7 +88,7 @@
               <i class="material-icons">phone_android</i>
           </div>
           
-              <pre>{{category}}</pre>
+              <a href="tel:{{phone}}" class="ui-md-10 inputHolder">{{phone}}</a>
          
       </div>         
       
@@ -97,8 +97,8 @@
               <i class="material-icons">location_on</i>
           </div>
           
-              <a class="ui-md-10 inputHolder unstyled" href="#" id="projectId" >{{startDate}}</a>
-               >>>  <a class="ui-md-10 inputHolder unstyled" href="#" id="projectId" >{{endDate}}</a>
+              <a class="ui-md-10 inputHolder unstyled" href="https://www.google.co.za/maps/place/{{startDate}}" id="projectId" >{{startDate}}</a>
+                <i class="fa fa-globe"></i>  <i class="fa fa-chevron-right"></i> <a class="ui-md-10 inputHolder unstyled" href="https://www.google.co.za/maps/place/{{endDate}}" id="projectId" >{{endDate}}</a>
           
       </div>
       
@@ -118,15 +118,18 @@
             <label class="ui-md-10 inputHolder">{{depDate}}</label>
      </div>
      <div class="inputContainer">
-            <div class="iconContainer" >
+            <div style="float: left;" class="iconContainer" >
                 <i class="material-icons">stars</i>
+                
             </div>
-    <div class="inputHolder"> <p-rating  [ngModel]="3" readonly="true" stars="5" [cancel]="false"></p-rating>
+            <span style="padding-left: 15px;" class="ui-g-12 inputHolder"><p-rating [ngModel]="rating" readonly="true" stars="5" [cancel]="false"></p-rating></span>
+    
     </div>
-    </div>
+    
        </div>
        </p-dialog>
 
 <p-contextMenu #tableContextMenu [model]="contextMenu"></p-contextMenu>
 
 <p-growl [value]="messages"></p-growl>
+</div>
