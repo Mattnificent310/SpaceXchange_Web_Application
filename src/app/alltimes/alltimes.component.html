@@ -80,7 +80,7 @@
                         <i class="material-icons">mail_outline</i>
                     </div>
                     
-                        <a href="{{email}}" class="ui-md-10 inputHolder">{{email}}</a>
+                        <a href="mailto:{{email}}?subject={{category}}" class="ui-md-10 inputHolder">{{email}}</a>
                 </div>
                
       <div class="inputContainer">
@@ -105,7 +105,12 @@
       
       <div class="inputContainer">
           <div class="iconContainer" >
-              <i class="material-icons">local_shipping</i>
+              <i class="material-icons" [ngSwitch]="category">
+                  <span *ngSwitchCase="'Road Transit'">local_shipping</span>
+                  <span *ngSwitchCase="'Sea Transit'">directions_boat</span>
+                  <span *ngSwitchCase="'Air Transit'">local_airport</span>
+                  <span *ngSwitchCase="'Rail Transit'">directions_railway</span>
+            </i>
           </div>
           
               <label class="ui-md-10 inputHolder">{{category}}</label>
