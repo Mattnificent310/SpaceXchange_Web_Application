@@ -25,52 +25,38 @@ export class AlltimesComponent implements OnInit {
   depDate: String;
   email: String;
   names: string[] = ['Joe', 'Mary', 'Phil', 'Karen', 'Si', 'Tim', 'Rohit', 'Jenny', 'Kim', 'Greg', 'Danni'];
+  allProjectNames = ['Recent', 'On Demand', 'Highest Ratings', 'Cargo Space', 'Passenger Space', 'Storage Space', 'Mixed Space'];
   phone: String;
   rating: number;
   allTimesheetData = [
 
     {id: 1, avatar: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSePYH0l73i-OgzhmHIgztXFb6p2wZFfcAETx9-AL4Y3ndU-KLt',
-    user: this.names[0], project: 'Cargo Space', email: 'joe@gmail.com', category: 'Road Transit', startTime: 'Johannesburg',
+    user: this.names[0], project: this.allProjectNames[7], email: 'joe@gmail.com', category: 'Road Transit', startTime: 'Johannesburg',
     endTime: 'Pretoria', date: '2018-11-14', phone: '+27864253815', rating: 3 },
     {id: 2, avatar: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSePYH0l73i-OgzhmHIgztXFb6p2wZFfcAETx9-AL4Y3ndU-KLt',
-    user: this.names[1], project: 'Paasenger Space', email: 'mary@gmail.com', category: 'Sea Transit', startTime: 'Cape Town',
+    user: this.names[1], project: this.allProjectNames[6], email: 'mary@gmail.com', category: 'Sea Transit', startTime: 'Cape Town',
      endTime: 'Mosselbay', date: '2018-12-16', phone: '+44851364917', rating: 4 },
     {id: 3,avatar: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSePYH0l73i-OgzhmHIgztXFb6p2wZFfcAETx9-AL4Y3ndU-KLt',
-    user: this.names[2], project: 'Storage Space', email: 'phil@gmail.com', category: 'Air Transit', startTime: 'Bloemfontein',
+    user: this.names[2], project: this.allProjectNames[5], email: 'phil@gmail.com', category: 'Air Transit', startTime: 'Bloemfontein',
     endTime: 'Harrismith', date: '2018-10-26', phone: '+11694235187', rating: 4.5 },
     {id: 4, avatar: 'https://www.activehealthclinic.ca/storage/app/media/cartoon_avatar-blonde-female.png',
-    user: this.names[3], project: 'Mixed Space', email: 'karen@gmail.com', category: 'Rail Transit', startTime: 'Kimberley', 
+    user: this.names[3], project: this.allProjectNames[4], email: 'karen@gmail.com', category: 'Rail Transit', startTime: 'Kimberley', 
     endTime: 'Upington', date: '2018-09-14', phone: '+37810549376', rating: 3 },
     {id: 5, avatar: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSePYH0l73i-OgzhmHIgztXFb6p2wZFfcAETx9-AL4Y3ndU-KLt',
-    user: this.names[4], project: 'Cargo Space', email: 'si@gmail.com', category: 'Road Transit', startTime: 'Johannesburg',
+    user: this.names[4], project: this.allProjectNames[3], email: 'si@gmail.com', category: 'Road Transit', startTime: 'Johannesburg',
     endTime: 'Pretoria', date: '2018-11-14', phone: '+27864253815', rating: 4 },
     {id: 6, avatar: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSePYH0l73i-OgzhmHIgztXFb6p2wZFfcAETx9-AL4Y3ndU-KLt',
-    user: this.names[5], project: 'Paasenger Space', email: 'tim@gmail.com', category: 'Sea Transit', startTime: 'Cape Town',
+    user: this.names[5], project: this.allProjectNames[2], email: 'tim@gmail.com', category: 'Sea Transit', startTime: 'Cape Town',
      endTime: 'Mosselbay', date: '2018-12-16', phone: '+44851364917', rating: 3 },
     {id: 7,avatar: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSePYH0l73i-OgzhmHIgztXFb6p2wZFfcAETx9-AL4Y3ndU-KLt',
-    user: this.names[6], project: 'Storage Space', email: 'rohit@gmail.com', category: 'Air Transit', startTime: 'Bloemfontein',
+    user: this.names[6], project: this.allProjectNames[1], email: 'rohit@gmail.com', category: 'Air Transit', startTime: 'Bloemfontein',
     endTime: 'Harrismith', date: '2018-10-26', phone: '+11694235187', rating: 3.5 },
     {id: 8, avatar: 'https://www.activehealthclinic.ca/storage/app/media/cartoon_avatar-blonde-female.png',
-    user: this.names[7], project: 'Mixed Space', email: 'jenny@gmail.com', category: 'Rail Transit', startTime: 'Kimberley', 
+    user: this.names[7], project: this.allProjectNames[0], email: 'jenny@gmail.com', category: 'Rail Transit', startTime: 'Kimberley', 
     endTime: 'Upington', date: '2018-10-14', phone: '+35781049376', rating: 4 },
 
   ];
-  allData = [
-
-    {id: 1, avatar: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSePYH0l73i-OgzhmHIgztXFb6p2wZFfcAETx9-AL4Y3ndU-KLt', user: 'Glen',
-     project: 'Cargo Space', category: 'Road Transit', startTime: 'Johannesburg', endTime: 'Pretoria', date: 1434243 },
-    {id: 2, avatar: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSePYH0l73i-OgzhmHIgztXFb6p2wZFfcAETx9-AL4Y3ndU-KLt', user: 'Karen',
-     project: 'Paasenger Space', category: 'Sea Transit', startTime: 'Cape Town', endTime: 'Mosselbay', date: 1434243 },
-    {id: 3, avatar: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSePYH0l73i-OgzhmHIgztXFb6p2wZFfcAETx9-AL4Y3ndU-KLt', user: 'Si',
-     project: 'Storage Space', category: 'Air Transit', startTime: 'Bloemfontein', endTime: 'Harrismith', date: 1434243 },
-    {id: 4, avatar: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSePYH0l73i-OgzhmHIgztXFb6p2wZFfcAETx9-AL4Y3ndU-KLt', user: 'Rohit',
-     project: 'Mixed Space', category: 'Rail Transit', startTime: 'Kimberley', endTime: 'Upington', date: 1434243 },
-
-  ];
-
-  allProjectNames = ['Recent', 'On Demand', 'Highest Ratings', 'Cargo Space', 'Passenger Space', 'Storage Space', 'Mixed Space'];
-
-  allProjects = this.allProjectNames.map((proj) => {
+    allProjects = this.allProjectNames.map((proj) => {
     return { label: proj, value: proj }
   });
 
