@@ -38,7 +38,7 @@ export class AlltimesComponent implements OnInit {
     {id: 3,avatar: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSePYH0l73i-OgzhmHIgztXFb6p2wZFfcAETx9-AL4Y3ndU-KLt',
     user: this.names[2], project: 'Storage Space', email: 'phil@gmail.com', category: 'Air Transit', startTime: 'Bloemfontein',
     endTime: 'Harrismith', date: '2018-10-26', phone: '+11694235187', rating: 4.5 },
-    {id: 4, avatar: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSePYH0l73i-OgzhmHIgztXFb6p2wZFfcAETx9-AL4Y3ndU-KLt',
+    {id: 4, avatar: 'https://www.activehealthclinic.ca/storage/app/media/cartoon_avatar-blonde-female.png',
     user: this.names[3], project: 'Mixed Space', email: 'karen@gmail.com', category: 'Rail Transit', startTime: 'Kimberley', 
     endTime: 'Upington', date: '2018-09-14', phone: '+37810549376', rating: 3 },
     {id: 5, avatar: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSePYH0l73i-OgzhmHIgztXFb6p2wZFfcAETx9-AL4Y3ndU-KLt',
@@ -50,7 +50,7 @@ export class AlltimesComponent implements OnInit {
     {id: 7,avatar: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSePYH0l73i-OgzhmHIgztXFb6p2wZFfcAETx9-AL4Y3ndU-KLt',
     user: this.names[6], project: 'Storage Space', email: 'rohit@gmail.com', category: 'Air Transit', startTime: 'Bloemfontein',
     endTime: 'Harrismith', date: '2018-10-26', phone: '+11694235187', rating: 3.5 },
-    {id: 8, avatar: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSePYH0l73i-OgzhmHIgztXFb6p2wZFfcAETx9-AL4Y3ndU-KLt',
+    {id: 8, avatar: 'https://www.activehealthclinic.ca/storage/app/media/cartoon_avatar-blonde-female.png',
     user: this.names[7], project: 'Mixed Space', email: 'jenny@gmail.com', category: 'Rail Transit', startTime: 'Kimberley', 
     endTime: 'Upington', date: '2018-10-14', phone: '+35781049376', rating: 4 },
 
@@ -68,7 +68,7 @@ export class AlltimesComponent implements OnInit {
 
   ];
 
-  allProjectNames = ['Recent', 'Cargo Space', 'Passenger Space', 'Storage Space', 'Mixed Space'];
+  allProjectNames = ['Recent', 'On Demand', 'Highest Ratings', 'Cargo Space', 'Passenger Space', 'Storage Space', 'Mixed Space'];
 
   allProjects = this.allProjectNames.map((proj) => {
     return { label: proj, value: proj }

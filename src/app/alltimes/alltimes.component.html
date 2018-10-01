@@ -14,7 +14,7 @@
   
   </div>
 <div class="ui-g-12">
-  <p-dataScroller [value]="allProjectNames" [rows]="3">
+  <p-dataScroller [value]="allProjectNames" [totalRecords]="5" [rows]="3">
     
     <ng-template let-cars pTemplate="item" let-i="index" >
         <div class="ui-g-12">
@@ -22,7 +22,7 @@
         <ng-template let-car pTemplate="item">
             <div class="ui-grid ui-grid-responsive" style="margin-left: 25%">
                 <div class="ui-grid-row ui-g-12">
-                    <div style="margin-left: 15%;" class="ui-grid-col-12 ui-grid-responsive"><img src="{{car.avatar}}" width="100"> <h2></h2>
+                    <div style="margin-left: 15%;" class="ui-grid-col-12 ui-grid-responsive"><img src="{{car.avatar}}" width="100" height="120"> <h2></h2>
                     </div>
                  </div>
                 <div class="ui-grid-row">
@@ -65,7 +65,7 @@
   
              
     <div class="ui-md-12 inputContainers">
-            <img class="ui-g-offset-2" src="{{avatar}}" width="150" height="150"/>
+            <img class="ui-g-offset-2" src="{{avatar}}" width="150" height="170"/>
   
           <div class="inputContainer">
                   <div class="iconContainer" >
