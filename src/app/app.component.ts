@@ -1,9 +1,8 @@
 import { OverlayPanel } from 'primeng/overlaypanel';
 import {Component, OnInit, ViewChild, ElementRef, AfterViewInit} from '@angular/core';
-import {MenuItem} from "primeng/primeng";
+import {MenuItem, MenuModule, MenubarModule, Message} from "primeng/primeng";
 import {Menu} from "primeng/components/menu/menu";
 import {ActivatedRoute, Router} from "@angular/router";
-import {MenuModule, MenubarModule} from 'primeng/primeng';
 import { FormBuilder, FormGroup, Validators } from "@angular/forms";
 
 declare var jQuery :any;
@@ -21,7 +20,7 @@ export class AppComponent implements OnInit, AfterViewInit {
   loginForm: FormGroup;
   registerForm: FormGroup;
   supplierForm: FormGroup;
-  
+  messages: Message[] = [];
     brands: string[] = ['Audi','BMW','Fiat','Ford','Honda','Jaguar','Mercedes','Renault','Volvo','VW'];
 
     filteredBrands: any[];
@@ -122,13 +121,10 @@ showDialog() {
 showRegister() {
   this.register = true;
 }
+login() {
+  this.messages.pop();
+  this.messages.push({ severity: 'success', summary: `Welcome ${this.loginForm.controls['names'].value }`, detail: 'Your SpaceXperience starts now' });
 
-onDialogClose(event) {
-   this.display = event;
+  this.display = false;
   
-  
-}
-
-
-
 }

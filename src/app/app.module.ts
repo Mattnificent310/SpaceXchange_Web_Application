@@ -23,6 +23,8 @@ import {PasswordModule} from 'primeng/password';
 import {AutoCompleteModule} from 'primeng/autocomplete';
 import {OverlayPanelModule} from 'primeng/overlaypanel';
 import {CarouselModule} from 'primeng/carousel';
+import {KeyFilterModule} from 'primeng/keyfilter';
+
 
 const appRoutes: Routes = [
   { path: "", redirectTo: "/dashboard", pathMatch: "full" },
@@ -93,7 +95,8 @@ const appRoutes: Routes = [
     PasswordModule,
     AutoCompleteModule,
     OverlayPanelModule,
-    CarouselModule
+    CarouselModule,
+    KeyFilterModule
     ],
   providers: [ ConfirmationService, BuyerService ],
   bootstrap: [AppComponent]
