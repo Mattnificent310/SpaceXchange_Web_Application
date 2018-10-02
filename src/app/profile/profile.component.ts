@@ -26,9 +26,13 @@ registerForm: FormGroup;
 date: Date;
 editDate: boolean;
 editEmail: boolean;
+email: String;
 editPhone: boolean;
+phone: String;
 editName: boolean;
+name: String;
 editSurname: boolean;
+surname: String;
 iconDate: String;
 labelDate: String;
 iconEmail: String;
@@ -68,6 +72,10 @@ labelSurname: String;
       regEmailAddress: ['', [Validators.required, Validators.minLength(10)]],
       regDOB: ['', [Validators.required, Validators.minLength(10)]],      
     })
+    this.name = 'My Name';
+    this.surname = 'My Surname';
+    this.phone = '123-456-7890';
+    this.email = 'example@domain.com';  
     this.switchOff();
     this.setDefault();
   }
@@ -98,6 +106,7 @@ labelSurname: String;
       this.switchOff();
       this.iconEmail = 'fa fa-edit';
       this.labelEmail = 'Edit';
+      this.email = this.registerForm.controls['regEmailAddress'].value;    
     } else {
       this.switchOff();
       this.editEmail = true;
@@ -111,6 +120,7 @@ labelSurname: String;
       this.switchOff();
       this.iconPhone = 'fa fa-edit';
       this.labelPhone = 'Edit';
+      this.phone = this.registerForm.controls['regPhone'].value;
     } else {
       this.switchOff();
       this.editPhone = true;
@@ -123,7 +133,8 @@ labelSurname: String;
     if (this.editName) {
       this.switchOff();
       this.iconName = 'fa fa-edit';
-      this.labelName = 'Edit';    
+      this.labelName = 'Edit'; 
+      this.name = this.registerForm.controls['regName'].value;     
     } else {
       this.switchOff();
        this.editName = true;
@@ -136,7 +147,8 @@ labelSurname: String;
     if (this.editSurname) {
       this.switchOff();
       this.iconSurname = 'fa fa-edit';
-      this.labelSurname = 'Edit';
+      this.labelSurname = 'Edit';  
+      this.surname = this.registerForm.controls['regSurname'].value;       
     } else {
       this.switchOff();
       this.editSurname = true;
