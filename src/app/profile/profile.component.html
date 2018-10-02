@@ -99,7 +99,7 @@
                     <i class="material-icons">date_range</i>
                 </div>
                 
-                <label *ngIf="editDate == false" class="ui-md-10 inputHolder"> Birth Date</label>
+                <label *ngIf="editDate == false" class="ui-md-10 inputHolder">{{date}}</label>
               </div>
               <p-calendar *ngIf="editDate == true" [(ngModel)]="date" class="inputHolder" formControlName="regDOB" [inline]="true" ></p-calendar>
                 
