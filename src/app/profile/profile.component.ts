@@ -120,7 +120,7 @@ labelSurname: String;
       this.switchOff();
       this.iconPhone = 'fa fa-edit';
       this.labelPhone = 'Edit';
-      this.phone = this.registerForm.controls['regPhone'].value;
+      this.phone = this.registerForm.controls['regPhoneNumber'].value;
     } else {
       this.switchOff();
       this.editPhone = true;
