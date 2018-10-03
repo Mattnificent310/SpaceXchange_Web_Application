@@ -50,7 +50,7 @@
                 <div class="ui-g-12 ui-md-10" >
                     <div class="ui-inputgroup">
                         <span class="ui-inputgroup-addon"><i class="fa fa-shield"></i></span>
-                         <input autofocus [value]="loginForm.controls['names'].value" pInputText type="text" pKeyFilter="alpha" required formControlName="names"  placeholder="Token Surname" />                       
+                         <input autofocus [value]="loginForm.controls['names'].value" pInputText type="text" pKeyFilter="alpha" required formControlName="names"  placeholder="Authentication Token" />                       
                     </div>
                    <div class="ui-g-12 ui-md-5">
                     <at-fielderrors [form]="loginForm" field="names" nicename="Token"></at-fielderrors>
@@ -139,22 +139,22 @@
                             </div>
                             <div class="ui-g-12 ui-md-6" >
                                     <div class="ui-inputgroup">
+                                        <span class="ui-inputgroup-addon"><i class="fa fa-birthday-cake"></i></span>
+                                         <p-calendar [showIcon]="true" autofocus pKeyFilter="alphanum" required formControlName="regBirthDate" placeholder="Birth Date"></p-calendar>                       
+                                    </div>
+                                   <div class="ui-g-12 ui-md-5">
+                                    <at-fielderrors [form]="registerForm" field="regBirthDate" nicename="Birth Date"></at-fielderrors>
+                                </div>
+                                </div>
+                            <div class="ui-g-12 ui-md-6" >
+                                    <div class="ui-inputgroup">
                                         <span class="ui-inputgroup-addon"><i class="fa fa-map-marker"></i></span>
                                          <input autofocus [value]="registerForm.controls['regResAddress'].value" pInputText type="text" pKeyFilter="alphanum" required formControlName="regResAddress"  placeholder="Residential Address" />                       
                                     </div>
                                    <div class="ui-g-12 ui-md-5">
                                     <at-fielderrors [form]="registerForm" field="regResAddress" nicename="Residential Address"></at-fielderrors>
                                 </div>
-                                </div>
-                            <div class="ui-g-12 ui-md-6" >
-                                    <div class="ui-inputgroup">
-                                        <span class="ui-inputgroup-addon"><i class="fa fa-map-pin"></i></span>
-                                         <input autofocus [value]="registerForm.controls['regBillAddress'].value" pInputText type="text" pKeyFilter="alphanum" required formControlName="regBillAddress"  placeholder="Billing Address" />                       
-                                    </div>
-                                   <div class="ui-g-12 ui-md-5">
-                                    <at-fielderrors [form]="registerForm" field="regBillAddress" nicename="Billing Address"></at-fielderrors>
-                                </div>
-                                </div>
+                                </div>                            
                             <div class="ui-g-12 ui-md-6" >
                                     <div class="ui-inputgroup">
                                         <span class="ui-inputgroup-addon"><i class="fa fa-lock"></i></span>
@@ -184,76 +184,82 @@
       <p-tabPanel header="Supplier" leftIcon="pi pi-inbox">
             <div [formGroup]="supplierForm" class="ui-g">
     
-                    <div class="ui-md-12 inputContainers">         
-            <div class="inputContainer">
-                    <div class="iconContainer" >
-                        <i class="material-icons">account_box</i>
-                    </div>
-                    
-                        <input class="ui-md-10 inputHolder" type="email" id="projectId" required formControlName="supName"  placeholder="Name" />
-                    
-                </div>
-        <div class="ui-g-12 ui-md-5">
-
-                <at-fielderrors [form]="supplierForm" field="supName" nicename="Name"> </at-fielderrors>
-
-
-            </div>
-            <div class="inputContainer">
-              <div class="iconContainer" >
-                  <i class="material-icons">account_box</i>
-              </div>
-              
-                  <input class="ui-md-10 inputHolder" type="email" id="projectId" required formControlName="supSurname"  placeholder="Surname" />
-              
-          </div>
-          <div class="ui-g-12 ui-md-5">
-  
-                  <at-fielderrors [form]="supplierForm" field="supSurname" nicename="Surname"> </at-fielderrors>
-  
-  
-          </div>
-<div class="inputContainer">
-    <div class="iconContainer" >
-        <i class="material-icons">phone_iphone</i>
-    </div>
-    
-        <p-inputMask width="100" class="inputHolder" mask="999-999-9999" id="projectId" formControlName="supPhoneNumber" placeholder="123-456-7890" slotChar="X" ></p-inputMask>
-
-   
-</div>
-<div class="ui-g-12 ui-md-5">
-
-    <at-fielderrors [form]="supplierForm" field="supPhoneNumber" nicename="Phone Number"> </at-fielderrors>
-
-
-</div>
-
-<div class="inputContainer">
-    <div class="iconContainer" >
-        <i class="material-icons">email</i>
-    </div>
-    
-        <input class="ui-md-10 inputHolder" type="email" id="projectId" required formControlName="supEmailAddress"  placeholder="name.surname@example.com" />
-    
-</div>
-
-<div class="ui-g-12 ui-md-5">
-<at-fielderrors [form]="supplierForm" field="supEmailAddress" nicename="Email Address"> </at-fielderrors>
-</div>
-
-<div class="inputContainer">
-    <div class="iconContainer" >
-        <i class="material-icons">https</i>
-    </div>
-    
-        <input class="ui-md-10 inputHolder" pPassword type="password" id="projectId" required formControlName="supPassword"  placeholder="•••••••••••" />
-    
-  </div>
-
-<div class="ui-g-12 ui-md-5">
-<at-fielderrors [form]="supplierForm" field="supPassword" nicename="Password"> </at-fielderrors>  </div>
-</div>
+                    <div class="ui-g ui-fluid">
+                            <div class="ui-g-12 ui-md-6" >
+                                <div class="ui-inputgroup">
+                                    <span class="ui-inputgroup-addon"><i class="fa fa-user-circle"></i></span>
+                                     <input autofocus [value]="supplierForm.controls['supName'].value" pInputText type="text" pKeyFilter="alpha" required formControlName="supName"  placeholder="Name" />                       
+                                </div>
+                               <div class="ui-g-12 ui-md-5">
+                                <at-fielderrors [form]="supplierForm" field="supName" nicename="Name"></at-fielderrors>
+                            </div>
+                            </div>
+                            <div class="ui-g-12 ui-md-6" >
+                                    <div class="ui-inputgroup">
+                                        <span class="ui-inputgroup-addon"><i class="fa fa-user-circle"></i></span>
+                                         <input autofocus [value]="supplierForm.controls['supSurname'].value" pInputText type="text" pKeyFilter="alpha" required formControlName="supSurname"  placeholder="Surname" />                       
+                                    </div>
+                                   <div class="ui-g-12 ui-md-5">
+                                    <at-fielderrors [form]="supplierForm" field="supSurname" nicename="Surname"></at-fielderrors>
+                                </div>
+                                </div>
+                            <div class="ui-g-12 ui-md-6" >
+                                <div class="ui-inputgroup">
+                                    <span class="ui-inputgroup-addon"><i style="zoom: 1.5;" class="fa fa-mobile"></i></span>
+                                     <input autofocus [value]="supplierForm.controls['supPhoneNumber'].value" pInputText type="text" pKeyFilter="pnum" required formControlName="supPhoneNumber"  placeholder="Mobile Number" />                       
+                                </div>
+                               <div class="ui-g-12 ui-md-5">
+                                <at-fielderrors [form]="supplierForm" field="supPhoneNumber" nicename="Mobile Number"></at-fielderrors>
+                            </div>
+                            </div>
+                            <div class="ui-g-12 ui-md-6" >
+                                    <div class="ui-inputgroup">
+                                        <span class="ui-inputgroup-addon"><i class="fa fa-at"></i></span>
+                                         <input autofocus [value]="supplierForm.controls['supEmailAddress'].value" pInputText type="text" pKeyFilter="email" required formControlName="supEmailAddress"  placeholder="example@domain.com" />                       
+                                    </div>
+                                   <div class="ui-g-12 ui-md-5">
+                                    <at-fielderrors [form]="supplierForm" field="supEmailAddress" nicename="Email Address"></at-fielderrors>
+                                </div>
+                                </div>
+                                <div class="ui-g-12 ui-md-6" >
+                                        <div class="ui-inputgroup">
+                                            <span class="ui-inputgroup-addon"><i class="fa fa-birthday-cake"></i></span>
+                                                 
+                                            <p-calendar [(ngModel)]="date" [showIcon]="true" pKeyFilter="alphanum" formControlName="supBirthDate" placeholder="Birth Date" ></p-calendar>
+                                        </div>
+                                       <div class="ui-g-12 ui-md-5">
+                                        <at-fielderrors [form]="supplierForm" field="supBirthDate" nicename="Birth Date"></at-fielderrors>
+                                    </div>
+                                    </div>
+                                <div class="ui-g-12 ui-md-6" >
+                                        <div class="ui-inputgroup">
+                                            <span class="ui-inputgroup-addon"><i class="fa fa-map-marker"></i></span>
+                                             <input autofocus [value]="supplierForm.controls['supResAddress'].value" pInputText (click)="showMaps();" type="text" pKeyFilter="alphanum" required formControlName="supResAddress"  placeholder="Residential Address" />                       
+                                            
+                                            </div>
+                                       <div class="ui-g-12 ui-md-5">
+                                        <at-fielderrors [form]="supplierForm" field="supResAddress" nicename="Residential Address"></at-fielderrors>
+                                    </div>
+                                    </div>                                
+                                <div class="ui-g-12 ui-md-6" >
+                                        <div class="ui-inputgroup">
+                                            <span class="ui-inputgroup-addon"><i class="fa fa-lock"></i></span>
+                                             <input autofocus [value]="supplierForm.controls['supPassword'].value" pPassword type="password" required formControlName="supPassword"  placeholder="•••••••••••••" />                       
+                                        </div>
+                                       <div class="ui-g-12 ui-md-5">
+                                        <at-fielderrors [form]="supplierForm" field="supPassword" nicename="Password"></at-fielderrors>
+                                    </div>
+                                    </div>
+                                    <div class="ui-g-12 ui-md-6" >
+                                            <div class="ui-inputgroup">
+                                                <span class="ui-inputgroup-addon"><i class="fa fa-shield"></i></span>
+                                                 <input autofocus [value]="supplierForm.controls['supConfirm'].value" pPassword type="password" required formControlName="supConfirm"  placeholder="Confirm Password" />                       
+                                            </div>
+                                           <div class="ui-g-12 ui-md-5">
+                                            <at-fielderrors [form]="supplierForm" field="supConfirm" nicename="Password"></at-fielderrors>
+                                        </div>
+                                        </div>
+                        </div>
 </div>
 
 <p-footer>
@@ -266,6 +272,12 @@
   
   
   
+
+</p-dialog>
+<p-dialog [(visible)]="maps" [modal]="true" [responsive]="true" [width]="750" [minWidth]="450" 
+[baseZIndex]="9999999999">
+  <p-header class="header">Maps</p-header>
+  <p-gmap [options]="options" [overlays]="overlays" [style]="{'width':'100%','height':'320px'}" ></p-gmap>
 
 </p-dialog>
 <div class="ui-g ui-g-nopad">

@@ -215,3 +215,8 @@ input#search-bar{
   height: 36px;
   
 }
+p-calendar >>> .ui-calendar
+{
+  width: 280px;
+  margin-top: 1.25px;
+}
