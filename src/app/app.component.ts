@@ -35,7 +35,7 @@ export class AppComponent implements OnInit, AfterViewInit {
 
     date: Date;
 
-    options: any[];
+    options: any;
 
     overlays: any[];
 
@@ -177,4 +177,5 @@ login() {
 
   this.display = false;
   
+}
 }
