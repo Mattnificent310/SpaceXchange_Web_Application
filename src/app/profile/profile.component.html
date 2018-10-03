@@ -64,7 +64,7 @@
                         <div class="ui-inputgroup" [ngSwitch]="editDate">
                             <span class="ui-inputgroup-addon"><i class="fa fa-birthday-cake"></i></span>
                             <label class="ui-inputgroup-addon ui-g-12" *ngSwitchCase="false" >{{date}}</label>
-                            <p-calendar *ngSwitchCase="true" [(ngModel)]="date" [inline]="true" pInputText pKeyFilter="alpha" formControlName="regName"  ></p-calendar>
+                            <p-calendar *ngSwitchCase="true" [(ngModel)]="date" [inline]="true" pInputText pKeyFilter="alphanum" formControlName="regDOB"  ></p-calendar>
                                    
                         </div>
                        <span style="float: right;" class="ui-g-3"><button type="button" pButton icon="{{iconDate}}" (click)="editDates();" label="{{labelDate}}" class="btnEdit" ></button></span>
