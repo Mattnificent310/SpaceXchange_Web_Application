@@ -45,18 +45,24 @@ export class AppComponent implements OnInit, AfterViewInit {
       
     })
     this.registerForm = this.fb2.group({
-      regName: ['', [Validators.required, Validators.minLength(3)]],      
-      regSurname: ['', [Validators.required, Validators.minLength(3)]],      
-      regPhoneNumber: ['', [Validators.required, Validators.minLength(10)]],
+      regName: ['', [Validators.required, Validators.minLength(3)]],
+            regSurname: ['', [Validators.required, Validators.minLength(3)]],
+      regPhoneNumber: ['', [Validators.required, Validators.maxLength(10)]],
       regEmailAddress: ['', [Validators.required, Validators.minLength(10)]],
-      regPassword: ['', [Validators.required, Validators.minLength(10)]],      
-    })
+      regResAddress: ['', [Validators.required, Validators.minLength(10)]],
+      regBillAddress: ['', [Validators.required, Validators.minLength(10)]],
+      regPassword: ['', [Validators.required, Validators.minLength(10)]],
+      regConfirm: ['', [Validators.required, Validators.minLength(10)]]
+        })
     this.supplierForm = this.fb3.group({
-      supName: ['', [Validators.required, Validators.minLength(3)]],      
-      supSurname: ['', [Validators.required, Validators.minLength(3)]],      
-      supPhoneNumber: ['', [Validators.required, Validators.minLength(10)]],
+      supName: ['', [Validators.required, Validators.minLength(3)]],
+      supSurname: ['', [Validators.required, Validators.minLength(3)]],
+      supPhoneNumber: ['', [Validators.required, Validators.maxLength(10)]],
       supEmailAddress: ['', [Validators.required, Validators.minLength(10)]],
-      supPassword: ['', [Validators.required, Validators.minLength(10)]],      
+      regResAddress: ['', [Validators.required, Validators.minLength(10)]],
+      regBillAddress: ['', [Validators.required, Validators.minLength(10)]],     
+      supPassword: ['', [Validators.required, Validators.minLength(10)]],
+      supConfirm:     [Validators.required, Validators.minLength(10)]]
     })
     let handleSelected = function(event) {
       let allMenus = jQuery(event.originalEvent.target).closest('ul');

@@ -46,68 +46,50 @@
   <p-header class="header">Sign In</p-header>
 
 <div [formGroup]="loginForm" class="ui-g">
-  <div class="ui-md-12 inputContainers">
-    <div class="inputContainer">
-            <div class="iconContainer" >
-                <i class="material-icons">security</i>
+        <div class="ui-g ui-fluid">
+                <div class="ui-g-12 ui-md-10" >
+                    <div class="ui-inputgroup">
+                        <span class="ui-inputgroup-addon"><i class="fa fa-shield"></i></span>
+                         <input autofocus [value]="loginForm.controls['names'].value" pInputText type="text" pKeyFilter="alpha" required formControlName="names"  placeholder="Token Surname" />                       
+                    </div>
+                   <div class="ui-g-12 ui-md-5">
+                    <at-fielderrors [form]="loginForm" field="names" nicename="Token"></at-fielderrors>
+                </div>
+                </div>
+                <div class="ui-g-12 ui-md-10" >
+                    <div class="ui-inputgroup">
+                        <span class="ui-inputgroup-addon"><i style="zoom: 1.5;" class="fa fa-mobile"></i></span>
+                         <input autofocus [value]="loginForm.controls['phoneNumber'].value" pInputText type="text" pKeyFilter="pnum" required formControlName="phoneNumber"  placeholder="Mobile Number" />                       
+                    </div>
+                   <div class="ui-g-12 ui-md-5">
+                    <at-fielderrors [form]="loginForm" field="phoneNumber" nicename="Mobile Number"></at-fielderrors>
+                </div>
+                </div>
+                <div class="ui-g-12 ui-md-10" >
+                        <div class="ui-inputgroup">
+                            <span class="ui-inputgroup-addon"><i class="fa fa-at"></i></span>
+                             <input autofocus [value]="loginForm.controls['emailAddress'].value" pInputText type="text" pKeyFilter="email" required formControlName="emailAddress"  placeholder="example@domain.com" />                       
+                        </div>
+                       <div class="ui-g-12 ui-md-5">
+                        <at-fielderrors [form]="loginForm" field="emailAddress" nicename="Email Address"></at-fielderrors>
+                    </div>
+                    </div>
+                    <div class="ui-g-12 ui-md-10" >
+                            <div class="ui-inputgroup">
+                                <span class="ui-inputgroup-addon"><i class="fa fa-lock"></i></span>
+                                 <input autofocus [value]="loginForm.controls['password'].value" pPassword type="password" required formControlName="password"  placeholder="•••••••••••••" />                       
+                            </div>
+                           <div class="ui-g-12 ui-md-5">
+                            <at-fielderrors [form]="loginForm" field="password" nicename="Password"></at-fielderrors>
+                        </div>
+                        </div>
             </div>
-            
-                <input class="ui-md-10 inputHolder" type="email" id="projectId" required formControlName="names"  placeholder="Token" />
-            
-        </div>
-        <div class="ui-g-12 ui-md-5">
-
-                <at-fielderrors [form]="loginForm" field="names" nicename="Name & Surname"> </at-fielderrors>
-
-
-            </div>
-<div class="inputContainer">
-    <div class="iconContainer" >
-        <i class="material-icons">phone_android</i>
-    </div>
-    
-        <p-inputMask width="100" class="inputHolder" mask="999-999-9999" id="projectId" formControlName="phoneNumber" placeholder="123-456-7890" slotChar="X" ></p-inputMask>
-
-   
-</div>
-<div class="ui-g-12 ui-md-5">
-
-    <at-fielderrors [form]="loginForm" field="phoneNumber" nicename="Phone Number"> </at-fielderrors>
-
-
-</div>
-
-<div class="inputContainer">
-    <div class="iconContainer" >
-        <i class="material-icons">mail_outline</i>
-    </div>
-    
-        <input class="ui-md-10 inputHolder" type="email" id="projectId" required formControlName="emailAddress"  placeholder="name.surname@example.com" />
-    
-</div>
-
-<div class="ui-g-12 ui-md-5">
-<at-fielderrors [form]="loginForm" field="emailAddress" nicename="Email Address"> </at-fielderrors>
-</div>
-
-<div class="inputContainer">
-    <div class="iconContainer" >
-        <i class="material-icons">lock_outline</i>
-    </div>
-    
-        <input class="ui-md-10 inputHolder" pPassword type="password" id="projectId" required formControlName="password"  placeholder="•••••••••••" />
-    
-  </div>
-
-<div class="ui-g-12 ui-md-5">
-<at-fielderrors [form]="loginForm" field="password" nicename="Password"> </at-fielderrors>  </div>
-</div>
 
 </div>
 
 <p-footer>
-    <button type="button" pButton icon="pi pi-check" (click)="login();" label="Sign In"></button>
-    <button type="button" pButton icon="pi pi-close" (click)="display=false" label="Cancel" class="ui-button-secondary"></button>
+    <button type="button" pButton icon="fa fa-unlock" (click)="login();" label="Sign In"></button>
+    <button type="button" pButton icon="fa fa-close" (click)="display=false" label="Cancel" class="ui-button-secondary"></button>
 </p-footer>
 
 </p-dialog>
@@ -118,82 +100,85 @@
       <p-tabPanel header="Buyer" leftIcon="pi pi-calendar">
           <div [formGroup]="registerForm" class="ui-g">
     
-        <div class="ui-md-12 inputContainers">
-              <div class="inputContainer">
-                      <div class="iconContainer" >
-                          <i class="material-icons">account_circle</i>
-                      </div>
-                      
-                          <input class="ui-md-10 inputHolder" type="email" id="projectId" required formControlName="regName"  placeholder="Name" />
-                      
-                  </div>
-                  <div class="ui-g-12 ui-md-5">
-          
-                          <at-fielderrors [form]="registerForm" field="regName" nicename="Name"> </at-fielderrors>
-          
-          
-                      </div>
-                      <div class="inputContainer">
-                        <div class="iconContainer" >
-                            <i class="material-icons">account_circle</i>
+                <div class="ui-g ui-fluid">
+                        <div class="ui-g-12 ui-md-6" >
+                            <div class="ui-inputgroup">
+                                <span class="ui-inputgroup-addon"><i class="fa fa-user-circle"></i></span>
+                                 <input autofocus [value]="registerForm.controls['regName'].value" pInputText type="text" pKeyFilter="alpha" required formControlName="regName"  placeholder="Name" />                       
+                            </div>
+                           <div class="ui-g-12 ui-md-5">
+                            <at-fielderrors [form]="registerForm" field="regName" nicename="Name"></at-fielderrors>
                         </div>
-                        
-                            <input class="ui-md-10 inputHolder" type="email" id="projectId" required formControlName="regSurname"  placeholder="Surname" />
-                        
+                        </div>
+                        <div class="ui-g-12 ui-md-6" >
+                                <div class="ui-inputgroup">
+                                    <span class="ui-inputgroup-addon"><i class="fa fa-user-circle"></i></span>
+                                     <input autofocus [value]="registerForm.controls['regSurname'].value" pInputText type="text" pKeyFilter="alpha" required formControlName="regSurname"  placeholder="Surname" />                       
+                                </div>
+                               <div class="ui-g-12 ui-md-5">
+                                <at-fielderrors [form]="registerForm" field="regSurname" nicename="Surname"></at-fielderrors>
+                            </div>
+                            </div>
+                        <div class="ui-g-12 ui-md-6" >
+                            <div class="ui-inputgroup">
+                                <span class="ui-inputgroup-addon"><i style="zoom: 1.5;" class="fa fa-mobile"></i></span>
+                                 <input autofocus [value]="registerForm.controls['regPhoneNumber'].value" pInputText type="text" pKeyFilter="pnum" required formControlName="regPhoneNumber"  placeholder="Mobile Number" />                       
+                            </div>
+                           <div class="ui-g-12 ui-md-5">
+                            <at-fielderrors [form]="registerForm" field="regPhoneNumber" nicename="Mobile Number"></at-fielderrors>
+                        </div>
+                        </div>
+                        <div class="ui-g-12 ui-md-6" >
+                                <div class="ui-inputgroup">
+                                    <span class="ui-inputgroup-addon"><i class="fa fa-at"></i></span>
+                                     <input autofocus [value]="registerForm.controls['regEmailAddress'].value" pInputText type="text" pKeyFilter="email" required formControlName="regEmailAddress"  placeholder="example@domain.com" />                       
+                                </div>
+                               <div class="ui-g-12 ui-md-5">
+                                <at-fielderrors [form]="registerForm" field="regEmailAddress" nicename="Email Address"></at-fielderrors>
+                            </div>
+                            </div>
+                            <div class="ui-g-12 ui-md-6" >
+                                    <div class="ui-inputgroup">
+                                        <span class="ui-inputgroup-addon"><i class="fa fa-map-marker"></i></span>
+                                         <input autofocus [value]="registerForm.controls['regResAddress'].value" pInputText type="text" pKeyFilter="alphanum" required formControlName="regResAddress"  placeholder="Residential Address" />                       
+                                    </div>
+                                   <div class="ui-g-12 ui-md-5">
+                                    <at-fielderrors [form]="registerForm" field="regResAddress" nicename="Residential Address"></at-fielderrors>
+                                </div>
+                                </div>
+                            <div class="ui-g-12 ui-md-6" >
+                                    <div class="ui-inputgroup">
+                                        <span class="ui-inputgroup-addon"><i class="fa fa-map-pin"></i></span>
+                                         <input autofocus [value]="registerForm.controls['regBillAddress'].value" pInputText type="text" pKeyFilter="alphanum" required formControlName="regBillAddress"  placeholder="Billing Address" />                       
+                                    </div>
+                                   <div class="ui-g-12 ui-md-5">
+                                    <at-fielderrors [form]="registerForm" field="regBillAddress" nicename="Billing Address"></at-fielderrors>
+                                </div>
+                                </div>
+                            <div class="ui-g-12 ui-md-6" >
+                                    <div class="ui-inputgroup">
+                                        <span class="ui-inputgroup-addon"><i class="fa fa-lock"></i></span>
+                                         <input autofocus [value]="registerForm.controls['regPassword'].value" pPassword type="password" required formControlName="regPassword"  placeholder="•••••••••••••" />                       
+                                    </div>
+                                   <div class="ui-g-12 ui-md-5">
+                                    <at-fielderrors [form]="registerForm" field="regPassword" nicename="Password"></at-fielderrors>
+                                </div>
+                                </div>
+                                <div class="ui-g-12 ui-md-6" >
+                                        <div class="ui-inputgroup">
+                                            <span class="ui-inputgroup-addon"><i class="fa fa-shield"></i></span>
+                                             <input autofocus [value]="registerForm.controls['regConfirm'].value" pPassword type="password" required formControlName="regConfirm"  placeholder="Confirm Password" />                       
+                                        </div>
+                                       <div class="ui-g-12 ui-md-5">
+                                        <at-fielderrors [form]="registerForm" field="regConfirm" nicename="Password"></at-fielderrors>
+                                    </div>
+                                    </div>
                     </div>
-                    <div class="ui-g-12 ui-md-5">
-            
-                            <at-fielderrors [form]="registerForm" field="regSurname" nicename="Surname"> </at-fielderrors>
-            
-            
-                        </div>
-          <div class="inputContainer">
-              <div class="iconContainer" >
-                  <i class="material-icons">phone_android</i>
-              </div>
-              
-                  <p-inputMask width="100" class="inputHolder" mask="999-999-9999" id="projectId" formControlName="regPhoneNumber" placeholder="123-456-7890" slotChar="X" ></p-inputMask>
-          
-             
-          </div>
-          <div class="ui-g-12 ui-md-5">
-          
-              <at-fielderrors [form]="registerForm" field="regPhoneNumber" nicename="Phone Number"> </at-fielderrors>
-          
-          
-          </div>
-          
-          <div class="inputContainer">
-              <div class="iconContainer" >
-                  <i class="material-icons">mail_outline</i>
-              </div>
-              
-                  <input class="ui-md-10 inputHolder" type="email" id="projectId" required formControlName="regEmailAddress"  placeholder="name.surname@example.com" />
-              
-          </div>
-          
-          <div class="ui-g-12 ui-md-5">
-          <at-fielderrors [form]="registerForm" field="regEmailAddress" nicename="Email Address"> </at-fielderrors>
-          </div>
-          
-          <div class="inputContainer">
-              <div class="iconContainer" >
-                  <i class="material-icons">lock_outline</i>
-              </div>
-              
-                  <input class="ui-md-10 inputHolder" pPassword type="password" id="projectId" required formControlName="regPassword"  placeholder="•••••••••••" />
-              
-            </div>
-          
-          <div class="ui-g-12 ui-md-5">
-          <at-fielderrors [form]="registerForm" field="regPassword" nicename="Password"> </at-fielderrors>  </div>
-          </div>
-          
-          </div>
+                </div>
           
           <p-footer>
-              <button type="button" pButton icon="pi pi-check" (click)="register=false" label="Sign Up"></button>
-              <button type="button" pButton icon="pi pi-close" (click)="register=false" label="Cancel" class="ui-button-secondary"></button>
+              <button type="button" pButton icon="fa fa-user-plus" (click)="register=false" label="Sign Up"></button>
+              <button type="button" pButton icon="fa fa-close" (click)="register=false" label="Cancel" class="ui-button-secondary"></button>
           </p-footer>
       </p-tabPanel>
       <p-tabPanel header="Supplier" leftIcon="pi pi-inbox">
@@ -272,8 +257,8 @@
 </div>
 
 <p-footer>
-    <button type="button" pButton icon="pi pi-check" (click)="dispSup=false" label="Sign Up"></button>
-    <button type="button" pButton icon="pi pi-close" (click)="dispSup=false" label="Cancel" class="ui-button-secondary"></button>
+    <button type="button" pButton icon="fa fa-user-plus" (click)="dispSup=false" label="Sign Up"></button>
+    <button type="button" pButton icon="fa fa-close" (click)="dispSup=false" label="Cancel" class="ui-button-secondary"></button>
 </p-footer>
       </p-tabPanel>
       
