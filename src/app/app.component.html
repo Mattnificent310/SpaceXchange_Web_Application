@@ -149,7 +149,7 @@
                             <div class="ui-g-12 ui-md-6" >
                                     <div class="ui-inputgroup">
                                         <span class="ui-inputgroup-addon"><i class="fa fa-map-marker"></i></span>
-                                         <input autofocus [value]="registerForm.controls['regResAddress'].value" pInputText type="text" pKeyFilter="alphanum" required formControlName="regResAddress"  placeholder="Residential Address" />                       
+                                         <input autofocus [value]="registerForm.controls['regResAddress'].value" (click)="showMaps();" pInputText type="text" pKeyFilter="alphanum" required formControlName="regResAddress"  placeholder="Residential Address" />                       
                                     </div>
                                    <div class="ui-g-12 ui-md-5">
                                     <at-fielderrors [form]="registerForm" field="regResAddress" nicename="Residential Address"></at-fielderrors>
