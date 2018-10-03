@@ -1,6 +1,6 @@
 import { OverlayPanel } from 'primeng/overlaypanel';
 import {Component, OnInit, ViewChild, ElementRef, AfterViewInit} from '@angular/core';
-import {MenuItem, MenuModule, MenubarModule, Message} from "primeng/primeng";
+import {MenuItem, Message} from "primeng/primeng";
 import {Menu} from "primeng/components/menu/menu";
 import {ActivatedRoute, Router} from "@angular/router";
 import { FormBuilder, FormGroup, Validators } from "@angular/forms";
@@ -47,8 +47,6 @@ export class AppComponent implements OnInit, AfterViewInit {
   constructor(private router : Router,private fb: FormBuilder, private fb2: FormBuilder,private fb3: FormBuilder) {
 
   }
-  
-
   ngOnInit() {
     this.loginForm = this.fb.group({
       names: ['', [Validators.required, Validators.minLength(3)]],
