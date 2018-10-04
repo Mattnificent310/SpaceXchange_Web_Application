@@ -151,8 +151,6 @@ geocoder.geocode({'location': latlng}, (results, status) => {
     center: {lat: this.lat, lng: this.lng},
     zoom: 16
 };
-this.map.panTo(latlng);
- 
 });
 
     });

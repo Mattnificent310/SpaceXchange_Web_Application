@@ -149,8 +149,9 @@
                             <div class="ui-g-12 ui-md-6" >
                                     <div class="ui-inputgroup">
                                         <span class="ui-inputgroup-addon"><i class="fa fa-map-marker"></i></span>
-                                         <input autofocus [value]="registerForm.controls['regResAddress'].value" (click)="showMaps();" pInputText type="text" pKeyFilter="alphanum" required formControlName="regResAddress"  placeholder="Residential Address" />                       
-                                    </div>
+                                         <input autofocus [value]="registerForm.controls['regResAddress'].value" pInputText type="text" pKeyFilter="alphanum" required formControlName="regResAddress"  placeholder="Residential Address" />                       
+                                         <button pButton (click)="showMaps();" type="button"  icon="fa fa-map-pin" class="ui-g-2"></button>
+                                        </div>
                                    <div class="ui-g-12 ui-md-5">
                                     <at-fielderrors [form]="registerForm" field="regResAddress" nicename="Residential Address"></at-fielderrors>
                                 </div>
@@ -234,8 +235,9 @@
                                 <div class="ui-g-12 ui-md-6" >
                                         <div class="ui-inputgroup">
                                             <span class="ui-inputgroup-addon"><i class="fa fa-map-marker"></i></span>
-                                             <input autofocus [value]="supplierForm.controls['supResAddress'].value" pInputText (click)="showMaps();" type="text" pKeyFilter="alphanum" required formControlName="supResAddress"  placeholder="Residential Address" />                       
-                                            
+                                             <input autofocus [value]="supplierForm.controls['supResAddress'].value" pInputText type="text" pKeyFilter="alphanum" required formControlName="supResAddress"  placeholder="Residential Address" />                       
+                                             <button pButton (click)="showMaps();" type="button"  icon="fa fa-map-pin" class="ui-g-2"></button>
+                                       
                                             </div>
                                        <div class="ui-g-12 ui-md-5">
                                         <at-fielderrors [form]="supplierForm" field="supResAddress" nicename="Residential Address"></at-fielderrors>
