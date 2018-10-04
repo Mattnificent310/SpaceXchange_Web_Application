@@ -114,8 +114,12 @@ export class AppComponent implements OnInit, AfterViewInit {
     this.labelDate = 'Edit';
     this.editDate = false;
     this.maps = false;
-    this.lat = 0;
-    this.lng = 0;
+    this.lat = -25.258;
+    this.lng = 28.852;
+    this.options = {
+      center: {lat: this.lat, lng: this.lng},
+      zoom: 16
+  };
     this.findMe();
     
       
