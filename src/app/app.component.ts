@@ -1,6 +1,6 @@
 import { OverlayPanel } from 'primeng/overlaypanel';
 import {Component, OnInit, ViewChild, ElementRef, AfterViewInit} from '@angular/core';
-import {MenuItem, MenuModule, MenubarModule, Message} from "primeng/primeng";
+import {MenuItem, Message} from "primeng/primeng";
 import {Menu} from "primeng/components/menu/menu";
 import {ActivatedRoute, Router} from "@angular/router";
 import { FormBuilder, FormGroup, Validators } from "@angular/forms";
@@ -40,6 +40,14 @@ export class AppComponent implements OnInit, AfterViewInit {
     overlays: any[];
 
     maps: boolean;
+
+    lat: number;
+
+    lng: number;
+
+    map: google.maps.Map;
+
+    location: any;
     
   @ViewChild('bigMenu') bigMenu : Menu;
   @ViewChild('smallMenu') smallMenu : Menu;
@@ -47,8 +55,6 @@ export class AppComponent implements OnInit, AfterViewInit {
   constructor(private router : Router,private fb: FormBuilder, private fb2: FormBuilder,private fb3: FormBuilder) {
 
   }
-  
-
   ngOnInit() {
     this.loginForm = this.fb.group({
       names: ['', [Validators.required, Validators.minLength(3)]],
@@ -108,34 +114,64 @@ export class AppComponent implements OnInit, AfterViewInit {
     this.labelDate = 'Edit';
     this.editDate = false;
     this.maps = false;
-    this.options = {
-      center: {lat: 36.890257, lng: 30.707417},
-      zoom: 12
-  };
-
-  this.overlays = [
-      new google.maps.Marker({position: {lat: 36.879466, lng: 30.667648}, title:"Konyaalti"}),
-      new google.maps.Marker({position: {lat: 36.883707, lng: 30.689216}, title:"Ataturk Park"}),
-      new google.maps.Marker({position: {lat: 36.885233, lng: 30.702323}, title:"Oldtown"}),
-      new google.maps.Polygon({paths: [
-          {lat: 36.9177, lng: 30.7854},{lat: 36.8851, lng: 30.7802},{lat: 36.8829, lng: 30.8111},{lat: 36.9177, lng: 30.8159}
-      ], strokeOpacity: 0.5, strokeWeight: 1,fillColor: '#1976D2', fillOpacity: 0.35
-      }),
-      new google.maps.Circle({center: {lat: 36.90707, lng: 30.56533}, fillColor: '#1976D2', fillOpacity: 0.35, strokeWeight: 1, radius: 1500}),
-      new google.maps.Polyline({path: [{lat: 36.86149, lng: 30.63743},{lat: 36.86341, lng: 30.72463}], geodesic: true, strokeColor: '#FF0000', strokeOpacity: 0.5, strokeWeight: 2})
-  ];
+    this.lat = 0;
+    this.lng = 0;
+    this.findMe();
+    
+      
   }
   showMaps() {
     this.maps = true;
   }
   filterBrands(event) {
     this.filteredBrands = [];
-    for(let i = 0; i < this.brands.length; i++) {
+    for (let i = 0; i < this.brands.length; i++) {
         let brand = this.brands[i];
         if (brand.toLowerCase().indexOf(event.query.toLowerCase()) == 0) {
             this.filteredBrands.push(brand);
           }
     }
+}
+ setMap(event) {
+        this.map = event.map;
+    }
+findMe() {
+  if (navigator.geolocation) {
+    navigator.geolocation.getCurrentPosition((position) => {
+      this.lat = position.coords.latitude;
+      this.lng = position.coords.longitude;
+      let geocoder = new google.maps.Geocoder;
+let latlng = {lat: this.lat, lng: this.lng};
+geocoder.geocode({'location': latlng}, (results, status) => {
+   this.location = results[0].formatted_address;
+   this.overlays = [
+    new google.maps.Marker({ position: latlng, title: 'Current Location', draggable: true}),
+    ];
+   this.options = {
+    center: {lat: this.lat, lng: this.lng},
+    zoom: 16
+};
+this.map.panTo(latlng);
+ 
+});
+
+    });
+  } else {
+    alert("Geolocation is not supported by this browser.");
+  }
+}
+handleDrag(event) {
+this.overlays.forEach(marker => {
+  let position = marker.getPosition();
+  let geocoder = new google.maps.Geocoder;
+geocoder.geocode({'location': position}, (results, status) => {
+   this.location = results[0].formatted_address;
+});
+ });
+}
+selectAddress() {
+  this.registerForm.patchValue({regResAddress: this.location});
+  this.supplierForm.patchValue({supResAddress: this.location});
 }
 editDates() {
   if (this.editDate) {
