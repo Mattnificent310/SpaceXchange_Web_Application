@@ -1,48 +1,140 @@
 <div class="alltimesheets ui-g">
 
 
-  <div class="header ui-g-12">
+  <div class="header ui-g-12 ">
 
     <h2>
       Marketplace
     </h2>
     <h3>
-      Find the perfect space for you or your packages
+      Deliveries | Trips | Storage
     </h3>
-
+    
+   
+  
   </div>
+<div class="ui-g-12">
+  <p-dataScroller [value]="allProjectNames" [totalRecords]="5" [rows]="3">
+    
+    <ng-template let-cars pTemplate="item" let-i="index" >
+        <div class="ui-g-12">
+           <p-carousel headerText="{{cars}}" [value]="allTimesheetData">
+        <ng-template let-car pTemplate="item">
+            <div class="ui-grid ui-grid-responsive" style="margin-left: 25%">
+                <div class="ui-grid-row ui-g-12">
+                    <div style="margin-left: 15%;" class="ui-grid-col-12 ui-grid-responsive"><img src="{{car.avatar}}" width="100" height="120"> <h2></h2>
+                    </div>
+                 </div>
+                <div class="ui-grid-row">
+                    <div class="ui-grid-col-5">Supplier</div>
+                    <div class="ui-grid-col-6">{{car.user}}</div>
+                </div>
+                <div class="ui-grid-row">
+                    <div class="ui-grid-col-5">Category</div>
+                    <div class="ui-grid-col-6">{{car.category}}</div>
+                </div>
+                <div class="ui-grid-row">
+                    <div class="ui-grid-col-5">Departure</div>
+                    <div class="ui-grid-col-6">{{car.startTime}}</div>
+                </div>
+                <div class="ui-grid-row">
+                    <div class="ui-grid-col-5">Arrival</div>
+                    <div class="ui-grid-col-6">{{car.endTime}}</div>
+                </div>
+                <div class="ui-grid-row ui-g-12">
+                    <div class="ui-grid-col-10" >
+                        <h1> </h1>
+                  
+                        <button type="button" class="ui-g-5" label="Book" pButton icon="fa fa-shopping-cart" (click)="selectCar(car)"></button>
+                        <button type="button" class="ui-g-5" label="View" pButton icon="fa fa-street-view" (click)="viewDetails(car.id -1)"></button>
+                    
+                      </div>
+                </div>
+            </div>
+        </ng-template>
+    </p-carousel>
+           
+        </div>
+    </ng-template>
+</p-dataScroller>
+</div>
 
+<p-dialog [(visible)]="viewDetail" [modal]="true" [responsive]="true" [width]="750" [minWidth]="450" 
+[baseZIndex]="9999999999">
+  <p-header class="header">Profile</p-header>
+  
+             
+    <div class="ui-md-12 inputContainers">
+            <img class="ui-g-offset-2" src="{{avatar}}" width="150" height="170"/>
+  
+          <div class="inputContainer">
+                  <div class="iconContainer" >
+                      <i class="material-icons">account_circle</i>
+                  </div>
+                  
+                      <label class="ui-md-10 inputHolder">{{user}}</label>
+              </div>
+              
+                  <div class="inputContainer">
+                    <div class="iconContainer" >
+                        <i class="material-icons">mail_outline</i>
+                    </div>
+                    
+                        <a href="mailto:{{email}}?subject={{category}}" class="ui-md-10 inputHolder">{{email}}</a>
+                </div>
+               
+      <div class="inputContainer">
+          <div class="iconContainer" >
+              <i class="material-icons">phone_android</i>
+          </div>
+          
+              <a href="tel:{{phone}}" class="ui-md-10 inputHolder">{{phone}}</a>
+         
+      </div>         
+      
+      <div class="inputContainer">
+          <div class="iconContainer" >
+              <i class="material-icons">location_on</i>
+          </div>
+          
+              <a class="ui-md-10 inputHolder unstyled" href="https://www.google.co.za/maps/place/{{startDate}}" id="projectId" >{{startDate}}</a>
+                <i class="fa fa-globe"></i>  <i class="fa fa-chevron-right"></i> <a class="ui-md-10 inputHolder unstyled" href="https://www.google.co.za/maps/place/{{endDate}}" id="projectId" >{{endDate}}</a>
+          
+      </div>
+      
+      
+      <div class="inputContainer">
+          <div class="iconContainer" >
+              <i class="material-icons" [ngSwitch]="category">
+                  <span *ngSwitchCase="'Road Transit'">local_shipping</span>
+                  <span *ngSwitchCase="'Sea Transit'">directions_boat</span>
+                  <span *ngSwitchCase="'Air Transit'">local_airport</span>
+                  <span *ngSwitchCase="'Rail Transit'">directions_railway</span>
+            </i>
+          </div>
+          
+              <label class="ui-md-10 inputHolder">{{category}}</label>
+       </div>
+       <div class="inputContainer">
+        <div class="iconContainer" >
+            <i class="material-icons">update</i>
+        </div>
+        
+            <label class="ui-md-10 inputHolder">{{depDate}}</label>
+     </div>
+     <div class="inputContainer">
+            <div style="float: left;" class="iconContainer" >
+                <i class="material-icons">stars</i>
+                
+            </div>
+            <span style="padding-left: 15px;" class="ui-g-12 inputHolder"><p-rating [ngModel]="rating" readonly="true" stars="5" [cancel]="false"></p-rating></span>
+    
+    </div>
+    
+       </div>
+       </p-dialog>
 
-  <p-dataTable #dt [value]="allTimesheetData" class="ui-g-12"  sortOrder="1" emptyMessage="No entries found"
-    [reorderableColumns]="true" columnResizeMode="fit" [resizableColumns]="true" [globalFilter]="tableSearch" exportFilename="users"
-    [editable]="true" (onEditComplete)="onEditComplete($event)" [(selection)]="selectedRows" (onRowSelect)="onRowSelect($event)"
-    [contextMenu]="tableContextMenu" [paginator]="true" [rows]="100" [rowsPerPageOptions]="[5,10,15,20]" [totalRecords]="recordCount"
-    [pageLinks]="8" [lazy]="true" (onLazyLoad)="loadTimes($event)">
+<p-contextMenu #tableContextMenu [model]="contextMenu"></p-contextMenu>
 
-    <p-column selectionMode="multiple" styleClass="selectBoxColumn"></p-column>
-
-    <p-column field="user" header="Supplier" [sortable]="true" [editable]="true"></p-column>
-    <p-column field="project" header="Space Type" [filter]="true" filterPlaceholder="Looking For Space..." filterMatchMode="equals" [style]="{'overflow':'visible'}"
-      [editable]="true">
-      <ng-template pTemplate="filter" let-col>
-        <p-dropdown [options]="allProjects" [style]="{'width':'100%'}" (onChange)="dt.filter($event.value,col.field,col.filterMatchMode)"
-          styleClass="ui-column-filter"></p-dropdown>
-      </ng-template>
-      <ng-template let-col let-project="rowData" pTemplate="editor">
-        <p-dropdown [(ngModel)]="project[col.field]" [options]="allProjects" [autoWidth]="false" [style]="{'width':'100%'}" required="true"></p-dropdown>
-      </ng-template>
-
-    </p-column>
-    <p-column field="category" header="Category" [sortable]="true" [editable]="true"></p-column>
-    <p-column field="startTime" header="Start Location" [sortable]="true" [editable]="true"></p-column>
-    <p-column field="endTime" header="End Location" [sortable]="true" [editable]="true"></p-column>
-    <p-footer>
-      <label for="tableSearch">Search: </label>
-      <input id="tableSearch" #tableSearch type="text" placeholder="Filter Suppliers...">
-      <button type="button" pButton icon="fa-table" label="Export" (click)="dt.exportCSV()" style="float:right;"></button>
-    </p-footer>
-  </p-dataTable>
-
-  <p-contextMenu #tableContextMenu [model]="contextMenu"></p-contextMenu>
-
+<p-growl [value]="messages"></p-growl>
 </div>

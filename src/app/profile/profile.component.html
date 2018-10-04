@@ -1,4 +1,4 @@
-<div class="profile header ui-g-12">
+<div class="profile header ui-g-12" >
     <h2>
         Profile Info
     </h2>
@@ -7,7 +7,7 @@
     </h3>
 </div>
 
-<p-panel header="My Profile Picture" styleClass="profilePic" class="ui-g-12 ui-md-4" pDroppable="profilePic" (onDrop)="onPicDrop()">
+<p-panel header="My Profile Picture" styleClass="profileDet" class="ui-g-12 ui-md-4 panel-content" pDroppable="profilePic" (onDrop)="onPicDrop()">
 
     <img id="profilePic" *ngIf="profileImage; else showDropDiv" [src]="profileImage" class="ui-g-12" />
 
@@ -22,5 +22,99 @@
 <p-galleria #galleria [images]="images" class="ui-g-12 ui-md-7" panelWidth="300" panelHeight="298" [showCaption]="true" pDraggable="profilePic" dragHandle=".ui-panel-images" (onImageClicked)="onImageSelected($event)"
 (onDragStart)="onDragStart(galleria)">
 </p-galleria>
-
+   <p-panel header="Profile Editor" styleClass="profilePic" class="ui-g-12">
+        <div class="ui-g">
+ 
+    <p-tabView class="ui-g-12">
+        <p-tabPanel header="General Info" leftIcon="pi pi-calendar" class="ui-g-7">
+            <div [formGroup]="registerForm" class="ui-g-12">
+                <div class="ui-g ui-fluid">
+                    <div class="ui-g-12 ui-md-12" >
+                        <div class="ui-inputgroup" [ngSwitch]="editName">
+                            <span class="ui-inputgroup-addon"><i class="fa fa-user-circle"></i></span>
+                            <label class="ui-inputgroup-addon ui-g-12" *ngSwitchCase="false" >{{name}}</label>
+                            <input *ngSwitchCase="true" autofocus [value]="registerForm.controls['regName'].value" pInputText type="text" pKeyFilter="alpha" required formControlName="regName"  placeholder="Name" />
+                                   
+                        </div>
+                       <span style="float: right;" class="ui-g-3"><button type="button" pButton icon="{{iconName}}" (click)="editNames();" label="{{labelName}}" class="btnEdit" ></button></span>
+                       <div class="ui-g-12 ui-md-5">
+            
+                        <at-fielderrors [form]="registerForm" field="regName" nicename="Name"> </at-fielderrors>
+        
+        
+                    </div>
+                    </div>
+                   
+                    <div class="ui-g-12 ui-md-12" >
+                        <div class="ui-inputgroup" [ngSwitch]="editSurname">
+                            <span class="ui-inputgroup-addon"><i class="fa fa-user-circle"></i></span>
+                            <label class="ui-inputgroup-addon ui-g-12" *ngSwitchCase="false" >{{surname}}</label>
+                            <input *ngSwitchCase="true" autofocus [value]="registerForm.controls['regSurname'].value" pInputText type="text" pKeyFilter="alpha" required formControlName="regSurname"  placeholder="Surname" />
+                                   
+                        </div>
+                       <span style="float: right;" class="ui-g-3"><button type="button" pButton icon="{{iconSurname}}" (click)="editSurnames();" label="{{labelSurname}}" class="btnEdit" ></button></span>
+                       <div class="ui-g-12 ui-md-5">
+            
+                        <at-fielderrors [form]="registerForm" field="regSurname" nicename="Surname"> </at-fielderrors>
+        
+        
+                    </div>
+                    </div>                
+                    <div class="ui-g-12 ui-md-12" >
+                        <div class="ui-inputgroup" [ngSwitch]="editDate">
+                            <span class="ui-inputgroup-addon"><i class="fa fa-birthday-cake"></i></span>
+                            <label class="ui-inputgroup-addon ui-g-12" *ngSwitchCase="false" >{{date}}</label>
+                            <p-calendar *ngSwitchCase="true" [(ngModel)]="date" [inline]="true" pInputText pKeyFilter="alphanum" formControlName="regDOB"  ></p-calendar>
+                                   
+                        </div>
+                       <span style="float: right;" class="ui-g-3"><button type="button" pButton icon="{{iconDate}}" (click)="editDates();" label="{{labelDate}}" class="btnEdit" ></button></span>
+                       <div class="ui-g-12 ui-md-5">
+            
+                        <at-fielderrors [form]="registerForm" field="regDOB" nicename="Birth Date"> </at-fielderrors>
+        
+        
+                    </div>
+                    </div>                   
+                    <div class="ui-g-12 ui-md-12" >
+                        <div class="ui-inputgroup" [ngSwitch]="editPhone">
+                            <span class="ui-inputgroup-addon"><i class="fa fa-mobile" style="zoom: 1.55"></i></span>
+                            <label class="ui-inputgroup-addon ui-g-12" *ngSwitchCase="false" >{{phone}}</label>
+                            <input *ngSwitchCase="true" autofocus [value]="registerForm.controls['regPhoneNumber'].value" pInputText type="text" pKeyFilter="pnum" required formControlName="regPhoneNumber"  placeholder="Mobile Number" />
+                                   
+                        </div>
+                       <span style="float: right;" class="ui-g-3"><button type="button" pButton icon="{{iconPhone}}" (click)="editPhones();" label="{{labelPhone}}" class="btnEdit" ></button></span>
+                       <div class="ui-g-12 ui-md-5">
+            
+                        <at-fielderrors [form]="registerForm" field="regPhoneNumber" nicename="Mobile Number"> </at-fielderrors>
+        
+        
+                    </div>
+                    </div>  
+                    <div class="ui-g-12 ui-md-12" >
+                        <div class="ui-inputgroup" [ngSwitch]="editEmail">
+                            <span class="ui-inputgroup-addon"><i class="fa fa-at" style="zoom: 1"></i></span>
+                            <label class="ui-inputgroup-addon ui-g-12" *ngSwitchCase="false" >{{email}}</label>
+                            <input *ngSwitchCase="true" autofocus [value]="registerForm.controls['regEmailAddress'].value" pInputText pKeyFilter="email" type="text" required formControlName="regEmailAddress"  placeholder="example@domain.com" />
+                                   
+                        </div>
+                       <span style="float: right;" class="ui-g-3"><button type="button" pButton icon="{{iconEmail}}" (click)="editEmails();" label="{{labelEmail}}" class="btnEdit" ></button></span>
+                       <div class="ui-g-12 ui-md-5">
+            
+                        <at-fielderrors [form]="registerForm" field="regEmailAddress" nicename="Email Address"> </at-fielderrors>
+        
+        
+                    </div>
+                    </div>
+                    
+                </div>
+            </div>
+            <p-footer class="ui-g-12">
+                <button type="button" pButton icon="fa fa-check"  (click)="saveChanges();" label="Save"></button>
+                <button type="button" pButton icon="fa fa-close" (click)="discardChanges();" label="Discard" class="ui-button-secondary"></button>
+            </p-footer>
+        </p-tabPanel>
+        </p-tabView>
+    </div>
+        </p-panel>
+    
 <p-growl [value]="messages"></p-growl>

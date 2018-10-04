@@ -5,7 +5,7 @@ import { FormBuilder, FormGroup, Validators } from "@angular/forms";
 @Component({
   selector: 'at-projects',
   templateUrl: './projects.component.html',
-  styleUrls: ['./projects.component.css']
+  styleUrls: ['./projects.component.css', '../../../node_modules/material-icons/iconfont/material-icons.css']
 })
 export class ProjectsComponent implements OnInit {
 
@@ -32,16 +32,36 @@ export class ProjectsComponent implements OnInit {
 
   ngOnInit() {
     this.projectForm = this.fb.group({
-      projectId: ['', [Validators.required, Validators.minLength(5)]],
-      description: ['My cool project', [Validators.required, Validators.maxLength(140)]],
-      startDate: [new Date(), Validators.required],
-      projectType: ['B'],
-      selectedDevs: [[]],
+      names: ['', [Validators.required, Validators.minLength(3)]],      
+      phoneNumber: ['', [Validators.required, Validators.minLength(10)]],
+      emailAddress: ['', [Validators.required, Validators.minLength(10)]],
+      description: ['Add Description Here...', [Validators.required, Validators.maxLength(140)]],
+      verificationDate: [new Date(), Validators.required],
+      contactType: ['B'],
+      selectedContacts: [[]],
       rating: [3]
     })
 
   }
+  val1: number;
 
+  val2: number = 5;
+
+  val3: number;
+
+  val4: number = 5;
+
+  val5: number;
+
+  msg: string;
+
+  handleRate(event) {
+      this.msg = "You have rated " + event.value;
+  }
+
+  handleCancel(event) {
+      this.msg = "Rating Cancelled";
+  }
   hasFormErrors() {
     return !this.projectForm.valid;
   }

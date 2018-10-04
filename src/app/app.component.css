@@ -4,9 +4,9 @@
   position: fixed;
   top: 0px;
   bottom: 5px;
-  padding-left: 8%;
+  padding-left: 12%;
   z-index: 99;
-  width: 95%;
+  width: 100%;
   background: linear-gradient(to top, rgba(10,10,10,0.8) 0%,rgba(10,10,10,0.8) 100%), url() repeat 0 0;
     background-size: 100% 85px;
 
@@ -15,12 +15,12 @@
 #search
 {
   position: fixed;
-  top: 15px;
-  left: 85%;
-  
+  top: 30px;
+  left: 95%;
+  color: darkorange;
 }
 .search-container{
-  width: 12%;
+  width: 13%;
   display: block;
   margin: 0 auto;
 }
@@ -64,7 +64,7 @@ input#search-bar{
 }
 #top-logo {
   position: absolute;
-  left: -9%;
+  left: 2%;
   top: 0px;
   height: 60px;
 }
@@ -161,4 +161,62 @@ input#search-bar{
 
 
 }
+.header{
+  background: rgba(5, 93, 225, 1);
+  padding: 15px 42%;
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
+  color: white;
+}
+.iconContainer {
+	display: inline-block;
+	border-right: 1px solid #ccc;
+	height: 35px;
+	width: 35px;
+	/*margin-left: -30px;*/
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	-o-box-sizing: border-box;
+	-ms-box-sizing: border-box;
+	box-sizing: border-box;
+}
+	.iconContainer i {
+		top: 5px;
+		left: 5px;
+		position: relative;
+		color: #54626c;
+  }
+  .inputContainers {
+    margin-top: 20px;
+    margin-bottom: 20px;
+    text-align: left;
+    
+}
 
+.inputContainer {
+    /*display: inline;*/
+    position: relative;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+    width: 100%;
+    /*left: 50%;
+    margin-left: -125px;*/
+    height: 36px;    
+    overflow: hidden;
+    margin-top: 10px;
+}
+
+.inputHolder {
+  
+  border: none;
+  background: none;
+  margin-left: -5px;
+  width: 90%;
+  height: 36px;
+  
+}
+p-calendar >>> .ui-calendar
+{
+  width: 280px;
+  margin-top: 1.25px;
+}

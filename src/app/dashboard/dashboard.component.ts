@@ -73,12 +73,12 @@ export class DashboardComponent implements AfterViewInit {
     labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun'],
     datasets: [
       {
-        label: 'Dev Team',
+        label: 'Packages',
         backgroundColor: DEFAULT_COLORS[0],
         data: [65, 59, 80, 55, 67, 73]
       },
       {
-        label: 'Ops Team',
+        label: 'Passengers',
         backgroundColor: DEFAULT_COLORS[1],
         data: [44, 63, 57, 90, 77, 70]
       }
@@ -91,13 +91,13 @@ export class DashboardComponent implements AfterViewInit {
     labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun'],
     datasets: [
       {
-        label: 'Dev Team',
+        label: 'Packages',
         type: 'bar',
         backgroundColor: DEFAULT_COLORS[0],
         data: [65, 59, 80, 55, 67, 73]
       },
       {
-        label: 'Ops Team',
+        label: 'Passengers',
         type: 'line',
         backgroundColor: DEFAULT_COLORS[1],
         data: [44, 63, 57, 90, 77, 70]

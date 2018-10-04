@@ -17,13 +17,21 @@ import { BuyerService } from './buyers/buyer.service';
 import { AlltimesComponent } from './alltimes/alltimes.component';
 import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 import { FielderrorsComponent } from './fielderrors/fielderrors.component';
+import {DataScrollerModule} from 'primeng/datascroller';
+import {AccordionModule} from 'primeng/accordion';
+import {PasswordModule} from 'primeng/password';
+import {AutoCompleteModule} from 'primeng/autocomplete';
+import {OverlayPanelModule} from 'primeng/overlaypanel';
+import {CarouselModule} from 'primeng/carousel';
+import {KeyFilterModule} from 'primeng/keyfilter';
+
 
 const appRoutes: Routes = [
   { path: "", redirectTo: "/dashboard", pathMatch: "full" },
   { path: "dashboard", component: DashboardComponent },
-  { path: "alltimes", component: AlltimesComponent },
-  { path: "timesheet", component: TimesheetComponent},
-  { path: "projects", component: ProjectsComponent},
+  { path: "marketplace", component: AlltimesComponent },
+  { path: "history", component: TimesheetComponent},
+  { path: "contacts", component: ProjectsComponent},
   { path: "profile", component: ProfileComponent},
   { path: "settings", component: SettingsComponent},
   { path: "buyers", component: BuyerComponent},
@@ -81,9 +89,15 @@ const appRoutes: Routes = [
     DragDropModule,
     GalleriaModule,
     MenubarModule,
-    HttpClientModule
-    
-  ],
+    HttpClientModule,
+    DataScrollerModule,
+    AccordionModule,
+    PasswordModule,
+    AutoCompleteModule,
+    OverlayPanelModule,
+    CarouselModule,
+    KeyFilterModule
+    ],
   providers: [ ConfirmationService, BuyerService ],
   bootstrap: [AppComponent]
 })

@@ -1,4 +1,4 @@
-<div class="timesheet header ui-g-12">
+<div class="timesheet header ui-g-12" style="margin-left: 10px;">
   <h2>
     {{ "Exchanges" }}
   </h2>
@@ -6,15 +6,15 @@
     {{ dateAndMonth }}
   </h3>
 </div>
-
+<div class="ui-g-12" style="margin-left: 3px;">
 <p-tabView class="u-g-12 tabs" (onChange)="onChangeTabs($event)">
   <p-tabPanel *ngFor="let tab of months" header="{{tab}}">
 
     <p-dataTable [value]="getTimesForDay(tab)" class="timesheet-grid">
       <p-column field="project" header="Exchange Type"></p-column>
       <p-column field="category" header="Category"></p-column>
-      <p-column field="startTime" header="Start Time"></p-column>
-      <p-column field="endTime" header="End Time"></p-column>
+      <p-column field="startTime" header="Departure"></p-column>
+      <p-column field="endTime" header="Arrival"></p-column>
     </p-dataTable>
 
 
@@ -22,9 +22,9 @@
 </p-tabView>
 
 <button pButton label="Edit Entry" (click)="displayEditDialog = true"></button>
+</div>
 
-
-<p-dialog header="Create Time" [modal]="true" [(visible)]="displayEditDialog" [ngSwitch]="dialogPageIndex" width="700"
+<p-dialog header="Change Details" [modal]="true" [(visible)]="displayEditDialog" [ngSwitch]="dialogPageIndex" width="700"
           height="550">
 
   <div class="dialogBody">
