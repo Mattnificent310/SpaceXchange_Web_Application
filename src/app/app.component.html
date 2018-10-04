@@ -279,7 +279,10 @@
 <p-dialog [(visible)]="maps" [modal]="true" [responsive]="true" [width]="750" [minWidth]="450" 
 [baseZIndex]="9999999999">
   <p-header class="header">Address</p-header>
-  <p-gmap [options]="options" (onOverlayDrag)="handleDrag($event);" (onMapReady)="setMap($event)" [overlays]="overlays" [style]="{'width':'100%','height':'320px'}" ></p-gmap>
+  <input  class="ui-g-6" #searchBox pInputText type="text" />
+  <button style="width: 45px;"  type="button" pButton icon="fa fa-search"></button>
+
+  <p-gmap [options]="options" (onOverlayDrag)="handleDrag($event);" (onMapClick)="handleMapClick($event)" (onOverlayClick)="handleOverlayClick($event)" (onMapReady)="setMap($event)" [overlays]="overlays" [style]="{'width':'100%','height':'320px'}" ></p-gmap>
 <div style="margin-top: 10px;" class="ui-g-12 ui-md-12">
     <label>{{location}}</label>
     <button style="float: right; width: 45px;"  type="button" pButton icon="fa fa-check" (click)="selectAddress(); maps = false;"></button>

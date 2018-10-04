@@ -1,10 +1,10 @@
 import { OverlayPanel } from 'primeng/overlaypanel';
-import {Component, OnInit, ViewChild, ElementRef, AfterViewInit} from '@angular/core';
+import {Component, OnInit, NgZone, ViewChild, ElementRef, AfterViewInit} from '@angular/core';
 import {MenuItem, Message} from "primeng/primeng";
 import {Menu} from "primeng/components/menu/menu";
 import {ActivatedRoute, Router} from "@angular/router";
 import { FormBuilder, FormGroup, Validators } from "@angular/forms";
-
+import { } from '@types/googlemaps';
 declare var jQuery :any;
 
 @Component({
@@ -48,11 +48,17 @@ export class AppComponent implements OnInit, AfterViewInit {
     map: google.maps.Map;
 
     location: any;
-    
-  @ViewChild('bigMenu') bigMenu : Menu;
-  @ViewChild('smallMenu') smallMenu : Menu;
 
-  constructor(private router : Router,private fb: FormBuilder, private fb2: FormBuilder,private fb3: FormBuilder) {
+    selectedPosition: any;
+    
+    infoWindow: any;
+
+    
+  @ViewChild('bigMenu') bigMenu: Menu;
+  @ViewChild('smallMenu') smallMenu: Menu;
+  @ViewChild('searchBox') searchBox: ElementRef;
+
+  constructor(private router : Router,private fb: FormBuilder, private fb2: FormBuilder,private fb3: FormBuilder, private ngZone: NgZone) {
 
   }
   ngOnInit() {
@@ -116,14 +122,63 @@ export class AppComponent implements OnInit, AfterViewInit {
     this.maps = false;
     this.lat = -26.1715046;
     this.lng = 27.9699844;
+    this.infoWindow = new google.maps.InfoWindow();
     this.options = {
       center: {lat: this.lat, lng: this.lng},
       zoom: 12
   };
-    this.findMe();
-    
-      
+  this.searchMap();
+    //this.findMe();
   }
+  handleMapClick(event) {
+    this.selectedPosition = event.latLng;
+    this.addMarker();
+}
+
+handleOverlayClick(event) {
+    let isMarker = event.overlay.getTitle != undefined;
+
+    if (isMarker) {
+        let title = event.overlay.getTitle();
+        this.infoWindow.setContent('' + title + '');
+        this.infoWindow.open(event.map, event.overlay);
+        event.map.setCenter(event.overlay.getPosition());
+    }
+}
+
+addMarker() {
+  let position = {lat: this.selectedPosition.lat(), lng: this.selectedPosition.lng() };
+    this.overlays = [ new google.maps.Marker(
+      { position: position,
+        title: 'Current Location', draggable: true })];
+        let geocoder = new google.maps.Geocoder;
+        geocoder.geocode({'location': position}, (results, status) => {
+           this.location = results[0].formatted_address;
+        });
+      }
+searchMap() {
+  let search = new google.maps.places.Autocomplete(this.searchBox.nativeElement, {
+    types: ['address', 'partial_matches', 'formatted_address', 'name']
+  });
+  search.addListener('place_changed', () => {
+    this.ngZone.run(() => {
+      let place: google.maps.places.PlaceResult = search.getPlace();
+      let results = search.getPlace().geometry.location;
+      let lat = results.lat;
+      let lng = results.lng;
+    this.selectedPosition = { lat: lat, lng: lng };
+    this.overlays = [
+      new google.maps.Marker({ position: this.selectedPosition, title: 'Searched Location', draggable: true}),
+      ];
+    })
+  });
+  
+    this.map.panTo(this.selectedPosition);
+
+}
+
+
+
   showMaps() {
     this.maps = true;
   }
