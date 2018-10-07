@@ -11,7 +11,15 @@
     background-size: 100% 85px;
 
 }
-
+#header2 {
+  background: linear-gradient(to top, rgba(10,10,10,0.65) 0%,rgba(10,10,10,0.65) 100%), url(http://www.icllogistics.com/images/764_banner-logistics.jpg /*http://skylane-express.com/courier/trheader.jpg*/) repeat 0 0;
+    background-size: 100%;
+  border-radius: 15px;
+  height: 65px;
+  margin: 0 auto;
+  border: outset 1px silver;  
+  float: left;
+}
 #search
 {
   position: fixed;
@@ -63,12 +71,17 @@ input#search-bar{
     color: darkorange;
 }
 #top-logo {
-  position: absolute;
-  left: 2%;
-  top: 0px;
-  height: 60px;
+  margin-left: -75px;
+  margin-top: -5px;
+  height: 55px;
+  width: 90px;
 }
+#top-logo2 {
 
+  margin-left: -95px;
+  margin-top: -5px;
+  height: 55px;
+}
 #notifications {
   color: blue;
   float: right;
@@ -142,12 +155,13 @@ input#search-bar{
 }
 
  :host >>> .ui-menubar{
-    background: linear-gradient(to top, rgba(10,10,10,0.65) 0%,rgba(10,10,10,0.65) 100%), url(http://www.icllogistics.com/images/764_banner-logistics.jpg /*http://skylane-express.com/courier/trheader.jpg*/) repeat 0 0;
-    background-size: 100% 65px;
+     background-size: 100% 65px;
     height: 65px;
     padding-left: 5%;
     padding-top: 1%;
     border-radius: 15px;
+    background-color: transparent;
+    border-color: transparent;
  }
 
 

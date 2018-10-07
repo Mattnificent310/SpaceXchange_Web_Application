@@ -53,7 +53,8 @@ export class AppComponent implements OnInit, AfterViewInit {
     
     infoWindow: any;
 
-    
+    width: any;
+
   @ViewChild('bigMenu') bigMenu: Menu;
   @ViewChild('smallMenu') smallMenu: Menu;
   @ViewChild('searchBox') searchBox: ElementRef;
@@ -116,6 +117,8 @@ export class AppComponent implements OnInit, AfterViewInit {
       let miniItem = { icon: item.icon, routerLink: item.routerLink }
       this.miniMenuItems.push(miniItem);
     })
+    this.width = window.innerWidth;
+    console.log(this.width);
     this.iconDate = 'fa fa-edit';
     this.labelDate = 'Edit';
     this.editDate = false;

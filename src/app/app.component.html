@@ -1,27 +1,31 @@
 <div class="ui-g ui-g-nopad" id="header">
 
-  <div class="ui-g-11  responsive collapse">
-
-      <p-menubar styleClass="menubar" [model]="items">
-          <img src="./assets/img/side-shop.png" id="top-logo"/>
-         
-          <div class="inputContainer responsive collapse" style="height: 36px; background: linear-gradient(to top, rgba(10,10,10,0.5) 0%,rgba(10,10,10,0.5) 100%), url() repeat 0 0; border: none; margin-right: 60px; margin-top: -5px;">
+  <div class="ui-g-11  responsive" >
+      <div  class="ui-g-1"> <img *ngIf="width <= 1000" src="./assets/img/side-shop.png" id="top-logo"/><img *ngIf="width >= 1000" src="./assets/img/side-shop.png" id="top-logo2"/> </div>
+       <div class="ui-g-10" id="header2">
+            <p-menubar *ngIf="width >= 1000" styleClass="menubar" [model]="items">
+        
+          
+            <div class="inputContainer responsive collapse" style="height: 36px; background: linear-gradient(to top, rgba(10,10,10,0.5) 0%,rgba(10,10,10,0.5) 100%), url() repeat 0 0; border: none; margin-right: 60px; margin-top: -5px;">
+              <div class="iconContainer" style="/*#3366ff;*/ border-color: darkslategray;" >
+                  <i class="material-icons" style="color: silver;">fingerprint</i>
+              </div>
+              <button style="background-color: transparent; height: 36.5px; border-right: 1px darkslategray inset;" type="button" (click)="showDialog()" pButton label="Sign In" ></button>
             <div class="iconContainer" style="/*#3366ff;*/ border-color: darkslategray;" >
-                <i class="material-icons" style="color: silver;">fingerprint</i>
-            </div>
-            <button style="background-color: transparent; height: 36.5px; border-right: 1px darkslategray inset;" type="button" (click)="showDialog()" pButton label="Sign In" ></button>
-          <div class="iconContainer" style="/*#3366ff;*/ border-color: darkslategray;" >
-            <i class="material-icons" style="color: silver;">power_settings_new</i>
-        </div>
-        <button style="background-color: transparent; height: 36.5px;" type="button" (click)="showRegister()" pButton label="Sign Up" ></button>
-        </div>
-         
-         
-          </p-menubar>
+              <i class="material-icons" style="color: silver;">power_settings_new</i>
+          </div>
+          <button style="background-color: transparent; height: 36.5px;" type="button" (click)="showRegister()" pButton label="Sign Up" ></button>
+          </div>
+           
+           
+            </p-menubar></div>
+    <div *ngIf="width <= 1000" class="ui-g-1"><button style="margin-top: 8px;"  type="button" pButton icon="fa fa-bars"></button></div>
+
+     
          
   
  
-  
+          
         </div>
         <i class="fa fa-search" id="search" (mouseenter)="op2.show($event)" style="font-size:24px"></i>
 
@@ -311,10 +315,7 @@
   </div>
 
 
-  <div class="ui black big launch right attached fixed button">
-    <i class="content icon"></i>
-    <span class="text">Menu</span>
-  </div>
+  
 
 
 
