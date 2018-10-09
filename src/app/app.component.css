@@ -71,15 +71,16 @@ input#search-bar{
     color: darkorange;
 }
 #top-logo {
-  margin-left: -75px;
-  margin-top: -5px;
-  height: 55px;
-  width: 90px;
+  position: absolute;
+  top: 15px;
+  left: -45px;
+  height: 45px;
+  width: 140px;
 }
 #top-logo2 {
 
-  margin-left: -95px;
-  margin-top: -5px;
+  margin-left: -95%;
+  margin-top: 10px;
   height: 55px;
 }
 #notifications {
