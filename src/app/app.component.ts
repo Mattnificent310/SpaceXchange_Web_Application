@@ -126,9 +126,7 @@ export class AppComponent implements OnInit, AfterViewInit {
     this.labelDate = 'Edit';
     this.editDate = false;
     this.maps = false;
-    this.mobileSidebar = false;
-    this.hoverLogin = false;
-    this.hoverRegister = false;
+    this.mobileSidebar = false;    
     this.lat = -26.1715046;
     this.lng = 27.9699844;
     this.infoWindow = new google.maps.InfoWindow();
