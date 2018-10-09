@@ -24,8 +24,9 @@
 {
   position: fixed;
   top: 30px;
-  left: 95%;
+  left: 94%;
   color: darkorange;
+  padding-left: 5px;
 }
 .search-container{
   width: 13%;
