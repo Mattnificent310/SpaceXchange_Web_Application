@@ -112,7 +112,8 @@ export class AppComponent implements OnInit, AfterViewInit {
     this.items = [
       {label: 'Our Vision', icon: 'fa-info', routerLink: ['/dashboard/home'], command: (event) => handleSelected(event)},
       {label: 'Downloads', icon: 'fa-download', routerLink: ['/dashboard/downloads'], command: (event) => handleSelected(event)},
-      {label: 'Services', icon: 'fa-briefcase', routerLink: ['/dashboard/services'], command: (event) => handleSelected(event)}
+      {label: 'Services', icon: 'fa-briefcase', routerLink: ['/dashboard/services'], command: (event) => handleSelected(event)},
+      {label: 'Contact Us', icon: 'fa-mobile', routerLink: ['/dashboard/contact'], command: (event) => handleSelected(event)}
     ]
     this.miniMenuItems = [];
     this.menuItems.forEach( (item : MenuItem) => {
@@ -126,6 +127,8 @@ export class AppComponent implements OnInit, AfterViewInit {
     this.editDate = false;
     this.maps = false;
     this.mobileSidebar = false;
+    this.hoverLogin = false;
+    this.hoverRegister = false;
     this.lat = -26.1715046;
     this.lng = 27.9699844;
     this.infoWindow = new google.maps.InfoWindow();
@@ -257,9 +260,6 @@ selectCar(event, overlaypanel: OverlayPanel) {
       jQuery(selectedIcon).closest('li').addClass('menu-selected');
     }
   }
-showSidebar() {
-  this.mobileSidebar = true;
-}
   ngAfterViewInit() {
     this.selectInitialMenuItemBasedOnUrl();
   }
@@ -271,6 +271,9 @@ showDialog() {
 }
 showRegister() {
   this.register = true;
+}
+showSidebar() {
+this.mobileSidebar = true;
 }
 login() {
   this.messages.pop();

@@ -6,19 +6,18 @@
        <div class="ui-g-12" id="header2">
             <p-menubar *ngIf="width >= 1000" styleClass="menubar" [model]="items">
         
-          
-            <div class="inputContainer responsive collapse" style="height: 36px; background: linear-gradient(to top, rgba(10,10,10,0.5) 0%,rgba(10,10,10,0.5) 100%), url() repeat 0 0; border: none; margin-right: 60px; margin-top: -5px;">
-              <div class="iconContainer" style="border-color: darkslategray;" >
-                  <i class="material-icons" style="color: silver;">fingerprint</i>
-              </div>
-              <button style="background-color: transparent; height: 36.5px; border-right: 1px darkslategray inset;" type="button" (click)="showDialog()" pButton label="Sign In" ></button>
-            <div class="iconContainer" style="/*#3366ff;*/ border-color: darkslategray;" >
-              <i class="material-icons" style="color: silver;">power_settings_new</i>
-          </div>
-          <button style="background-color: transparent; height: 36.5px;" type="button" (click)="showRegister()" pButton label="Sign Up" ></button>
-          </div>        
+                    <div class="iconContainer">
+                         <i class="material-icons" style="color: silver;">fingerprint</i>       
+                    </div>
+                    <button  class="authButtons" type="button" (click)="showDialog()" pButton label="Sign In" ></button>
+                  <div class="iconContainer">
+                    <i class="material-icons" style="color: silver;">power_settings_new</i>
+                </div>
+                <button class="authButtons" type="button" (click)="showRegister()" pButton label="Sign Up" ></button>
+                
+                 
             </p-menubar></div>
-    
+           
 </div>
          
 <div *ngIf="width <= 1000" class="ui-g-1"><button style="margin-top: 20px; margin-left: -10px;"  type="button" (click)="showSidebar();" pButton icon="fa fa-bars"></button></div>
@@ -28,21 +27,19 @@
    
     <div id="sidenav" style="width: 100%;">
 
-        <p-menu #bigMenu [model]="items"></p-menu>
+        <p-menu #bigMenu [model]="items" ></p-menu>
   
       </div>    
-          
-        <div class="inputContainer" style="height: 36px; background: linear-gradient(to top, rgba(10,10,10,0.5) 0%,rgba(10,10,10,0.5) 100%), url() repeat 0 0; border: none; margin-right: 60px; margin-top: -5px;">
-          <div class="iconContainer" style="border-color: darkslategray;" >
-              <i class="material-icons" style="color: silver;">fingerprint</i>
-          </div>
-          <button style="background-color: transparent; height: 36.5px; border-right: 1px darkslategray inset;" type="button" (click)="showDialog()" pButton label="Sign In" ></button>
-        <div class="iconContainer" style="/*#3366ff;*/ border-color: darkslategray;" >
-          <i class="material-icons" style="color: silver;">power_settings_new</i>
-      </div>
-      <button style="background-color: transparent; height: 36.5px;" type="button" (click)="showRegister()" pButton label="Sign Up" ></button>
+<div style="margin-top: 16px;">
+      <div class="iconContainer">
+             <i class="material-icons" style="color: silver;">fingerprint</i>       
+        </div>
+        <button  class="authButtons" type="button" (click)="showDialog()" pButton label="Sign In" ></button>
+      <div class="iconContainer" >
+        <i class="material-icons" style="color: silver;">power_settings_new</i>
     </div>
-    
+    <button class="authButtons" type="button" (click)="showRegister()" pButton label="Sign Up" ></button>
+</div>
        
        
      </p-sidebar>  

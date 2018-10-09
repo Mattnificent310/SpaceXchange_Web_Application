@@ -20,6 +20,15 @@
   border: outset 1px silver;  
   float: left;
 }
+.authButtons {
+  background-color: transparent; 
+  height: 36.5px;
+  border-top: 0.5px slategrey outset;
+  border-bottom: 0.5px slategrey outset;
+  border-right: 0.5px slategrey outset;
+  margin-left: -5px;
+  background: linear-gradient(to top, rgba(10,10,10,0.5) 0%,rgba(10,10,10,0.5) 100%), url() repeat 0 0;
+}
 #search
 {
   position: fixed;
@@ -196,6 +205,8 @@ input#search-bar{
 	-o-box-sizing: border-box;
 	-ms-box-sizing: border-box;
 	box-sizing: border-box;
+  background: linear-gradient(to top, rgba(10,10,10,0.5) 0%,rgba(10,10,10,0.5) 100%), url() repeat 0 0;
+border-radius: 2px; border: 0.5px slategrey outset;
 }
 	.iconContainer i {
 		top: 5px;
@@ -211,18 +222,16 @@ input#search-bar{
 }
 
 .inputContainer {
-    /*display: inline;*/
+    display: inline;
     position: relative;
     border: 1px solid #ccc;
     border-radius: 3px;
-    width: 100%;
     /*left: 50%;
     margin-left: -125px;*/
     height: 36px;    
     overflow: hidden;
-    margin-top: 10px;
+    float: right;
 }
-
 .inputHolder {
   
   border: none;
