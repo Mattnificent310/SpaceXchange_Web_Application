@@ -24,6 +24,8 @@ import {AutoCompleteModule} from 'primeng/autocomplete';
 import {OverlayPanelModule} from 'primeng/overlaypanel';
 import {CarouselModule} from 'primeng/carousel';
 import {KeyFilterModule} from 'primeng/keyfilter';
+import {SidebarModule} from 'primeng/sidebar';
+
 
 
 const appRoutes: Routes = [
@@ -96,7 +98,8 @@ const appRoutes: Routes = [
     AutoCompleteModule,
     OverlayPanelModule,
     CarouselModule,
-    KeyFilterModule
+    KeyFilterModule,
+    SidebarModule
     ],
   providers: [ ConfirmationService, BuyerService ],
   bootstrap: [AppComponent]

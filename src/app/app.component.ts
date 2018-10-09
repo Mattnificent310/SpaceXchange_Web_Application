@@ -55,6 +55,8 @@ export class AppComponent implements OnInit, AfterViewInit {
 
     width: any;
 
+    mobileSidebar: boolean;
+
   @ViewChild('bigMenu') bigMenu: Menu;
   @ViewChild('smallMenu') smallMenu: Menu;
   @ViewChild('searchBox') searchBox: ElementRef;
@@ -123,6 +125,7 @@ export class AppComponent implements OnInit, AfterViewInit {
     this.labelDate = 'Edit';
     this.editDate = false;
     this.maps = false;
+    this.mobileSidebar = false;
     this.lat = -26.1715046;
     this.lng = 27.9699844;
     this.infoWindow = new google.maps.InfoWindow();
@@ -254,7 +257,9 @@ selectCar(event, overlaypanel: OverlayPanel) {
       jQuery(selectedIcon).closest('li').addClass('menu-selected');
     }
   }
-
+showSidebar() {
+  this.mobileSidebar = true;
+}
   ngAfterViewInit() {
     this.selectInitialMenuItemBasedOnUrl();
   }
