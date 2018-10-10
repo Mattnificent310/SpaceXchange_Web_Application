@@ -1,11 +1,10 @@
 import { OverlayPanel } from 'primeng/overlaypanel';
 import {Component, OnInit, NgZone, ViewChild, ElementRef, AfterViewInit} from '@angular/core';
-import {MenuItem, Message} from "primeng/primeng";
-import {Menu} from "primeng/components/menu/menu";
-import {ActivatedRoute, Router} from "@angular/router";
-import { FormBuilder, FormGroup, Validators } from "@angular/forms";
-import { } from '@types/googlemaps';
-declare var jQuery :any;
+import {MenuItem, Message} from 'primeng/primeng';
+import {Menu} from 'primeng/components/menu/menu';
+import {ActivatedRoute, Router} from '@angular/router';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+declare var jQuery: any;
 
 @Component({
   selector: 'app-root',
@@ -21,7 +20,7 @@ export class AppComponent implements OnInit, AfterViewInit {
   registerForm: FormGroup;
   supplierForm: FormGroup;
   messages: Message[] = [];
-    brands: string[] = ['Audi','BMW','Fiat','Ford','Honda','Jaguar','Mercedes','Renault','Volvo','VW'];
+    brands: string[] = ['Audi', 'BMW', 'Fiat', 'Ford', 'Honda', 'Jaguar', 'Mercedes', 'Renault', 'Volvo', 'VW'];
 
     filteredBrands: any[];
 
@@ -50,18 +49,24 @@ export class AppComponent implements OnInit, AfterViewInit {
     location: any;
 
     selectedPosition: any;
-    
+
     infoWindow: any;
 
     width: any;
 
     mobileSidebar: boolean;
 
+    display: boolean;
+
+    register: boolean;
+
+    dispSup: boolean;
+
   @ViewChild('bigMenu') bigMenu: Menu;
   @ViewChild('smallMenu') smallMenu: Menu;
   @ViewChild('searchBox') searchBox: ElementRef;
 
-  constructor(private router : Router,private fb: FormBuilder, private fb2: FormBuilder,private fb3: FormBuilder, private ngZone: NgZone) {
+  constructor(private router: Router, private fb: FormBuilder, private fb2: FormBuilder, private fb3: FormBuilder, private ngZone: NgZone) {
 
   }
   ngOnInit() {
@@ -70,7 +75,7 @@ export class AppComponent implements OnInit, AfterViewInit {
       phoneNumber: ['', [Validators.required, Validators.maxLength(10)]],
       emailAddress: ['', [Validators.required, Validators.minLength(10)]],
       password: ['', [Validators.required, Validators.minLength(10)]],
-      
+
     })
     this.registerForm = this.fb2.group({
       regName: ['', [Validators.required, Validators.minLength(3)]],
@@ -88,16 +93,16 @@ export class AppComponent implements OnInit, AfterViewInit {
       supPhoneNumber: ['', [Validators.required, Validators.maxLength(10)]],
       supEmailAddress: ['', [Validators.required, Validators.minLength(10)]],
       supResAddress: ['', [Validators.required, Validators.minLength(10)]],
-      supBirthDate: ['', [Validators.required, Validators.minLength(10)]],     
+      supBirthDate: ['', [Validators.required, Validators.minLength(10)]],
       supPassword: ['', [Validators.required, Validators.minLength(10)]],
       supConfirm: ['', [Validators.required, Validators.minLength(10)]],
     })
-    let handleSelected = function(event) {
-      let allMenus = jQuery(event.originalEvent.target).closest('ul');
-      let allLinks = allMenus.find('.menu-selected');
+    const handleSelected = function(event) {
+      const allMenus = jQuery(event.originalEvent.target).closest('ul');
+      const allLinks = allMenus.find('.menu-selected');
 
-      allLinks.removeClass("menu-selected");
-      let selected = jQuery(event.originalEvent.target).closest('a');
+      allLinks.removeClass('menu-selected');
+      const selected = jQuery(event.originalEvent.target).closest('a');
       selected.addClass('menu-selected');
     }
 
@@ -116,8 +121,8 @@ export class AppComponent implements OnInit, AfterViewInit {
       {label: 'Contact Us', icon: 'fa-mobile', routerLink: ['/dashboard/contact'], command: (event) => handleSelected(event)}
     ]
     this.miniMenuItems = [];
-    this.menuItems.forEach( (item : MenuItem) => {
-      let miniItem = { icon: item.icon, routerLink: item.routerLink }
+    this.menuItems.forEach( (item: MenuItem) => {
+      const miniItem = { icon: item.icon, routerLink: item.routerLink }
       this.miniMenuItems.push(miniItem);
     })
     this.width = window.innerWidth;
@@ -126,7 +131,10 @@ export class AppComponent implements OnInit, AfterViewInit {
     this.labelDate = 'Edit';
     this.editDate = false;
     this.maps = false;
-    this.mobileSidebar = false;    
+    this.mobileSidebar = false;
+    this.display = false;
+    this.register = false;
+    this.dispSup = false;
     this.lat = -26.1715046;
     this.lng = 27.9699844;
     this.infoWindow = new google.maps.InfoWindow();
@@ -134,8 +142,7 @@ export class AppComponent implements OnInit, AfterViewInit {
       center: {lat: this.lat, lng: this.lng},
       zoom: 12
   };
-  this.searchMap();
-    //this.findMe();
+    this.findMe();
   }
   handleMapClick(event) {
     this.selectedPosition = event.latLng;
@@ -143,10 +150,10 @@ export class AppComponent implements OnInit, AfterViewInit {
 }
 
 handleOverlayClick(event) {
-    let isMarker = event.overlay.getTitle != undefined;
+    const isMarker = event.overlay.getTitle !== undefined;
 
     if (isMarker) {
-        let title = event.overlay.getTitle();
+        const title = event.overlay.getTitle();
         this.infoWindow.setContent('' + title + '');
         this.infoWindow.open(event.map, event.overlay);
         event.map.setCenter(event.overlay.getPosition());
@@ -154,32 +161,32 @@ handleOverlayClick(event) {
 }
 
 addMarker() {
-  let position = {lat: this.selectedPosition.lat(), lng: this.selectedPosition.lng() };
+  const position = {lat: this.selectedPosition.lat(), lng: this.selectedPosition.lng() };
     this.overlays = [ new google.maps.Marker(
       { position: position,
         title: 'Current Location', draggable: true })];
-        let geocoder = new google.maps.Geocoder;
+        const geocoder = new google.maps.Geocoder;
         geocoder.geocode({'location': position}, (results, status) => {
            this.location = results[0].formatted_address;
         });
       }
 searchMap() {
-  let search = new google.maps.places.Autocomplete(this.searchBox.nativeElement, {
+  const search = new google.maps.places.Autocomplete(this.searchBox.nativeElement, {
     types: ['address', 'partial_matches', 'formatted_address', 'name']
   });
   search.addListener('place_changed', () => {
     this.ngZone.run(() => {
-      let place: google.maps.places.PlaceResult = search.getPlace();
-      let results = search.getPlace().geometry.location;
-      let lat = results.lat;
-      let lng = results.lng;
+      const place: google.maps.places.PlaceResult = search.getPlace();
+      const results = search.getPlace().geometry.location;
+      const lat = results.lat;
+      const lng = results.lng;
     this.selectedPosition = { lat: lat, lng: lng };
     this.overlays = [
       new google.maps.Marker({ position: this.selectedPosition, title: 'Searched Location', draggable: true}),
       ];
     })
   });
-  
+
     this.map.panTo(this.selectedPosition);
 
 }
@@ -192,8 +199,8 @@ searchMap() {
   filterBrands(event) {
     this.filteredBrands = [];
     for (let i = 0; i < this.brands.length; i++) {
-        let brand = this.brands[i];
-        if (brand.toLowerCase().indexOf(event.query.toLowerCase()) == 0) {
+        const brand = this.brands[i];
+        if (brand.toLowerCase().indexOf(event.query.toLowerCase()) === 0) {
             this.filteredBrands.push(brand);
           }
     }
@@ -206,8 +213,8 @@ findMe() {
     navigator.geolocation.getCurrentPosition((position) => {
       this.lat = position.coords.latitude;
       this.lng = position.coords.longitude;
-      let geocoder = new google.maps.Geocoder;
-let latlng = {lat: this.lat, lng: this.lng};
+      const geocoder = new google.maps.Geocoder;
+const latlng = {lat: this.lat, lng: this.lng};
 geocoder.geocode({'location': latlng}, (results, status) => {
    this.location = results[0].formatted_address;
    this.overlays = [
@@ -221,13 +228,13 @@ geocoder.geocode({'location': latlng}, (results, status) => {
 
     });
   } else {
-    alert("Geolocation is not supported by this browser.");
+    alert('Geolocation is not supported by this browser.');
   }
 }
 handleDrag(event) {
 this.overlays.forEach(marker => {
-  let position = marker.getPosition();
-  let geocoder = new google.maps.Geocoder;
+  const position = marker.getPosition();
+  const geocoder = new google.maps.Geocoder;
 geocoder.geocode({'location': position}, (results, status) => {
    this.location = results[0].formatted_address;
 });
@@ -251,21 +258,19 @@ selectCar(event, overlaypanel: OverlayPanel) {
     overlaypanel.toggle(event);
 }
   selectInitialMenuItemBasedOnUrl() {
-    let path = document.location.pathname;
-    let menuItem = this.menuItems.find( (item) => { return item.routerLink[0] == path });
+    const path = document.location.pathname;
+    const menuItem = this.menuItems.find( (item) => { return item.routerLink[0] === path });
     if (menuItem) {
-      let selectedIcon = this.bigMenu.container.querySelector(`.${menuItem.icon}`);
+      const selectedIcon = this.bigMenu.container.querySelector(`.${menuItem.icon}`);
       jQuery(selectedIcon).closest('li').addClass('menu-selected');
     }
   }
   ngAfterViewInit() {
     this.selectInitialMenuItemBasedOnUrl();
   }
-  display: boolean = false;
-  register: boolean = false;
-  dispSup: boolean = false;
+
 showDialog() {
-    this.display = true;    
+    this.display = true;
 }
 showRegister() {
   this.register = true;
@@ -275,9 +280,10 @@ this.mobileSidebar = true;
 }
 login() {
   this.messages.pop();
-  this.messages.push({ severity: 'success', summary: `Welcome ${this.loginForm.controls['names'].value }`, detail: 'Your SpaceXperience starts now' });
+  this.messages.push({ severity: 'success',
+   summary: `Welcome ${this.loginForm.controls['names'].value }`,
+    detail: 'Your SpaceXperience starts now' });
 
   this.display = false;
-  
 }
 }

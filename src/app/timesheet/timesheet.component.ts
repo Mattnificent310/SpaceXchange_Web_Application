@@ -22,7 +22,7 @@ export enum PageNames {
 })
 export class TimesheetComponent {
 
-  private userTimeData = [
+   userTimeData = [
 
     { month: 'January', day: '10', startTime: 'Pretoria', endTime: 'Bloemfontein', project: 'Cargo Transit', category: 'Road Freight' },
     { month: 'February', day: '27', startTime: 'Johannesburg', endTime: 'Durban', project: 'Passenger Transit', category: 'Car Pool' },
@@ -49,13 +49,13 @@ export class TimesheetComponent {
     { label: 'People' }
   ];
 
-  private headerConfig = {
+   public headerConfig = {
     left: 'prev,next today',
     center: 'title',
     right: 'month,agendaWeek,agendaDay'
   };
 
-  private events = [
+   public events = [
     {
       title: 'Recent Trips',
       start: moment().format(), // '2017-06-02 07:00:00'
@@ -67,13 +67,13 @@ export class TimesheetComponent {
 
   selectedProject: TreeNode;
 
-  private mapOptions = {
+    mapOptions = {
 
     center: { lat: -33.8688, lng: 151.2093 },
     zoom: 5
   };
 
-  private mapOverlays = [
+  mapOverlays = [
     new google.maps.Marker({ position: { lat: -35.3075, lng: 149.124417 }, title: 'Canberra Mall' }),
     new google.maps.Marker({ position: { lat: -33.8688, lng: 151.2093 }, title: 'Sydney Harbour' }),
     new google.maps.Marker({ position: { lat: -37.813611, lng: 144.963056 }, title: 'Melbourne Stadium' }),

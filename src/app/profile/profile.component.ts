@@ -118,7 +118,7 @@ images: any[];
       this.switchOff();
       this.iconEmail = 'fa fa-edit';
       this.labelEmail = 'Edit';
-      this.email = this.registerForm.controls['regEmailAddress'].value;    
+      this.email = this.registerForm.controls['regEmailAddress'].value;
     } else {
       this.switchOff();
       this.editEmail = true;
@@ -145,7 +145,7 @@ images: any[];
     if (this.editName) {
       this.switchOff();
       this.iconName = 'fa fa-edit';
-      this.labelName = 'Edit'; 
+      this.labelName = 'Edit';
       this.name = this.registerForm.controls['regName'].value;
       this.popImages();
     } else {
@@ -153,7 +153,7 @@ images: any[];
        this.editName = true;
        this.setDefault();
       this.iconName = 'fa fa-check';
-      this.labelName = 'Done';;
+      this.labelName = 'Done';
     }
   }
   editSurnames() {
