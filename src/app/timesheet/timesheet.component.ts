@@ -100,7 +100,7 @@ export class TimesheetComponent {
   dateAndMonth = moment().month(this.dateMonth).format('MMMM, YYYY');
 
   onChangeTabs(event) {
-    let index = event.index;
+    const index = event.index;
     this.dateMonth = this.months[index];
     this.dateAndMonth = moment().month(this.dateMonth).format('MMMM, YYYY');
   }
@@ -125,8 +125,8 @@ export class TimesheetComponent {
 
   onMarkerClick(markerEvent) {
 
-    let markerTitle = markerEvent.overlay.title;
-    let markerPosition = markerEvent.overlay.position;
+    const markerTitle = markerEvent.overlay.title;
+    const markerPosition = markerEvent.overlay.position;
 
     alert(`You clicked on ${markerTitle} at ${markerPosition}`);
 

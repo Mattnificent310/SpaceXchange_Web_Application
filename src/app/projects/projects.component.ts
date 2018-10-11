@@ -55,11 +55,11 @@ export class ProjectsComponent implements OnInit {
 this.val2 =  5;
   }
   handleRate(event) {
-      this.msg = "You have rated " + event.value;
+      this.msg = 'You have rated ' + event.value;
   }
 
   handleCancel(event) {
-      this.msg = "Rating Cancelled";
+      this.msg = 'Rating Cancelled';
   }
   hasFormErrors() {
     return !this.projectForm.valid;
