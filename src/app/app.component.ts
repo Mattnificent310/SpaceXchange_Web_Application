@@ -1,9 +1,13 @@
+import { BuyerService } from './buyers/buyer.service';
 import { OverlayPanel } from 'primeng/overlaypanel';
 import {Component, OnInit, NgZone, ViewChild, ElementRef, AfterViewInit} from '@angular/core';
 import {MenuItem, Message} from 'primeng/primeng';
 import {Menu} from 'primeng/components/menu/menu';
 import {ActivatedRoute, Router} from '@angular/router';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import {HttpClient} from '@angular/common/http';
+import {Buyer} from './buyers/buyer.model';
+
 declare var jQuery: any;
 
 @Component({
@@ -62,11 +66,14 @@ export class AppComponent implements OnInit, AfterViewInit {
 
     dispSup: boolean;
 
+    buyer: Buyer[];
+
   @ViewChild('bigMenu') bigMenu: Menu;
   @ViewChild('smallMenu') smallMenu: Menu;
   @ViewChild('searchBox') searchBox: ElementRef;
 
-  constructor(private router: Router, private fb: FormBuilder, private fb2: FormBuilder, private fb3: FormBuilder, private ngZone: NgZone) {
+  constructor(private router: Router, private fb: FormBuilder, private fb2: FormBuilder, private fb3: FormBuilder, private ngZone: NgZone,
+     private http: HttpClient, private service: BuyerService) {
 
   }
   ngOnInit() {
@@ -135,6 +142,7 @@ export class AppComponent implements OnInit, AfterViewInit {
     this.display = false;
     this.register = false;
     this.dispSup = false;
+    this.buyer = [];
     this.lat = -26.1715046;
     this.lng = 27.9699844;
     this.infoWindow = new google.maps.InfoWindow();
@@ -279,11 +287,63 @@ showSidebar() {
 this.mobileSidebar = true;
 }
 login() {
-  this.messages.pop();
-  this.messages.push({ severity: 'success',
-   summary: `Welcome ${this.loginForm.controls['names'].value }`,
-    detail: 'Your SpaceXperience starts now' });
-
-  this.display = false;
+  let valid: boolean;
+  let name: String;
+  this.service.getAllBuyers().subscribe(
+    data => {
+         this.buyer = data;
+         this.buyer.forEach(item => {
+                if (item.email === this.loginForm.controls['emailAddress'].value) {
+                    if (item.password === this.loginForm.controls['password'].value) {
+                      console.log("POST Request is successful ", data);
+                      valid = true;
+                      name = item.name + ' ' + item.surname;
+                    }
+                  }
+              });
+              if (valid) {
+                this.display = false;
+                      this.messages.pop();
+        this.messages.push({ severity: 'success',
+         summary: `Welcome ${name}`,
+          detail: 'Your SpaceXperience starts now' });
+      
+                    } else {
+                      
+                      this.messages.pop();
+                     this.messages.push({ severity: 'warn',
+                      summary: `Sorry ${this.loginForm.controls['emailAddress'].value }`,
+                       detail: 'Something went wrong during login' });
+                    }
+                  });
+}
+registerUser() {
+  this.http.post('http://localhost:8083/users',
+        {
+          "avatar": "string",
+          "name": this.registerForm.controls['regName'].value,
+          "surname": this.registerForm.controls['regSurname'].value,
+          "birthDate": this.registerForm.controls['regBirthDate'].value,
+          "phone": this.registerForm.controls['regPhoneNumber'].value,
+          "email": this.registerForm.controls['regEmailAddress'].value,
+          "password": this.registerForm.controls['regPassword'].value
+        })
+        .subscribe(
+            data => {
+                console.log("POST Request is successful ", data);
+                this.messages.pop();
+                this.messages.push({ severity: 'success',
+                 summary: `Welcome ${this.registerForm.controls['regName'].value }`,
+                  detail: 'You signed up for the ultimate SpaceXperience' });
+            },
+            error => {
+                console.log("Error", error);
+                 this.messages.pop();
+                this.messages.push({ severity: 'warn',
+                 summary: `Sorry ${this.registerForm.controls['regName'].value }`,
+                  detail: 'Something went wrong during registration' });
+            }
+        );
+        this.register = false;
 }
 }

@@ -89,7 +89,7 @@
                 <div class="ui-g-12 ui-md-10" >
                         <div class="ui-inputgroup">
                             <span class="ui-inputgroup-addon"><i class="fa fa-at"></i></span>
-                             <input autofocus [value]="loginForm.controls['emailAddress'].value" pInputText type="text" pKeyFilter="email" required formControlName="emailAddress"  placeholder="example@domain.com" />                       
+                             <input [value]="loginForm.controls['emailAddress'].value" pInputText type="text" pKeyFilter="email" required formControlName="emailAddress"  placeholder="example@domain.com" />                       
                         </div>
                        <div class="ui-g-12 ui-md-12">
                         <at-fielderrors [form]="loginForm" field="emailAddress" nicename="Email Address"></at-fielderrors>
@@ -98,7 +98,7 @@
                     <div class="ui-g-12 ui-md-10" >
                             <div class="ui-inputgroup">
                                 <span class="ui-inputgroup-addon"><i class="fa fa-lock"></i></span>
-                                 <input autofocus [value]="loginForm.controls['password'].value" pPassword type="password" required formControlName="password"  placeholder="•••••••••••••" />                       
+                                 <input [value]="loginForm.controls['password'].value" pPassword type="password" required formControlName="password"  placeholder="•••••••••••••" />                       
                             </div>
                            <div class="ui-g-12 ui-md-12">
                             <at-fielderrors [form]="loginForm" field="password" nicename="Password"></at-fielderrors>
@@ -109,7 +109,7 @@
 </div>
 
 <p-footer>
-    <button type="button" pButton icon="fa fa-unlock" (click)="login();" label="Sign In"></button>
+    <button type="submit" pButton icon="fa fa-unlock" (click)="login();" label="Sign In"></button>
     <button type="button" pButton icon="fa fa-close" (click)="display=false" label="Cancel" class="ui-button-secondary"></button>
 </p-footer>
 
@@ -199,7 +199,7 @@
                 </div>
           
           <p-footer>
-              <button type="button" pButton icon="fa fa-user-plus" (click)="register=false" label="Sign Up"></button>
+              <button type="button" pButton icon="fa fa-user-plus" (click)="registerUser()" label="Sign Up"></button>
               <button type="button" pButton icon="fa fa-close" (click)="register=false" label="Cancel" class="ui-button-secondary"></button>
           </p-footer>
       </p-tabPanel>

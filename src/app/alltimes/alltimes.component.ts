@@ -33,7 +33,7 @@ export class AlltimesComponent implements OnInit {
     {id: 1, avatar: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSePYH0l73i-OgzhmHIgztXFb6p2wZFfcAETx9-AL4Y3ndU-KLt',
     user: this.names[0], project: this.allProjectNames[7], email: 'joe@gmail.com', category: 'Road Transit', startTime: 'Johannesburg',
     endTime: 'Pretoria', date: '2018-11-14', phone: '+27864253815', rating: 3 },
-    {id: 2, avatar: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSePYH0l73i-OgzhmHIgztXFb6p2wZFfcAETx9-AL4Y3ndU-KLt',
+    {id: 2, avatar: 'https://www.activehealthclinic.ca/storage/app/media/cartoon_avatar-blonde-female.png',
     user: this.names[1], project: this.allProjectNames[6], email: 'mary@gmail.com', category: 'Sea Transit', startTime: 'Cape Town',
      endTime: 'Mosselbay', date: '2018-12-16', phone: '+44851364917', rating: 4 },
     {id: 3,avatar: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSePYH0l73i-OgzhmHIgztXFb6p2wZFfcAETx9-AL4Y3ndU-KLt',
