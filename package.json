@@ -6,7 +6,7 @@
   "scripts": {
     "404": "shx cp dist/index.html dist/404.html",
     "ng": "ng",
-    "start": "ng serve --host 0.0.0.0",
+    "start": "ng serve --host 0.0.0.0 --disableHostCheck true",
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e",
