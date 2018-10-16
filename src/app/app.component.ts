@@ -318,7 +318,7 @@ login() {
                   });
 }
 registerUser() {
-  this.http.post('http:/18.203.81.222:8083/users',
+  this.http.post('http://18.203.81.222:8083/users',
         {
           "avatar": "string",
           "name": this.registerForm.controls['regName'].value,
