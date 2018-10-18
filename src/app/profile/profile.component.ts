@@ -63,7 +63,7 @@ images: any[];
       regPhoneNumber: ['', [Validators.required, Validators.maxLength(10)]],
       regEmailAddress: ['', [Validators.required, Validators.minLength(10)]],
       regDOB: ['', [Validators.required, Validators.minLength(10)]],
-    })
+    });
     this.name = 'My Name';
     this.surname = 'My Surname';
     this.phone = '123-456-7890';
@@ -76,7 +76,7 @@ images: any[];
       { source: "http://i.pravatar.cc/300?u=Mary", title: this.name  + ' ' + this.surname + ' 3'},
       { source: "http://i.pravatar.cc/300?u=Nancy", title: this.name  + ' ' + this.surname + ' 4'},
       { source: "http://i.pravatar.cc/300?u=Peta", title: this.name  + ' ' + this.surname + ' 5'}
-    ]
+    ];
   }
 
   onImageSelected(event) {
@@ -172,17 +172,19 @@ images: any[];
     }
   }
  saveChanges() {
+   this.messages = [];
    this.messages.pop();
   this.messages.push({ severity: "success", summary: "Saved Changes", detail: `Your new details have been saved.` });
- 
+
  }
  discardChanges() {
-  this.messages.pop();
+  this.messages = [];
   this.messages.push({ severity: "warn", summary: "Reverted Changes", detail: `Your changes has been discarded.` });
- 
+
  }
   onPicDrop() {
     this.profileImage = this.selectedProfile.source;
+    this.messages = [];
     this.messages.push({ severity: "info", summary: "New Profile", detail: `Changed pic to ${this.selectedProfile.title}` });
   }
 
