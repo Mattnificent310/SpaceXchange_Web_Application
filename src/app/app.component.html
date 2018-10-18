@@ -1,54 +1,59 @@
 <div class="ui-g ui-g-nopad" id="header">
-        
+
         <div class="ui-g-12" style="margin-top: -10px;">
-                <img *ngIf="width <= 1000" src="./assets/img/side-shop2.png" id="top-logo"/><img *ngIf="width >= 1000" src="./assets/img/side-shop.png" id="top-logo2"/> 
+                <img *ngIf="width <= 1000" src="./assets/img/side-shop2.png" id="top-logo"/><img *ngIf="width >= 1000" src="./assets/img/side-shop.png" id="top-logo2"/>
   <div class="ui-g-10" >
        <div class="ui-g-12" id="header2">
             <p-menubar *ngIf="width >= 1000" styleClass="menubar" [model]="items">
-        
+        <div [ngSwitch]="valid" style="margin-top: -5px">
+
                     <div class="iconContainer">
-                         <i class="material-icons" style="color: silver;">fingerprint</i>       
+                         <i class="material-icons" style="color: silver;"><span *ngSwitchCase="false">fingerprint</span><span *ngSwitchCase="true">pause_circle</span></i>
                     </div>
-                    <button  class="authButtons" type="button" (click)="showDialog()" pButton label="Sign In" ></button>
-                  <div class="iconContainer">
-                    <i class="material-icons" style="color: silver;">power_settings_new</i>
+                    <button *ngSwitchCase="true" class="authButtons" type="button" (click)="logout()" pButton label="Sign Out" ></button>
+
+                    <button *ngSwitchCase="false" class="authButtons" type="button" (click)="showDialog()" pButton label="Sign In" ></button>
+
+                    <div class="iconContainer" *ngSwitchCase="false">
+                    <i class="material-icons"  style="color: silver;">power_settings_new</i>
                 </div>
-                <button class="authButtons" type="button" (click)="showRegister()" pButton label="Sign Up" ></button>
-                
-                 
+                <button *ngSwitchCase="false" class="authButtons" type="button" (click)="showRegister()" pButton label="Sign Up" ></button>
+              </div>
+
             </p-menubar></div>
-           
+
 </div>
-         
+
 <div *ngIf="width <= 1000" class="ui-g-1"><button style="margin-top: 20px; margin-left: -10px;"  type="button" (click)="showSidebar();" pButton icon="fa fa-bars"></button></div>
 
- 
+
 <p-sidebar [style]="{'background':'linear-gradient(to top, rgba(10,10,10,0.5) 0%,rgba(10,10,10,0.5) 100%), url() repeat 0 0'}"  [(visible)]="mobileSidebar" position="right" [baseZIndex]="999999999999999999999">
-   
+
     <div id="sidenav" style="width: 100%;">
 
         <p-menu #bigMenu [model]="items" ></p-menu>
-  
-      </div>    
-<div style="margin-top: 16px;">
+
+      </div>
+<div style="margin-top: 16px;" [ngSwitch]="valid">
       <div class="iconContainer">
-             <i class="material-icons" style="color: silver;">fingerprint</i>       
+             <i class="material-icons" style="color: silver;"><span *ngSwitchCase="false">fingerprint</span><span *ngSwitchCase="true">pause_circle</span></i>
         </div>
-        <button  class="authButtons" type="button" (click)="showDialog()" pButton label="Sign In" ></button>
-      <div class="iconContainer" >
+        <button *ngSwitchCase="true"  class="authButtons" type="button" (click)="showDialog()" pButton label="Sign Out" ></button>
+     <button *ngSwitchCase="false"  class="authButtons" type="button" (click)="showDialog()" pButton label="Sign In" ></button>
+      <div class="iconContainer" *ngSwitchCase="false">
         <i class="material-icons" style="color: silver;">power_settings_new</i>
     </div>
-    <button class="authButtons" type="button" (click)="showRegister()" pButton label="Sign Up" ></button>
+    <button *ngSwitchCase="false" class="authButtons" type="button" (click)="showRegister()" pButton label="Sign Up" ></button>
 </div>
-       
-       
-     </p-sidebar>  
+
+
+     </p-sidebar>
         </div>
-        
-        
+
+
   </div>
-  <i class="fa fa-search" id="search"  (mouseenter)="op2.show($event)"  style="font-size:24px;"></i>
-    <p-overlayPanel #op2 [showCloseIcon]="true" [dismissable]="false" > 
+  <i class="fa fa-search" id="search"  (click)="op2.show($event)"  style="font-size:24px;"></i>
+    <p-overlayPanel #op2 [showCloseIcon]="true" [dismissable]="false" >
         <p-autoComplete [(ngModel)]="brand" [suggestions]="filteredBrands" (completeMethod)="filterBrands($event)" [size]="30"
 [minLength]="1" placeholder="Search..." [dropdown]="false">
 <ng-template let-brand pTemplate="item">
@@ -57,13 +62,13 @@
         <div style="font-size:18px;float:right;margin:10px 10px 0 0">{{brand}}</div>
     </div>
 </ng-template>
-</p-autoComplete> 
-      
-    </p-overlayPanel>
-  <p-growl [value]="messages" [life]="3000" [sticky]="false"></p-growl>
+</p-autoComplete>
 
-<p-dialog [(visible)]="display" [modal]="true" [responsive]="true" [width]="700" [minWidth]="450" 
-[baseZIndex]="9999999999">
+    </p-overlayPanel>
+  <p-growl [baseZIndex]="99999999999999999999" [value]="messages" [life]="5000"></p-growl>
+
+<p-dialog [(visible)]="display" [modal]="true" [responsive]="true" [width]="700" [minWidth]="450"
+[baseZIndex]="999999999">
   <p-header class="header">Sign In</p-header>
 
 <div [formGroup]="loginForm" class="ui-g">
@@ -71,7 +76,7 @@
                 <div class="ui-g-12 ui-md-10" >
                     <div class="ui-inputgroup">
                         <span class="ui-inputgroup-addon"><i class="fa fa-shield"></i></span>
-                         <input autofocus [value]="loginForm.controls['names'].value" pInputText type="text" pKeyFilter="alpha" required formControlName="names"  placeholder="Authentication Token" />                       
+                         <input autofocus [value]="loginForm.controls['names'].value" pInputText type="text" pKeyFilter="alpha" required formControlName="names"  placeholder="Authentication Token" />
                     </div>
                    <div class="ui-g-12 ui-md-12">
                     <at-fielderrors [form]="loginForm" field="names" nicename="Token"></at-fielderrors>
@@ -80,7 +85,7 @@
                 <div class="ui-g-12 ui-md-10" >
                     <div class="ui-inputgroup">
                         <span class="ui-inputgroup-addon"><i style="zoom: 1.5;" class="fa fa-mobile"></i></span>
-                         <input autofocus [value]="loginForm.controls['phoneNumber'].value" pInputText type="text" pKeyFilter="pnum" required formControlName="phoneNumber"  placeholder="Mobile Number" />                       
+                         <input autofocus [value]="loginForm.controls['phoneNumber'].value" pInputText type="text" pKeyFilter="pnum" required formControlName="phoneNumber"  placeholder="Mobile Number" />
                     </div>
                    <div class="ui-g-12 ui-md-12">
                     <at-fielderrors [form]="loginForm" field="phoneNumber" nicename="Mobile Number"></at-fielderrors>
@@ -89,7 +94,7 @@
                 <div class="ui-g-12 ui-md-10" >
                         <div class="ui-inputgroup">
                             <span class="ui-inputgroup-addon"><i class="fa fa-at"></i></span>
-                             <input [value]="loginForm.controls['emailAddress'].value" pInputText type="text" pKeyFilter="email" required formControlName="emailAddress"  placeholder="example@domain.com" />                       
+                             <input [value]="loginForm.controls['emailAddress'].value" pInputText type="text" pKeyFilter="email" required formControlName="emailAddress"  placeholder="example@domain.com" />
                         </div>
                        <div class="ui-g-12 ui-md-12">
                         <at-fielderrors [form]="loginForm" field="emailAddress" nicename="Email Address"></at-fielderrors>
@@ -98,7 +103,7 @@
                     <div class="ui-g-12 ui-md-10" >
                             <div class="ui-inputgroup">
                                 <span class="ui-inputgroup-addon"><i class="fa fa-lock"></i></span>
-                                 <input [value]="loginForm.controls['password'].value" pPassword type="password" required formControlName="password"  placeholder="•••••••••••••" />                       
+                                 <input [value]="loginForm.controls['password'].value" pPassword type="password" required formControlName="password"  placeholder="•••••••••••••" />
                             </div>
                            <div class="ui-g-12 ui-md-12">
                             <at-fielderrors [form]="loginForm" field="password" nicename="Password"></at-fielderrors>
@@ -114,18 +119,18 @@
 </p-footer>
 
 </p-dialog>
-<p-dialog [(visible)]="register" [modal]="true" [responsive]="true" [width]="750" [minWidth]="450" 
+<p-dialog [(visible)]="register" [modal]="true" [responsive]="true" [width]="750" [minWidth]="450"
 [baseZIndex]="9999999999">
   <p-header class="header">Sign Up</p-header>
   <p-tabView>
       <p-tabPanel header="Buyer" leftIcon="pi pi-calendar">
           <div [formGroup]="registerForm" class="ui-g">
-    
+
                 <div class="ui-g ui-fluid">
                         <div class="ui-g-12 ui-md-6" >
                             <div class="ui-inputgroup">
                                 <span class="ui-inputgroup-addon"><i class="fa fa-user-circle"></i></span>
-                                 <input autofocus [value]="registerForm.controls['regName'].value" pInputText type="text" pKeyFilter="alpha" required formControlName="regName"  placeholder="Name" />                       
+                                 <input autofocus [value]="registerForm.controls['regName'].value" pInputText type="text" pKeyFilter="alpha" required formControlName="regName"  placeholder="Name" />
                             </div>
                            <div class="ui-g-12 ui-md-12">
                             <at-fielderrors [form]="registerForm" field="regName" nicename="Name"></at-fielderrors>
@@ -134,7 +139,7 @@
                         <div class="ui-g-12 ui-md-6" >
                                 <div class="ui-inputgroup">
                                     <span class="ui-inputgroup-addon"><i class="fa fa-user-circle"></i></span>
-                                     <input autofocus [value]="registerForm.controls['regSurname'].value" pInputText type="text" pKeyFilter="alpha" required formControlName="regSurname"  placeholder="Surname" />                       
+                                     <input autofocus [value]="registerForm.controls['regSurname'].value" pInputText type="text" pKeyFilter="alpha" required formControlName="regSurname"  placeholder="Surname" />
                                 </div>
                                <div class="ui-g-12 ui-md-12">
                                 <at-fielderrors [form]="registerForm" field="regSurname" nicename="Surname"></at-fielderrors>
@@ -143,7 +148,7 @@
                         <div class="ui-g-12 ui-md-6" >
                             <div class="ui-inputgroup">
                                 <span class="ui-inputgroup-addon"><i style="zoom: 1.5;" class="fa fa-mobile"></i></span>
-                                 <input autofocus [value]="registerForm.controls['regPhoneNumber'].value" pInputText type="text" pKeyFilter="pnum" required formControlName="regPhoneNumber"  placeholder="Mobile Number" />                       
+                                 <input autofocus [value]="registerForm.controls['regPhoneNumber'].value" pInputText type="text" pKeyFilter="pnum" required formControlName="regPhoneNumber"  placeholder="Mobile Number" />
                             </div>
                            <div class="ui-g-12 ui-md-12">
                             <at-fielderrors [form]="registerForm" field="regPhoneNumber" nicename="Mobile Number"></at-fielderrors>
@@ -152,7 +157,7 @@
                         <div class="ui-g-12 ui-md-6" >
                                 <div class="ui-inputgroup">
                                     <span class="ui-inputgroup-addon"><i class="fa fa-at"></i></span>
-                                     <input autofocus [value]="registerForm.controls['regEmailAddress'].value" pInputText type="text" pKeyFilter="email" required formControlName="regEmailAddress"  placeholder="example@domain.com" />                       
+                                     <input autofocus [value]="registerForm.controls['regEmailAddress'].value" pInputText type="text" pKeyFilter="email" required formControlName="regEmailAddress"  placeholder="example@domain.com" />
                                 </div>
                                <div class="ui-g-12 ui-md-12">
                                 <at-fielderrors [form]="registerForm" field="regEmailAddress" nicename="Email Address"></at-fielderrors>
@@ -161,7 +166,7 @@
                             <div class="ui-g-12 ui-md-6" >
                                     <div class="ui-inputgroup">
                                         <span class="ui-inputgroup-addon"><i class="fa fa-birthday-cake"></i></span>
-                                         <p-calendar [showIcon]="true" autofocus pKeyFilter="alphanum" required formControlName="regBirthDate" placeholder="Birth Date"></p-calendar>                       
+                                         <p-calendar [showIcon]="true" autofocus pKeyFilter="alphanum" required formControlName="regBirthDate" placeholder="Birth Date"></p-calendar>
                                     </div>
                                    <div class="ui-g-12 ui-md-12">
                                     <at-fielderrors [form]="registerForm" field="regBirthDate" nicename="Birth Date"></at-fielderrors>
@@ -170,17 +175,17 @@
                             <div class="ui-g-12 ui-md-6" >
                                     <div class="ui-inputgroup">
                                         <span class="ui-inputgroup-addon"><i class="fa fa-map-marker"></i></span>
-                                         <input autofocus [value]="registerForm.controls['regResAddress'].value" pInputText type="text" pKeyFilter="alphanum" required formControlName="regResAddress"  placeholder="Residential Address" />                       
+                                         <input autofocus [value]="registerForm.controls['regResAddress'].value" pInputText type="text" pKeyFilter="alphanum" required formControlName="regResAddress"  placeholder="Residential Address" />
                                          <button pButton (click)="showMaps();" type="button"  icon="fa fa-map-pin" class="ui-g-2"></button>
                                         </div>
                                    <div class="ui-g-12 ui-md-12">
                                     <at-fielderrors [form]="registerForm" field="regResAddress" nicename="Residential Address"></at-fielderrors>
                                 </div>
-                                </div>                            
+                                </div>
                             <div class="ui-g-12 ui-md-6" >
                                     <div class="ui-inputgroup">
                                         <span class="ui-inputgroup-addon"><i class="fa fa-lock"></i></span>
-                                         <input autofocus [value]="registerForm.controls['regPassword'].value" pPassword type="password" required formControlName="regPassword"  placeholder="•••••••••••••" />                       
+                                         <input autofocus [value]="registerForm.controls['regPassword'].value" pPassword type="password" required formControlName="regPassword"  placeholder="•••••••••••••" />
                                     </div>
                                    <div class="ui-g-12 ui-md-12">
                                     <at-fielderrors [form]="registerForm" field="regPassword" nicename="Password"></at-fielderrors>
@@ -189,7 +194,7 @@
                                 <div class="ui-g-12 ui-md-6" >
                                         <div class="ui-inputgroup">
                                             <span class="ui-inputgroup-addon"><i class="fa fa-shield"></i></span>
-                                             <input autofocus [value]="registerForm.controls['regConfirm'].value" pPassword type="password" required formControlName="regConfirm"  placeholder="Confirm Password" />                       
+                                             <input autofocus [value]="registerForm.controls['regConfirm'].value" pPassword type="password" required formControlName="regConfirm"  placeholder="Confirm Password" />
                                         </div>
                                        <div class="ui-g-12 ui-md-12">
                                         <at-fielderrors [form]="registerForm" field="regConfirm" nicename="Password"></at-fielderrors>
@@ -197,7 +202,7 @@
                                     </div>
                     </div>
                 </div>
-          
+
           <p-footer>
               <button type="button" pButton icon="fa fa-user-plus" (click)="registerUser()" label="Sign Up"></button>
               <button type="button" pButton icon="fa fa-close" (click)="register=false" label="Cancel" class="ui-button-secondary"></button>
@@ -205,12 +210,12 @@
       </p-tabPanel>
       <p-tabPanel header="Supplier" leftIcon="pi pi-inbox">
             <div [formGroup]="supplierForm" class="ui-g">
-    
+
                     <div class="ui-g ui-fluid">
                             <div class="ui-g-12 ui-md-6" >
                                 <div class="ui-inputgroup">
                                     <span class="ui-inputgroup-addon"><i class="fa fa-user-circle"></i></span>
-                                     <input autofocus [value]="supplierForm.controls['supName'].value" pInputText type="text" pKeyFilter="alpha" required formControlName="supName"  placeholder="Name" />                       
+                                     <input autofocus [value]="supplierForm.controls['supName'].value" pInputText type="text" pKeyFilter="alpha" required formControlName="supName"  placeholder="Name" />
                                 </div>
                                <div class="ui-g-12 ui-md-12">
                                 <at-fielderrors [form]="supplierForm" field="supName" nicename="Name"></at-fielderrors>
@@ -219,7 +224,7 @@
                             <div class="ui-g-12 ui-md-6" >
                                     <div class="ui-inputgroup">
                                         <span class="ui-inputgroup-addon"><i class="fa fa-user-circle"></i></span>
-                                         <input autofocus [value]="supplierForm.controls['supSurname'].value" pInputText type="text" pKeyFilter="alpha" required formControlName="supSurname"  placeholder="Surname" />                       
+                                         <input autofocus [value]="supplierForm.controls['supSurname'].value" pInputText type="text" pKeyFilter="alpha" required formControlName="supSurname"  placeholder="Surname" />
                                     </div>
                                    <div class="ui-g-12 ui-md-12">
                                     <at-fielderrors [form]="supplierForm" field="supSurname" nicename="Surname"></at-fielderrors>
@@ -228,7 +233,7 @@
                             <div class="ui-g-12 ui-md-6" >
                                 <div class="ui-inputgroup">
                                     <span class="ui-inputgroup-addon"><i style="zoom: 1.5;" class="fa fa-mobile"></i></span>
-                                     <input autofocus [value]="supplierForm.controls['supPhoneNumber'].value" pInputText type="text" pKeyFilter="pnum" required formControlName="supPhoneNumber"  placeholder="Mobile Number" />                       
+                                     <input autofocus [value]="supplierForm.controls['supPhoneNumber'].value" pInputText type="text" pKeyFilter="pnum" required formControlName="supPhoneNumber"  placeholder="Mobile Number" />
                                 </div>
                                <div class="ui-g-12 ui-md-12">
                                 <at-fielderrors [form]="supplierForm" field="supPhoneNumber" nicename="Mobile Number"></at-fielderrors>
@@ -237,7 +242,7 @@
                             <div class="ui-g-12 ui-md-6" >
                                     <div class="ui-inputgroup">
                                         <span class="ui-inputgroup-addon"><i class="fa fa-at"></i></span>
-                                         <input autofocus [value]="supplierForm.controls['supEmailAddress'].value" pInputText type="text" pKeyFilter="email" required formControlName="supEmailAddress"  placeholder="example@domain.com" />                       
+                                         <input autofocus [value]="supplierForm.controls['supEmailAddress'].value" pInputText type="text" pKeyFilter="email" required formControlName="supEmailAddress"  placeholder="example@domain.com" />
                                     </div>
                                    <div class="ui-g-12 ui-md-12">
                                     <at-fielderrors [form]="supplierForm" field="supEmailAddress" nicename="Email Address"></at-fielderrors>
@@ -246,7 +251,7 @@
                                 <div class="ui-g-12 ui-md-6" >
                                         <div class="ui-inputgroup">
                                             <span class="ui-inputgroup-addon"><i class="fa fa-birthday-cake"></i></span>
-                                                 
+
                                             <p-calendar [(ngModel)]="date" [showIcon]="true" pKeyFilter="alphanum" formControlName="supBirthDate" placeholder="Birth Date" ></p-calendar>
                                         </div>
                                        <div class="ui-g-12 ui-md-12">
@@ -256,18 +261,18 @@
                                 <div class="ui-g-12 ui-md-6" >
                                         <div class="ui-inputgroup">
                                             <span class="ui-inputgroup-addon"><i class="fa fa-map-marker"></i></span>
-                                             <input autofocus [value]="supplierForm.controls['supResAddress'].value" pInputText type="text" pKeyFilter="alphanum" required formControlName="supResAddress"  placeholder="Residential Address" />                       
+                                             <input autofocus [value]="supplierForm.controls['supResAddress'].value" pInputText type="text" pKeyFilter="alphanum" required formControlName="supResAddress"  placeholder="Residential Address" />
                                              <button pButton (click)="showMaps();" type="button"  icon="fa fa-map-pin" class="ui-g-2"></button>
-                                       
+
                                             </div>
                                        <div class="ui-g-12 ui-md-12">
                                         <at-fielderrors [form]="supplierForm" field="supResAddress" nicename="Residential Address"></at-fielderrors>
                                     </div>
-                                    </div>                                
+                                    </div>
                                 <div class="ui-g-12 ui-md-6" >
                                         <div class="ui-inputgroup">
                                             <span class="ui-inputgroup-addon"><i class="fa fa-lock"></i></span>
-                                             <input autofocus [value]="supplierForm.controls['supPassword'].value" pPassword type="password" required formControlName="supPassword"  placeholder="•••••••••••••" />                       
+                                             <input autofocus [value]="supplierForm.controls['supPassword'].value" pPassword type="password" required formControlName="supPassword"  placeholder="•••••••••••••" />
                                         </div>
                                        <div class="ui-g-12 ui-md-12">
                                         <at-fielderrors [form]="supplierForm" field="supPassword" nicename="Password"></at-fielderrors>
@@ -276,7 +281,7 @@
                                     <div class="ui-g-12 ui-md-10" >
                                             <div class="ui-inputgroup">
                                                 <span class="ui-inputgroup-addon"><i class="fa fa-shield"></i></span>
-                                                 <input autofocus [value]="supplierForm.controls['supConfirm'].value" pPassword type="password" required formControlName="supConfirm"  placeholder="Confirm Password" />                       
+                                                 <input autofocus [value]="supplierForm.controls['supConfirm'].value" pPassword type="password" required formControlName="supConfirm"  placeholder="Confirm Password" />
                                             </div>
                                            <div class="ui-g-12 ui-md-12">
                                             <at-fielderrors [form]="supplierForm" field="supConfirm" nicename="Password"></at-fielderrors>
@@ -290,14 +295,14 @@
     <button type="button" pButton icon="fa fa-close" (click)="dispSup=false" label="Cancel" class="ui-button-secondary"></button>
 </p-footer>
       </p-tabPanel>
-      
+
   </p-tabView>
-  
-  
-  
+
+
+
 
 </p-dialog>
-<p-dialog [(visible)]="maps" [modal]="true" [responsive]="true" [width]="750" [minWidth]="450" 
+<p-dialog [(visible)]="maps" [modal]="true" [responsive]="true" [width]="750" [minWidth]="450"
 [baseZIndex]="9999999999">
   <p-header class="header">Address</p-header>
   <input  class="ui-g-6" #searchBox pInputText type="text" />
@@ -332,7 +337,7 @@
   </div>
 
 
-  
+
 
 
 

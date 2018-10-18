@@ -25,6 +25,7 @@ import {OverlayPanelModule} from 'primeng/overlaypanel';
 import {CarouselModule} from 'primeng/carousel';
 import {KeyFilterModule} from 'primeng/keyfilter';
 import {SidebarModule} from 'primeng/sidebar';
+import {BookingsComponent} from './bookings/bookings.component'
 
 
 
@@ -49,8 +50,9 @@ const appRoutes: Routes = [
     AlltimesComponent,
     ProfileComponent,
     SettingsComponent,
-    BuyerComponent,     
-    FielderrorsComponent
+    BuyerComponent,
+    FielderrorsComponent,
+    BookingsComponent
   ],
   imports: [
     BrowserModule,

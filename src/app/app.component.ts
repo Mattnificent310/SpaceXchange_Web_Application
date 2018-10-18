@@ -1,12 +1,12 @@
 import { BuyerService } from './buyers/buyer.service';
 import { OverlayPanel } from 'primeng/overlaypanel';
-import {Component, OnInit, NgZone, ViewChild, ElementRef, AfterViewInit} from '@angular/core';
-import {MenuItem, Message} from 'primeng/primeng';
-import {Menu} from 'primeng/components/menu/menu';
-import {ActivatedRoute, Router} from '@angular/router';
+import { Component, OnInit, NgZone, ViewChild, ElementRef, AfterViewInit } from '@angular/core';
+import { MenuItem, Message } from 'primeng/primeng';
+import { Menu } from 'primeng/components/menu/menu';
+import { ActivatedRoute, Router } from '@angular/router';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import {HttpClient} from '@angular/common/http';
-import {Buyer} from './buyers/buyer.model';
+import { HttpClient } from '@angular/common/http';
+import { Buyer } from './buyers/buyer.model';
 
 declare var jQuery: any;
 
@@ -24,56 +24,59 @@ export class AppComponent implements OnInit, AfterViewInit {
   registerForm: FormGroup;
   supplierForm: FormGroup;
   messages: Message[] = [];
-    brands: string[] = ['Audi', 'BMW', 'Fiat', 'Ford', 'Honda', 'Jaguar', 'Mercedes', 'Renault', 'Volvo', 'VW'];
+  brands: string[] = ['Audi', 'BMW', 'Fiat', 'Ford', 'Honda', 'Jaguar', 'Mercedes', 'Renault', 'Volvo', 'VW'];
 
-    filteredBrands: any[];
+  filteredBrands: any[];
 
-    brand: string;
+  brand: string;
 
-    editDate: boolean;
+  editDate: boolean;
 
-    iconDate: String;
+  iconDate: String;
 
-    labelDate: String;
+  labelDate: String;
 
-    date: Date;
+  date: Date;
 
-    options: any;
+  options: any;
 
-    overlays: any[];
+  overlays: any[];
 
-    maps: boolean;
+  maps: boolean;
 
-    lat: number;
+  lat: number;
 
-    lng: number;
+  lng: number;
 
-    map: google.maps.Map;
+  map: google.maps.Map;
 
-    location: any;
+  location: any;
 
-    selectedPosition: any;
+  selectedPosition: any;
 
-    infoWindow: any;
+  infoWindow: any;
 
-    width: any;
+  width: any;
 
-    mobileSidebar: boolean;
+  mobileSidebar: boolean;
 
-    display: boolean;
+  display: boolean;
 
-    register: boolean;
+  register: boolean;
 
-    dispSup: boolean;
+  dispSup: boolean;
 
-    buyer: Buyer[];
+  buyer: Buyer[];
+
+  valid: boolean;
+
 
   @ViewChild('bigMenu') bigMenu: Menu;
   @ViewChild('smallMenu') smallMenu: Menu;
   @ViewChild('searchBox') searchBox: ElementRef;
 
   constructor(private router: Router, private fb: FormBuilder, private fb2: FormBuilder, private fb3: FormBuilder, private ngZone: NgZone,
-     private http: HttpClient, private service: BuyerService) {
+    private http: HttpClient, private service: BuyerService) {
 
   }
   ngOnInit() {
@@ -86,14 +89,14 @@ export class AppComponent implements OnInit, AfterViewInit {
     })
     this.registerForm = this.fb2.group({
       regName: ['', [Validators.required, Validators.minLength(3)]],
-            regSurname: ['', [Validators.required, Validators.minLength(3)]],
+      regSurname: ['', [Validators.required, Validators.minLength(3)]],
       regPhoneNumber: ['', [Validators.required, Validators.maxLength(10)]],
       regEmailAddress: ['', [Validators.required, Validators.minLength(10)]],
       regResAddress: ['', [Validators.required, Validators.minLength(10)]],
       regBirthDate: ['', [Validators.required, Validators.minLength(10)]],
       regPassword: ['', [Validators.required, Validators.minLength(10)]],
       regConfirm: ['', [Validators.required, Validators.minLength(10)]]
-        })
+    })
     this.supplierForm = this.fb3.group({
       supName: ['', [Validators.required, Validators.minLength(3)]],
       supSurname: ['', [Validators.required, Validators.minLength(3)]],
@@ -104,7 +107,7 @@ export class AppComponent implements OnInit, AfterViewInit {
       supPassword: ['', [Validators.required, Validators.minLength(10)]],
       supConfirm: ['', [Validators.required, Validators.minLength(10)]],
     })
-    const handleSelected = function(event) {
+    const handleSelected = function (event) {
       const allMenus = jQuery(event.originalEvent.target).closest('ul');
       const allLinks = allMenus.find('.menu-selected');
 
@@ -114,21 +117,21 @@ export class AppComponent implements OnInit, AfterViewInit {
     }
 
     this.menuItems = [
-      {label: 'Dashboard', icon: 'fa-home', routerLink: ['/dashboard'], command: (event) => handleSelected(event)},
-      {label: 'Marketplace', icon: 'fa-tag', routerLink: ['/marketplace'], command: (event) => handleSelected(event)},
-      {label: 'My Exchanges', icon: 'fa-clock-o', routerLink: ['/history'], command: (event) => handleSelected(event)},
-      {label: 'My Contacts', icon: 'fa-users', routerLink: ['/contacts'], command: (event) => handleSelected(event)},
-      {label: 'My Profile', icon: 'fa-edit', routerLink: ['/profile'], command: (event) => handleSelected(event)},
-      {label: 'Settings', icon: 'fa-sliders', routerLink: ['/settings'], command: (event) => handleSelected(event)},
+      { label: 'Dashboard', icon: 'fa-home', routerLink: ['/dashboard'], command: (event) => handleSelected(event) },
+      { label: 'Marketplace', icon: 'fa-tag', routerLink: ['/marketplace'], command: (event) => handleSelected(event) },
+      { label: 'My Exchanges', icon: 'fa-clock-o', routerLink: ['/history'], command: (event) => handleSelected(event) },
+      { label: 'My Contacts', icon: 'fa-users', routerLink: ['/contacts'], command: (event) => handleSelected(event) },
+      { label: 'My Profile', icon: 'fa-edit', routerLink: ['/profile'], command: (event) => handleSelected(event) },
+      { label: 'Settings', icon: 'fa-sliders', routerLink: ['/settings'], command: (event) => handleSelected(event) },
     ]
     this.items = [
-      {label: 'Our Vision', icon: 'fa-info', routerLink: ['/dashboard/home'], command: (event) => handleSelected(event)},
-      {label: 'Downloads', icon: 'fa-download', routerLink: ['/dashboard/downloads'], command: (event) => handleSelected(event)},
-      {label: 'Services', icon: 'fa-briefcase', routerLink: ['/dashboard/services'], command: (event) => handleSelected(event)},
-      {label: 'Contact Us', icon: 'fa-mobile', routerLink: ['/dashboard/contact'], command: (event) => handleSelected(event)}
+      { label: 'Our Vision', icon: 'fa-info', routerLink: ['/dashboard/home'], command: (event) => handleSelected(event) },
+      { label: 'Downloads', icon: 'fa-download', routerLink: ['/dashboard/downloads'], command: (event) => handleSelected(event) },
+      { label: 'Services', icon: 'fa-briefcase', routerLink: ['/dashboard/services'], command: (event) => handleSelected(event) },
+      { label: 'Contact Us', icon: 'fa-mobile', routerLink: ['/dashboard/contact'], command: (event) => handleSelected(event) }
     ]
     this.miniMenuItems = [];
-    this.menuItems.forEach( (item: MenuItem) => {
+    this.menuItems.forEach((item: MenuItem) => {
       const miniItem = { icon: item.icon, routerLink: item.routerLink }
       this.miniMenuItems.push(miniItem);
     })
@@ -142,62 +145,67 @@ export class AppComponent implements OnInit, AfterViewInit {
     this.display = false;
     this.register = false;
     this.dispSup = false;
+    this.valid = false;
+
+
     this.buyer = [];
     this.lat = -26.1715046;
     this.lng = 27.9699844;
     this.infoWindow = new google.maps.InfoWindow();
     this.options = {
-      center: {lat: this.lat, lng: this.lng},
+      center: { lat: this.lat, lng: this.lng },
       zoom: 12
-  };
+    };
     this.findMe();
   }
   handleMapClick(event) {
     this.selectedPosition = event.latLng;
     this.addMarker();
-}
+  }
 
-handleOverlayClick(event) {
+  handleOverlayClick(event) {
     const isMarker = event.overlay.getTitle !== undefined;
 
     if (isMarker) {
-        const title = event.overlay.getTitle();
-        this.infoWindow.setContent('' + title + '');
-        this.infoWindow.open(event.map, event.overlay);
-        event.map.setCenter(event.overlay.getPosition());
+      const title = event.overlay.getTitle();
+      this.infoWindow.setContent('' + title + '');
+      this.infoWindow.open(event.map, event.overlay);
+      event.map.setCenter(event.overlay.getPosition());
     }
-}
+  }
 
-addMarker() {
-  const position = {lat: this.selectedPosition.lat(), lng: this.selectedPosition.lng() };
-    this.overlays = [ new google.maps.Marker(
-      { position: position,
-        title: 'Current Location', draggable: true })];
-        const geocoder = new google.maps.Geocoder;
-        geocoder.geocode({'location': position}, (results, status) => {
-           this.location = results[0].formatted_address;
-        });
-      }
-searchMap() {
-  const search = new google.maps.places.Autocomplete(this.searchBox.nativeElement, {
-    types: ['address', 'partial_matches', 'formatted_address', 'name']
-  });
-  search.addListener('place_changed', () => {
-    this.ngZone.run(() => {
-      const place: google.maps.places.PlaceResult = search.getPlace();
-      const results = search.getPlace().geometry.location;
-      const lat = results.lat;
-      const lng = results.lng;
-    this.selectedPosition = { lat: lat, lng: lng };
-    this.overlays = [
-      new google.maps.Marker({ position: this.selectedPosition, title: 'Searched Location', draggable: true}),
-      ];
-    })
-  });
+  addMarker() {
+    const position = { lat: this.selectedPosition.lat(), lng: this.selectedPosition.lng() };
+    this.overlays = [new google.maps.Marker(
+      {
+        position: position,
+        title: 'Current Location', draggable: true
+      })];
+    const geocoder = new google.maps.Geocoder;
+    geocoder.geocode({ 'location': position }, (results, status) => {
+      this.location = results[0].formatted_address;
+    });
+  }
+  searchMap() {
+    const search = new google.maps.places.Autocomplete(this.searchBox.nativeElement, {
+      types: ['address', 'partial_matches', 'formatted_address', 'name']
+    });
+    search.addListener('place_changed', () => {
+      this.ngZone.run(() => {
+        const place: google.maps.places.PlaceResult = search.getPlace();
+        const results = search.getPlace().geometry.location;
+        const lat = results.lat;
+        const lng = results.lng;
+        this.selectedPosition = { lat: lat, lng: lng };
+        this.overlays = [
+          new google.maps.Marker({ position: this.selectedPosition, title: 'Searched Location', draggable: true }),
+        ];
+      })
+    });
 
     this.map.panTo(this.selectedPosition);
 
-}
+  }
 
 
 
@@ -207,67 +215,67 @@ searchMap() {
   filterBrands(event) {
     this.filteredBrands = [];
     for (let i = 0; i < this.brands.length; i++) {
-        const brand = this.brands[i];
-        if (brand.toLowerCase().indexOf(event.query.toLowerCase()) === 0) {
-            this.filteredBrands.push(brand);
-          }
+      const brand = this.brands[i];
+      if (brand.toLowerCase().indexOf(event.query.toLowerCase()) === 0) {
+        this.filteredBrands.push(brand);
+      }
     }
-}
- setMap(event) {
-        this.map = event.map;
-    }
-findMe() {
-  if (navigator.geolocation) {
-    navigator.geolocation.getCurrentPosition((position) => {
-      this.lat = position.coords.latitude;
-      this.lng = position.coords.longitude;
-      const geocoder = new google.maps.Geocoder;
-const latlng = {lat: this.lat, lng: this.lng};
-geocoder.geocode({'location': latlng}, (results, status) => {
-   this.location = results[0].formatted_address;
-   this.overlays = [
-    new google.maps.Marker({ position: latlng, title: 'Current Location', draggable: true}),
-    ];
-   this.options = {
-    center: {lat: this.lat, lng: this.lng},
-    zoom: 16
-};
-});
+  }
+  setMap(event) {
+    this.map = event.map;
+  }
+  findMe() {
+    if (navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition((position) => {
+        this.lat = position.coords.latitude;
+        this.lng = position.coords.longitude;
+        const geocoder = new google.maps.Geocoder;
+        const latlng = { lat: this.lat, lng: this.lng };
+        geocoder.geocode({ 'location': latlng }, (results, status) => {
+          this.location = results[0].formatted_address;
+          this.overlays = [
+            new google.maps.Marker({ position: latlng, title: 'Current Location', draggable: true }),
+          ];
+          this.options = {
+            center: { lat: this.lat, lng: this.lng },
+            zoom: 16
+          };
+        });
 
+      });
+    } else {
+      alert('Geolocation is not supported by this browser.');
+    }
+  }
+  handleDrag(event) {
+    this.overlays.forEach(marker => {
+      const position = marker.getPosition();
+      const geocoder = new google.maps.Geocoder;
+      geocoder.geocode({ 'location': position }, (results, status) => {
+        this.location = results[0].formatted_address;
+      });
     });
-  } else {
-    alert('Geolocation is not supported by this browser.');
   }
-}
-handleDrag(event) {
-this.overlays.forEach(marker => {
-  const position = marker.getPosition();
-  const geocoder = new google.maps.Geocoder;
-geocoder.geocode({'location': position}, (results, status) => {
-   this.location = results[0].formatted_address;
-});
- });
-}
-selectAddress() {
-  this.registerForm.patchValue({regResAddress: this.location});
-  this.supplierForm.patchValue({supResAddress: this.location});
-}
-editDates() {
-  if (this.editDate) {
-    this.editDate = false;
-    this.iconDate = 'fa fa-calendar';
-    this.registerForm.patchValue({regDOB: this.date});
-  } else {
-    this.editDate = true;
-    this.iconDate = 'fa fa-check';
+  selectAddress() {
+    this.registerForm.patchValue({ regResAddress: this.location });
+    this.supplierForm.patchValue({ supResAddress: this.location });
   }
-}
-selectCar(event, overlaypanel: OverlayPanel) {
+  editDates() {
+    if (this.editDate) {
+      this.editDate = false;
+      this.iconDate = 'fa fa-calendar';
+      this.registerForm.patchValue({ regDOB: this.date });
+    } else {
+      this.editDate = true;
+      this.iconDate = 'fa fa-check';
+    }
+  }
+  selectCar(event, overlaypanel: OverlayPanel) {
     overlaypanel.toggle(event);
-}
+  }
   selectInitialMenuItemBasedOnUrl() {
     const path = document.location.pathname;
-    const menuItem = this.menuItems.find( (item) => { return item.routerLink[0] === path });
+    const menuItem = this.menuItems.find((item) => { return item.routerLink[0] === path });
     if (menuItem) {
       const selectedIcon = this.bigMenu.container.querySelector(`.${menuItem.icon}`);
       jQuery(selectedIcon).closest('li').addClass('menu-selected');
@@ -277,73 +285,90 @@ selectCar(event, overlaypanel: OverlayPanel) {
     this.selectInitialMenuItemBasedOnUrl();
   }
 
-showDialog() {
+  showDialog() {
     this.display = true;
-}
-showRegister() {
-  this.register = true;
-}
-showSidebar() {
-this.mobileSidebar = true;
-}
-login() {
-  let valid: boolean;
-  let name: String;
-  this.service.getAllBuyers().subscribe(
-    data => {
-         this.buyer = data;
-         this.buyer.forEach(item => {
-                if (item.email === this.loginForm.controls['emailAddress'].value) {
-                    if (item.password === this.loginForm.controls['password'].value) {
-                      console.log("POST Request is successful ", data);
-                      valid = true;
-                      name = item.name + ' ' + item.surname;
-                    }
-                  }
-              });
-              if (valid) {
-                this.display = false;
-                      this.messages.pop();
-        this.messages.push({ severity: 'success',
-         summary: `Welcome ${name}`,
-          detail: 'Your SpaceXperience starts now' });
-      
-                    } else {
-                      
-                      this.messages.pop();
-                     this.messages.push({ severity: 'warn',
-                      summary: `Sorry ${this.loginForm.controls['emailAddress'].value }`,
-                       detail: 'Something went wrong during login' });
-                    }
-                  });
-}
-registerUser() {
-  this.http.post('http://18.203.81.222:8083/users',
-        {
-          "avatar": "string",
-          "name": this.registerForm.controls['regName'].value,
-          "surname": this.registerForm.controls['regSurname'].value,
-          "birthDate": this.registerForm.controls['regBirthDate'].value,
-          "phone": this.registerForm.controls['regPhoneNumber'].value,
-          "email": this.registerForm.controls['regEmailAddress'].value,
-          "password": this.registerForm.controls['regPassword'].value
-        })
-        .subscribe(
-            data => {
-                console.log("POST Request is successful ", data);
-                this.messages.pop();
-                this.messages.push({ severity: 'success',
-                 summary: `Welcome ${this.registerForm.controls['regName'].value }`,
-                  detail: 'You signed up for the ultimate SpaceXperience' });
-            },
-            error => {
-                console.log("Error", error);
-                 this.messages.pop();
-                this.messages.push({ severity: 'warn',
-                 summary: `Sorry ${this.registerForm.controls['regName'].value }`,
-                  detail: 'Something went wrong during registration' });
+  }
+  showRegister() {
+    this.register = true;
+  }
+  showSidebar() {
+    this.mobileSidebar = true;
+  }
+  login() {
+
+    let name: String;
+    this.service.getAllBuyers().subscribe(
+      data => {
+        this.buyer = data;
+        this.buyer.forEach(item => {
+          if (item.email === this.loginForm.controls['emailAddress'].value) {
+            if (item.password === this.loginForm.controls['password'].value) {
+              console.log("POST Request is successful ", data);
+              this.valid = true;
+              name = item.name + ' ' + item.surname;
             }
-        );
-        this.register = false;
-}
+          }
+        });
+        if (this.valid) {
+          this.display = false;
+          this.messages = [];
+          this.messages.push({
+            severity: 'success',
+            summary: `Welcome ${name}`,
+            detail: 'Your SpaceXperience starts now'
+          });
+
+        } else {
+          this.messages = [];
+          this.messages.push({
+            severity: 'warn',
+            summary: `Sorry ${this.loginForm.controls['emailAddress'].value}`,
+            detail: 'Something went wrong during login'
+          });
+        }
+      });
+  }
+  logout() {
+    this.valid = false;
+    this.messages = [];
+    this.messages.push({
+      severity: 'info',
+      summary: ` ${this.loginForm.controls['emailAddress'].value}`,
+      detail: 'Your SpaceXperience has been paused.'
+    });
+
+  }
+  registerUser() {
+    this.http.post('http://18.203.81.222:8083/users',
+      {
+        "avatar": "string",
+        "name": this.registerForm.controls['regName'].value,
+        "surname": this.registerForm.controls['regSurname'].value,
+        "birthDate": this.registerForm.controls['regBirthDate'].value,
+        "phone": this.registerForm.controls['regPhoneNumber'].value,
+        "email": this.registerForm.controls['regEmailAddress'].value,
+        "password": this.registerForm.controls['regPassword'].value
+      })
+      .subscribe(
+        data => {
+          console.log('POST Request is successful ', data);
+
+          this.messages.push({
+            severity: 'success',
+            summary: `Welcome ${this.registerForm.controls['regName'].value}`,
+            detail: 'You signed up for the ultimate SpaceXperience'
+          });
+        },
+        error => {
+          console.log("Error", error);
+          this.messages = [];
+          this.messages.push({
+            severity: 'warn',
+            summary: `Sorry ${this.registerForm.controls['regName'].value}`,
+            detail: 'Something went wrong during registration'
+          });
+        }
+      );
+    this.register = false;
+  }
 }
