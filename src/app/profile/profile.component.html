@@ -33,7 +33,7 @@
                         <div class="ui-inputgroup" [ngSwitch]="editName">
                             <span class="ui-inputgroup-addon"><i class="fa fa-user-circle"></i></span>
                             <label class="ui-inputgroup-addon ui-g-12" *ngSwitchCase="false" >{{name}}</label>
-                            <input *ngSwitchCase="true" autofocus [value]="registerForm.controls['regName'].value" pInputText type="text" pKeyFilter="alpha" required formControlName="regName"  placeholder="Name" />
+                            <input *ngSwitchCase="true" autofocus [value]="registerForm.controls['regName'].value" pInputText type="text" [pKeyFilter]="blockSpecial" required formControlName="regName"  placeholder="Name" />
 
                         </div>
                        <span style="float: right;" class="ui-g-3"><button type="button" pButton icon="{{iconName}}" (click)="editNames();" label="{{labelName}}" class="btnEdit" ></button></span>
@@ -49,7 +49,7 @@
                         <div class="ui-inputgroup" [ngSwitch]="editSurname">
                             <span class="ui-inputgroup-addon"><i class="fa fa-user-circle"></i></span>
                             <label class="ui-inputgroup-addon ui-g-12" *ngSwitchCase="false" >{{surname}}</label>
-                            <input *ngSwitchCase="true" autofocus [value]="registerForm.controls['regSurname'].value" pInputText type="text" pKeyFilter="alpha" required formControlName="regSurname"  placeholder="Surname" />
+                            <input *ngSwitchCase="true" autofocus [value]="registerForm.controls['regSurname'].value" pInputText type="text" [pKeyFilter]="blockSpecial" required formControlName="regSurname"  placeholder="Surname" />
 
                         </div>
                        <span style="float: right;" class="ui-g-3"><button type="button" pButton icon="{{iconSurname}}" (click)="editSurnames();" label="{{labelSurname}}" class="btnEdit" ></button></span>
@@ -109,8 +109,8 @@
                 </div>
             </div>
             <p-footer class="ui-g-12">
-                <button type="button" pButton icon="fa fa-check"  (click)="saveChanges();" label="Save"></button>
-                <button type="button" pButton icon="fa fa-close" (click)="discardChanges();" label="Discard" class="ui-button-secondary"></button>
+                <button type="button" pButton icon="fa fa-check" [disabled]="!changed"  (click)="saveChanges();" label="Save"></button>
+                <button type="button" pButton icon="fa fa-close" [disabled]="!changed" (click)="discardChanges();" label="Discard" class="ui-button-secondary"></button>
             </p-footer>
         </p-tabPanel>
         </p-tabView>

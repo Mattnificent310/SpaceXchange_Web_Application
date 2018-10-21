@@ -23,6 +23,8 @@ export class ProjectsComponent implements OnInit {
 
   val5: number;
 
+  blockSpecial: RegExp = /^[a-z\d\-_\s]+$/i;
+
   msg: string;
   allDevs = [
 
@@ -43,7 +45,7 @@ export class ProjectsComponent implements OnInit {
 
   ngOnInit() {
     this.projectForm = this.fb.group({
-      names: ['', [Validators.required, Validators.minLength(3)]],      
+      names: ['', [Validators.required, Validators.minLength(3)]],
       phoneNumber: ['', [Validators.required, Validators.minLength(10)]],
       emailAddress: ['', [Validators.required, Validators.minLength(10)]],
       description: ['Add Description Here...', [Validators.required, Validators.maxLength(140)]],

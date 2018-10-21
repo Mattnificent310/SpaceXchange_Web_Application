@@ -34,6 +34,8 @@ iconName: String;
 labelName: String;
 iconSurname: String;
 labelSurname: String;
+changed: boolean;
+blockSpecial: RegExp = /^[a-z\d\-_\s]+$/i;
 images: any[];
   constructor(private fb: FormBuilder) { }
   setDefault() {
@@ -68,6 +70,7 @@ images: any[];
     this.surname = 'My Surname';
     this.phone = '123-456-7890';
     this.email = 'example@domain.com';
+    this.changed = false;
     this.switchOff();
     this.setDefault();
     this.images = [
@@ -105,6 +108,7 @@ images: any[];
       this.iconDate = 'fa fa-edit';
       this.labelDate = 'Edit';
       this.registerForm.patchValue({regDOB: this.date});
+      this.changed = true;
     } else {
       this.switchOff();
       this.editDate = true;
@@ -119,6 +123,7 @@ images: any[];
       this.iconEmail = 'fa fa-edit';
       this.labelEmail = 'Edit';
       this.email = this.registerForm.controls['regEmailAddress'].value;
+      this.changed = true;
     } else {
       this.switchOff();
       this.editEmail = true;
@@ -133,6 +138,7 @@ images: any[];
       this.iconPhone = 'fa fa-edit';
       this.labelPhone = 'Edit';
       this.phone = this.registerForm.controls['regPhoneNumber'].value;
+      this.changed = true;
     } else {
       this.switchOff();
       this.editPhone = true;
@@ -147,6 +153,7 @@ images: any[];
       this.iconName = 'fa fa-edit';
       this.labelName = 'Edit';
       this.name = this.registerForm.controls['regName'].value;
+      this.changed = true;
       this.popImages();
     } else {
       this.switchOff();
@@ -162,6 +169,7 @@ images: any[];
       this.iconSurname = 'fa fa-edit';
       this.labelSurname = 'Edit';
       this.surname = this.registerForm.controls['regSurname'].value;
+      this.changed = true;
       this.popImages();
     } else {
       this.switchOff();

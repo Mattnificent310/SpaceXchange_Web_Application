@@ -130,7 +130,7 @@
                         <div class="ui-g-12 ui-md-6" >
                             <div class="ui-inputgroup">
                                 <span class="ui-inputgroup-addon"><i class="fa fa-user-circle"></i></span>
-                                 <input autofocus [value]="registerForm.controls['regName'].value" pInputText type="text" pKeyFilter="alpha" required formControlName="regName"  placeholder="Name" />
+                                 <input autofocus [value]="registerForm.controls['regName'].value" [pKeyFilter]="blockSpecial" pInputText required formControlName="regName"  placeholder="Name" />
                             </div>
                            <div class="ui-g-12 ui-md-12">
                             <at-fielderrors [form]="registerForm" field="regName" nicename="Name"></at-fielderrors>
@@ -139,7 +139,7 @@
                         <div class="ui-g-12 ui-md-6" >
                                 <div class="ui-inputgroup">
                                     <span class="ui-inputgroup-addon"><i class="fa fa-user-circle"></i></span>
-                                     <input autofocus [value]="registerForm.controls['regSurname'].value" pInputText type="text" pKeyFilter="alpha" required formControlName="regSurname"  placeholder="Surname" />
+                                     <input autofocus [value]="registerForm.controls['regSurname'].value" pInputText type="text" [pKeyFilter]="blockSpecial" required formControlName="regSurname"  placeholder="Surname" />
                                 </div>
                                <div class="ui-g-12 ui-md-12">
                                 <at-fielderrors [form]="registerForm" field="regSurname" nicename="Surname"></at-fielderrors>
@@ -204,7 +204,7 @@
                 </div>
 
           <p-footer>
-              <button type="button" pButton icon="fa fa-user-plus" (click)="registerUser()" label="Sign Up"></button>
+              <button type="button" pButton icon="fa fa-user-plus" [disabled]="hasRegFormErrors()" (click)="registerUser()" label="Sign Up"></button>
               <button type="button" pButton icon="fa fa-close" (click)="register=false" label="Cancel" class="ui-button-secondary"></button>
           </p-footer>
       </p-tabPanel>
@@ -215,7 +215,7 @@
                             <div class="ui-g-12 ui-md-6" >
                                 <div class="ui-inputgroup">
                                     <span class="ui-inputgroup-addon"><i class="fa fa-user-circle"></i></span>
-                                     <input autofocus [value]="supplierForm.controls['supName'].value" pInputText type="text" pKeyFilter="alpha" required formControlName="supName"  placeholder="Name" />
+                                     <input autofocus [value]="supplierForm.controls['supName'].value" pInputText type="text" [pKeyFilter]="blockSpecial" required formControlName="supName"  placeholder="Name" />
                                 </div>
                                <div class="ui-g-12 ui-md-12">
                                 <at-fielderrors [form]="supplierForm" field="supName" nicename="Name"></at-fielderrors>
@@ -224,7 +224,7 @@
                             <div class="ui-g-12 ui-md-6" >
                                     <div class="ui-inputgroup">
                                         <span class="ui-inputgroup-addon"><i class="fa fa-user-circle"></i></span>
-                                         <input autofocus [value]="supplierForm.controls['supSurname'].value" pInputText type="text" pKeyFilter="alpha" required formControlName="supSurname"  placeholder="Surname" />
+                                         <input autofocus [value]="supplierForm.controls['supSurname'].value" pInputText type="text" [pKeyFilter]="blockSpecial" required formControlName="supSurname"  placeholder="Surname" />
                                     </div>
                                    <div class="ui-g-12 ui-md-12">
                                     <at-fielderrors [form]="supplierForm" field="supSurname" nicename="Surname"></at-fielderrors>
@@ -278,7 +278,7 @@
                                         <at-fielderrors [form]="supplierForm" field="supPassword" nicename="Password"></at-fielderrors>
                                     </div>
                                     </div>
-                                    <div class="ui-g-12 ui-md-10" >
+                                    <div class="ui-g-12 ui-md-6" >
                                             <div class="ui-inputgroup">
                                                 <span class="ui-inputgroup-addon"><i class="fa fa-shield"></i></span>
                                                  <input autofocus [value]="supplierForm.controls['supConfirm'].value" pPassword type="password" required formControlName="supConfirm"  placeholder="Confirm Password" />
@@ -291,7 +291,7 @@
 </div>
 
 <p-footer>
-    <button type="button" pButton icon="fa fa-user-plus" (click)="dispSup=false" label="Sign Up"></button>
+    <button type="button" pButton icon="fa fa-user-plus" [disabled]="hasSupFormErrors()" (click)="dispSup=false" label="Sign Up"></button>
     <button type="button" pButton icon="fa fa-close" (click)="dispSup=false" label="Cancel" class="ui-button-secondary"></button>
 </p-footer>
       </p-tabPanel>

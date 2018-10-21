@@ -70,6 +70,8 @@ export class AppComponent implements OnInit, AfterViewInit {
 
   valid: boolean;
 
+  blockSpecial: RegExp = /^[a-z\d\-_\s]+$/i;
+
 
   @ViewChild('bigMenu') bigMenu: Menu;
   @ViewChild('smallMenu') smallMenu: Menu;
@@ -86,7 +88,7 @@ export class AppComponent implements OnInit, AfterViewInit {
       emailAddress: ['', [Validators.required, Validators.minLength(10)]],
       password: ['', [Validators.required, Validators.minLength(10)]],
 
-    })
+    });
     this.registerForm = this.fb2.group({
       regName: ['', [Validators.required, Validators.minLength(3)]],
       regSurname: ['', [Validators.required, Validators.minLength(3)]],
@@ -96,7 +98,7 @@ export class AppComponent implements OnInit, AfterViewInit {
       regBirthDate: ['', [Validators.required, Validators.minLength(10)]],
       regPassword: ['', [Validators.required, Validators.minLength(10)]],
       regConfirm: ['', [Validators.required, Validators.minLength(10)]]
-    })
+    });
     this.supplierForm = this.fb3.group({
       supName: ['', [Validators.required, Validators.minLength(3)]],
       supSurname: ['', [Validators.required, Validators.minLength(3)]],
@@ -106,7 +108,7 @@ export class AppComponent implements OnInit, AfterViewInit {
       supBirthDate: ['', [Validators.required, Validators.minLength(10)]],
       supPassword: ['', [Validators.required, Validators.minLength(10)]],
       supConfirm: ['', [Validators.required, Validators.minLength(10)]],
-    })
+    });
     const handleSelected = function (event) {
       const allMenus = jQuery(event.originalEvent.target).closest('ul');
       const allLinks = allMenus.find('.menu-selected');
@@ -114,7 +116,7 @@ export class AppComponent implements OnInit, AfterViewInit {
       allLinks.removeClass('menu-selected');
       const selected = jQuery(event.originalEvent.target).closest('a');
       selected.addClass('menu-selected');
-    }
+    };
 
     this.menuItems = [
       { label: 'Dashboard', icon: 'fa-home', routerLink: ['/dashboard'], command: (event) => handleSelected(event) },
@@ -123,18 +125,18 @@ export class AppComponent implements OnInit, AfterViewInit {
       { label: 'My Contacts', icon: 'fa-users', routerLink: ['/contacts'], command: (event) => handleSelected(event) },
       { label: 'My Profile', icon: 'fa-edit', routerLink: ['/profile'], command: (event) => handleSelected(event) },
       { label: 'Settings', icon: 'fa-sliders', routerLink: ['/settings'], command: (event) => handleSelected(event) },
-    ]
+    ];
     this.items = [
       { label: 'Our Vision', icon: 'fa-info', routerLink: ['/dashboard/home'], command: (event) => handleSelected(event) },
       { label: 'Downloads', icon: 'fa-download', routerLink: ['/dashboard/downloads'], command: (event) => handleSelected(event) },
       { label: 'Services', icon: 'fa-briefcase', routerLink: ['/dashboard/services'], command: (event) => handleSelected(event) },
       { label: 'Contact Us', icon: 'fa-mobile', routerLink: ['/dashboard/contact'], command: (event) => handleSelected(event) }
-    ]
+    ];
     this.miniMenuItems = [];
     this.menuItems.forEach((item: MenuItem) => {
-      const miniItem = { icon: item.icon, routerLink: item.routerLink }
+      const miniItem = { icon: item.icon, routerLink: item.routerLink };
       this.miniMenuItems.push(miniItem);
-    })
+    });
     this.width = window.innerWidth;
     console.log(this.width);
     this.iconDate = 'fa fa-edit';
@@ -146,7 +148,6 @@ export class AppComponent implements OnInit, AfterViewInit {
     this.register = false;
     this.dispSup = false;
     this.valid = false;
-
 
     this.buyer = [];
     this.lat = -26.1715046;
@@ -200,7 +201,7 @@ export class AppComponent implements OnInit, AfterViewInit {
         this.overlays = [
           new google.maps.Marker({ position: this.selectedPosition, title: 'Searched Location', draggable: true }),
         ];
-      })
+      });
     });
 
     this.map.panTo(this.selectedPosition);
@@ -275,7 +276,7 @@ export class AppComponent implements OnInit, AfterViewInit {
   }
   selectInitialMenuItemBasedOnUrl() {
     const path = document.location.pathname;
-    const menuItem = this.menuItems.find((item) => { return item.routerLink[0] === path });
+    const menuItem = this.menuItems.find((item) => { return item.routerLink[0] === path; });
     if (menuItem) {
       const selectedIcon = this.bigMenu.container.querySelector(`.${menuItem.icon}`);
       jQuery(selectedIcon).closest('li').addClass('menu-selected');
@@ -327,6 +328,12 @@ export class AppComponent implements OnInit, AfterViewInit {
           });
         }
       });
+  }
+  hasRegFormErrors() {
+    return !this.registerForm.valid;
+  }
+  hasSupFormErrors() {
+    return !this.supplierForm.valid;
   }
   logout() {
     this.valid = false;

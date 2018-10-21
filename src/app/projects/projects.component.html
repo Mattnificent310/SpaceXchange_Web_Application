@@ -1,20 +1,20 @@
 <form [formGroup]="projectForm" (ngSubmit)="onSubmit()" class="ui-g" style="margin-top: 8px;" >
-        
-                
+
+
     <p-panel header="Contact Management" class="ui-g-12">
-                        
+
            <p-tabView class="ui-g">
-                
+
 <p-tabPanel  header="New Contact">
     <h2></h2>
-    <p-accordion>            
+    <p-accordion>
            <p-panel header="Contact Info">
                 <p-accordionTab [selected]="true">
     <div class="ui-g ui-fluid">
         <div class="ui-g-12 ui-md-10" >
             <div class="ui-inputgroup">
                 <span class="ui-inputgroup-addon"><i class="fa fa-user-circle"></i></span>
-                 <input autofocus [value]="projectForm.controls['names'].value" pInputText type="text" pKeyFilter="alpha" required formControlName="names"  placeholder="Name Surname" />                       
+                 <input autofocus [value]="projectForm.controls['names'].value" pInputText type="text" [pKeyFilter]="blockSpecial" required formControlName="names"  placeholder="Name Surname" />
             </div>
            <div class="ui-g-12 ui-md-5">
             <at-fielderrors [form]="projectForm" field="names" nicename="Names"></at-fielderrors>
@@ -23,7 +23,7 @@
         <div class="ui-g-12 ui-md-10" >
             <div class="ui-inputgroup">
                 <span class="ui-inputgroup-addon"><i style="zoom: 1.5;" class="fa fa-mobile"></i></span>
-                 <input autofocus [value]="projectForm.controls['phoneNumber'].value" pInputText type="text" pKeyFilter="pnum" required formControlName="phoneNumber"  placeholder="Mobile Number" />                       
+                 <input autofocus [value]="projectForm.controls['phoneNumber'].value" pInputText type="text" pKeyFilter="pnum" required formControlName="phoneNumber"  placeholder="Mobile Number" />
             </div>
            <div class="ui-g-12 ui-md-5">
             <at-fielderrors [form]="projectForm" field="phoneNumber" nicename="Mobile Number"></at-fielderrors>
@@ -32,7 +32,7 @@
         <div class="ui-g-12 ui-md-10" >
                 <div class="ui-inputgroup">
                     <span class="ui-inputgroup-addon"><i class="fa fa-at"></i></span>
-                     <input autofocus [value]="projectForm.controls['emailAddress'].value" pInputText type="text" pKeyFilter="email" required formControlName="emailAddress"  placeholder="example@domain.com" />                       
+                     <input autofocus [value]="projectForm.controls['emailAddress'].value" pInputText type="text" pKeyFilter="email" required formControlName="emailAddress"  placeholder="example@domain.com" />
                 </div>
                <div class="ui-g-12 ui-md-5">
                 <at-fielderrors [form]="projectForm" field="emailAddress" nicename="Email Address"></at-fielderrors>
@@ -41,9 +41,9 @@
     </div>
     </p-accordionTab>
 </p-panel>
-             <p-panel header="Description">  
+             <p-panel header="Description">
 <p-accordionTab>
-        <p-fieldset>  
+        <p-fieldset>
         <p-editor id="description" formControlName="description" class="ui-g-12" [style]="{'height':'200px'}"></p-editor>
 
             <div class="ui-g-12">
@@ -52,9 +52,9 @@
         </p-fieldset>
         </p-accordionTab>
     </p-panel>
-    
-        
-        
+
+
+
                 <p-panel header="Types">
               <p-accordionTab>
                   <p-fieldset>
@@ -64,7 +64,7 @@
                 <p-radioButton name="projGroup" label="Driver" value="D" formControlName="contactType"></p-radioButton>
 
             </p-fieldset>
-            </p-accordionTab>      
+            </p-accordionTab>
         </p-panel>
     <p-panel header="Update Contacts">
      <p-accordionTab>
@@ -93,39 +93,39 @@
 
 
         <button class="ui-g-2" pButton type="submit" [disabled]="hasFormErrors()" label="Save" icon="fa-floppy-o"></button>
-  
+
     </p-tabPanel>
     <p-tabPanel header="Contact List" class="ui-g-10">
-           
+
             <div class="ui-g ui-fluid">
                     <div class="ui-g-12" >
                         <div class="ui-inputgroup">
-                            <input hidden [value]="projectForm.controls['names'].value" pInputText type="text" pKeyFilter="alpha" required formControlName="names"  placeholder="Name Surname" />                       
+                            <input hidden [value]="projectForm.controls['names'].value" pInputText type="text" pKeyFilter="alpha" required formControlName="names"  placeholder="Name Surname" />
                         </div>
                        <div class="ui-g-12 ui-md-5">
                         <at-fielderrors [form]="projectForm" field="names" nicename="Names"></at-fielderrors>
-                    
-                
-         
+
+
+
                     </div>
                 </div>
                 <div class="ui-g-10" >
                         <div class="ui-inputgroup">
-                                
+
             <p-listbox id="devs" [options]="allDevs" [multiple]="true" [filter]="true" formControlName="selectedContacts" class="ui-grid-responsive ui-md-12">
                 <ng-template let-dev pTemplate="item">
                     <img src="http://i.pravatar.cc/100?u={{dev.label}}" class="avatar" />
                     <span class="devName">{{dev.value}}</span>
                 </ng-template>
             </p-listbox>
-        
+
             <h2></h2>
-            
+
         </div>
         </div>
         <div class="ui-g-12 ui-md-12" >
                 <div class="ui-inputgroup">
-                    
+
         <button style="width:150px; margin-left: 32%;" class="ui-button-icon-left" pButton type="button" label="Edit" icon="fa-edit"></button>
             <button style="width:150px;" class="ui-button-icon-left" pButton type="button" label="View" icon="fa-book"></button>
                 </div>
@@ -137,11 +137,11 @@
 
 
 
-        
+
     </p-tabPanel>
 </p-tabView>
 
     </p-panel>
 
-    
+
     </form>
