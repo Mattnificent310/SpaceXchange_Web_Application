@@ -8,7 +8,9 @@
 label {
   margin-top: 5px;
 }
-
+p-rating >>> .ui-rating a {
+  text-decoration: none;
+}
 button {
   margin-top: 1em;
 }
@@ -28,7 +30,7 @@ p-listbox >>> .ui-listbox-list-wrapper {
   height: 550px;
   width: 100%;
 
- 
+
 }
 .contactmng-panel
 {
@@ -82,7 +84,7 @@ p-rating {
     margin-top: 20px;
     margin-bottom: 20px;
     text-align: left;
-    
+
 }
 
 .inputContainer {
@@ -93,18 +95,18 @@ p-rating {
     width: 100%;
     /*left: 50%;
     margin-left: -125px;*/
-    height: 36px;    
+    height: 36px;
     overflow: hidden;
     margin-top: 10px;
 }
 
 .inputHolder {
-  
+
   border: none;
   background: none;
   margin-left: -5px;
   width: 90%;
   height: 36px;
-  
+
 }
 

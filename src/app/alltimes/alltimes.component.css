@@ -12,7 +12,9 @@
   margin-bottom: 1em;
   border-radius: 2.5px;
 }
-
+p-rating >>> .ui-rating a {
+  text-decoration: none;
+}
 h2 {
   font-weight: bolder;
   font-size: xx-large;
@@ -68,7 +70,7 @@ p-contextMenu >>> .ui-menuitem-active a {
     margin-top: 20px;
     margin-bottom: 20px;
     text-align: left;
-    
+
 }
 
 .inputContainer {
@@ -79,7 +81,7 @@ p-contextMenu >>> .ui-menuitem-active a {
     width: 100%;
     /*left: 50%;
     margin-left: -125px;*/
-    height: 36px;    
+    height: 36px;
     overflow: hidden;
     margin-top: 10px;
 }
