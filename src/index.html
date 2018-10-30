@@ -19,13 +19,23 @@
     <style>
 
 .container {
-  margin-top: -140px;
-  width: 100%;
-  height: 800px;
-  background: linear-gradient(to top, rgba(1, 39, 46, 0.2) 0%,rgba(2, 0, 32, 0.2) 100%), url(https://st3.depositphotos.com/2890953/13586/i/1600/depositphotos_135863792-stock-photo-world-map-made-of-electronic.jpg) repeat 0 0;
-  background-size: 98%;
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+  background: linear-gradient(to top, rgba(77, 46, 29, 0.2) 0%,rgba(2, 0, 32, 0.2) 100%), url() repeat 0 0;
+  background-size: 100%;
 }
+.background {
+  position: absolute;
+  top: -100px;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(to top, rgba(77, 46, 29, 0.2) 0%,rgba(2, 0, 32, 0.2) 100%), url(https://st3.depositphotos.com/2890953/13586/i/1600/depositphotos_135863792-stock-photo-world-map-made-of-electronic.jpg) no-repeat;
+  background-size: 100% 140%;
+  overflow: hidden;
 
+}
     .cssload-tetrominos {
         position: absolute;
         left: 50%;
