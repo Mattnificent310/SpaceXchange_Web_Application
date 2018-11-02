@@ -129,10 +129,10 @@ export class AppComponent implements OnInit, AfterViewInit {
       { label: 'Settings', icon: 'fa-sliders', routerLink: ['/settings'], command: (event) => handleSelected(event) },
     ];
     this.items = [
-      { label: 'Our Vision', icon: 'fa-info', routerLink: ['/dashboard/home'], command: (event) => handleSelected(event) },
-      { label: 'Downloads', icon: 'fa-download', routerLink: ['/dashboard/downloads'], command: (event) => handleSelected(event) },
-      { label: 'Services', icon: 'fa-briefcase', routerLink: ['/dashboard/services'], command: (event) => handleSelected(event) },
-      { label: 'Contact Us', icon: 'fa-mobile', routerLink: ['/dashboard/contact'], command: (event) => handleSelected(event) }
+      { label: 'Our Vision', icon: 'fa-info', routerLink: ['/dashboard'], command: (event) => handleSelected(event) },
+      { label: 'Downloads', icon: 'fa-download', routerLink: ['/dashboard'], command: (event) => handleSelected(event) },
+      { label: 'Services', icon: 'fa-briefcase', routerLink: ['/dashboard'], command: (event) => handleSelected(event) },
+      { label: 'Contact Us', icon: 'fa-mobile', routerLink: ['/dashboard'], command: (event) => handleSelected(event) }
     ];
     this.miniMenuItems = [];
     this.menuItems.forEach((item: MenuItem) => {
@@ -299,7 +299,6 @@ export class AppComponent implements OnInit, AfterViewInit {
     this.mobileSidebar = true;
   }
   login() {
-
     let name: String;
     this.service.getAllBuyers().subscribe(
       data => {
@@ -339,6 +338,7 @@ export class AppComponent implements OnInit, AfterViewInit {
     return !this.supplierForm.valid;
   }
   logout() {
+    this.hideMenu();
     this.valid = false;
     this.messages = [];
     this.messages.push({
