@@ -1,3 +1,4 @@
+import { LandingComponent } from './landing/landing.component';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -26,11 +27,12 @@ import {CarouselModule} from 'primeng/carousel';
 import {KeyFilterModule} from 'primeng/keyfilter';
 import {SidebarModule} from 'primeng/sidebar';
 import {BookingsComponent} from './bookings/bookings.component'
+import { AppService } from './app.service';
 
 
 
 const appRoutes: Routes = [
-  { path: "", redirectTo: "/dashboard", pathMatch: "full" },
+  { path: "", redirectTo: "/landing", pathMatch: "full" },
   { path: "dashboard", component: DashboardComponent },
   { path: "marketplace", component: AlltimesComponent },
   { path: "history", component: TimesheetComponent},
@@ -38,6 +40,8 @@ const appRoutes: Routes = [
   { path: "profile", component: ProfileComponent},
   { path: "settings", component: SettingsComponent},
   { path: "buyers", component: BuyerComponent},
+  { path: "bookings", component: BookingsComponent},
+  { path: "landing", component: LandingComponent}
 ];
 
 @NgModule({
@@ -52,7 +56,8 @@ const appRoutes: Routes = [
     SettingsComponent,
     BuyerComponent,
     FielderrorsComponent,
-    BookingsComponent
+    BookingsComponent,
+    LandingComponent
   ],
   imports: [
     BrowserModule,
@@ -103,7 +108,7 @@ const appRoutes: Routes = [
     KeyFilterModule,
     SidebarModule
     ],
-  providers: [ ConfirmationService, BuyerService ],
+  providers: [ ConfirmationService, BuyerService, AppComponent ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

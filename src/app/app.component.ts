@@ -70,6 +70,8 @@ export class AppComponent implements OnInit, AfterViewInit {
 
   valid: boolean;
 
+  public landed: boolean;
+
   blockSpecial: RegExp = /^[a-z\d\-_\s]+$/i;
 
 
@@ -148,6 +150,7 @@ export class AppComponent implements OnInit, AfterViewInit {
     this.register = false;
     this.dispSup = false;
     this.valid = false;
+    this.landed = false;
 
     this.buyer = [];
     this.lat = -26.1715046;
@@ -377,5 +380,8 @@ export class AppComponent implements OnInit, AfterViewInit {
         }
       );
     this.register = false;
+  }
+  public hideMenu() {
+    this.landed = !this.landed;
   }
 }
