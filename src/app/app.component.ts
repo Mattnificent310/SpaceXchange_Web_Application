@@ -328,8 +328,10 @@ export class AppComponent implements OnInit, AfterViewInit {
             summary: `Sorry ${this.loginForm.controls['emailAddress'].value}`,
             detail: 'Something went wrong during login'
           });
+          this.router.navigate(['/dashboard']);
         }
       });
+
   }
   hasRegFormErrors() {
     return !this.registerForm.valid;
