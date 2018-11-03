@@ -331,7 +331,7 @@ export class AppComponent implements OnInit, AfterViewInit {
           this.router.navigate(['/dashboard']);
         }
       });
-
+    this.router.navigate(['dashboard']);
   }
   hasRegFormErrors() {
     return !this.registerForm.valid;
