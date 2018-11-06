@@ -1,5 +1,6 @@
 @import url('../../assets/css/style.css');
 main {
+  width: 121%;
   text-align: center;
 }
 p-galleria >>> .ui-galleria-panel-wrapper img {

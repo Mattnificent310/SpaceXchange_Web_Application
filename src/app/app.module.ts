@@ -28,7 +28,7 @@ import {KeyFilterModule} from 'primeng/keyfilter';
 import {SidebarModule} from 'primeng/sidebar';
 import {BookingsComponent} from './bookings/bookings.component'
 import { AppService } from './app.service';
-
+import {NgxPageScrollModule} from 'ngx-page-scroll';
 
 
 const appRoutes: Routes = [
@@ -106,7 +106,8 @@ const appRoutes: Routes = [
     OverlayPanelModule,
     CarouselModule,
     KeyFilterModule,
-    SidebarModule
+    SidebarModule,
+    NgxPageScrollModule
     ],
   providers: [ ConfirmationService, BuyerService, AppComponent ],
   bootstrap: [AppComponent]
