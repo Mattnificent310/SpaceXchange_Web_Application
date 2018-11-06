@@ -9,7 +9,10 @@ p-galleria >>> .ui-galleria-panel-wrapper img {
 p-galleria >>> .ui-galleria {
   margin-bottom: 100px;
 }
-
+.og-grid img {
+  width: 300px;
+  height: 250px;
+}
 @media (max-width: 999px) and (min-width: 450px) {
   main {
     margin-left: -80px;
