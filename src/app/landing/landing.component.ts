@@ -31,4 +31,14 @@ export class LandingComponent implements OnInit {
     this.images.push({source: '../../assets/img/galleria12.jpg', alt: 'Description for Image 12', title:'Title 12'});
 
   }
+  scrollTop(event) {
+    let scrollToTop = window.setInterval(() => {
+        let pos = window.pageYOffset;
+        if (pos > 0) {
+            window.scrollTo(0, pos - 50); // how far to scroll on each step
+        } else {
+            window.clearInterval(scrollToTop);
+        }
+    }, 16);
+}
 }
