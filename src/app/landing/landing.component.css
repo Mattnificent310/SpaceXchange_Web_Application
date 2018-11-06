@@ -13,7 +13,7 @@ p-galleria >>> .ui-galleria {
   width: 300px;
   height: 250px;
 }
-@media (max-width: 999px) and (min-width: 450px) {
+@media (max-width: 999px) and (min-width: 350px) {
   main {
     margin-left: -80px;
   }
