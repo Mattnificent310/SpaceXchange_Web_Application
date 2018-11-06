@@ -7,6 +7,16 @@ p-galleria >>> .ui-galleria-panel-wrapper img {
   width: 100%;
   height: 115%;
 }
+#msgSubmit {
+  background: rgb(20,20,20,0.5);
+  border: 2px rgba(236, 156, 135) outset;
+  border-radius: 5px;
+}
+#msgSubmit:hover {
+  transition: 0.5s ease-in-out;
+  color: white;
+  background: rgba(6, 97, 235, 0.7);
+}
 .scrollDown {
   border: 2px powderblue outset;
   background: rgb(20,20,20,0.5);
