@@ -5,7 +5,7 @@ main {
 }
 p-galleria >>> .ui-galleria-panel-wrapper img {
   width: 100vw;
-  height: 100vh;
+  min-height: 100vh;
 }
 p-galleria >>> .ui-galleria {
   width: 100vw;
@@ -25,34 +25,23 @@ p-galleria >>> .ui-galleria {
   color: white;
   background: rgba(6, 97, 235, 0.7);
 }
-.scrollDown {
-  border: 2px powderblue outset;
-  background: rgb(20,20,20,0.5);
+.firstScroll {
   width: 80px;
+  color: white;
+  padding: 30px;
   height: 80px;
   border-radius: 50%;
+  border: 2px powderblue outset;
+  background: rgb(20,20,20,0.5);
+ 
 }
-.scrollDown>i {
-  color: white;
-   margin-top: 40%;
-}
-.scrollDown:hover {
+.firstScroll:hover {
   transition: 0.5s ease-in-out;
   background: rgba(248, 91, 18, 0.7);
 }
-p-galleria >>> .ui-galleria {
-  margin-bottom: 100px;
-}
+
 .scrollNext {
-  border: 2px rgb(248, 151, 138) outset;
-  background: rgb(20,20,20,0.5);
-  width: 80px;
-  height: 80px;
-  border-radius: 50%;
-}
-.scrollNext>i {
-  color: white;
-   margin-top: 40%;
+  border: 2px rgb(248, 151, 138) outset;  
 }
 .scrollNext:hover {
   transition: 0.5s ease-in-out;
@@ -66,13 +55,6 @@ p-galleria >>> .ui-galleria {
   main {
     margin-left: -80px;
   }
-  p-galleria >>> .ui-galleria-panel-wrapper img {
-    width: 100%;
-    height: 50%;
-  }
-  p-galleria >>> .ui-galleria {
-    max-height: 413px;
-    margin-bottom: 100px;
-  }
+  
 
 }
