@@ -85,9 +85,9 @@ export class AppComponent implements OnInit, AfterViewInit {
   }
   ngOnInit() {
     this.loginForm = this.fb.group({
-      names: ['', [Validators.required, Validators.minLength(3)]],
-      phoneNumber: ['', [Validators.required, Validators.maxLength(10)]],
-      emailAddress: ['', [Validators.required, Validators.minLength(10)]],
+      names: [''],
+      phoneNumber: [''],
+      emailAddress: ['', [Validators.required, Validators.email]],
       password: ['', [Validators.required, Validators.minLength(10)]],
 
     });
@@ -122,7 +122,7 @@ export class AppComponent implements OnInit, AfterViewInit {
 
     this.menuItems = [
       { label: 'Dashboard', icon: 'fa-home', routerLink: ['/dashboard'], command: (event) => handleSelected(event) },
-      { label: 'Marketplace', icon: 'fa-tag', routerLink: ['/marketplace'], command: (event) => handleSelected(event) },
+      { label: sessionStorage.getItem('loggedIn') == 'Buyer' ? 'My Listings' : 'Marketplace', icon: 'fa-tag', routerLink: ['/marketplace'], command: (event) => handleSelected(event) },
       { label: 'My Exchanges', icon: 'fa-clock-o', routerLink: ['/history'], command: (event) => handleSelected(event) },
       { label: 'My Contacts', icon: 'fa-users', routerLink: ['/contacts'], command: (event) => handleSelected(event) },
       { label: 'My Profile', icon: 'fa-edit', routerLink: ['/profile'], command: (event) => handleSelected(event) },
@@ -331,6 +331,9 @@ export class AppComponent implements OnInit, AfterViewInit {
           this.router.navigate(['/dashboard']);
         }
       });
+      sessionStorage.setItem('loggedIn', 'Buyer');
+      
+              
     this.router.navigate(['dashboard']);
   }
   hasRegFormErrors() {
@@ -338,6 +341,26 @@ export class AppComponent implements OnInit, AfterViewInit {
   }
   hasSupFormErrors() {
     return !this.supplierForm.valid;
+  }
+  hasLoginErrors() {
+    
+    if(!this.loginForm.valid)
+    {
+    if(!this.loginForm.controls['names'].value)
+    {  
+      if(!this.loginForm.controls['emailAddress'].value && this.loginForm.controls['phoneNumber'].value && this.loginForm.controls['password'].value) 
+      {        
+        return false;
+      }
+      if(!this.loginForm.controls['phoneNumber'].value && this.loginForm.controls['emailAddress'].value && this.loginForm.controls['password'].value) 
+      {        
+        return false;
+      }
+      return true;
+    }    
+    return false;
+    }
+    return true;
   }
   logout() {
     this.hideMenu();
