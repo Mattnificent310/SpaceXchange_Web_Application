@@ -119,10 +119,11 @@ export class AppComponent implements OnInit, AfterViewInit {
       const selected = jQuery(event.originalEvent.target).closest('a');
       selected.addClass('menu-selected');
     };
-
+if (sessionStorage.getItem('loggedIn') == 'Supplier') {
     this.menuItems = [
       { label: 'Dashboard', icon: 'fa-home', routerLink: ['/dashboard'], command: (event) => handleSelected(event) },
-      { label: sessionStorage.getItem('loggedIn') == 'Buyer' ? 'My Listings' : 'Marketplace', icon: 'fa-tag', routerLink: ['/marketplace'], command: (event) => handleSelected(event) },
+      { label: 'Marketplace', icon: 'fa-tag',
+      routerLink: ['/marketplace'], command: (event) => handleSelected(event) },
       { label: 'My Exchanges', icon: 'fa-clock-o', routerLink: ['/history'], command: (event) => handleSelected(event) },
       { label: 'My Contacts', icon: 'fa-users', routerLink: ['/contacts'], command: (event) => handleSelected(event) },
       { label: 'My Profile', icon: 'fa-edit', routerLink: ['/profile'], command: (event) => handleSelected(event) },
@@ -134,6 +135,24 @@ export class AppComponent implements OnInit, AfterViewInit {
       { label: 'Services', icon: 'fa-briefcase', routerLink: ['/dashboard'], command: (event) => handleSelected(event) },
       { label: 'Contact Us', icon: 'fa-mobile', routerLink: ['/dashboard'], command: (event) => handleSelected(event) }
     ];
+  }
+  if (sessionStorage.getItem('loggedIn') == 'Buyer') {
+    this.menuItems = [
+      { label: 'Dashboard', icon: 'fa-home', routerLink: ['/dashboard'], command: (event) => handleSelected(event) },
+      { label: 'My Listings', icon: 'fa-tag',
+      routerLink: ['/listings'], command: (event) => handleSelected(event) },
+      { label: 'My Exchanges', icon: 'fa-clock-o', routerLink: ['/history'], command: (event) => handleSelected(event) },
+      { label: 'My Contacts', icon: 'fa-users', routerLink: ['/contacts'], command: (event) => handleSelected(event) },
+      { label: 'My Profile', icon: 'fa-edit', routerLink: ['/profile'], command: (event) => handleSelected(event) },
+      { label: 'Settings', icon: 'fa-sliders', routerLink: ['/settings'], command: (event) => handleSelected(event) },
+    ];
+    this.items = [
+      { label: 'Our Vision', icon: 'fa-info', routerLink: ['/dashboard'], command: (event) => handleSelected(event) },
+      { label: 'Downloads', icon: 'fa-download', routerLink: ['/dashboard'], command: (event) => handleSelected(event) },
+      { label: 'Services', icon: 'fa-briefcase', routerLink: ['/dashboard'], command: (event) => handleSelected(event) },
+      { label: 'Contact Us', icon: 'fa-mobile', routerLink: ['/dashboard'], command: (event) => handleSelected(event) }
+    ];
+  }
     this.miniMenuItems = [];
     this.menuItems.forEach((item: MenuItem) => {
       const miniItem = { icon: item.icon, routerLink: item.routerLink };
@@ -332,8 +351,8 @@ export class AppComponent implements OnInit, AfterViewInit {
         }
       });
       sessionStorage.setItem('loggedIn', 'Buyer');
-      
-              
+
+
     this.router.navigate(['dashboard']);
   }
   hasRegFormErrors() {
@@ -343,21 +362,21 @@ export class AppComponent implements OnInit, AfterViewInit {
     return !this.supplierForm.valid;
   }
   hasLoginErrors() {
-    
+
     if(!this.loginForm.valid)
     {
     if(!this.loginForm.controls['names'].value)
-    {  
-      if(!this.loginForm.controls['emailAddress'].value && this.loginForm.controls['phoneNumber'].value && this.loginForm.controls['password'].value) 
-      {        
+    {
+      if(!this.loginForm.controls['emailAddress'].value && this.loginForm.controls['phoneNumber'].value && this.loginForm.controls['password'].value)
+      {
         return false;
       }
-      if(!this.loginForm.controls['phoneNumber'].value && this.loginForm.controls['emailAddress'].value && this.loginForm.controls['password'].value) 
-      {        
+      if(!this.loginForm.controls['phoneNumber'].value && this.loginForm.controls['emailAddress'].value && this.loginForm.controls['password'].value)
+      {
         return false;
       }
       return true;
-    }    
+    }
     return false;
     }
     return true;

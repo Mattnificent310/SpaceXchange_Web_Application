@@ -1,3 +1,5 @@
+import { ConstructionComponent } from './construction/construction.component';
+import { ListingsComponent } from './listings/listings.component';
 import { LandingComponent } from './landing/landing.component';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
@@ -41,7 +43,9 @@ const appRoutes: Routes = [
   { path: "settings", component: SettingsComponent},
   { path: "buyers", component: BuyerComponent},
   { path: "bookings", component: BookingsComponent},
-  { path: "landing", component: LandingComponent}
+  { path: "landing", component: LandingComponent},
+  { path: "listings", component: ListingsComponent},
+  { path: "construction", component: ConstructionComponent}
 ];
 
 @NgModule({
@@ -57,7 +61,9 @@ const appRoutes: Routes = [
     BuyerComponent,
     FielderrorsComponent,
     BookingsComponent,
-    LandingComponent
+    LandingComponent,
+    ListingsComponent,
+    ConstructionComponent
   ],
   imports: [
     BrowserModule,
