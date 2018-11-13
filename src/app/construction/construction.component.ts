@@ -48,6 +48,8 @@ export class ConstructionComponent implements OnInit {
 
   selectedTrans: String;
 
+  accIndex: number;
+
   ngOnInit() {
     this.lat = -26.1715046;
     this.lng = 27.9699844;
@@ -58,14 +60,14 @@ export class ConstructionComponent implements OnInit {
     };
     this.index = 1;
     this.transTypes = [
-      {label: 'Road Transit', value: 'galleria5'},
-      {label: 'Rail Transit', value: 'galleria3'},
-      {label: 'Sea Transit', value: 'galleria1'},
-      {label: 'Air Transit', value: 'galleria4'},
-      {label: 'Static Storage', value: 'galleria2'}
-  ];
+      { label: 'Road Transit', value: 'galleria5' },
+      { label: 'Rail Transit', value: 'galleria3' },
+      { label: 'Sea Transit', value: 'galleria1' },
+      { label: 'Air Transit', value: 'galleria4' },
+      { label: 'Static Storage', value: 'galleria2' }
+    ];
 
-    console.log(this.dialogPageIndex);
+    this.accIndex = 0;
     this.findMe();
   }
   handleMapClick(event) {
@@ -163,17 +165,17 @@ export class ConstructionComponent implements OnInit {
     { label: 'Time' },
     { label: 'Space Category' },
     { label: 'Origin' },
-    { label: "Destination"},
+    { label: "Destination" },
     { label: 'Specifications' }
   ];
 
-   public headerConfig = {
+  public headerConfig = {
     left: 'prev,next today',
     center: 'title',
     right: 'month,agendaWeek,agendaDay'
   };
 
-   public events = [
+  public events = [
     {
       title: 'Departure',
       start: moment().format(), // '2017-06-02 07:00:00'
@@ -253,11 +255,21 @@ export class ConstructionComponent implements OnInit {
     this.messages.push({ severity: 'success', summary: 'Entry Created', detail: 'Your entry has been created' });
   }
 
-nextStep()  {
-  return this.index++;
-}
+  nextStep() {
+    return this.index++;
+  }
 
   goBack() {
     this.router.navigate(['/listings']);
+  }
+  openNext() {
+    this.accIndex = (this.accIndex === 4) ? 0 : this.accIndex + 1;
+  }
+
+  openPrev() {
+    this.accIndex = (this.accIndex <= 0) ? 4 : this.accIndex - 1;
+  }
+  clickTab(event) {
+    this.accIndex = event.index;
   }
 }

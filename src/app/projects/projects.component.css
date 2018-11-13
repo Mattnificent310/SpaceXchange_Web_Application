@@ -1,6 +1,10 @@
 .ui-multiselect-label-container {
   background-color: red !important;
 }
+p-accordion>>>.ui-accordion-header a{
+  text-decoration: transparent;
+}
+
 .project
 {
   margin-top: 2px;

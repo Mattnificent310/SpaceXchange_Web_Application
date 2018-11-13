@@ -46,7 +46,39 @@
 
     </div>
     <div *ngSwitchCase="PageNames.PeoplePage">
+        <div style="margin-bottom: 1em">
+            <button type="button" pButton icon="fa fa-chevron-up" (click)="openPrev()" style="margin-right:.25em; padding: 0 10px; border-radius: 50%;"></button>
+            <button type="button" pButton icon="fa fa-chevron-down" (click)="openNext()" style="border-radius: 50%; padding: 0 10px;"></button>
+        </div>
 
+        <p-accordion (onOpen)="clickTab($event)" (onClose)="clickTab($event)" [activeIndex]="accIndex" [expandIcon]="'fa fa-chevron-right'" [collapseIcon]="'fa fa-chevron-down'">
+            <p-accordionTab>
+                <p-header> <span style="margin-left: 10px; font-size: 20px;">Basic Info</span></p-header>
+
+                </p-accordionTab>
+            <p-accordionTab>
+                <p-header> <span style="margin-left: 10px; font-size: 20px;">Capacity Info</span></p-header>
+
+                </p-accordionTab>
+            <p-accordionTab>
+                <p-header> <span style="margin-left: 10px; font-size: 20px;">Indemity Info</span></p-header>
+
+                </p-accordionTab>
+            <p-accordionTab>
+                <p-header> <span style="margin-left: 10px; font-size: 20px;">Tracking Info </span></p-header>
+
+                </p-accordionTab>
+                <p-accordionTab>
+                    <p-header> <span style="margin-left: 10px; font-size: 20px;">Details </span></p-header>
+                    <p-fieldset>
+                        <p-editor id="description"  class="ui-g-12" [style]="{'height':'200px'}"></p-editor>
+
+                            <div class="ui-g-12">
+                                <!-- <at-fielderrors [form]="projectForm" field="description" nicename="Description"> </at-fielderrors> -->
+                            </div>
+                        </p-fieldset>
+                    </p-accordionTab>
+        </p-accordion>
 
 
     </div>

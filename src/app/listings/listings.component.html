@@ -6,27 +6,79 @@
 
   <p-tabView>
    <p-tabPanel header="Current Listings">
-      <p-dataGrid [value]="people" [paginator]="true" [rows]="4">
+      <p-dataGrid [value]="people" [paginator]="true" [rows]="16">
           <ng-template let-person pTemplate="item">
             <p-panel header="{{person.firstName}} {{person.lastName}}" class="ui-g-12 ui-md-3">
               <button pButton icon="fa fa-close" style="margin: -60px -15px 0 0; float: right;"></button>
-              <img [src]="person.avatar" [pTooltip]="person.email" tooltipPosition="bottom"/>
-              <p>{{person.firstName}}</p>
-              <button style="padding: 5px 10px;" label="Preview" pButton></button>
-              <button style="padding: 5px 10px;" label="Edit" pButton></button>
+              <div id="center" class="ui-g-12"> <img id="center" [src]="person.avatar" [pTooltip]="person.email" tooltipPosition="bottom"/>
+              </div>
+
+              <div class="ui-grid-row">
+                <div class="ui-grid-col-5 text-center"><pre><b>Type</b></pre></div>
+                <div class="ui-grid-col-6 text-center"><pre>{{person.firstName}}</pre></div>
+
+            </div>
+            <div class="ui-grid-row">
+                <div class="ui-grid-col-5 text-center"><pre><b>Departure</b></pre></div>
+                <div class="ui-grid-col-6 text-center"><pre>{{person.firstName}}</pre> </div>
+
+            </div>
+            <div class="ui-grid-row">
+                <div class="ui-grid-col-5 text-center"><pre><b>Arrival</b></pre></div>
+                <div class="ui-grid-col-6 text-center"><pre>{{person.firstName}}</pre> </div>
+
+            </div>
+            <div class="ui-grid-row">
+                <div class="ui-grid-col-5 text-center"><pre><b>Date</b></pre></div>
+                <div class="ui-grid-col-6 text-center"><pre>{{person.firstName}}</pre> <h1> </h1></div>
+
+            </div>
+
+            <div class="ui-grid-row">
+              <div class="ui-grid-col-12">
+              <button class="ui-g-6 ui-md-6" label="Preview" pButton></button>
+              <button class="ui-g-5 ui-md-5" label="Edit" pButton></button>
+            </div>
+            </div>
           </p-panel>
           </ng-template>
         </p-dataGrid>
   </p-tabPanel>
   <p-tabPanel header="Historic Listings">
-      <p-dataGrid [value]="people" [paginator]="true" [rows]="4">
+      <p-dataGrid [value]="people" [paginator]="true" [rows]="16">
           <ng-template let-person pTemplate="item">
             <p-panel header="{{person.firstName}} {{person.lastName}}" class="ui-g-12 ui-md-3">
               <button pButton icon="fa fa-close" style="margin: -60px -15px 0 0; float: right;"></button>
-              <img [src]="person.avatar" [pTooltip]="person.email" tooltipPosition="bottom"/>
-              <p>{{person.firstName}}</p>
-              <button style="padding: 5px 10px;" label="Preview" pButton></button>
-              <button style="padding: 5px 10px;" label="Edit" pButton></button>
+              <div id="center" class="ui-g-12"> <img id="center" [src]="person.avatar" [pTooltip]="person.email" tooltipPosition="bottom"/>
+              </div>
+
+              <div class="ui-grid-row">
+                <div class="ui-grid-col-5 text-center"><pre><b>Type</b></pre></div>
+                <div class="ui-grid-col-6 text-center"><pre>{{person.firstName}}</pre></div>
+
+            </div>
+            <div class="ui-grid-row">
+                <div class="ui-grid-col-5 text-center"><pre><b>Departure</b></pre></div>
+                <div class="ui-grid-col-6 text-center"><pre>{{person.firstName}}</pre> </div>
+
+            </div>
+            <div class="ui-grid-row">
+                <div class="ui-grid-col-5 text-center"><pre><b>Arrival</b></pre></div>
+                <div class="ui-grid-col-6 text-center"><pre>{{person.firstName}}</pre> </div>
+
+            </div>
+            <div class="ui-grid-row">
+                <div class="ui-grid-col-5 text-center"><pre><b>Date</b></pre></div>
+                <div class="ui-grid-col-6 text-center"><pre>{{person.firstName}}</pre> <h1> </h1></div>
+
+            </div>
+
+            <div class="ui-grid-row">
+              <div class="ui-grid-col-12">
+              <button class="ui-g-6 ui-md-6" label="Preview" pButton></button>
+              <button class="ui-g-5 ui-md-5" label="Edit" pButton></button>
+            </div>
+            </div>
           </p-panel>
           </ng-template>
         </p-dataGrid>

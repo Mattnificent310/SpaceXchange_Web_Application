@@ -7,9 +7,15 @@
 
 <p-tabPanel  header="New Contact">
     <h2></h2>
-    <p-accordion>
-           <p-panel header="Contact Info">
-                <p-accordionTab [selected]="true">
+    <div style="margin-bottom: 1em">
+        <button type="button" pButton icon="fa fa-chevron-up" (click)="openPrev()" style="margin-right:.25em; padding: 0 10px; border-radius: 50%;"></button>
+        <button type="button" pButton icon="fa fa-chevron-down" (click)="openNext()" style="border-radius: 50%; padding: 0 10px;"></button>
+    </div>
+    <p-accordion (onOpen)="clickTab($event)" (onClose)="clickTab($event)"  [activeIndex]="accIndex" [expandIcon]="'fa fa-chevron-right'" [collapseIcon]="'fa fa-chevron-down'">
+
+                <p-accordionTab >
+                  <p-header> <span style="margin-left: 10px; font-size: 20px;">Contact Info </span></p-header>
+
     <div class="ui-g ui-fluid">
         <div class="ui-g-12 ui-md-10" >
             <div class="ui-inputgroup">
@@ -40,9 +46,11 @@
             </div>
     </div>
     </p-accordionTab>
-</p-panel>
-             <p-panel header="Description">
+
+
 <p-accordionTab>
+    <p-header> <span style="margin-left: 10px; font-size: 20px;">Description</span></p-header>
+
         <p-fieldset>
         <p-editor id="description" formControlName="description" class="ui-g-12" [style]="{'height':'200px'}"></p-editor>
 
@@ -51,12 +59,14 @@
             </div>
         </p-fieldset>
         </p-accordionTab>
-    </p-panel>
 
 
 
-                <p-panel header="Types">
+
+
               <p-accordionTab>
+                  <p-header> <span style="margin-left: 10px; font-size: 20px;">Contact Type</span></p-header>
+
                   <p-fieldset>
                 <p-radioButton name="projGroup" label="Buyer" value="B" formControlName="contactType"></p-radioButton>
                 <p-radioButton name="projGroup" label="Passenger" value="P" formControlName="contactType"></p-radioButton>
@@ -65,9 +75,10 @@
 
             </p-fieldset>
             </p-accordionTab>
-        </p-panel>
-    <p-panel header="Update Contacts">
+
      <p-accordionTab>
+        <p-header> <span style="margin-left: 10px; font-size: 20px;">Update Existing</span></p-header>
+
          <p-fieldset>
             <p-listbox id="devs" [options]="allDevs" [multiple]="true" [filter]="true" formControlName="selectedContacts" class="ui-g-12 ui-md-8">
                 <ng-template let-dev pTemplate="item">
@@ -77,9 +88,10 @@
             </p-listbox>
         </p-fieldset>
 </p-accordionTab>
-</p-panel>
-<p-panel header="Rating">
-        <p-accordionTab >
+
+        <p-accordionTab>
+            <p-header> <span style="margin-left: 10px; font-size: 20px;">Rating</span></p-header>
+
        <p-fieldset>
               <p-rating (onRate)="handleRate($event)" (onCancel)="handleCancel($event)"></p-rating> <span *ngIf="msg" style="margin-left:10px">{{msg}}</span>
             <pre class="ui-g-12 ui-md-5">{{ projectForm.getRawValue() | json }}</pre>
@@ -87,7 +99,7 @@
         </p-fieldset>
 </p-accordionTab>
 
-</p-panel>
+
 </p-accordion>
 
 

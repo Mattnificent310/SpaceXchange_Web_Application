@@ -23,6 +23,8 @@ export class ProjectsComponent implements OnInit {
 
   val5: number;
 
+  accIndex: number;
+
   blockSpecial: RegExp = /^[a-z\d\-_\s]+$/i;
 
   msg: string;
@@ -55,6 +57,7 @@ export class ProjectsComponent implements OnInit {
       rating: [3]
     })
 this.val2 =  5;
+this.accIndex = 0;
   }
   handleRate(event) {
       this.msg = 'You have rated ' + event.value;
@@ -71,11 +74,15 @@ this.val2 =  5;
     alert(JSON.stringify(this.projectForm.value));
   }
 
+  openNext() {
+    this.accIndex = (this.accIndex === 5) ? 0 : this.accIndex + 1;
+  }
 
-
-
-
-
-
+  openPrev() {
+    this.accIndex = (this.accIndex <= 0) ? 5 : this.accIndex - 1;
+  }
+clickTab(event) {
+  this.accIndex = event.index;
+}
 
 }

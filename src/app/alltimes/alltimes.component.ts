@@ -1,3 +1,4 @@
+import { Router } from '@angular/router';
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { MenuItem, DataTable, LazyLoadEvent } from "primeng/primeng";
 import Dexie from 'dexie';
@@ -22,6 +23,8 @@ export class AlltimesComponent implements OnInit {
   category: String;
   startDate: String;
   endDate: String;
+  startTime: String;
+  endTime: String;
   depDate: String;
   email: String;
   names: string[] = ['Joe', 'Mary', 'Phil', 'Karen', 'Si', 'Tim', 'Rohit', 'Jenny', 'Kim', 'Greg', 'Danni'];
@@ -31,29 +34,29 @@ export class AlltimesComponent implements OnInit {
   allTimesheetData = [
 
     {id: 1, avatar: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSePYH0l73i-OgzhmHIgztXFb6p2wZFfcAETx9-AL4Y3ndU-KLt',
-    user: this.names[0], project: this.allProjectNames[7], email: 'joe@gmail.com', category: 'Road Transit', startTime: 'Johannesburg',
-    endTime: 'Pretoria', date: '2018-11-14', phone: '+27864253815', rating: 3 },
+    user: this.names[0], project: this.allProjectNames[7], email: 'joe@gmail.com', category: 'Road Transit', startTime: '06:55',
+    startLoc: 'Johannesburg', endTime: '20:35', endLoc: 'Pretoria', date: '2018-11-14', phone: '+27864253815', rating: 3 },
     {id: 2, avatar: 'https://www.activehealthclinic.ca/storage/app/media/cartoon_avatar-blonde-female.png',
-    user: this.names[1], project: this.allProjectNames[6], email: 'mary@gmail.com', category: 'Sea Transit', startTime: 'Cape Town',
-     endTime: 'Mosselbay', date: '2018-12-16', phone: '+44851364917', rating: 4 },
-    {id: 3,avatar: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSePYH0l73i-OgzhmHIgztXFb6p2wZFfcAETx9-AL4Y3ndU-KLt',
-    user: this.names[2], project: this.allProjectNames[5], email: 'phil@gmail.com', category: 'Air Transit', startTime: 'Bloemfontein',
-    endTime: 'Harrismith', date: '2018-10-26', phone: '+11694235187', rating: 4.5 },
+    user: this.names[1], project: this.allProjectNames[6], email: 'mary@gmail.com', category: 'Sea Transit', startTime: '05:10',
+    startLoc: 'Cape Town', endTime: '21:40', endLoc: 'Mosselbay', date: '2018-12-16', phone: '+44851364917', rating: 4 },
+    {id: 3, avatar: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSePYH0l73i-OgzhmHIgztXFb6p2wZFfcAETx9-AL4Y3ndU-KLt',
+    user: this.names[2], project: this.allProjectNames[5], email: 'phil@gmail.com', category: 'Air Transit', startTime: '10:15',
+    startLoc: 'Bloemfontein', endTime: '17:45', endLoc: 'Harrismith', date: '2018-10-26', phone: '+11694235187', rating: 4.5 },
     {id: 4, avatar: 'https://www.activehealthclinic.ca/storage/app/media/cartoon_avatar-blonde-female.png',
-    user: this.names[3], project: this.allProjectNames[4], email: 'karen@gmail.com', category: 'Rail Transit', startTime: 'Kimberley', 
-    endTime: 'Upington', date: '2018-09-14', phone: '+37810549376', rating: 3 },
+    user: this.names[3], project: this.allProjectNames[4], email: 'karen@gmail.com', category: 'Rail Transit', startTime: '10:55',
+    startLoc: 'Kimberley', endTime: '19:25', endLoc: 'Upington', date: '2018-09-14', phone: '+37810549376', rating: 3 },
     {id: 5, avatar: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSePYH0l73i-OgzhmHIgztXFb6p2wZFfcAETx9-AL4Y3ndU-KLt',
-    user: this.names[4], project: this.allProjectNames[3], email: 'si@gmail.com', category: 'Road Transit', startTime: 'Johannesburg',
-    endTime: 'Pretoria', date: '2018-11-14', phone: '+27864253815', rating: 4 },
+    user: this.names[4], project: this.allProjectNames[3], email: 'si@gmail.com', category: 'Road Transit', startTime: '09:15',
+    startLoc: 'Johannesburg', endTime: '14:45', endLoc: 'Pretoria', date: '2018-11-14', phone: '+27864253815', rating: 4 },
     {id: 6, avatar: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSePYH0l73i-OgzhmHIgztXFb6p2wZFfcAETx9-AL4Y3ndU-KLt',
-    user: this.names[5], project: this.allProjectNames[2], email: 'tim@gmail.com', category: 'Sea Transit', startTime: 'Cape Town',
-     endTime: 'Mosselbay', date: '2018-12-16', phone: '+44851364917', rating: 3 },
+    user: this.names[5], project: this.allProjectNames[2], email: 'tim@gmail.com', category: 'Sea Transit', startTime: '07:50',
+    startLoc: 'Cape Town', endTime: '15:25', endLoc: 'Mosselbay', date: '2018-12-16', phone: '+44851364917', rating: 3 },
     {id: 7,avatar: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSePYH0l73i-OgzhmHIgztXFb6p2wZFfcAETx9-AL4Y3ndU-KLt',
-    user: this.names[6], project: this.allProjectNames[1], email: 'rohit@gmail.com', category: 'Air Transit', startTime: 'Bloemfontein',
-    endTime: 'Harrismith', date: '2018-10-26', phone: '+11694235187', rating: 3.5 },
+    user: this.names[6], project: this.allProjectNames[1], email: 'rohit@gmail.com', category: 'Air Transit', startTime: '05:35',
+    startLoc: 'Bloemfontein', endTime: '17:45', endLoc: 'Harrismith', date: '2018-10-26', phone: '+11694235187', rating: 3.5 },
     {id: 8, avatar: 'https://www.activehealthclinic.ca/storage/app/media/cartoon_avatar-blonde-female.png',
-    user: this.names[7], project: this.allProjectNames[0], email: 'jenny@gmail.com', category: 'Rail Transit', startTime: 'Kimberley', 
-    endTime: 'Upington', date: '2018-10-14', phone: '+35781049376', rating: 4 },
+    user: this.names[7], project: this.allProjectNames[0], email: 'jenny@gmail.com', category: 'Rail Transit', startTime: '09:30',
+    startLoc: 'Kimberley', endTime: '18:00', endLoc: 'Upington', date: '2018-10-14', phone: '+35781049376', rating: 4 },
 
   ];
     allProjects = this.allProjectNames.map((proj) => {
@@ -65,12 +68,12 @@ export class AlltimesComponent implements OnInit {
   contextMenu: MenuItem[];
 
   recordCount: number;
-  
-  constructor() {
+
+  constructor(private router: Router) {
     // for (let x = 0; x < 5; x++) {
     //   this.allTimesheetData = this.allTimesheetData.concat(this.allTimesheetData);
     // }
-    
+
     this.recordCount = this.allTimesheetData.length;
     this.configureDatabase();
     this.populateDatabase();
@@ -103,8 +106,10 @@ export class AlltimesComponent implements OnInit {
     this.user = this.allTimesheetData[id].user;
     this.project = this.allTimesheetData[id].project;
     this.category = this.allTimesheetData[id].category;
-    this.startDate = this.allTimesheetData[id].startTime;
-    this.endDate = this.allTimesheetData[id].endTime;
+    this.startTime = this.allTimesheetData[id].startTime;
+    this.endTime = this.allTimesheetData[id].endTime;
+    this.startDate = this.allTimesheetData[id].startLoc;
+    this.endDate = this.allTimesheetData[id].endLoc;
     this.depDate = this.allTimesheetData[id].date;
     this.email = this.allTimesheetData[id].email;
     this.phone = this.allTimesheetData[id].phone;
@@ -117,7 +122,7 @@ export class AlltimesComponent implements OnInit {
     var allProjectNames = ['Cargo Space', 'Passenger Space', 'Storage Space', 'Mixed Space'];
     var allCategories = ['Road Transit', 'Air Transit', 'Sea Transit', 'Rail Transit'];
     var startLocations = ['Pretoria', 'Bloemfontein', 'Johannesburg', 'Durban', 'Cape Town', 'Kimberley', 'Upington', 'Harrismith', 'East London', 'Port Elizabeth', 'Pierter Maritzburg', 'Rustenburg', 'Mosselbay', 'George', 'Knysna', 'Pletenburg Bay', 'Wellington'];
- 
+
       var endLocations = ['Wellington', 'Pletenburg Bay', 'Knysna','George','Mosselbay','Pierter Maritzburg','Rustenburg','Port Elizabeth','East London','Harrismith', 'Upington','Kimberley','Cape Town','Durban','Johannesburg','Bloemfontein', 'Pretoria'];
     let newUser = {
       id: id,
@@ -128,12 +133,12 @@ export class AlltimesComponent implements OnInit {
       endTime: endLocations[id % endLocations.length],
       date: Math.round(Math.random() * 100000)
     };
-    
+
     return newUser;
 
   }
 
- 
+
 
   getRecordCount(): Dexie.Promise<number> {
     return this.db.table("timesheet").count();
@@ -238,7 +243,9 @@ export class AlltimesComponent implements OnInit {
   onRowSelect(rowInfo) {
     //console.log(JSON.stringify(rowInfo.data)); // or this.selectedRow
   }
- 
+ book() {
+   this.router.navigate(['/bookings']);
+ }
 
 
 
