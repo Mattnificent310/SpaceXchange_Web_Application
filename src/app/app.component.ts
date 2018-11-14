@@ -119,7 +119,7 @@ export class AppComponent implements OnInit, AfterViewInit {
       const selected = jQuery(event.originalEvent.target).closest('a');
       selected.addClass('menu-selected');
     };
-if (sessionStorage.getItem('loggedIn') == 'Supplier') {
+if (sessionStorage.getItem('loggedIn') == 'Buyer') {
     this.menuItems = [
       { label: 'Dashboard', icon: 'fa-home', routerLink: ['/dashboard'], command: (event) => handleSelected(event) },
       { label: 'Marketplace', icon: 'fa-tag',
@@ -136,7 +136,7 @@ if (sessionStorage.getItem('loggedIn') == 'Supplier') {
       { label: 'Contact Us', icon: 'fa-mobile', routerLink: ['/dashboard'], command: (event) => handleSelected(event) }
     ];
   }
-  if (sessionStorage.getItem('loggedIn') == 'Buyer') {
+  if (sessionStorage.getItem('loggedIn') == 'Supplier') {
     this.menuItems = [
       { label: 'Dashboard', icon: 'fa-home', routerLink: ['/dashboard'], command: (event) => handleSelected(event) },
       { label: 'My Listings', icon: 'fa-tag',

@@ -31,6 +31,7 @@ export class AlltimesComponent implements OnInit {
   allProjectNames = ['Recent', 'On Demand', 'Highest Ratings', 'Cargo Space', 'Passenger Space', 'Storage Space', 'Mixed Space'];
   phone: String;
   rating: number;
+  messages: Message[];
   allTimesheetData = [
 
     {id: 1, avatar: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSePYH0l73i-OgzhmHIgztXFb6p2wZFfcAETx9-AL4Y3ndU-KLt',
@@ -115,6 +116,10 @@ export class AlltimesComponent implements OnInit {
     this.phone = this.allTimesheetData[id].phone;
     this.rating = this.allTimesheetData[id].rating;
     this.viewDetail = true;
+    this.messages = [];
+   this.messages.pop();
+  this.messages.push({ severity: 'info', summary: 'Ready to book', detail: `Your new details have been saved.` });
+
   }
   generateRandomUser(id: number) {
 

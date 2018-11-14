@@ -182,7 +182,7 @@ images: any[];
  saveChanges() {
    this.messages = [];
    this.messages.pop();
-  this.messages.push({ severity: "success", summary: "Saved Changes", detail: `Your new details have been saved.` });
+  this.messages.push({ severity: 'success', summary: 'Saved Changes', detail: `Your new details have been saved.` });
 
  }
  discardChanges() {
