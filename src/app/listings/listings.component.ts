@@ -1,4 +1,4 @@
-import { SamplePeopleData } from './../../../../SpaceXchange_Web_Application-host/src/app/timesheet/sample.people.data';
+import { SamplePeopleData } from './sample.people.data';
 import { Router } from '@angular/router';
 import { Component, OnInit } from "@angular/core";
 
