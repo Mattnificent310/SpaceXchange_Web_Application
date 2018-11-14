@@ -18,49 +18,41 @@
 
     <ng-template let-cars pTemplate="item" let-i="index" >
         <div class="ui-g-12">
-           <p-carousel headerText="{{cars}}" [value]="allTimesheetData">
+           <p-carousel headerText="{{cars}}" [value]="allTimesheetData" [numVisible]="4">
         <ng-template let-car pTemplate="item">
             <p-panel header="{{car.category}} By {{car.user}}" class="ui-g-12 ui-md-12 text-center">
 
           <div class="ui-grid ui-grid-responsive">
                 <div class="ui-grid-row">
-                    <div class="ui-g-10 ui-md-11">
+                    <div class="ui-g-12 ui-md-12">
                       <img id="center" [src]="car.avatar" [pTooltip]="car.email" tooltipPosition="bottom"/>
                     </div>
                  </div>
 
                 <div class="ui-grid-row">
-                    <div class="ui-grid-col-5 text-center"><pre><b>Departure</b></pre></div>
-                    <div class="ui-grid-col-6 text-center"><pre>{{car.startLoc}} @ {{car.startTime}}</pre></div>
+                    <div class="ui-grid-col-5 text-center"><pre><b>From</b></pre></div>
+                    <div class="ui-grid-col-10 text-center"><pre>{{car.startLoc}} @ {{car.startTime}}</pre></div>
                 </div>
                 <div class="ui-grid-row">
-                    <div class="ui-grid-col-5 text-center"><pre><b>Arrival</b></pre></div>
-                    <div class="ui-grid-col-6 text-center"><pre>{{car.endLoc}} @ {{car.endTime}}</pre></div>
+                    <div class="ui-grid-col-5 text-center"><pre><b>To</b></pre></div>
+                    <div class="ui-grid-col-10 text-center"><pre>{{car.endLoc}} @ {{car.endTime}}</pre></div>
                 </div>
                 <div class="ui-grid-row">
                     <div class="ui-grid-col-5 text-center"><pre><b>Date</b></pre></div>
-                    <div class="ui-grid-col-6 text-center"><pre>{{car.date}}</pre></div>
+                    <div class="ui-grid-col-10 text-center"><pre>{{car.date}}</pre></div>
                 </div>
                 <div class="ui-grid-row">
                     <div class="ui-grid-col-5 text-center"><pre><b>Rating</b></pre></div>
-                    <div class="ui-grid-col-6"><p-rating [ngModel]="car.rating" readonly="true" stars="5" [cancel]="false"></p-rating></div>
+                    <div class="ui-grid-col-10"><p-rating [ngModel]="car.rating" readonly="true" stars="5" [cancel]="false"></p-rating></div>
                 </div>
-                <div class="ui-grid-row text-center">
-                    <div class="ui-grid-col-12" >
-                        <h1> </h1>
-
-                        <div class="ui-grid-row">
-                            <div class="ui-grid-col-12">
-                            <button class="ui-g-6 ui-md-6" (click)="book()" icon="fa fa-shopping-cart" label="Book" pButton></button>
-                            <button class="ui-g-5 ui-md-5" (click)="viewDetails(car.id - 1)" icon="fa fa-street-view" label="View" pButton></button>
+                <div class="ui-grid-row">
+                    <div class="ui-grid-col-10">
+                            <button class="ui-g-12 ui-md-12" (click)="book()" icon="fa fa-cart-plus" label="Book" pButton></button>
+                    </div>
+                    <div class="ui-grid-col-10"></div>
+                            <button class="ui-g-12 ui-md-12" (click)="viewDetails(car.id - 1)" icon="fa fa-street-view" label="View" pButton></button>
                           </div>
-                          </div>  </div>
-
-                </div>
-                <div class="grid-row"><h1></h1></div>
-
-
-            </div>
+                          </div>
             </p-panel>
         </ng-template>
     </p-carousel>
