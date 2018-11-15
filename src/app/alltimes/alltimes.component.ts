@@ -1,6 +1,6 @@
 import { Router } from '@angular/router';
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { MenuItem, DataTable, LazyLoadEvent } from "primeng/primeng";
+import { MenuItem, DataTable, LazyLoadEvent, Message } from "primeng/primeng";
 import Dexie from 'dexie';
 import {Observable} from 'rxjs/Observable';
 
