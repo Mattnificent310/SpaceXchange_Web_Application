@@ -16,7 +16,7 @@ p-carousel>>>.ui-carousel-header {
   font-size: 20px;
 }
 #btnBook {
-  background: linear-gradient(to top, rgba(0, 129, 28, 0.644) 0%,rgba(79, 0, 116, 0.699) 100%), url(https://orig00.deviantart.net/02ed/f/2013/018/d/0/hex_green_by_sh4rk2010-d5rwvc4.jpg) repeat 0 0;
+  background: linear-gradient(to top, rgba(0, 197, 59, 0.74) 0%,rgba(0, 129, 50, 0.699) 100%), url(https://orig00.deviantart.net/02ed/f/2013/018/d/0/hex_green_by_sh4rk2010-d5rwvc4.jpg) repeat 0 0;
   background-size: 90% 100%;
   background-attachment: fixed;
   color: white;
@@ -25,7 +25,7 @@ p-carousel>>>.ui-carousel-header {
 }
 
 #btnView {
-  background: linear-gradient(to top, rgba(1, 108, 179, 0.726) 0%,rgba(150, 1, 1, 0.74) 100%), url(http://verdewall.com/wp-content/uploads/2016/08/Wallpapers-and-Backgrounds-3EE.jpg) repeat 0 0;
+  background: linear-gradient(to top, rgba(0, 127, 212, 0.726) 0%,rgba(0, 65, 119, 0.74) 100%), url(http://verdewall.com/wp-content/uploads/2016/08/Wallpapers-and-Backgrounds-3EE.jpg) repeat 0 0;
   background-size: 90% 100%;
   background-attachment: fixed;
   color: white;
@@ -33,7 +33,7 @@ p-carousel>>>.ui-carousel-header {
 
 }
 p-panel>>>.ui-panel-titlebar {
-  background: linear-gradient(to top, rgba(0, 78, 194, 0.616) 0%,rgba(0, 89, 255, 0.582) 100%), url(http://verdewall.com/wp-content/uploads/2017/07/Background-Tumblr-5H2.jpg) repeat 0 0;
+  background: linear-gradient(to top, rgba(0, 78, 167, 0.616) 0%,rgba(0, 140, 255, 0.651) 100%), url(http://verdewall.com/wp-content/uploads/2017/07/Background-Tumblr-5H2.jpg) repeat 0 0;
   background-size: 90% 100%;
   background-attachment: fixed;
   color: white;
