@@ -32,28 +32,29 @@ export class AlltimesComponent implements OnInit {
   phone: String;
   rating: number;
   messages: Message[];
+  suppliers: any[] = [];
   allTimesheetData = [
 
     {id: 1, avatar: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSePYH0l73i-OgzhmHIgztXFb6p2wZFfcAETx9-AL4Y3ndU-KLt',
-    user: this.names[0], project: this.allProjectNames[7], email: 'joe@gmail.com', category: 'Road Transit', startTime: '06:55',
-    startLoc: 'Johannesburg', endTime: '07:35', endLoc: 'Pretoria', date: '2018-11-14', phone: '+27864253815', rating: 3 },
+    user: this.names[0], project: this.allProjectNames[2], email: 'joe@gmail.com', category: 'Road Transit', startTime: '06:55',
+    startLoc: 'Johannesburg', endTime: '07:35', endLoc: 'Pretoria', date: '2018-11-14', phone: '+27864253815', rating: 5 },
     {id: 2, avatar: 'https://www.activehealthclinic.ca/storage/app/media/cartoon_avatar-blonde-female.png',
-    user: this.names[1], project: this.allProjectNames[6], email: 'mary@gmail.com', category: 'Sea Transit', startTime: '17:10',
-    startLoc: 'Cape Town', endTime: '21:40', endLoc: 'Mosselbay', date: '2018-12-16', phone: '+44851364917', rating: 4 },
+    user: this.names[1], project: this.allProjectNames[2], email: 'mary@gmail.com', category: 'Sea Transit', startTime: '17:10',
+    startLoc: 'Cape Town', endTime: '21:40', endLoc: 'Mosselbay', date: '2018-12-16', phone: '+44851364917', rating: 5 },
     {id: 3, avatar: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSePYH0l73i-OgzhmHIgztXFb6p2wZFfcAETx9-AL4Y3ndU-KLt',
-    user: this.names[2], project: this.allProjectNames[5], email: 'phil@gmail.com', category: 'Air Transit', startTime: '14:15',
+    user: this.names[2], project: this.allProjectNames[1], email: 'phil@gmail.com', category: 'Air Transit', startTime: '14:15',
     startLoc: 'Bloemfontein', endTime: '17:45', endLoc: 'Harrismith', date: '2018-10-26', phone: '+11694235187', rating: 4.5 },
     {id: 4, avatar: 'https://www.activehealthclinic.ca/storage/app/media/cartoon_avatar-blonde-female.png',
-    user: this.names[3], project: this.allProjectNames[4], email: 'karen@gmail.com', category: 'Rail Transit', startTime: '14:55',
+    user: this.names[3], project: this.allProjectNames[1], email: 'karen@gmail.com', category: 'Rail Transit', startTime: '14:55',
     startLoc: 'Kimberley', endTime: '19:25', endLoc: 'Upington', date: '2018-09-14', phone: '+37810549376', rating: 3 },
     {id: 5, avatar: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSePYH0l73i-OgzhmHIgztXFb6p2wZFfcAETx9-AL4Y3ndU-KLt',
-    user: this.names[4], project: this.allProjectNames[3], email: 'si@gmail.com', category: 'Road Transit', startTime: '13:15',
+    user: this.names[4], project: this.allProjectNames[1], email: 'si@gmail.com', category: 'Road Transit', startTime: '13:15',
     startLoc: 'Johannesburg', endTime: '14:45', endLoc: 'Pretoria', date: '2018-11-14', phone: '+27864253815', rating: 4 },
     {id: 6, avatar: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSePYH0l73i-OgzhmHIgztXFb6p2wZFfcAETx9-AL4Y3ndU-KLt',
-    user: this.names[5], project: this.allProjectNames[2], email: 'tim@gmail.com', category: 'Sea Transit', startTime: '11:50',
+    user: this.names[5], project: this.allProjectNames[0], email: 'tim@gmail.com', category: 'Sea Transit', startTime: '11:50',
     startLoc: 'Cape Town', endTime: '15:25', endLoc: 'Mosselbay', date: '2018-12-16', phone: '+44851364917', rating: 3 },
     {id: 7,avatar: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSePYH0l73i-OgzhmHIgztXFb6p2wZFfcAETx9-AL4Y3ndU-KLt',
-    user: this.names[6], project: this.allProjectNames[1], email: 'rohit@gmail.com', category: 'Air Transit', startTime: '14:35',
+    user: this.names[6], project: this.allProjectNames[0], email: 'rohit@gmail.com', category: 'Air Transit', startTime: '14:35',
     startLoc: 'Bloemfontein', endTime: '17:45', endLoc: 'Harrismith', date: '2018-10-26', phone: '+11694235187', rating: 3.5 },
     {id: 8, avatar: 'https://www.activehealthclinic.ca/storage/app/media/cartoon_avatar-blonde-female.png',
     user: this.names[7], project: this.allProjectNames[0], email: 'jenny@gmail.com', category: 'Rail Transit', startTime: '14:30',
@@ -76,32 +77,12 @@ export class AlltimesComponent implements OnInit {
     // }
 
     this.recordCount = this.allTimesheetData.length;
-    this.configureDatabase();
-    this.populateDatabase();
+
     this.viewDetail = false;
   }
 
-  private configureDatabase() {
 
-    this.db = new Dexie('AgileTimes');
 
-    // Define a schema
-    this.db.version(1).stores({
-      timesheet: 'id,user,project,category,startTime,endTime,date'
-    });
-
-  }
-
-   private populateDatabase() {
-
-    this.getRecordCount().then((count) => {
-      this.recordCount = count;
-      if (!count) {
-        this.resetDatabase();
-      }
-    });
-
-  }
   viewDetails(id: number) {
     this.avatar = this.allTimesheetData[id].avatar;
     this.user = this.allTimesheetData[id].user;
@@ -123,108 +104,66 @@ export class AlltimesComponent implements OnInit {
   }
   generateRandomUser(id: number) {
 
-    var names = ["Joe", "Mary", "Phil", "Karen", "Si", "Tim", "Rohit", "Jenny", "Kim", "Greg", "Danni"]
-    var allProjectNames = ['Cargo Space', 'Passenger Space', 'Storage Space', 'Mixed Space'];
-    var allCategories = ['Road Transit', 'Air Transit', 'Sea Transit', 'Rail Transit'];
-    var startLocations = ['Pretoria', 'Bloemfontein', 'Johannesburg', 'Durban', 'Cape Town', 'Kimberley', 'Upington', 'Harrismith', 'East London', 'Port Elizabeth', 'Pierter Maritzburg', 'Rustenburg', 'Mosselbay', 'George', 'Knysna', 'Pletenburg Bay', 'Wellington'];
+    const names = ['James', 'Mandy', 'Pete', 'Kate', 'Si', 'Tim', 'Rohit', 'Jenny', 'Kim', 'Greg', 'Danni']
+    const allProjectNames = ['Cargo Space', 'Passenger Space', 'Storage Space', 'Mixed Space'];
+    const allCategories = ['Road Transit', 'Air Transit', 'Sea Transit', 'Rail Transit'];
+    const startLocations = ['Pretoria', 'Bloemfontein', 'Johannesburg', 'Durban', 'Cape Town', 'Kimberley'
+    , 'Upington', 'Harrismith', 'East London', 'Port Elizabeth', 'Pierter Maritzburg', 'Rustenburg', 'Mosselbay'
+    , 'George', 'Knysna', 'Pletenburg Bay', 'Wellington'];
 
-      var endLocations = ['Wellington', 'Pletenburg Bay', 'Knysna','George','Mosselbay','Pierter Maritzburg','Rustenburg','Port Elizabeth','East London','Harrismith', 'Upington','Kimberley','Cape Town','Durban','Johannesburg','Bloemfontein', 'Pretoria'];
-    let newUser = {
+    const endLocations = ['Wellington', 'Pletenburg Bay', 'Knysna','George','Mosselbay','Pierter Maritzburg'
+    , 'Rustenburg','Port Elizabeth','East London','Harrismith', 'Upington','Kimberley','Cape Town','Durban'
+    , 'Johannesburg','Bloemfontein', 'Pretoria'];
+    const avatars = ['https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSePYH0l73i-OgzhmHIgztXFb6p2wZFfcAETx9-AL4Y3ndU-KLt',
+    'https://www.activehealthclinic.ca/storage/app/media/cartoon_avatar-blonde-female.png',
+    'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSePYH0l73i-OgzhmHIgztXFb6p2wZFfcAETx9-AL4Y3ndU-KLt',
+    'https://www.activehealthclinic.ca/storage/app/media/cartoon_avatar-blonde-female.png',
+    'https://www.activehealthclinic.ca/storage/app/media/cartoon_avatar-blonde-female.png',
+    'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSePYH0l73i-OgzhmHIgztXFb6p2wZFfcAETx9-AL4Y3ndU-KLt',
+    'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSePYH0l73i-OgzhmHIgztXFb6p2wZFfcAETx9-AL4Y3ndU-KLt',
+    'https://www.activehealthclinic.ca/storage/app/media/cartoon_avatar-blonde-female.png',
+    'https://www.activehealthclinic.ca/storage/app/media/cartoon_avatar-blonde-female.png',
+    'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSePYH0l73i-OgzhmHIgztXFb6p2wZFfcAETx9-AL4Y3ndU-KLt',
+    'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSePYH0l73i-OgzhmHIgztXFb6p2wZFfcAETx9-AL4Y3ndU-KLt'
+  ];
+    const emails = ['james@gmail.com', 'mandy@gmail.com', 'pete@gmail.com', 'kate@gmail.com', 'si@gmail.com', 'tim@gmail.com'
+    , 'rohit@gamil.com', 'jenny@gmail.com', 'kim@gmail.com', 'greg@gmail.com', 'danni@gmail.com'];
+    const phones = ['+35781049376', '+25581049854', '+35856049376', '+37581049376', '273580149367', '+55861149463'];
+    const startTimes = ['09:15', '07:45', '08:55', '10:20', '11:35', '13:15',
+     '09:40', '12:35', '10:30', '14:25', '07:45', '08:55', '11:35', '10:20', '15:25',
+     '09:15', '12:30', '07:45', '08:55', '10:20', '15:25', '11:35', '13:15',
+     '09:40', '12:35', '10:30', '14:25', '07:45', '08:55', '11:35'];
+    const dates = ['2018-11-14', '2018-12-18', '2018-11-25', '2018-12-19', '2018-12-20', '2018-11-10', '2018-12-22'];
+    const endTimes = ['12:30', '16:25', '18:40', '15:25',  '16:25', '18:40', '15:40', '19:25',
+   '16:25', '19:25', '20:35', '22:50', '21:25', '23:20', '20:15', '16:10', '22:15', '19:00', '21:15', '23:40'];
+    const newUser = {
       id: id,
+      avatar: avatars[id % avatars.length],
       user: names[id % names.length],
       project: allProjectNames[id % allProjectNames.length],
+      email: emails[id % emails.length],
       category: allCategories[id % allCategories.length],
-      startTime: startLocations[id % startLocations.length],
-      endTime: endLocations[id % endLocations.length],
-      date: Math.round(Math.random() * 100000)
+      startTime: startTimes[id % startTimes.length],
+      startLoc: startLocations[id % startLocations.length],
+      endTime: endTimes[id % endTimes.length],
+      endLoc: endLocations[id % endLocations.length],
+      date: dates[id % dates.length],
+      phone: phones[id % phones.length],
+      rating: id % 5
     };
 
-    return newUser;
+    this.allTimesheetData.push(newUser);
 
   }
-
-
-
-  getRecordCount(): Dexie.Promise<number> {
-    return this.db.table("timesheet").count();
-  }
-
-   resetDatabase() {
-
-    let that = this;
-
-    this.dt.loading = true;
-
-    this.db.table("timesheet").clear().then(() => {
-      console.log("Database Cleared");
-      Observable.range(0, MAX_EXAMPLE_RECORDS).do(
-        function (id) {
-          let randomUser = that.generateRandomUser(id);
-          that.db.table("timesheet").add(randomUser);
-          if (id % 100 == 0) {
-            that.getRecordCount().then((count) => {
-              that.recordCount = count;
-            })
-          }
-
-        },
-        function (err) {
-          console.log("Do Error: %s", err);
-        },
-        function () {
-          console.log("Do complete");
-          that.dt.loading = false;
-          that.dt.reset();
-        }).subscribe(() => {
-          console.log("Finished Reset database");
-          that.getRecordCount().then((count) => {
-            that.recordCount = count;
-          })
-        });
-    })
-  }
-
-  loadTimes(event: LazyLoadEvent) {
-
-    console.log(JSON.stringify(event));
-
-    let table = this.db.table("timesheet");
-
-    var query: any;
-
-    // Dexie doesn't support ordering AND filtering, so we branch here
-    // Alternative strategies here: https://github.com/dfahlander/Dexie.js/issues/297
-    if (event.filters && event.filters["project"]) {
-      query = table.where("project").equals(event.filters["project"]["value"]);
-    } else if (event.globalFilter) {
-      query = table.where("project").startsWithIgnoreCase(event.globalFilter)
-        .or("user").startsWithIgnoreCase(event.globalFilter)
-        .or("category").startsWithIgnoreCase(event.globalFilter);
-    } else {
-      query = table.orderBy(event.sortField);
-    }
-
-    query = query
-      .offset(event.first)
-      .limit(event.rows);
-
-    if (event.sortOrder == -1) {
-      query = query.reverse();
-    };
-
-    query.toArray((nextBlockOfTimes) => {
-      // console.log("Loaded times: %s", JSON.stringify(nextBlockOfTimes));
-      this.allTimesheetData = nextBlockOfTimes;
-    });
-  }
-
 
   ngOnInit() {
     this.contextMenu = [
       { label: 'Debug', icon: 'fa-bug', command: (event) => this.onDebug(this.selectedRows) },
       { label: 'Delete', icon: 'fa-close', command: (event) => this.onDelete(this.selectedRows) }
     ];
-
+    for (let x = 9; x < 50; x++) {
+         this.generateRandomUser(x);
+       }
   }
 
   onDebug(selectedRows: any) {
@@ -236,23 +175,16 @@ export class AlltimesComponent implements OnInit {
       return !selectedRows.includes(row);
     });
   }
-
-
-
-  onEditComplete(editInfo) {
-    let fieldChanged = editInfo.column.field;
-    let newRowValues = editInfo.data;
-    alert(`You edited ${fieldChanged} to ${newRowValues[fieldChanged]}`);
-  }
-
-  onRowSelect(rowInfo) {
-    //console.log(JSON.stringify(rowInfo.data)); // or this.selectedRow
+  filterData(item: string) {
+    const items: any[] = [];
+    this.allTimesheetData.forEach(element => {
+      if (item === element.project) {
+        items.push(element);
+      }
+    });
+    return items;
   }
  book() {
    this.router.navigate(['/bookings']);
  }
-
-
-
-
 }

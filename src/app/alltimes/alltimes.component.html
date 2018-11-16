@@ -18,7 +18,7 @@
 
       <ng-template let-cars pTemplate="item" let-i="index">
         <div class="ui-g-12">
-          <p-carousel [responsive]="true" headerText="{{cars}}" [value]="allTimesheetData" [numVisible]="4">
+          <p-carousel [responsive]="true" headerText="{{cars}}" [value]="filterData(cars)" [numVisible]="4">
             <ng-template let-car pTemplate="item">
               <p-panel header="{{car.category}} By {{car.user}}" class="ui-g-12 ui-md-12 text-center">
 
@@ -28,7 +28,6 @@
                       <img id="center" [src]="car.avatar" [pTooltip]="car.email" tooltipPosition="bottom" />
                     </div>
                   </div>
-
                   <div class="ui-grid-row">
                     <div class="ui-grid-col-5 text-center">
                       <pre><b>From</b></pre>
@@ -74,7 +73,6 @@
               </p-panel>
             </ng-template>
           </p-carousel>
-
         </div>
       </ng-template>
     </p-dataScroller>
