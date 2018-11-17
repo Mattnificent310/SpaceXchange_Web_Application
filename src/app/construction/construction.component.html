@@ -1,110 +1,114 @@
-<br/>
+<br />
 <div style="margin-left: 10px;">
-<p-panel>
-  <p-header>Create New Listing</p-header>
-  <button (click)="goBack()" pButton icon="fa fa-chevron-left"></button>
+  <p-panel>
+    <p-header>Create New Listing</p-header>
+    <button (click)="goBack()" pButton icon="fa fa-chevron-left"></button>
 
 
-  <div [ngSwitch]="dialogPageIndex" class="dialogBody">
-    <p-steps [model]="dialogPages" [(activeIndex)]="dialogPageIndex" (activeIndexChange)="index = 1 + dialogPageIndex" [readonly]="false">
+    <div [ngSwitch]="dialogPageIndex" class="dialogBody">
+      <p-steps [model]="dialogPages" [(activeIndex)]="dialogPageIndex" (activeIndexChange)="index = 1 + dialogPageIndex"
+        [readonly]="false">
 
-    </p-steps>
+      </p-steps>
 
-    <div *ngSwitchCase="PageNames.TimePage">
+      <div *ngSwitchCase="PageNames.TimePage">
 
-      <p-schedule [events]="events" [header]="headerConfig" styleClass="calendar" defaultView="agendaWeek"
-                  [editable]="true" [nowIndicator]="true"
-                  [allDaySlot]="false">
+        <p-schedule [events]="events" [header]="headerConfig" styleClass="calendar" defaultView="agendaWeek" [editable]="true"
+          [nowIndicator]="true" [allDaySlot]="false">
 
-      </p-schedule>
+        </p-schedule>
 
-    </div>
-    <div *ngSwitchCase="PageNames.ProjectPage">
+      </div>
+      <div *ngSwitchCase="PageNames.ProjectPage">
         <button style="float: right;" icon="fa fa-plus" pButton></button>
 
-        <p-listbox [options]="transTypes" [style]="{'width': '350px'}" [checkbox]="false" [(ngModel)]="selectedTrans" multiple="single" filter="filter">
-            <p-header>
-              <i class="fa fa-codepen"></i>
-              Type of Space
-            </p-header>
-            <ng-template let-items pTemplate="item">
-                <div class="ui-helper-clearfix">
-                  <img src="../../assets/img/{{items.value}}.jpg" style="display:inline-block;margin:5px 0 0 5px" height="40" width="48">
-                  <span style="margin-left: 25%;">{{items.label}}</span>
-                </div>
-              </ng-template>
-          </p-listbox>
-    </div>
-    <div *ngSwitchCase="PageNames.OriginPage">
+        <p-listbox [options]="transTypes" [style]="{'width': '350px'}" [checkbox]="false" [(ngModel)]="selectedTrans"
+          multiple="single" filter="filter">
+          <p-header>
+            <i class="fa fa-codepen"></i>
+            Type of Space
+          </p-header>
+          <ng-template let-items pTemplate="item">
+            <div class="ui-helper-clearfix">
+              <img src="../../assets/img/{{items.value}}.jpg" style="display:inline-block;margin:5px 0 0 5px" height="40"
+                width="48">
+              <span style="margin-left: 25%;">{{items.label}}</span>
+            </div>
+          </ng-template>
+        </p-listbox>
+      </div>
+      <div *ngSwitchCase="PageNames.OriginPage">
 
-        <p-gmap [options]="options" (onOverlayDrag)="handleDrag($event);" (onMapClick)="handleMapClick($event)" (onOverlayClick)="handleOverlayClick($event)" (onMapReady)="setMap($event)" [overlays]="overlays" [style]="{'width':'100%','height':'320px'}" ></p-gmap>
+        <p-gmap [options]="options" (onOverlayDrag)="handleDrag($event);" (onMapClick)="handleMapClick($event)"
+          (onOverlayClick)="handleOverlayClick($event)" (onMapReady)="setMap($event)" [overlays]="overlays" [style]="{'width':'100%','height':'320px'}"></p-gmap>
 
-    </div>
-    <div *ngSwitchCase="PageNames.DestinationPage">
+      </div>
+      <div *ngSwitchCase="PageNames.DestinationPage">
 
-        <p-gmap [options]="options" (onOverlayDrag)="handleDrag($event);" (onMapClick)="handleMapClick($event)" (onOverlayClick)="handleOverlayClick($event)" (onMapReady)="setMap($event)" [overlays]="overlays" [style]="{'width':'100%','height':'320px'}" ></p-gmap>
+        <p-gmap [options]="options" (onOverlayDrag)="handleDrag($event);" (onMapClick)="handleMapClick($event)"
+          (onOverlayClick)="handleOverlayClick($event)" (onMapReady)="setMap($event)" [overlays]="overlays" [style]="{'width':'100%','height':'320px'}"></p-gmap>
 
-    </div>
-    <div *ngSwitchCase="PageNames.PeoplePage">
+      </div>
+      <div *ngSwitchCase="PageNames.PeoplePage">
         <div style="margin-bottom: 1em">
-            <button type="button" pButton icon="fa fa-chevron-up" (click)="openPrev()" style="margin-right:.25em; padding: 0 10px; border-radius: 50%;"></button>
-            <button type="button" pButton icon="fa fa-chevron-down" (click)="openNext()" style="border-radius: 50%; padding: 0 10px;"></button>
+          <button type="button" pButton icon="fa fa-chevron-up" (click)="openPrev()" style="margin-right:.25em; padding: 0 10px; border-radius: 50%;"></button>
+          <button type="button" pButton icon="fa fa-chevron-down" (click)="openNext()" style="border-radius: 50%; padding: 0 10px;"></button>
         </div>
 
-        <p-accordion (onOpen)="clickTab($event)" (onClose)="clickTab($event)" [activeIndex]="accIndex" [expandIcon]="'fa fa-chevron-right'" [collapseIcon]="'fa fa-chevron-down'">
-            <p-accordionTab>
-                <p-header> <span style="margin-left: 10px; font-size: 20px;">Basic Info</span></p-header>
+        <p-accordion (onOpen)="clickTab($event)" (onClose)="clickTab($event)" [activeIndex]="accIndex" [expandIcon]="'fa fa-chevron-right'"
+          [collapseIcon]="'fa fa-chevron-down'">
+          <p-accordionTab>
+            <p-header> <span style="margin-left: 10px; font-size: 20px;">Basic Info</span></p-header>
 
-                </p-accordionTab>
-            <p-accordionTab>
-                <p-header> <span style="margin-left: 10px; font-size: 20px;">Capacity Info</span></p-header>
+          </p-accordionTab>
+          <p-accordionTab>
+            <p-header> <span style="margin-left: 10px; font-size: 20px;">Capacity Info</span></p-header>
 
-                </p-accordionTab>
-            <p-accordionTab>
-                <p-header> <span style="margin-left: 10px; font-size: 20px;">Indemity Info</span></p-header>
+          </p-accordionTab>
+          <p-accordionTab>
+            <p-header> <span style="margin-left: 10px; font-size: 20px;">Indemity Info</span></p-header>
 
-                </p-accordionTab>
-            <p-accordionTab>
-                <p-header> <span style="margin-left: 10px; font-size: 20px;">Tracking Info </span></p-header>
+          </p-accordionTab>
+          <p-accordionTab>
+            <p-header> <span style="margin-left: 10px; font-size: 20px;">Tracking Info </span></p-header>
 
-                </p-accordionTab>
-                <p-accordionTab>
-                    <p-header> <span style="margin-left: 10px; font-size: 20px;">Details </span></p-header>
-                    <p-fieldset>
-                        <p-editor id="description"  class="ui-g-12" [style]="{'height':'200px'}"></p-editor>
+          </p-accordionTab>
+          <p-accordionTab>
+            <p-header> <span style="margin-left: 10px; font-size: 20px;">Details </span></p-header>
+            <p-fieldset>
+              <p-editor id="description" class="ui-g-12" [style]="{'height':'200px'}"></p-editor>
 
-                            <div class="ui-g-12">
-                                <!-- <at-fielderrors [form]="projectForm" field="description" nicename="Description"> </at-fielderrors> -->
-                            </div>
-                        </p-fieldset>
-                    </p-accordionTab>
+              <div class="ui-g-12">
+                <!-- <at-fielderrors [form]="projectForm" field="description" nicename="Description"> </at-fielderrors> -->
+              </div>
+            </p-fieldset>
+          </p-accordionTab>
         </p-accordion>
 
 
+      </div>
     </div>
-  </div>
 
 
-  <p-footer>
-    <button pButton *ngIf="index<5" label="Next" icon="fa-step-forward" (click)="dialogPageIndex=nextStep()"></button>
-    <button pButton *ngIf="index===5" label="Save" icon="fa-check" (click)="saveNewEntry();dialogPageIndex = 0"></button>
-    <button pButton label="Cancel" icon="fa-times" (click)="cancelDialog()" class="ui-button-secondary"></button>
-  </p-footer>
+    <p-footer>
+      <button pButton *ngIf="index<5" label="Next" icon="fa-step-forward" (click)="dialogPageIndex=nextStep()"></button>
+      <button pButton *ngIf="index===5" label="Save" icon="fa-check" (click)="saveNewEntry();dialogPageIndex = 0"></button>
+      <button pButton label="Cancel" icon="fa-times" (click)="cancelDialog()" class="ui-button-secondary"></button>
+    </p-footer>
 
 
 
-<p-confirmDialog icon="fa fa-question-circle" width="425" [visible]="false" #confirmDialog>
+    <p-confirmDialog icon="fa fa-question-circle" width="425" [visible]="false" #confirmDialog>
 
-  <p-footer>
-    <button type="button" pButton icon="fa-close" label="No, go back" (click)="confirmDialog.reject()"></button>
-    <button type="button" pButton icon="fa-check" label="Yes, lose changes"
-            (click)="confirmDialog.accept() && confirmDialog.hide()"></button>
-  </p-footer>
+      <p-footer>
+        <button type="button" pButton icon="fa-close" label="No, go back" (click)="confirmDialog.reject()"></button>
+        <button type="button" pButton icon="fa-check" label="Yes, lose changes" (click)="confirmDialog.accept() && confirmDialog.hide()"></button>
+      </p-footer>
 
 
-</p-confirmDialog>
+    </p-confirmDialog>
 
-<p-growl [value]="messages"></p-growl>
+    <p-growl [value]="messages"></p-growl>
 
-</p-panel>
+  </p-panel>
 </div>

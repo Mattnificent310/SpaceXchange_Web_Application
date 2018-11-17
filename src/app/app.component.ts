@@ -9,7 +9,10 @@ import { HttpClient } from '@angular/common/http';
 import { Buyer } from './buyers/buyer.model';
 
 declare var jQuery: any;
-
+export enum PageNames {
+  Details,
+  Password
+}
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -74,6 +77,13 @@ export class AppComponent implements OnInit, AfterViewInit {
 
   blockSpecial: RegExp = /^[a-z\d\-_\s]+$/i;
 
+  twoPhase: MenuItem[];
+
+  index: number;
+
+  accIndex: number;
+
+  PageNames = PageNames;
 
   @ViewChild('bigMenu') bigMenu: Menu;
   @ViewChild('smallMenu') smallMenu: Menu;
@@ -91,6 +101,14 @@ export class AppComponent implements OnInit, AfterViewInit {
       password: ['', [Validators.required, Validators.minLength(10)]],
 
     });
+  this.twoPhase = [{
+label: 'Details'
+  },
+{
+  label: 'Password'
+}];
+this.index = 1;
+this.accIndex = this.PageNames.Details;
     this.registerForm = this.fb2.group({
       regName: ['', [Validators.required, Validators.minLength(3)]],
       regSurname: ['', [Validators.required, Validators.minLength(3)]],
@@ -119,7 +137,7 @@ export class AppComponent implements OnInit, AfterViewInit {
       const selected = jQuery(event.originalEvent.target).closest('a');
       selected.addClass('menu-selected');
     };
-if (sessionStorage.getItem('loggedIn') == 'Buyer') {
+if (sessionStorage.getItem('loggedIn') === 'Buyer') {
     this.menuItems = [
       { label: 'Dashboard', icon: 'fa-home', routerLink: ['/dashboard'], command: (event) => handleSelected(event) },
       { label: 'Marketplace', icon: 'fa-tag',
@@ -136,7 +154,7 @@ if (sessionStorage.getItem('loggedIn') == 'Buyer') {
       { label: 'Contact Us', icon: 'fa-mobile', routerLink: ['/dashboard'], command: (event) => handleSelected(event) }
     ];
   }
-  if (sessionStorage.getItem('loggedIn') == 'Supplier') {
+  if (sessionStorage.getItem('loggedIn') === 'Supplier') {
     this.menuItems = [
       { label: 'Dashboard', icon: 'fa-home', routerLink: ['/dashboard'], command: (event) => handleSelected(event) },
       { label: 'My Listings', icon: 'fa-tag',
@@ -380,21 +398,15 @@ if (sessionStorage.getItem('loggedIn') == 'Buyer') {
   }
   hasLoginErrors() {
 
-    if(!this.loginForm.valid)
+    if (!this.loginForm.valid)
     {
-    if(!this.loginForm.controls['names'].value)
-    {
-      if(!this.loginForm.controls['emailAddress'].value && this.loginForm.controls['phoneNumber'].value && this.loginForm.controls['password'].value)
-      {
+      if (!this.loginForm.controls['phoneNumber'].value && this.loginForm.controls['emailAddress'].value) {
         return false;
       }
-      if(!this.loginForm.controls['phoneNumber'].value && this.loginForm.controls['emailAddress'].value && this.loginForm.controls['password'].value)
-      {
+      if (this.loginForm.controls['phoneNumber'].value && !this.loginForm.controls['emailAddress'].value) {
         return false;
       }
       return true;
-    }
-    return false;
     }
     return true;
   }
@@ -444,5 +456,8 @@ if (sessionStorage.getItem('loggedIn') == 'Buyer') {
   }
   public hideMenu() {
     this.landed = !this.landed;
+  }
+  nextStep() {
+    return this.index++;
   }
 }
