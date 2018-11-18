@@ -73,17 +73,16 @@
 </p-overlayPanel>
 <p-growl [baseZIndex]="99999999999999999999" [value]="messages" [life]="5000"></p-growl>
 
-<p-dialog [(visible)]="display" [modal]="true" [responsive]="true" [width]="700" [minWidth]="350" [baseZIndex]="999999999">
+<p-dialog [ngSwitch]="index" [(visible)]="display" [modal]="true" [responsive]="true" [width]="700" [minWidth]="350" [baseZIndex]="999999999">
   <p-header class="header">Sign In</p-header>
-  <div [ngSwitch]="accIndex">
-  <p-steps [model]="twoPhase" [(activeIndex)]="accIndex" (activeIndexChange)="index = 1 + accIndex"
-[readonly]="true">
 
-</p-steps>
+      <p-steps [model]="dialogPages" [(activeIndex)]="index" (activeIndexChange)="index + 1"
+      [readonly]="false">
 
-  <div *ngSwitchCase="PageNames.Details">
+    </p-steps>
+  <div>
   <div [formGroup]="loginForm" class="ui-g">
-    <div class="ui-g ui-fluid">
+    <div class="ui-g ui-fluid" *ngSwitchCase="PageNames.Details">
       <div class="ui-g-12 ui-md-10">
         <div class="ui-inputgroup">
           <span class="ui-inputgroup-addon"><i style="zoom: 1.5;" class="fa fa-mobile"></i></span>
@@ -118,13 +117,11 @@
       </div>
     </div>
     </div>
-
   </div>
-</div>
   <p-footer>
-    <button *ngIf="index===2" type="submit" [disabled]="hasLoginErrors()" pButton icon="fa fa-unlock" (click)="login(); landed = false;"
+    <button *ngIf="index===1" type="submit" [disabled]="hasLoginErrors()" pButton icon="fa fa-unlock" (click)="login(); landed = false;"
       label="Sign In"></button>
-      <button pButton *ngIf="index<2" label="Next" [disabled]="hasLoginErrors()" icon="fa-step-forward" (click)="accIndex=nextStep()"></button>
+      <button pButton *ngIf="index<1" label="Next" [disabled]="hasLoginErrors()" icon="fa-step-forward" (click)="accIndex=nextStep()"></button>
 
     <button type="button" pButton icon="fa fa-close" (click)="display=false" label="Cancel" class="ui-button-secondary"></button>
   </p-footer>

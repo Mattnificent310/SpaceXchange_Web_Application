@@ -77,11 +77,11 @@ export class AppComponent implements OnInit, AfterViewInit {
 
   blockSpecial: RegExp = /^[a-z\d\-_\s]+$/i;
 
-  twoPhase: MenuItem[];
+  dialogPages: MenuItem[];
 
   index: number;
 
-  accIndex: number;
+  dialogPageIndex: number;
 
   PageNames = PageNames;
 
@@ -101,14 +101,15 @@ export class AppComponent implements OnInit, AfterViewInit {
       password: ['', [Validators.required, Validators.minLength(10)]],
 
     });
-  this.twoPhase = [{
+  this.dialogPages = [{
 label: 'Details'
   },
 {
   label: 'Password'
 }];
-this.index = 1;
-this.accIndex = this.PageNames.Details;
+this.index = 0;
+
+this.dialogPageIndex = this.PageNames.Details;
     this.registerForm = this.fb2.group({
       regName: ['', [Validators.required, Validators.minLength(3)]],
       regSurname: ['', [Validators.required, Validators.minLength(3)]],
@@ -401,6 +402,9 @@ if (sessionStorage.getItem('loggedIn') === 'Buyer') {
     if (!this.loginForm.valid)
     {
       if (!this.loginForm.controls['phoneNumber'].value && this.loginForm.controls['emailAddress'].value) {
+        return false;
+      }
+      if (this.loginForm.controls['phoneNumber'].value && !this.loginForm.controls['emailAddress'].value) {
         return false;
       }
       if (this.loginForm.controls['phoneNumber'].value && !this.loginForm.controls['emailAddress'].value) {
