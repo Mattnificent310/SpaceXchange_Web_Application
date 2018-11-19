@@ -96,7 +96,7 @@ export class AppComponent implements OnInit, AfterViewInit {
   ngOnInit() {
     this.loginForm = this.fb.group({
       names: [''],
-      phoneNumber: [''],
+      phoneNumber: ['', [Validators.required, Validators.minLength(10)]],
       emailAddress: ['', [Validators.required, Validators.email]],
       password: ['', [Validators.required, Validators.minLength(10)]],
 
@@ -401,16 +401,28 @@ if (sessionStorage.getItem('loggedIn') === 'Buyer') {
 
     if (!this.loginForm.valid)
     {
-      if (!this.loginForm.controls['phoneNumber'].value && this.loginForm.controls['emailAddress'].value) {
-        return false;
+      if (this.loginForm.controls['emailAddress'].valid && !this.loginForm.controls['phoneNumber'].value) {
+        return !this.loginForm.controls['emailAddress'].valid;
       }
-      if (this.loginForm.controls['phoneNumber'].value && !this.loginForm.controls['emailAddress'].value) {
-        return false;
+      if (this.loginForm.controls['phoneNumber'].valid && !this.loginForm.controls['emailAddress'].value) {
+        return !this.loginForm.controls['phoneNumber'].valid;
       }
-      if (this.loginForm.controls['phoneNumber'].value && !this.loginForm.controls['emailAddress'].value) {
-        return false;
+      if (this.loginForm.controls['phoneNumber'].valid && this.loginForm.controls['emailAddress'].valid) {
+        this.messages = [];
+        this.messages.push({
+          severity: 'warn',
+          summary: `Note ${this.loginForm.controls['phoneNumber'].value} and ${this.loginForm.controls['emailAddress'].value}`,
+          detail: 'Enter either a valid mobile number or email address, not both'
+        });
+        return true;
       }
       return true;
+    }
+    return true;
+  }
+  hasPasswordErrors() {
+    if(this.loginForm.controls['password'].valid) {
+      return false;
     }
     return true;
   }

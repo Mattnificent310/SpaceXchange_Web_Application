@@ -80,7 +80,7 @@
       [readonly]="true">
 
     </p-steps>
-  <div>
+
   <div [formGroup]="loginForm" class="ui-g">
     <div class="ui-g ui-fluid" *ngSwitchCase="PageNames.Details">
       <div class="ui-g-12 ui-md-10">
@@ -104,8 +104,8 @@
         </div>
       </div>
     </div>
-    <div *ngSwitchCase="PageNames.Password">
-      <div class="ui-g-12 ui-md-10">
+    <div  class="ui-g ui-fluid" *ngSwitchCase="PageNames.Password">
+      <div class="ui-g-12 ui-md-12">
         <div class="ui-inputgroup">
           <span class="ui-inputgroup-addon"><i class="fa fa-user-lock"></i></span>
           <input [value]="loginForm.controls['password'].value" pPassword type="password" required formControlName="password"
@@ -117,9 +117,9 @@
       </div>
     </div>
     </div>
-  </div>
+
   <p-footer>
-    <button *ngIf="index===1" type="submit" [disabled]="hasLoginErrors()" pButton icon="fa fa-unlock" (click)="login(); landed = false;"
+    <button *ngIf="index===1" type="submit" [disabled]="hasPasswordErrors()" pButton icon="fa fa-unlock" (click)="login(); landed = false;"
       label="Sign In"></button>
       <button pButton *ngIf="index<1" label="Next" [disabled]="hasLoginErrors()" icon="fa-step-forward" (click)="accIndex=nextStep()"></button>
 
