@@ -194,7 +194,7 @@ if (sessionStorage.getItem('loggedIn') === 'Buyer') {
       const miniItem = { icon: item.icon, routerLink: item.routerLink };
       this.miniMenuItems.push(miniItem);
     });
-    this.width = window.innerWidth;
+    this.width = window;
     console.log(this.width);
     this.iconDate = 'fa fa-edit';
     this.labelDate = 'Edit';

@@ -1,11 +1,11 @@
 <div class="ui-g ui-g-nopad" id="header">
 
   <div class="ui-g-12" style="margin-top: -10px;">
-    <img *ngIf="width <= 1000" src="./assets/img/side-shop2.png" id="top-logo" /><img *ngIf="width >= 1000" src="./assets/img/side-shop.png"
+    <img *ngIf="width.innerWidth <= 1000" src="./assets/img/side-shop2.png" id="top-logo" /><img *ngIf="width.innerWidth >= 1000" src="./assets/img/side-shop.png"
       id="top-logo2" />
     <div class="ui-g-10">
       <div class="ui-g-12" id="header2">
-        <p-menubar *ngIf="width >= 1000" styleClass="menubar" [model]="items">
+        <p-menubar *ngIf="width.innerWidth >= 1000" styleClass="menubar" [model]="items">
           <div [ngSwitch]="valid" style="margin-top: -5px">
 
             <div class="iconContainer">
@@ -27,7 +27,7 @@
 
     </div>
 
-    <div *ngIf="width <= 1000" class="ui-g-1"><button style="margin-top: 20px; margin-left: -10px;" type="button"
+    <div *ngIf="width.innerWidth <= 1000" class="ui-g-1"><button style="margin-top: 20px; margin-left: -10px;" type="button"
         (click)="showSidebar();" pButton icon="fa fa-bars"></button></div>
 
 
@@ -73,8 +73,8 @@
 </p-overlayPanel>
 <p-growl [baseZIndex]="99999999999999999999" [value]="messages" [life]="5000"></p-growl>
 
-<p-dialog [ngSwitch]="index" [(visible)]="display" [modal]="true" [responsive]="true" [width]="700" [minWidth]="350" [baseZIndex]="999999999">
-  <p-header class="header">Sign In</p-header>
+<p-dialog [ngSwitch]="index" [closable]="false" [(visible)]="display" [modal]="true" [responsive]="true" [width]="700" [minWidth]="350" [baseZIndex]="999999999">
+  <p-header class="header ui-g-12 ui-md-12 ui-sm-12 ui-xs-12">Login</p-header>
 
       <p-steps [model]="dialogPages" [(activeIndex)]="index" (activeIndexChange)="index + 1"
       [readonly]="true">
@@ -107,7 +107,7 @@
     <div *ngSwitchCase="PageNames.Password">
       <div class="ui-g-12 ui-md-10">
         <div class="ui-inputgroup">
-          <span class="ui-inputgroup-addon"><i class="fa fa-lock"></i></span>
+          <span class="ui-inputgroup-addon"><i class="fa fa-user-lock"></i></span>
           <input [value]="loginForm.controls['password'].value" pPassword type="password" required formControlName="password"
             placeholder="•••••••••••••" />
         </div>
@@ -127,8 +127,8 @@
   </p-footer>
 
 </p-dialog>
-<p-dialog [(visible)]="register" [modal]="true" [responsive]="true" [width]="750" [minWidth]="450" [baseZIndex]="9999999999">
-  <p-header class="header">Sign Up</p-header>
+<p-dialog [(visible)]="register" [closable]="false" [modal]="true" [responsive]="true" [width]="750" [minWidth]="350" [baseZIndex]="9999999999">
+  <p-header class="header ui-g-12 ui-md-12 ui-sm-12 ui-xs-12">Register</p-header>
   <p-tabView>
     <p-tabPanel header="Buyer" leftIcon="pi pi-calendar">
       <div [formGroup]="registerForm" class="ui-g">
@@ -174,7 +174,7 @@
               <at-fielderrors [form]="registerForm" field="regEmailAddress" nicename="Email Address"></at-fielderrors>
             </div>
           </div>
-          <div class="ui-g-12 ui-md-6">
+          <div class="ui-g-12 ui-md-6 ui-sm-12 ui-xs-12">
             <div class="ui-inputgroup">
               <span class="ui-inputgroup-addon"><i class="fa fa-birthday-cake"></i></span>
               <p-calendar [showIcon]="true" autofocus pKeyFilter="alphanum" required formControlName="regBirthDate"
