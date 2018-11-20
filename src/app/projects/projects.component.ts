@@ -28,6 +28,13 @@ export class ProjectsComponent implements OnInit {
   blockSpecial: RegExp = /^[a-z\d\-_\s]+$/i;
 
   msg: string;
+
+  name: String;
+
+  phone: String;
+
+  email: String;
+
   allDevs = [
 
     { label: 'Jill', value: 'Jill Cool' },
@@ -46,16 +53,25 @@ export class ProjectsComponent implements OnInit {
   constructor(private fb: FormBuilder) { }
 
   ngOnInit() {
+    this.name = '';
+    this.phone = '';
+    this.email = '';
+    if (sessionStorage.getItem('email') || sessionStorage.getItem('phone')) {
+      this.name = sessionStorage.getItem('name');
+      this.phone = sessionStorage.getItem('phone');
+      this.email = sessionStorage.getItem('email');
+    }
     this.projectForm = this.fb.group({
-      names: ['', [Validators.required, Validators.minLength(3)]],
-      phoneNumber: ['', [Validators.required, Validators.minLength(10)]],
-      emailAddress: ['', [Validators.required, Validators.minLength(10)]],
+      names: [this.name, [Validators.required, Validators.minLength(3)]],
+      phoneNumber: [this.phone, [Validators.required, Validators.minLength(10)]],
+      emailAddress: [this.email, [Validators.required, Validators.minLength(10)]],
       description: ['Add Description Here...', [Validators.required, Validators.maxLength(140)]],
       verificationDate: [new Date(), Validators.required],
       contactType: ['B'],
       selectedContacts: [[]],
       rating: [3]
     })
+
 this.val2 =  5;
 this.accIndex = 0;
   }

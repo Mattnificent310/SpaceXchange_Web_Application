@@ -10,13 +10,33 @@
 <p-tabView class="u-g-12 tabs" (onChange)="onChangeTabs($event)">
   <p-tabPanel *ngFor="let tab of months" header="{{tab}}">
 
-    <p-dataTable [value]="getTimesForDay(tab)" class="timesheet-grid">
-      <p-column field="project" header="Exchange Type"></p-column>
-      <p-column field="category" header="Category"></p-column>
-      <p-column field="startTime" header="Departure"></p-column>
-      <p-column field="endTime" header="Arrival"></p-column>
-    </p-dataTable>
+    <p-dataScroller [value]="getTimesForDay(tab)" [rows]="10">
 
+      <ng-template let-car pTemplate="item" let-i="index">
+         <p-panel class="text-center" header="{{car.day}} {{car.month}} 2018">
+            <div class="ui-g car-item">
+              <div class="ui-g-12 ui-md-5">
+                  <img width="300px" height="200px" src="../../assets/img/{{car.avatar}}">
+              </div>
+              <div class="ui-g-12 ui-md-7">
+                  <div class="ui-g text-center">
+                      <div class="ui-g-3 ui-sm-6"><pre>Category: </pre></div>
+                      <div class="text-left ui-g-9 ui-sm-6"><pre>{{car.project}}</pre></div>
+
+                      <div class="ui-g-3 ui-sm-6"><pre>Type: </pre></div>
+                      <div class="text-left ui-g-9 ui-sm-6"><pre>{{car.category}}</pre></div>
+
+                      <div class="ui-g-3 ui-sm-6"><pre>From: </pre></div>
+                      <div class="text-left ui-g-9 ui-sm-6"><pre>{{car.startTime}}</pre></div>
+
+                      <div class="ui-g-3 ui-sm-6"><pre>To: </pre></div>
+                      <div class="text-left ui-g-9 ui-sm-6"><pre>{{car.endTime}}</pre></div>
+                  </div>
+              </div>
+          </div>
+        </p-panel>
+      </ng-template>
+  </p-dataScroller>
 
   </p-tabPanel>
 </p-tabView>

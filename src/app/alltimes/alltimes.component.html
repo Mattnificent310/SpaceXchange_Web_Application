@@ -153,9 +153,24 @@
       </div>
 
     </div>
+    <div class="ui-grid ui-grid-responsive">
+    <div class="ui-grid-row">
+        <div class="ui-grid-col-6" style="margin-right: 5px;">
+          <button class="ui-g-12" id="btnBook" (click)="book()" icon="fa fa-cart-plus" label="Book" pButton></button>
+        </div>
+        <div class="ui-grid-col-6">
+          <button class="ui-g-12" id="btnView" (click)="watch(user, depDate)" icon="fa fa-eye"
+            label="Watch" pButton></button>
+        </div>
+        <div class="ui-grid-col-6">
+            <button class="ui-g-12" id="btnContact" (click)="contact(user, phone, email)" icon="fa fa-address-book"
+              label="Contact" pButton></button>
+          </div>
+      </div>
+    </div>
   </p-dialog>
 
   <p-contextMenu #tableContextMenu [model]="contextMenu"></p-contextMenu>
 
-  <p-growl [value]="messages"></p-growl>
+  <p-growl [value]="messages" [baseZIndex]="99999999999999"></p-growl>
 </div>

@@ -113,9 +113,6 @@ export class AlltimesComponent implements OnInit {
     this.phone = this.allTimesheetData[id].phone;
     this.rating = this.allTimesheetData[id].rating;
     this.viewDetail = true;
-    this.messages = [];
-    this.messages.pop();
-    this.messages.push({ severity: 'info', summary: 'Ready to book', detail: `Your new details have been saved.` });
 
   }
   generateRandomUser(id: number) {
@@ -199,6 +196,19 @@ export class AlltimesComponent implements OnInit {
       }
     });
     return items;
+  }
+  watch(user: any, date: any) {
+    this.messages = [];
+    this.messages.pop();
+    this.messages.push({ severity: 'success', summary: 'Watchlist',
+    detail: `You just added ${user}'s offer to your Watchlist. Remember to Book before ${date}` });
+    this.viewDetail = false;
+  }
+  contact(name: any, phone: any, email: any) {
+    sessionStorage.setItem('name', name);
+    sessionStorage.setItem('email', email);
+    sessionStorage.setItem('phone', phone);
+    this.router.navigate(['/contacts']);
   }
   book() {
     this.router.navigate(['/bookings']);

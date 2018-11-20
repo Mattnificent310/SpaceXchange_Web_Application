@@ -24,11 +24,46 @@ export class TimesheetComponent {
 
    userTimeData = [
 
-    { month: 'January', day: '10', startTime: 'Pretoria', endTime: 'Bloemfontein', project: 'Cargo Transit', category: 'Road Freight' },
-    { month: 'February', day: '27', startTime: 'Johannesburg', endTime: 'Durban', project: 'Passenger Transit', category: 'Car Pool' },
-    { month: 'March', day: '6', startTime: 'Rustenburg', endTime: 'Brits', project: 'Cargo Transit', category: 'Air Freight' },
-    { month: 'April', day: '16', startTime: 'Krugersdorp', endTime: 'Witbank', project: 'Passenger Transit', category: 'Bus Trip' },
-    { month: 'May', day: '23', startTime: 'Harrismith', endTime: 'Clarens', project: 'Cargo Transit', category: 'Sea Freight' },
+    { avatar: 'galleria5.jpg', month: 'January', day: 10, startTime: 'Pretoria', endTime: 'Bloemfontein',
+      project: 'Cargo Transit', category: 'Road Freight' },
+    { avatar: 'galleria4.jpg', month: 'February', day: 27, startTime: 'Johannesburg', endTime: 'Durban',
+      project: 'Passenger Transit', category: 'Commuter Flight' },
+    { avatar: 'galleria8.jpg', month: 'March', day: 6, startTime: 'Rustenburg', endTime: 'Brits',
+      project: 'Cargo Transit', category: 'Air Freight' },
+    { avatar: 'galleria13.jpg', month: 'April', day: 16, startTime: 'Krugersdorp', endTime: 'Witbank',
+      project: 'Passenger Transit', category: 'Bus Trip' },
+    { avatar: 'galleria1.jpg', month: 'May', day: 23, startTime: 'Harrismith', endTime: 'Clarens',
+      project: 'Cargo Transit', category: 'Sea Freight' },
+      { avatar: 'galleria5.jpg', month: 'January', day: 19, startTime: 'Pretoria', endTime: 'Bloemfontein',
+      project: 'Cargo Transit', category: 'Road Freight' },
+    { avatar: 'galleria4.jpg', month: 'February', day: 7, startTime: 'Johannesburg', endTime: 'Durban',
+      project: 'Passenger Transit', category: 'Commuter Flight' },
+    { avatar: 'galleria8.jpg', month: 'March', day: 14, startTime: 'Rustenburg', endTime: 'Brits',
+      project: 'Cargo Transit', category: 'Air Freight' },
+    { avatar: 'galleria13.jpg', month: 'April', day: 9, startTime: 'Krugersdorp', endTime: 'Witbank',
+      project: 'Passenger Transit', category: 'Bus Trip' },
+    { avatar: 'galleria1.jpg', month: 'May', day: 23, startTime: 'Harrismith', endTime: 'Clarens',
+      project: 'Cargo Transit', category: 'Sea Freight' },
+      { avatar: 'galleria5.jpg', month: 'January', day: 2, startTime: 'Pretoria', endTime: 'Bloemfontein',
+      project: 'Cargo Transit', category: 'Road Freight' },
+    { avatar: 'galleria4.jpg', month: 'February', day: 17, startTime: 'Johannesburg', endTime: 'Durban',
+      project: 'Passenger Transit', category: 'Commuter Flight' },
+    { avatar: 'galleria8.jpg', month: 'March', day: 26, startTime: 'Rustenburg', endTime: 'Brits',
+      project: 'Cargo Transit', category: 'Air Freight' },
+    { avatar: 'galleria13.jpg', month: 'April', day: 16, startTime: 'Krugersdorp', endTime: 'Witbank',
+      project: 'Passenger Transit', category: 'Bus Trip' },
+    { avatar: 'galleria1.jpg', month: 'May', day: 23, startTime: 'Harrismith', endTime: 'Clarens',
+      project: 'Cargo Transit', category: 'Sea Freight' },
+      { avatar: 'galleria5.jpg', month: 'January', day: 15, startTime: 'Pretoria', endTime: 'Bloemfontein',
+      project: 'Cargo Transit', category: 'Road Freight' },
+    { avatar: 'galleria4.jpg', month: 'February', day: 28, startTime: 'Johannesburg', endTime: 'Durban',
+      project: 'Passenger Transit', category: 'Commuter Flight' },
+    { avatar: 'galleria8.jpg', month: 'March', day: 19, startTime: 'Rustenburg', endTime: 'Brits',
+      project: 'Cargo Transit', category: 'Air Freight' },
+    { avatar: 'galleria13.jpg', month: 'April', day: 8, startTime: 'Krugersdorp', endTime: 'Witbank',
+      project: 'Passenger Transit', category: 'Bus Trip' },
+    { avatar: 'galleria1.jpg', month: 'May', day: 12, startTime: 'Harrismith', endTime: 'Clarens',
+      project: 'Cargo Transit', category: 'Sea Freight' }
 
   ]
 
@@ -88,8 +123,9 @@ export class TimesheetComponent {
   constructor(private confirmationService: ConfirmationService) {
 
   }
-
   getTimesForDay(tabName: string) {
+    this.userTimeData.sort((a, b) => (b.day - a.day));
+
     return this.userTimeData.filter((row) => {
       return row.month === tabName;
     })
