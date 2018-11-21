@@ -78,76 +78,82 @@
     </p-dataScroller>
   </div>
 
-  <p-dialog [(visible)]="viewDetail" class="wow fadeInUp" [modal]="true" [responsive]="true" [width]="750" [minWidth]="350" [baseZIndex]="9999999999">
-<p-header class="header wow fadeInUp">Profile</p-header>
+  <p-dialog [(visible)]="viewDetail" [modal]="true" [responsive]="true" [width]="750" [minWidth]="350" [baseZIndex]="9999999999">
+<p-header class="header">Profile</p-header>
+<p-dataScroller [value]="viewData" [rows]="1">
+
+    <ng-template let-data pTemplate="item">
 
 
-<div class="ui-md-12 inputContainers">
-      <img class="ui-g-offset-2 wow fadeInLeftBig" src="{{avatar}}" width="150" height="170" />
+<div class="ui-md-12 inputContainers animated fadeIn">
+<img class="ui-g-offset-2 animated fadeInDownBig" src="{{data.avatar}}" width="150" height="170" />
 
-<div class="inputContainer wow fadeInRightBig">
+<div class="inputContainer animated rollIn">
         <div class="iconContainer">
           <i class="material-icons">account_circle</i>
         </div>
 
-        <label class="ui-md-10 inputHolder">{{user}}</label>
+        <label class="ui-md-10 inputHolder">{{data.user}}</label>
       </div>
 
-<div class="inputContainer wow fadeInLeftBig">
+<div class="inputContainer animated rollIn">
         <div class="iconContainer">
           <i class="material-icons">mail_outline</i>
         </div>
 
-        <a href="mailto:{{email}}?subject={{category}}" class="ui-md-10 inputHolder">{{email}}</a>
+        <a href="mailto:{{data.email}}?subject={{data.category}}" class="ui-md-10 inputHolder">{{data.email}}</a>
       </div>
 
-<div class="inputContainer wow fadeInRightBig">
+<div class="inputContainer animated rollIn">
         <div class="iconContainer">
           <i class="material-icons">phone_android</i>
         </div>
 
-        <a href="tel:{{phone}}" class="ui-md-10 inputHolder">{{phone}}</a>
+        <a href="tel:{{data.phone}}" class="ui-md-10 inputHolder">{{data.phone}}</a>
 
       </div>
 
-<div class="inputContainer wow fadeInLeftBig">
+<div class="inputContainer animated rollIn">
         <div class="iconContainer">
           <i class="material-icons">location_on</i>
         </div>
 
-        <a class="ui-md-10 inputHolder unstyled" href="https://www.google.co.za/maps/place/{{startDate}}" id="projectId">{{startDate}}</a>
-        <i class="fa fa-globe"></i> <i class="fa fa-chevron-right"></i> <a class="ui-md-10 inputHolder unstyled" href="https://www.google.co.za/maps/place/{{endDate}}"
-          id="projectId">{{endDate}}</a>
+        <a class="ui-md-10 inputHolder unstyled" href="https://www.google.co.za/maps/place/{{data.startLoc}}" id="projectId">{{data.startLoc}}</a>
+        <i class="fa fa-globe"></i> <i class="fa fa-chevron-right"></i> <a class="ui-md-10 inputHolder unstyled" href="https://www.google.co.za/maps/place/{{data.endLoc}}"
+          id="projectId">{{data.endLoc}}</a>
 
       </div>
 
 
-<div class="inputContainer wow fadeInLeftBig">
+<div class="inputContainer animated pulse">
         <div class="iconContainer">
-          <i class="material-icons" [ngSwitch]="category">
+          <i class="material-icons" [ngSwitch]="data.category">
             <span *ngSwitchCase="'Road Transit'">local_shipping</span>
             <span *ngSwitchCase="'Sea Transit'">directions_boat</span>
             <span *ngSwitchCase="'Air Transit'">local_airport</span>
+            <span *ngSwitchCase="'Storage Unit'">account_balance</span>
             <span *ngSwitchCase="'Rail Transit'">directions_railway</span>
+            <span *ngSwitchCase="'Real Estate'">business</span>
+            <span *ngSwitchCase="'All Terrain Transit'">terrain</span>
           </i>
         </div>
 
-        <label class="ui-md-10 inputHolder">{{category}}</label>
+        <label class="ui-md-10 inputHolder">{{data.category}}</label>
       </div>
-      <div class="inputContainer">
+<div class="inputContainer animated pulse">
         <div class="iconContainer">
           <i class="material-icons">update</i>
         </div>
 
-        <label class="ui-md-10 inputHolder">{{depDate}} @ {{startTime}} - {{endTime}}</label>
+        <label class="ui-md-10 inputHolder">{{data.date}} @ {{data.startTime}} - {{data.endTime}}</label>
       </div>
-      <div class="inputContainer">
+<div class="inputContainer animated pulse">
         <div style="float: left;" class="iconContainer">
           <i class="material-icons">stars</i>
 
         </div>
         <span class="ui-g-12 inputHolder" style="margin: -11px 0 0 -10px;">
-          <p-rating [ngModel]="rating" readonly="true" stars="5" [cancel]="false"></p-rating>
+          <p-rating [ngModel]="data.rating" readonly="true" stars="5" [cancel]="false"></p-rating>
         </span>
 
       </div>
@@ -155,19 +161,21 @@
     </div>
     <div class="ui-grid ui-grid-responsive">
     <div class="ui-grid-row">
-        <div class="ui-grid-col-6" style="margin-right: 5px;">
+        <div class="ui-grid-col-6 animated fadeInLeftBig" style="margin-right: 5px;">
           <button class="ui-g-12" id="btnBook" (click)="book()" icon="fa fa-cart-plus" label="Book" pButton></button>
         </div>
-        <div class="ui-grid-col-6" style="margin-right: 5px;">
+        <div class="ui-grid-col-6 animated bounceInUp" style="margin-right: 5px;">
           <button class="ui-g-12" id="btnView" (click)="watch(user, depDate)" icon="fa fa-eye"
             label="Watch" pButton></button>
         </div>
-        <div class="ui-grid-col-6">
+        <div class="ui-grid-col-6 animated fadeInRightBig">
             <button class="ui-g-12" id="btnContact" (click)="contact(user, phone, email)" icon="fa fa-address-book"
               label="Contact" pButton></button>
           </div>
       </div>
     </div>
+    </ng-template>
+    </p-dataScroller>
   </p-dialog>
 
   <p-contextMenu #tableContextMenu [model]="contextMenu"></p-contextMenu>

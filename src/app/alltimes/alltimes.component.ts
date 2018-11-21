@@ -1,5 +1,3 @@
-import { fadeAnimation } from './fade-animation';
-import { trigger, state, transition, animate, style } from '@angular/animations';
 import { Router } from '@angular/router';
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { MenuItem, DataTable, LazyLoadEvent, Message } from 'primeng/primeng';
@@ -29,11 +27,13 @@ export class AlltimesComponent implements OnInit {
   depDate: String;
   email: String;
   names: string[] = ['Joe', 'Mary', 'Phil', 'Karen', 'Si', 'Tim', 'Rohit', 'Jenny', 'Kim', 'Greg', 'Danni'];
-  allProjectNames = ['Recent', 'On Demand', 'Highest Ratings', 'Cargo Space', 'Passenger Space', 'Storage Space', 'Mixed Space'];
+  allProjectNames = ['Recent', 'On Demand', 'Highest Ratings', 'Cargo Space', 'Passenger Space',
+  'Storage Space', 'Living Space', 'Livestock Space', 'Mixed Space'];
   phone: String;
   rating: number;
   messages: Message[];
   suppliers: any[] = [];
+  viewData: any[] = [];
   allTimesheetData = [
 
     {
@@ -101,26 +101,15 @@ export class AlltimesComponent implements OnInit {
 
 
   viewDetails(id: number) {
-    this.avatar = this.allTimesheetData[id].avatar;
-    this.user = this.allTimesheetData[id].user;
-    this.project = this.allTimesheetData[id].project;
-    this.category = this.allTimesheetData[id].category;
-    this.startTime = this.allTimesheetData[id].startTime;
-    this.endTime = this.allTimesheetData[id].endTime;
-    this.startDate = this.allTimesheetData[id].startLoc;
-    this.endDate = this.allTimesheetData[id].endLoc;
-    this.depDate = this.allTimesheetData[id].date;
-    this.email = this.allTimesheetData[id].email;
-    this.phone = this.allTimesheetData[id].phone;
-    this.rating = this.allTimesheetData[id].rating;
+    this.viewData = [];
     this.viewDetail = true;
-
+    this.viewData.push(this.allTimesheetData[id]);
   }
   generateRandomUser(id: number) {
 
     const names = ['James', 'Mandy', 'Pete', 'Kate', 'Si', 'Tim', 'Rohit', 'Jenny', 'Kim', 'Greg', 'Danni']
-    const allProjectNames = ['Cargo Space', 'Passenger Space', 'Storage Space', 'Mixed Space'];
-    const allCategories = ['Road Transit', 'Air Transit', 'Sea Transit', 'Rail Transit', 'All Terrain Transit', 'Storage'];
+    const allProjectNames = ['Cargo Space', 'Passenger Space', 'Storage Space', 'Living Space', 'Livestock Space', 'Mixed Space'];
+    const allCategories = ['Road Transit', 'Air Transit', 'Sea Transit', 'Rail Transit', 'All Terrain Transit', 'Storage Unit', 'Real Estate'];
     const startLocations = ['Pretoria', 'Bloemfontein', 'Johannesburg', 'Durban', 'Cape Town', 'Kimberley'
       , 'Upington', 'Harrismith', 'East London', 'Port Elizabeth', 'Pierter Maritzburg', 'Rustenburg', 'Mosselbay'
       , 'George', 'Knysna', 'Pletenburg Bay', 'Wellington'];
@@ -175,7 +164,7 @@ export class AlltimesComponent implements OnInit {
       { label: 'Debug', icon: 'fa-bug', command: (event) => this.onDebug(this.selectedRows) },
       { label: 'Delete', icon: 'fa-close', command: (event) => this.onDelete(this.selectedRows) }
     ];
-    for (let x = 9; x < 50; x++) {
+    for (let x = 9; x < 80; x++) {
       this.generateRandomUser(x);
     }
   }
@@ -192,8 +181,36 @@ export class AlltimesComponent implements OnInit {
   filterData(item: string) {
     const items: any[] = [];
     this.allTimesheetData.forEach(element => {
-      if (item === element.project) {
-        items.push(element);
+      if (item === 'Storage Space') {
+        if (item === element.project) {
+          if (element.category === 'Storage Unit' || element.category === 'Real Estate') {
+            items.push(element);
+          }
+        }
+      } else if (item === 'Living Space') {
+          if (item === element.project) {
+            if (element.category === 'Sea Transit' || element.category === 'Real Estate') {
+              items.push(element);
+            }
+          }
+      } else if (item === 'Livestock Space') {
+        if (item === element.project) {
+          if (element.category !== 'Storage Unit') {
+          items.push(element);
+          }
+        }
+      } else if (item === 'Passenger Space') {
+        if (item === element.project) {
+          if (element.category !== 'Storage Unit') {
+            if (element.category !== 'Real Estate') {
+            items.push(element);
+            }
+          }
+        }
+      } else {
+        if (item === element.project) {
+          items.push(element);
+        }
       }
     });
     return items;
