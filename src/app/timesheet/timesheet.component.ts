@@ -18,10 +18,11 @@ export enum PageNames {
 @Component({
   selector: 'at-timesheet',
   templateUrl: './timesheet.component.html',
-  styleUrls: ['./timesheet.component.css']
+  styleUrls: ['./timesheet.component.css', '../../../node_modules/material-icons/iconfont/material-icons.css']
 })
-export class TimesheetComponent {
-
+export class TimesheetComponent implements OnInit {
+   userData: any;
+   viewDetail: boolean;
    userTimeData = [
 
     { avatar: 'galleria5.jpg', month: 'January', day: 10, startTime: 'Pretoria', endTime: 'Bloemfontein',
@@ -123,6 +124,14 @@ export class TimesheetComponent {
   constructor(private confirmationService: ConfirmationService) {
 
   }
+  ngOnInit() {
+    this.viewDetail = false;
+    this.userData = [
+
+    { avatar: 'galleria5.jpg', month: 'January', day: 10, startTime: 'Pretoria', endTime: 'Bloemfontein',
+      project: 'Cargo Transit', category: 'Road Freight' },
+    ];
+  }
   getTimesForDay(tabName: string) {
     this.userTimeData.sort((a, b) => (b.day - a.day));
 
@@ -176,7 +185,11 @@ export class TimesheetComponent {
     this.messages.push({ severity: 'success', summary: 'Entry Created', detail: 'Your entry has been created' });
   }
 
-
+viewDetails(item: any) {
+ this.userData = [];
+ this.userData.push(item);
+ this.viewDetail = true;
+}
 
 
 }
