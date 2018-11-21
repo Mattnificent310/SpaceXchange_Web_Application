@@ -78,7 +78,7 @@
     </p-dataScroller>
   </div>
 
-  <p-dialog [(visible)]="viewDetail" [modal]="true" [responsive]="true" [width]="750" [minWidth]="450" [baseZIndex]="9999999999">
+  <p-dialog [(visible)]="viewDetail" [modal]="true" [responsive]="true" [width]="750" [minWidth]="350" [baseZIndex]="9999999999">
     <p-header class="header">Profile</p-header>
 
 
@@ -158,7 +158,7 @@
         <div class="ui-grid-col-6" style="margin-right: 5px;">
           <button class="ui-g-12" id="btnBook" (click)="book()" icon="fa fa-cart-plus" label="Book" pButton></button>
         </div>
-        <div class="ui-grid-col-6">
+        <div class="ui-grid-col-6" style="margin-right: 5px;">
           <button class="ui-g-12" id="btnView" (click)="watch(user, depDate)" icon="fa fa-eye"
             label="Watch" pButton></button>
         </div>

@@ -421,7 +421,7 @@ if (sessionStorage.getItem('loggedIn') === 'Buyer') {
     return true;
   }
   hasPasswordErrors() {
-    if(this.loginForm.controls['password'].valid) {
+    if (this.loginForm.controls['password'].valid) {
       return false;
     }
     return true;
@@ -429,13 +429,14 @@ if (sessionStorage.getItem('loggedIn') === 'Buyer') {
   logout() {
     this.hideMenu();
     this.valid = false;
+    this.landed = false;
     this.messages = [];
     this.messages.push({
       severity: 'info',
       summary: ` ${this.loginForm.controls['emailAddress'].value}`,
       detail: 'Your SpaceXperience has been paused.'
     });
-
+this.router.navigate(['landing']);
   }
   registerUser() {
     this.http.post('http://18.203.81.222:8083/users',
