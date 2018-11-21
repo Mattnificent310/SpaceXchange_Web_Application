@@ -222,10 +222,10 @@ export class AlltimesComponent implements OnInit {
     detail: `You just added ${user}'s offer to your Watchlist. Remember to Book before ${date}` });
     this.viewDetail = false;
   }
-  contact(name: any, phone: any, email: any) {
-    sessionStorage.setItem('name', name);
-    sessionStorage.setItem('email', email);
-    sessionStorage.setItem('phone', phone);
+  contact(item: any) {
+    sessionStorage.setItem('name', item.name);
+    sessionStorage.setItem('email', item.email);
+    sessionStorage.setItem('phone', item.phone);
     this.router.navigate(['/contacts']);
   }
   book() {
