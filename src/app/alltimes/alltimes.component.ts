@@ -222,6 +222,12 @@ export class AlltimesComponent implements OnInit {
     detail: `You just added ${user}'s offer to your Watchlist. Remember to Book before ${date}` });
     this.viewDetail = false;
   }
+  sameLoc(item: any) {
+    if (item.category === 'Storage Unit' || item.category === 'Real Estate') {
+      return  true;
+    }
+    return false;
+  }
   contact(item: any) {
     sessionStorage.setItem('name', item.name);
     sessionStorage.setItem('email', item.email);
