@@ -8,7 +8,7 @@
       <p-tabPanel header="Current Listings">
         <p-dataGrid [value]="people" [paginator]="true" [rows]="16">
           <ng-template let-person pTemplate="item">
-            <p-panel header="{{person.firstName}} {{person.lastName}}" class="ui-g-12 ui-md-3">
+            <p-panel header="{{person.firstName}} {{person.lastName}}" class="ui-g-12 ui-md-3 wow fadeInUp">
               <button pButton icon="fa fa-close" style="background: rgba(255, 0, 0, 0.788); margin: -60px -15px 0 0; float: right;"></button>
               <div id="center" class="ui-g-12"> <img id="center" [src]="person.avatar" [pTooltip]="person.email"
                   tooltipPosition="bottom" />

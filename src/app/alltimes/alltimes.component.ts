@@ -1,9 +1,10 @@
+import { fadeAnimation } from './fade-animation';
+import { trigger, state, transition, animate, style } from '@angular/animations';
 import { Router } from '@angular/router';
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { MenuItem, DataTable, LazyLoadEvent, Message } from 'primeng/primeng';
 import Dexie from 'dexie';
 import { Observable } from 'rxjs/Observable';
-
 const MAX_EXAMPLE_RECORDS = 1000;
 
 @Component({
@@ -213,4 +214,5 @@ export class AlltimesComponent implements OnInit {
   book() {
     this.router.navigate(['/bookings']);
   }
+
 }

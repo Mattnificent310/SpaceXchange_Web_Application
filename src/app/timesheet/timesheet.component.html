@@ -10,12 +10,12 @@
 <p-tabView class="u-g-12 tabs" (onChange)="onChangeTabs($event)">
   <p-tabPanel *ngFor="let tab of months" header="{{tab}}">
 
-    <p-dataScroller [value]="getTimesForDay(tab)" [rows]="10">
+<p-dataScroller [value]="getTimesForDay(tab)" [rows]="3">
 
       <ng-template let-car pTemplate="item" let-i="index">
-         <p-panel class="text-center" header="{{car.day}} {{car.month}} 2018">
+         <p-panel class="text-center wow fadeInUp" header="{{car.day}} {{car.month}} 2018">
             <div (click)="viewDetails(car)" class="ui-g car-item">
-              <div class="ui-g-12 ui-md-5">
+              <div class="ui-g-12 ui-md-5 wow fadeInLeft">
                   <img width="300px" height="200px" src="../../assets/img/{{car.avatar}}">
               </div>
               <div class="ui-g-12 ui-md-7">
