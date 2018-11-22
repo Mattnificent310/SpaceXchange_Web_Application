@@ -32,7 +32,7 @@ export class LandingComponent implements OnInit {
 
   }
   scrollTop(event) {
-    let scrollToTop = window.setInterval(() => {
+    const scrollToTop = window.setInterval(() => {
         let pos = window.pageYOffset;
         if (pos > 0) {
             window.scrollTo(0, pos - 50); // how far to scroll on each step
