@@ -229,7 +229,7 @@ export class AlltimesComponent implements OnInit {
     return false;
   }
   contact(item: any) {
-    sessionStorage.setItem('name', item.name);
+    sessionStorage.setItem('name', item.user);
     sessionStorage.setItem('email', item.email);
     sessionStorage.setItem('phone', item.phone);
     this.router.navigate(['/contacts']);
