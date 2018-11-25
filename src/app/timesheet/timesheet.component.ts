@@ -1,6 +1,6 @@
 import { OnInit } from '@angular/core';
 import { Component } from '@angular/core';
-import { MenuItem, TreeNode, ConfirmationService, Message } from 'primeng/primeng';
+import { MenuItem, TreeNode, ConfirmationService, Message, SelectItem } from 'primeng/primeng';
 import { SampleProjectsData } from 'app/timesheet/sample.projects.data';
 import { SamplePeopleData } from 'app/timesheet/sample.people.data';
 
@@ -104,6 +104,14 @@ export class TimesheetComponent implements OnInit {
 
   selectedProject: TreeNode;
 
+  sortOptions: SelectItem[];
+
+  sortKey: string;
+
+  sortField: string;
+
+  sortOrder: number;
+
     mapOptions = {
 
     center: { lat: -33.8688, lng: 151.2093 },
@@ -131,7 +139,23 @@ export class TimesheetComponent implements OnInit {
 
     { avatar: 'galleria5.jpg', month: 'January', day: 10, startTime: 'Pretoria', endTime: 'Bloemfontein',
       project: 'Cargo Transit', category: 'Road Freight' },
+    ]; this.sortOptions = [
+      { label: 'Newest First', value: '!day' },
+      { label: 'Oldest First', value: 'day' },
+      { label: 'Type', value: 'category' }
     ];
+  }
+
+  onSortChange(event) {
+    const value = event.value;
+
+    if (value.indexOf('!') === 0) {
+      this.sortOrder = -1;
+      this.sortField = value.substring(1, value.length);
+    } else {
+      this.sortOrder = 1;
+      this.sortField = value;
+    }
   }
   loadData() {
     this.userTimeData = [
