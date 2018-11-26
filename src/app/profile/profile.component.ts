@@ -67,9 +67,9 @@ images: any[];
       regDOB: ['', [Validators.required, Validators.minLength(10)]],
     });
     this.name = !sessionStorage.getItem('names') ? 'My Name' : sessionStorage.getItem('name');
-    this.surname = !sessionStorage.getItem('surname') ? 'My Surname' : sessionStorage.getItem('surname');
-    this.phone = !sessionStorage.getItem('phone') ? '123-456-7890' : sessionStorage.getItem('phone');
-    this.email = !sessionStorage.getItem('email') ? 'example@domain.com' : sessionStorage.getItem('email');
+    this.surname = !sessionStorage.getItem('surnames') ? 'My Surname' : sessionStorage.getItem('surname');
+    this.phone = !sessionStorage.getItem('phones') ? '123-456-7890' : sessionStorage.getItem('phone');
+    this.email = !sessionStorage.getItem('emails') ? 'example@domain.com' : sessionStorage.getItem('email');
     this.changed = false;
     this.switchOff();
     this.setDefault();
@@ -181,9 +181,9 @@ images: any[];
   }
  saveChanges() {
    sessionStorage.setItem('names', this.name);
-   sessionStorage.setItem('surname', this.surname);
-   sessionStorage.setItem('phone', this.phone);
-   sessionStorage.setItem('email', this.email);
+   sessionStorage.setItem('surnames', this.surname);
+   sessionStorage.setItem('phones', this.phone);
+   sessionStorage.setItem('emails', this.email);
    sessionStorage.setItem('birth', this.date.toDateString());
    this.messages = [];
    this.messages.pop();
