@@ -39,6 +39,7 @@ import { SidebarModule } from 'primeng/sidebar';
 import { BookingsComponent } from './bookings/bookings.component'
 import { AppService } from './app.service';
 import { NgxPageScrollModule } from 'ngx-page-scroll';
+import { CountoModule }  from 'angular2-counto';
 
 
 const appRoutes: Routes = [
@@ -122,7 +123,8 @@ const appRoutes: Routes = [
     KeyFilterModule,
     SidebarModule,
     NgxPageScrollModule,
-    DataViewModule
+    DataViewModule,
+    CountoModule
   ],
   providers: [ConfirmationService, BuyerService, AppComponent],
   bootstrap: [AppComponent]
