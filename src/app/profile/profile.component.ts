@@ -66,10 +66,10 @@ images: any[];
       regEmailAddress: ['', [Validators.required, Validators.minLength(10)]],
       regDOB: ['', [Validators.required, Validators.minLength(10)]],
     });
-    this.name = !sessionStorage.getItem('names') ? 'My Name' : sessionStorage.getItem('name');
-    this.surname = !sessionStorage.getItem('surnames') ? 'My Surname' : sessionStorage.getItem('surname');
-    this.phone = !sessionStorage.getItem('phones') ? '123-456-7890' : sessionStorage.getItem('phone');
-    this.email = !sessionStorage.getItem('emails') ? 'example@domain.com' : sessionStorage.getItem('email');
+    this.name = !sessionStorage.getItem('names') ? 'My Name' : sessionStorage.getItem('names');
+    this.surname = !sessionStorage.getItem('surnames') ? 'My Surname' : sessionStorage.getItem('surnames');
+    this.phone = !sessionStorage.getItem('phones') ? '123-456-7890' : sessionStorage.getItem('phones');
+    this.email = !sessionStorage.getItem('emails') ? 'example@domain.com' : sessionStorage.getItem('emails');
     this.changed = false;
     this.switchOff();
     this.setDefault();
