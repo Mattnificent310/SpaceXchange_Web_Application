@@ -124,15 +124,29 @@
         </p-dataView>
       </p-tabPanel>
       <p-tabPanel header="Historic Listings">
-        <p-dataView [value]="people" [rows]="16">
+        <p-dataView #dv filterBy="firstName" [paginator]="true" paginatorPosition="bottom" [value]="people" [sortField]="sortField"
+          [sortOrder]="sortOrder" [rows]="16">
           <p-header>
-            <p-dataViewLayoutOptions></p-dataViewLayoutOptions>
+            <div class="ui-helper-clearfix">
+              <div class="ui-g">
+                <div class="ui-g-12 ui-md-4">
+                  <p-dropdown [options]="sortOptions" [(ngModel)]="sortKey" placeholder="Sort By" (onChange)="onSortChange($event)"
+                    [autoWidth]="false" [style]="{'min-width':'15em'}"></p-dropdown>
+                </div>
+                <div class="ui-g-6 ui-md-4 filter-container">
+                  <div style="position:relative">
+                    <input type="search" pInputText placeholder="Search by brand" (keyup)="dv.filter($event.target.value)">
+                  </div>
+                </div>
+                <div class="ui-g-6 ui-md-4" style="text-align:right">
+                  <p-dataViewLayoutOptions></p-dataViewLayoutOptions>
+                </div>
+              </div>
+            </div>
           </p-header>
-          <p-footer>
-            <p-dataViewLayoutOptions></p-dataViewLayoutOptions>
-          </p-footer>
+
           <ng-template let-person pTemplate="gridItem">
-            <p-panel header="{{person.firstName}} {{person.lastName}}" class="ui-g-12 ui-md-3 wow fadeInUp">
+            <p-panel header="{{person.firstName}} {{person.lastName}}" class="ui-g-12 ui-md-3 ui-sm-6 ui-xs-12 wow fadeInUp">
               <button pButton icon="fa fa-close" id="btnDelete"></button>
               <div id="center" class="ui-g-12"> <img id="center" [src]="person.avatar" [pTooltip]="person.email"
                   tooltipPosition="bottom" />
@@ -185,13 +199,12 @@
             </p-panel>
           </ng-template>
           <ng-template let-person pTemplate="listItem">
-            <p-panel class="text-center wow fadeInUp" header="{{person.firstName}} {{person.lastName}}">
+            <p-panel class="text-center ui-g-12 ui-md-12 ui-sm-12 ui-xs-12 wow fadeInUp" header="{{person.firstName}} {{person.lastName}}">
               <button pButton icon="fa fa-close" id="btnDelete"></button>
               <div class="ui-g car-item">
                 <div class="ui-g-12 ui-md-5 wow fadeInLeft">
                   <img id="center" width="300" height="200" [src]="person.avatar" [pTooltip]="person.email"
-                    tooltipPosition="bottom" />
-                </div>
+                    tooltipPosition="bottom" /> </div>
                 <div class="ui-g-12 ui-md-7">
                   <div class="ui-g text-center">
                     <div class="ui-g-3 ui-sm-6">
@@ -227,10 +240,7 @@
             </p-panel>
           </ng-template>
         </p-dataView>
-      </p-tabPanel>
-      <p-tabPanel header="Payments">
-      </p-tabPanel>
-    </p-tabView>
-
+</p-tabPanel>
+</p-tabView>
   </p-panel>
 </div>
