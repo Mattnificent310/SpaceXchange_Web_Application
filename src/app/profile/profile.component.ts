@@ -10,20 +10,20 @@ import { Title } from '@angular/platform-browser';
 })
 export class ProfileComponent implements OnInit {
 
-  profileImage: string;
+  profileImage: any;
   selectedProfile: any;
   messages: Message[] = [];
 registerForm: FormGroup;
 date: Date;
 editDate: boolean;
 editEmail: boolean;
-email: String;
+email: any;
 editPhone: boolean;
-phone: String;
+phone: any;
 editName: boolean;
-name: String;
+name: any;
 editSurname: boolean;
-surname: String;
+surname: any;
 iconDate: String;
 labelDate: String;
 iconEmail: String;
@@ -66,10 +66,10 @@ images: any[];
       regEmailAddress: ['', [Validators.required, Validators.minLength(10)]],
       regDOB: ['', [Validators.required, Validators.minLength(10)]],
     });
-    this.name = 'My Name';
-    this.surname = 'My Surname';
-    this.phone = '123-456-7890';
-    this.email = 'example@domain.com';
+    this.name = !sessionStorage.getItem('name') ? 'My Name' : sessionStorage.getItem('name');
+    this.surname = !sessionStorage.getItem('surname') ? 'My Surname' : sessionStorage.getItem('surname');
+    this.phone = !sessionStorage.getItem('phone') ? '123-456-7890' : sessionStorage.getItem('phone');
+    this.email = !sessionStorage.getItem('email') ? 'example@domain.com' : sessionStorage.getItem('email');
     this.changed = false;
     this.switchOff();
     this.setDefault();
@@ -180,6 +180,11 @@ images: any[];
     }
   }
  saveChanges() {
+   sessionStorage.setItem('name', this.name);
+   sessionStorage.setItem('surname', this.surname);
+   sessionStorage.setItem('phone', this.phone);
+   sessionStorage.setItem('email', this.email);
+   sessionStorage.setItem('birth', this.date.toDateString());
    this.messages = [];
    this.messages.pop();
   this.messages.push({ severity: 'success', summary: 'Saved Changes', detail: `Your new details have been saved.` });
