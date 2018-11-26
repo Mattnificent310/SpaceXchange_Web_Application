@@ -13,9 +13,7 @@
   margin-bottom: 1em;
   border-radius: 2px;
 }
-.input-box {
-  height: 40px;
-}
+
 h2 {
   font-weight: bolder;
   font-size: xx-large;
@@ -27,7 +25,7 @@ h3 {
   font-size: xx-large;
   display: inline;
 }
-.panel-content >>> .ui-panel-content{
+.panel-content >>> .ui-panel-content{ 
   height: 550px;
 }
 /* p-panel >>> .ui-panel-content {
@@ -39,7 +37,7 @@ h3 {
 .btnEdit {
    margin-bottom: 10px;
    float: right;
-   background-color:transparent;
+   background-color:transparent; 
    color: black;
    margin-left: 10px;
 }
@@ -81,7 +79,7 @@ p-calendar {
     margin-top: 20px;
     margin-bottom: 20px;
     text-align: left;
-
+    
 }
 
 .inputContainer {
@@ -92,20 +90,20 @@ p-calendar {
     width: 100%;
     /*left: 50%;
     margin-left: -125px;*/
-    height: 36px;
+    height: 36px;    
     overflow: hidden;
     margin-top: 10px;
     margin-bottom: 5px;
 }
 
 .inputHolder {
-
+  
   border: none;
   background: none;
   margin-left: -5px;
   width: 90%;
   height: 36px;
-
+  
 }
 
 

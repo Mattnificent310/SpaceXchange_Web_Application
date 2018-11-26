@@ -123,14 +123,6 @@ p-dataGrid >>> .ui-panel-content img {
   margin-right: auto;
   width: 150px;
 }
-#btnDelete {
-  margin: -60px -15px 0 0;
-  float: right;
-}
-
-#btnDelete:hover {
-  background: rgba(255, 0, 0, 0.788);
-}
 
 
 

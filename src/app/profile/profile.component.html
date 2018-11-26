@@ -32,7 +32,7 @@
                     <div class="ui-g-12 ui-md-12" >
                         <div class="ui-inputgroup" [ngSwitch]="editName">
                             <span class="ui-inputgroup-addon"><i class="fa fa-user-circle"></i></span>
-                            <label class="ui-inputgroup-addon ui-g-12 input-box" *ngSwitchCase="false" >{{name}}</label>
+                            <label class="ui-inputgroup-addon ui-g-12" *ngSwitchCase="false" >{{name}}</label>
                             <input *ngSwitchCase="true" autofocus [value]="registerForm.controls['regName'].value" pInputText type="text" [pKeyFilter]="blockSpecial" required formControlName="regName"  placeholder="Name" />
 
                         </div>
@@ -48,7 +48,7 @@
                     <div class="ui-g-12 ui-md-12" >
                         <div class="ui-inputgroup" [ngSwitch]="editSurname">
                             <span class="ui-inputgroup-addon"><i class="fa fa-user-circle"></i></span>
-<label class="ui-inputgroup-addon ui-g-12 input-box" *ngSwitchCase="false">{{surname}}</label>
+                            <label class="ui-inputgroup-addon ui-g-12" *ngSwitchCase="false" >{{surname}}</label>
                             <input *ngSwitchCase="true" autofocus [value]="registerForm.controls['regSurname'].value" pInputText type="text" [pKeyFilter]="blockSpecial" required formControlName="regSurname"  placeholder="Surname" />
 
                         </div>
@@ -63,7 +63,7 @@
                     <div class="ui-g-12 ui-md-12" >
                         <div class="ui-inputgroup" [ngSwitch]="editDate">
                             <span class="ui-inputgroup-addon"><i class="fa fa-birthday-cake"></i></span>
-<label class="ui-inputgroup-addon ui-g-12 input-box" *ngSwitchCase="false">{{date}}</label>
+                            <label class="ui-inputgroup-addon ui-g-12" *ngSwitchCase="false" >{{date}}</label>
                             <p-calendar *ngSwitchCase="true" [(ngModel)]="date" [inline]="true" pInputText pKeyFilter="alphanum" formControlName="regDOB"  ></p-calendar>
 
                         </div>
@@ -78,7 +78,7 @@
                     <div class="ui-g-12 ui-md-12" >
                         <div class="ui-inputgroup" [ngSwitch]="editPhone">
                             <span class="ui-inputgroup-addon"><i class="fa fa-mobile" style="zoom: 1.55"></i></span>
-<label class="ui-inputgroup-addon ui-g-12 input-box" *ngSwitchCase="false">{{phone}}</label>
+                            <label class="ui-inputgroup-addon ui-g-12" *ngSwitchCase="false" >{{phone}}</label>
                             <input *ngSwitchCase="true" autofocus [value]="registerForm.controls['regPhoneNumber'].value" pInputText type="text" pKeyFilter="pnum" required formControlName="regPhoneNumber"  placeholder="Mobile Number" />
 
                         </div>
@@ -93,7 +93,7 @@
                     <div class="ui-g-12 ui-md-12" >
                         <div class="ui-inputgroup" [ngSwitch]="editEmail">
                             <span class="ui-inputgroup-addon"><i class="fa fa-at" style="zoom: 1"></i></span>
-<label class="ui-inputgroup-addon ui-g-12 input-box" *ngSwitchCase="false">{{email}}</label>
+                            <label class="ui-inputgroup-addon ui-g-12" *ngSwitchCase="false" >{{email}}</label>
                             <input *ngSwitchCase="true" autofocus [value]="registerForm.controls['regEmailAddress'].value" pInputText pKeyFilter="email" type="text" required formControlName="regEmailAddress"  placeholder="example@domain.com" />
 
                         </div>
