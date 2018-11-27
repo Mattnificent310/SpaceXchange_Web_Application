@@ -10,6 +10,7 @@ p-galleria >>> .ui-galleria-panel-wrapper img {
 p-galleria >>> .ui-galleria {
   width: 100vw;
   height: 100vh;
+  
 }
 p-galleria>>>.ui-galleria-nav-next {
    font-size: 80px;
