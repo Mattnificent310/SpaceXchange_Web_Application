@@ -13,30 +13,30 @@ export class ProfileComponent implements OnInit {
   profileImage: any;
   selectedProfile: any;
   messages: Message[] = [];
-registerForm: FormGroup;
-date: Date;
-editDate: boolean;
-editEmail: boolean;
-email: any;
-editPhone: boolean;
-phone: any;
-editName: boolean;
-name: any;
-editSurname: boolean;
-surname: any;
-iconDate: String;
-labelDate: String;
-iconEmail: String;
-labelEmail: String;
-iconPhone: String;
-labelPhone: String;
-iconName: String;
-labelName: String;
-iconSurname: String;
-labelSurname: String;
-changed: boolean;
-blockSpecial: RegExp = /^[a-z\d\-_\s]+$/i;
-images: any[];
+  registerForm: FormGroup;
+  date: Date;
+  editDate: boolean;
+  editEmail: boolean;
+  email: any;
+  editPhone: boolean;
+  phone: any;
+  editName: boolean;
+  name: any;
+  editSurname: boolean;
+  surname: any;
+  iconDate: String;
+  labelDate: String;
+  iconEmail: String;
+  labelEmail: String;
+  iconPhone: String;
+  labelPhone: String;
+  iconName: String;
+  labelName: String;
+  iconSurname: String;
+  labelSurname: String;
+  changed: boolean;
+  blockSpecial: RegExp = /^[a-z\d\-_\s]+$/i;
+  images: any[];
   constructor(private fb: FormBuilder) { }
   setDefault() {
     this.iconDate = 'fa fa-edit';
@@ -66,19 +66,21 @@ images: any[];
       regEmailAddress: ['', [Validators.required, Validators.minLength(10)]],
       regDOB: ['', [Validators.required, Validators.minLength(10)]],
     });
-    this.name = !sessionStorage.getItem('names') ? 'My Name' : sessionStorage.getItem('names');
-    this.surname = !sessionStorage.getItem('surnames') ? 'My Surname' : sessionStorage.getItem('surnames');
-    this.phone = !sessionStorage.getItem('phones') ? '123-456-7890' : sessionStorage.getItem('phones');
-    this.email = !sessionStorage.getItem('emails') ? 'example@domain.com' : sessionStorage.getItem('emails');
+    this.name = !localStorage.getItem("names") ? "My Name" : localStorage.getItem("names");
+    this.surname = !localStorage.getItem("surnames") ? "My Surname" : localStorage.getItem("surnames");
+    this.phone = !localStorage.getItem("phones") ? "123-456-7890" : localStorage.getItem("phones");
+    this.email = !localStorage.getItem("emails") ? "example@domain.com" : localStorage.getItem("emails");
+    this.selectedProfile = !localStorage.getItem('avatar') ? '' : localStorage.getItem('avatar');
+    this.profileImage = this.selectedProfile;
     this.changed = false;
     this.switchOff();
     this.setDefault();
     this.images = [
-      { source: "http://i.pravatar.cc/300?u=Anne", title: this.name  + ' ' + this.surname + ' 1'},
-      { source: "http://i.pravatar.cc/300?u=Kerri", title: this.name  + ' ' + this.surname + ' 2'},
-      { source: "http://i.pravatar.cc/300?u=Mary", title: this.name  + ' ' + this.surname + ' 3'},
-      { source: "http://i.pravatar.cc/300?u=Nancy", title: this.name  + ' ' + this.surname + ' 4'},
-      { source: "http://i.pravatar.cc/300?u=Peta", title: this.name  + ' ' + this.surname + ' 5'}
+      { source: "http://i.pravatar.cc/300?u=Anne", title: this.name + ' ' + this.surname + ' 1' },
+      { source: "http://i.pravatar.cc/300?u=Kerri", title: this.name + ' ' + this.surname + ' 2' },
+      { source: "http://i.pravatar.cc/300?u=Mary", title: this.name + ' ' + this.surname + ' 3' },
+      { source: "http://i.pravatar.cc/300?u=Nancy", title: this.name + ' ' + this.surname + ' 4' },
+      { source: "http://i.pravatar.cc/300?u=Peta", title: this.name + ' ' + this.surname + ' 5' }
     ];
   }
 
@@ -92,22 +94,22 @@ images: any[];
   }
   popImages() {
     this.images.pop();
-      this.images.pop();
-      this.images.pop();
-      this.images.pop();
-      this.images.pop();
-      this.images.push({ source: "http://i.pravatar.cc/300?u=Anne", title: this.name + ' ' + this.surname + ' 1'});
-      this.images.push({ source: "http://i.pravatar.cc/300?u=Kerri", title: this.name + ' ' + this.surname + ' 2'});
-      this.images.push({ source: "http://i.pravatar.cc/300?u=Mary", title: this.name + ' ' + this.surname + ' 3'});
-     this.images.push({ source: "http://i.pravatar.cc/300?u=Nancy", title: this.name + ' ' + this.surname + ' 4'});
-      this.images.push({ source: "http://i.pravatar.cc/300?u=Peta", title: this.name + ' ' + this.surname + ' 5'});
+    this.images.pop();
+    this.images.pop();
+    this.images.pop();
+    this.images.pop();
+    this.images.push({ source: "http://i.pravatar.cc/300?u=Anne", title: this.name + ' ' + this.surname + ' 1' });
+    this.images.push({ source: "http://i.pravatar.cc/300?u=Kerri", title: this.name + ' ' + this.surname + ' 2' });
+    this.images.push({ source: "http://i.pravatar.cc/300?u=Mary", title: this.name + ' ' + this.surname + ' 3' });
+    this.images.push({ source: "http://i.pravatar.cc/300?u=Nancy", title: this.name + ' ' + this.surname + ' 4' });
+    this.images.push({ source: "http://i.pravatar.cc/300?u=Peta", title: this.name + ' ' + this.surname + ' 5' });
   }
   editDates() {
     if (this.editDate) {
       this.switchOff();
       this.iconDate = 'fa fa-edit';
       this.labelDate = 'Edit';
-      this.registerForm.patchValue({regDOB: this.date});
+      this.registerForm.patchValue({ regDOB: this.date });
       this.changed = true;
     } else {
       this.switchOff();
@@ -157,8 +159,8 @@ images: any[];
       this.popImages();
     } else {
       this.switchOff();
-       this.editName = true;
-       this.setDefault();
+      this.editName = true;
+      this.setDefault();
       this.iconName = 'fa fa-check';
       this.labelName = 'Done';
     }
@@ -179,22 +181,23 @@ images: any[];
       this.labelSurname = 'Done';
     }
   }
- saveChanges() {
-   sessionStorage.setItem('names', this.name);
-   sessionStorage.setItem('surnames', this.surname);
-   sessionStorage.setItem('phones', this.phone);
-   sessionStorage.setItem('emails', this.email);
-   sessionStorage.setItem('birth', this.date.toDateString());
-   this.messages = [];
-   this.messages.pop();
-  this.messages.push({ severity: 'success', summary: 'Saved Changes', detail: `Your new details have been saved.` });
+  saveChanges() {
+    localStorage.setItem("names", this.name);
+    localStorage.setItem("surnames", this.surname);
+    localStorage.setItem("phones", this.phone);
+    localStorage.setItem("emails", this.email);
+    localStorage.setItem("birth", this.date.toDateString());
+    localStorage.setItem('avatar', this.selectedProfile.source);
+    this.messages = [];
+    this.messages.pop();
+    this.messages.push({ severity: 'success', summary: 'Saved Changes', detail: `Your new details have been saved.` });
 
- }
- discardChanges() {
-  this.messages = [];
-  this.messages.push({ severity: "warn", summary: "Reverted Changes", detail: `Your changes has been discarded.` });
+  }
+  discardChanges() {
+    this.messages = [];
+    this.messages.push({ severity: "warn", summary: "Reverted Changes", detail: `Your changes has been discarded.` });
 
- }
+  }
   onPicDrop() {
     this.profileImage = this.selectedProfile.source;
     this.messages = [];

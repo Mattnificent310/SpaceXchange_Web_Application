@@ -138,7 +138,7 @@ this.dialogPageIndex = this.PageNames.Details;
       const selected = jQuery(event.originalEvent.target).closest('a');
       selected.addClass('menu-selected');
     };
-if (sessionStorage.getItem('loggedIn') === 'Buyer') {
+if (localStorage.getItem('loggedIn') === 'Buyer') {
     this.menuItems = [
       { label: 'Dashboard', icon: 'fa-home', routerLink: ['/dashboard'], command: (event) => handleSelected(event) },
       { label: 'Marketplace', icon: 'fa-tag',
@@ -154,8 +154,7 @@ if (sessionStorage.getItem('loggedIn') === 'Buyer') {
       { label: 'Services', icon: 'fa-briefcase', routerLink: ['/dashboard'], command: (event) => handleSelected(event) },
       { label: 'Contact Us', icon: 'fa-mobile', routerLink: ['/dashboard'], command: (event) => handleSelected(event) }
     ];
-  }
-  if (sessionStorage.getItem('loggedIn') === 'Supplier') {
+  } else if (localStorage.getItem('loggedIn') === 'Supplier') {
     this.menuItems = [
       { label: 'Dashboard', icon: 'fa-home', routerLink: ['/dashboard'], command: (event) => handleSelected(event) },
       { label: 'My Listings', icon: 'fa-tag',
@@ -172,11 +171,11 @@ if (sessionStorage.getItem('loggedIn') === 'Buyer') {
       { label: 'Contact Us', icon: 'fa-mobile', routerLink: ['/dashboard'], command: (event) => handleSelected(event) }
     ];
   }
-  if (!sessionStorage.getItem('loggedIn')) {
+  if (!localStorage.getItem('loggedIn')) {
     this.menuItems = [
       { label: 'Dashboard', icon: 'fa-home', routerLink: ['/dashboard'], command: (event) => handleSelected(event) },
-      { label: 'My Listings', icon: 'fa-tag',
-      routerLink: ['/listings'], command: (event) => handleSelected(event) },
+      { label: 'Marketplace', icon: 'fa-tag',
+      routerLink: ['/marketplace'], command: (event) => handleSelected(event) },
       { label: 'My Exchanges', icon: 'fa-clock-o', routerLink: ['/history'], command: (event) => handleSelected(event) },
       { label: 'My Contacts', icon: 'fa-users', routerLink: ['/contacts'], command: (event) => handleSelected(event) },
       { label: 'My Profile', icon: 'fa-edit', routerLink: ['/profile'], command: (event) => handleSelected(event) },
@@ -386,7 +385,7 @@ if (sessionStorage.getItem('loggedIn') === 'Buyer') {
           this.router.navigate(['/dashboard']);
         }
       });
-      sessionStorage.setItem('loggedIn', 'Buyer');
+      localStorage.setItem('loggedIn', 'Buyer');
 
 
     this.router.navigate(['dashboard']);
