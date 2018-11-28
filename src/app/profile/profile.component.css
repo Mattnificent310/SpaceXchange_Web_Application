@@ -3,7 +3,10 @@
   font-family: "Roboto";
   margin-left: 2px;
 }
-
+p-galleria>>>.ui-galleria-panel-wrapper img {
+  width: 300px;
+  height: 350px;
+}
 .header {
   padding: 1em;
   color: white;

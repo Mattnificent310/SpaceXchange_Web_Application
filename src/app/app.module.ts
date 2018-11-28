@@ -12,7 +12,7 @@ import { MenuModule, PanelModule, ChartModule, InputTextModule, ButtonModule,
      DataTableModule, ContextMenuModule, TabViewModule, DialogModule,
      StepsModule, ScheduleModule, TreeModule, GMapModule, DataGridModule,
      TooltipModule, ConfirmationService, ConfirmDialogModule, GrowlModule,
-  DragDropModule, GalleriaModule, MenubarModule } from 'primeng/primeng';
+  DragDropModule, GalleriaModule, MenubarModule, FileUploadModule } from 'primeng/primeng';
 import {DataViewModule} from 'primeng/dataview';
 import { HttpClientModule } from '@angular/common/http';
 import { AppComponent } from './app.component';
@@ -39,8 +39,8 @@ import { SidebarModule } from 'primeng/sidebar';
 import { BookingsComponent } from './bookings/bookings.component'
 import { AppService } from './app.service';
 import { NgxPageScrollModule } from 'ngx-page-scroll';
-import { CountoModule }  from 'angular2-counto';
-
+import { CountoModule } from 'angular2-counto';
+import { UcWidgetModule } from "ngx-uploadcare-widget";
 
 const appRoutes: Routes = [
   { path: "", redirectTo: "/landing", pathMatch: "full" },
@@ -124,9 +124,11 @@ const appRoutes: Routes = [
     SidebarModule,
     NgxPageScrollModule,
     DataViewModule,
-    CountoModule
+    CountoModule,
+    FileUploadModule,
+    UcWidgetModule
   ],
   providers: [ConfirmationService, BuyerService, AppComponent],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {}
