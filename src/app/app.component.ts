@@ -138,6 +138,15 @@ this.dialogPageIndex = this.PageNames.Details;
       const selected = jQuery(event.originalEvent.target).closest('a');
       selected.addClass('menu-selected');
     };
+    const handleSelect = function(event, id) {
+      window.location.href = 'landing/#' + id;
+      const allMenus = jQuery(event.originalEvent.target).closest("ul");
+      const allLinks = allMenus.find(".menu-selected");
+
+      allLinks.removeClass("menu-selected");
+      const selected = jQuery(event.originalEvent.target).closest("a");
+      selected.addClass("menu-selected");
+    };
 if (localStorage.getItem('loggedIn') === 'Buyer') {
     this.menuItems = [
       { label: 'Dashboard', icon: 'fa-home', routerLink: ['/dashboard'], command: (event) => handleSelected(event) },
@@ -148,13 +157,11 @@ if (localStorage.getItem('loggedIn') === 'Buyer') {
       { label: 'My Profile', icon: 'fa-edit', routerLink: ['/profile'], command: (event) => handleSelected(event) },
       { label: 'Settings', icon: 'fa-sliders', routerLink: ['/settings'], command: (event) => handleSelected(event) },
     ];
-    this.items = [
-      { label: 'Our Vision', icon: 'fa-info', routerLink: ['/dashboard'], command: (event) => handleSelected(event) },
-      { label: 'Downloads', icon: 'fa-download', routerLink: ['/dashboard'], command: (event) => handleSelected(event) },
-      { label: 'Services', icon: 'fa-briefcase', routerLink: ['/dashboard'], command: (event) => handleSelected(event) },
-      { label: 'Contact Us', icon: 'fa-mobile', routerLink: ['/dashboard'], command: (event) => handleSelected(event) }
-    ];
-  } else if (localStorage.getItem('loggedIn') === 'Supplier') {
+  this.items = [{ label: "Our Vision", icon: "fa-info", routerLink: ["/1"], command: event => handleSelect(event, "about") },
+  { label: "Downloads", icon: "fa-download", routerLink: ["/2"], command: event => handleSelect(event, "portfolio") },
+  { label: "Services", icon: "fa-briefcase", routerLink: ["/3"], command: event => handleSelect(event, "services") },
+  { label: "Contact Us", icon: "fa-mobile", routerLink: ["/4"], command: event => handleSelect(event, "contact") }];
+    } else if (localStorage.getItem('loggedIn') === 'Supplier') {
     this.menuItems = [
       { label: 'Dashboard', icon: 'fa-home', routerLink: ['/dashboard'], command: (event) => handleSelected(event) },
       { label: 'My Listings', icon: 'fa-tag',
@@ -164,13 +171,11 @@ if (localStorage.getItem('loggedIn') === 'Buyer') {
       { label: 'My Profile', icon: 'fa-edit', routerLink: ['/profile'], command: (event) => handleSelected(event) },
       { label: 'Settings', icon: 'fa-sliders', routerLink: ['/settings'], command: (event) => handleSelected(event) },
     ];
-    this.items = [
-      { label: 'Our Vision', icon: 'fa-info', routerLink: ['/dashboard'], command: (event) => handleSelected(event) },
-      { label: 'Downloads', icon: 'fa-download', routerLink: ['/dashboard'], command: (event) => handleSelected(event) },
-      { label: 'Services', icon: 'fa-briefcase', routerLink: ['/dashboard'], command: (event) => handleSelected(event) },
-      { label: 'Contact Us', icon: 'fa-mobile', routerLink: ['/dashboard'], command: (event) => handleSelected(event) }
-    ];
-  }
+  this.items = [{ label: "Our Vision", icon: "fa-info", routerLink: ["/1"], command: event => handleSelect(event, "about") },
+  { label: "Downloads", icon: "fa-download", routerLink: ["/2"], command: event => handleSelect(event, "portfolio") },
+  { label: "Services", icon: "fa-briefcase", routerLink: ["/3"], command: event => handleSelect(event, "services") },
+  { label: "Contact Us", icon: "fa-mobile", routerLink: ["/4"], command: event => handleSelect(event, "contact") }];
+   }
   if (!localStorage.getItem('loggedIn')) {
     this.menuItems = [
       { label: 'Dashboard', icon: 'fa-home', routerLink: ['/dashboard'], command: (event) => handleSelected(event) },
@@ -181,13 +186,11 @@ if (localStorage.getItem('loggedIn') === 'Buyer') {
       { label: 'My Profile', icon: 'fa-edit', routerLink: ['/profile'], command: (event) => handleSelected(event) },
       { label: 'Settings', icon: 'fa-sliders', routerLink: ['/settings'], command: (event) => handleSelected(event) },
     ];
-    this.items = [
-      { label: 'Our Vision', icon: 'fa-info', routerLink: ['/dashboard'], command: (event) => handleSelected(event) },
-      { label: 'Downloads', icon: 'fa-download', routerLink: ['/dashboard'], command: (event) => handleSelected(event) },
-      { label: 'Services', icon: 'fa-briefcase', routerLink: ['/dashboard'], command: (event) => handleSelected(event) },
-      { label: 'Contact Us', icon: 'fa-mobile', routerLink: ['/dashboard'], command: (event) => handleSelected(event) }
-    ];
-  }
+    this.items = [{ label: "Our Vision", icon: "fa-info", routerLink: ["/1"], command: event => handleSelect(event, "about") },
+    { label: "Downloads", icon: "fa-download", routerLink: ["/2"], command: event => handleSelect(event, "portfolio") },
+    { label: "Services", icon: "fa-briefcase", routerLink: ["/3"], command: event => handleSelect(event, "services") },
+    { label: "Contact Us", icon: "fa-mobile", routerLink: ["/4"], command: event => handleSelect(event, "contact") }];
+   }
     this.miniMenuItems = [];
     this.menuItems.forEach((item: MenuItem) => {
       const miniItem = { icon: item.icon, routerLink: item.routerLink };
