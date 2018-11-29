@@ -15,9 +15,9 @@
   <ng-template #showDropDiv>
     <span id="drop-message" class="ui-g-12">Drop Your Image Here</span>
   </ng-template>
-<ngx-uploadcare-widget images-only="true"
-  (on-upload-complete)="onUpload($event)" public-key="4d154a6076b174c201cf" data-tabs="file camera url facebook gdrive gphotos dropbox instagram evernote flickr skydrive box vk huddle">
-</ngx-uploadcare-widget>
+  <ngx-uploadcare-widget images-only="true" (on-upload-complete)="onUpload($event)" public-key="4d154a6076b174c201cf"
+    data-tabs="file camera url facebook gdrive gphotos dropbox instagram evernote flickr skydrive box vk huddle">
+  </ngx-uploadcare-widget>
 
 </p-panel>
 
@@ -70,11 +70,34 @@
               </div>
             </div>
             <div class="ui-g-12 ui-md-12">
+              <div class="ui-inputgroup" [ngSwitch]="editGender">
+                <span class="ui-inputgroup-addon"><i class="fa fa-transgender-alt"></i></span>
+                <label class="ui-inputgroup-addon ui-g-12 input-box" *ngSwitchCase="false">{{selectedGender?.name}}</label>
+            <p-selectButton [options]="genders" *ngSwitchCase="true" [(ngModel)]="selectedGender" formControlName="regGender">
+                  <ng-template let-item>
+                    <div style="padding: .5em 1em; width: 150px;">
+                      <img style="vertical-align: middle; margin-right: .5em;" src="../../assets/img/{{item.flag}}"
+                        height="20px" />
+                      <span>{{item.name}}</span>
+                    </div>
+                  </ng-template>
+                </p-selectButton>
+                </div>
+                <span style="float: right;" class="ui-g-3"><button type="button" pButton icon="{{iconGender}}" (click)="editGenders();"
+                    label="{{labelGender}}" class="btnEdit"></button></span>
+                <div class="ui-g-12 ui-md-5">
+
+                  <at-fielderrors [form]="registerForm" field="regGender" nicename="Surname"> </at-fielderrors>
+
+
+                </div>
+                </div>
+
+            <div class="ui-g-12 ui-md-12">
               <div class="ui-inputgroup" [ngSwitch]="editDate">
                 <span class="ui-inputgroup-addon"><i class="fa fa-birthday-cake"></i></span>
                 <label class="ui-inputgroup-addon ui-g-12 input-box" *ngSwitchCase="false">{{date.toDateString()}}</label>
-                <p-calendar *ngSwitchCase="true" [(ngModel)]="date" pInputText pKeyFilter="alphanum"
-                  formControlName="regDOB"></p-calendar>
+                <p-calendar *ngSwitchCase="true" [(ngModel)]="date" pInputText pKeyFilter="alphanum" formControlName="regDOB"></p-calendar>
 
               </div>
               <span style="float: right;" class="ui-g-3"><button type="button" pButton icon="{{iconDate}}" (click)="editDates();"

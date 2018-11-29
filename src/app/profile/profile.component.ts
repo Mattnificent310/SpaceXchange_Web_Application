@@ -19,6 +19,7 @@ export class ProfileComponent implements OnInit {
   registerForm: FormGroup;
   date: Date;
   editDate: boolean;
+  editGender: boolean;
   editEmail: boolean;
   email: any;
   editPhone: boolean;
@@ -29,6 +30,8 @@ export class ProfileComponent implements OnInit {
   surname: any;
   iconDate: String;
   labelDate: String;
+  iconGender: String;
+  labelGender: String;
   iconEmail: String;
   labelEmail: String;
   iconPhone: String;
@@ -40,11 +43,15 @@ export class ProfileComponent implements OnInit {
   changed: boolean;
   blockSpecial: RegExp = /^[a-z\d\-_\s]+$/i;
   uploadedFiles: any[] = [];
+  genders: any[];
+  selectedGender: any;
   images: any[];
-  constructor(private fb: FormBuilder) {}
+  constructor(private fb: FormBuilder) { }
   setDefault() {
     this.iconDate = "fa fa-edit";
     this.labelDate = "Edit";
+    this.iconGender = 'fa fa-edit';
+    this.labelGender = 'Edit';
     this.iconEmail = "fa fa-edit";
     this.labelEmail = "Edit";
     this.iconPhone = "fa fa-edit";
@@ -60,6 +67,7 @@ export class ProfileComponent implements OnInit {
     this.editEmail = false;
     this.editPhone = false;
     this.editDate = false;
+    this.editGender = false;
   }
   onUpload(event) {
     this.uploadedFiles.push(event.cdnUrl);
@@ -67,45 +75,61 @@ export class ProfileComponent implements OnInit {
     localStorage.setItem('avatar', event.cdnUrl);
     this.images.push({
       source: event.cdnUrl,
-      title: this.name + ' ' + this.surname });
-      console.log(event);
+      title: this.name + ' ' + this.surname
+    });
+    console.log(event);
 
   }
   ngOnInit() {
-    this.registerForm = this.fb.group({
-      regName: ["", [Validators.required, Validators.minLength(3)]],
-      regSurname: ["", [Validators.required, Validators.minLength(3)]],
-      regPhoneNumber: ["", [Validators.required, Validators.maxLength(10)]],
-      regEmailAddress: ["", [Validators.required, Validators.minLength(10)]],
-      regDOB: ["", [Validators.required, Validators.minLength(10)]]
-    });
+
     this.name = !localStorage.getItem("names")
-      ? "My Name"
+      ? ""
       : localStorage.getItem("names");
     this.surname = !localStorage.getItem("surnames")
-      ? "My Surname"
+      ? ""
       : localStorage.getItem("surnames");
     this.phone = !localStorage.getItem("phones")
-      ? "123-456-7890"
+      ? ""
       : localStorage.getItem("phones");
     this.email = !localStorage.getItem("emails")
-      ? "example@domain.com"
+      ? ""
       : localStorage.getItem("emails");
-      this.date = new Date(!localStorage.getItem('birth') ? '2000-01-01' : localStorage.getItem('birth'));
+    this.date = new Date(!localStorage.getItem('birth') ? '2000-01-01' : localStorage.getItem('birth'));
     this.selectedProfile = !localStorage.getItem("avatar")
       ? ""
       : localStorage.getItem("avatar");
+    this.selectedGender = { name: !localStorage.getItem('gender') ? 'None' : localStorage.getItem('gender'), flag: 'None.png' };
     this.profileImage = this.selectedProfile;
-    this.images = [];
-    this.images.push({ source:
-       "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSePYH0l73i-OgzhmHIgztXFb6p2wZFfcAETx9-AL4Y3ndU-KLt",
-    title: this.name + " " + this.surname },
-    { source: 'https://www.activehealthclinic.ca/storage/app/media/cartoon_avatar-blonde-female.png',
-      title: this.name + ' ' + this.surname },
-     { source: !localStorage.getItem("avatar")
-     ? "" : localStorage.getItem("avatar"),
-     title: this.name + " " + this.surname });
-    this.changed = false;
+    if (!this.images) {
+      this.images = [{
+        source:
+          "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSePYH0l73i-OgzhmHIgztXFb6p2wZFfcAETx9-AL4Y3ndU-KLt",
+        title: this.name + " " + this.surname
+      },
+      {
+        source: 'https://www.activehealthclinic.ca/storage/app/media/cartoon_avatar-blonde-female.png',
+        title: this.name + ' ' + this.surname
+      },
+      {
+        source: !localStorage.getItem("avatar")
+          ? "" : localStorage.getItem("avatar"),
+        title: this.name + " " + this.surname
+      }];
+      this.changed = false;
+      this.genders = [
+        { name: 'Male', flag: 'Male.png' },
+        { name: 'Female', flag: 'Female_Icon.png' },
+        { name: 'None', flag: 'None.png' }
+      ];
+    }
+    this.registerForm = this.fb.group({
+      regName: [this.name, [Validators.required, Validators.minLength(3)]],
+      regSurname: [this.surname, [Validators.required, Validators.minLength(3)]],
+      regPhoneNumber: [this.phone, [Validators.required, Validators.maxLength(10)]],
+      regEmailAddress: [this.email, [Validators.required, Validators.minLength(10)]],
+      regDOB: [this.date, [Validators.required, Validators.minLength(10)]],
+      regGender: ['', [Validators.required]]
+    });
     this.switchOff();
     this.setDefault();
   }
@@ -131,6 +155,21 @@ export class ProfileComponent implements OnInit {
       this.setDefault();
       this.iconDate = "fa fa-check";
       this.labelDate = "Done";
+    }
+  }
+  editGenders() {
+    if (this.editGender) {
+      this.switchOff();
+      this.iconGender = "fa fa-edit";
+      this.labelGender = "Edit";
+      this.registerForm.patchValue({ regGender: this.selectedGender });
+      this.changed = true;
+    } else {
+      this.switchOff();
+      this.editGender = true;
+      this.setDefault();
+      this.iconGender = "fa fa-check";
+      this.labelGender = "Done";
     }
   }
   editEmails() {
@@ -207,6 +246,7 @@ export class ProfileComponent implements OnInit {
     localStorage.setItem("emails", this.email);
     localStorage.setItem("birth", this.date.toDateString());
     localStorage.setItem("avatar", this.profileImage);
+    localStorage.setItem('gender', this.selectedGender.name);
     this.messages = [];
     this.messages.pop();
     this.messages.push({
@@ -216,6 +256,8 @@ export class ProfileComponent implements OnInit {
     });
   }
   discardChanges() {
+    this.changed = false;
+    this.ngOnInit();
     this.messages = [];
     this.messages.push({
       severity: "warn",

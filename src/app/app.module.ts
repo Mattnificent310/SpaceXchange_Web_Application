@@ -12,7 +12,7 @@ import { MenuModule, PanelModule, ChartModule, InputTextModule, ButtonModule,
      DataTableModule, ContextMenuModule, TabViewModule, DialogModule,
      StepsModule, ScheduleModule, TreeModule, GMapModule, DataGridModule,
      TooltipModule, ConfirmationService, ConfirmDialogModule, GrowlModule,
-  DragDropModule, GalleriaModule, MenubarModule, FileUploadModule } from 'primeng/primeng';
+  DragDropModule, GalleriaModule, MenubarModule, FileUploadModule, SelectButtonModule } from 'primeng/primeng';
 import {DataViewModule} from 'primeng/dataview';
 import { HttpClientModule } from '@angular/common/http';
 import { AppComponent } from './app.component';
@@ -126,7 +126,8 @@ const appRoutes: Routes = [
     DataViewModule,
     CountoModule,
     FileUploadModule,
-    UcWidgetModule
+    UcWidgetModule,
+    SelectButtonModule
   ],
   providers: [ConfirmationService, BuyerService, AppComponent],
   bootstrap: [AppComponent]
