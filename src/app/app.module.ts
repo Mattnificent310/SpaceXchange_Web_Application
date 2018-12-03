@@ -1,3 +1,4 @@
+import { InteractionsService } from './interactions/interactions.service';
 import { ConstructionComponent } from './construction/construction.component';
 import { ListingsComponent } from './listings/listings.component';
 import { LandingComponent } from './landing/landing.component';
@@ -41,6 +42,7 @@ import { AppService } from './app.service';
 import { NgxPageScrollModule } from 'ngx-page-scroll';
 import { CountoModule } from 'angular2-counto';
 import { UcWidgetModule } from "ngx-uploadcare-widget";
+import { InteractionsComponent } from './interactions/interactions.component';
 
 const appRoutes: Routes = [
   { path: "", redirectTo: "/landing", pathMatch: "full" },
@@ -54,7 +56,8 @@ const appRoutes: Routes = [
   { path: "bookings", component: BookingsComponent },
   { path: "landing", component: LandingComponent },
   { path: "listings", component: ListingsComponent },
-  { path: "construction", component: ConstructionComponent }
+  { path: "construction", component: ConstructionComponent },
+  { path: 'interactions', component: InteractionsComponent }
 ];
 
 @NgModule({
@@ -72,10 +75,11 @@ const appRoutes: Routes = [
     BookingsComponent,
     LandingComponent,
     ListingsComponent,
-    ConstructionComponent
+    ConstructionComponent,
+    InteractionsComponent
   ],
   imports: [
-    BrowserModule,
+    BrowserModule.withServerTransition({ appId: 'spaceXchange' }),
     FormsModule,
     ReactiveFormsModule,
     HttpModule,
@@ -129,7 +133,12 @@ const appRoutes: Routes = [
     UcWidgetModule,
     SelectButtonModule
   ],
-  providers: [ConfirmationService, BuyerService, AppComponent],
+  providers: [
+    ConfirmationService,
+    BuyerService,
+    InteractionsService,
+    AppComponent
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule {}
