@@ -79,7 +79,7 @@ const appRoutes: Routes = [
     InteractionsComponent
   ],
   imports: [
-    BrowserModule,
+    BrowserModule.withServerTransition({ appId: 'spaceXchange' }),
     FormsModule,
     ReactiveFormsModule,
     HttpModule,
