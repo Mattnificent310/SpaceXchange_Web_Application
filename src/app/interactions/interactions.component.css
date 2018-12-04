@@ -10,3 +10,16 @@
   'Helvetica Neue',
   sans-serif;
 }
+.img-border {
+  border: 1px solid;
+  border-radius: 10px;
+}
+.btnLeave {
+  height: 30px;
+}
+.btnLeave:hover {
+  background-color: rgb(184, 0, 0);
+}
+#btn-input {
+  height: 40px;
+}

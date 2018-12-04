@@ -7,10 +7,12 @@ import * as io from 'socket.io-client';
 @Component({
   selector: 'app-interactions',
   templateUrl: './interactions.component.html',
-  styleUrls: ['./interactions.component.css']
+  styleUrls: [
+    './interactions.component.css',
+    '../../../node_modules/material-icons/iconfont/material-icons.css'
+  ]
 })
 export class InteractionsComponent implements OnInit, AfterViewChecked {
-
   @ViewChild('scrollMe') private myScrollContainer: ElementRef;
   chats: any[] = [];
   chatForm: FormGroup;
@@ -27,9 +29,10 @@ export class InteractionsComponent implements OnInit, AfterViewChecked {
     this.date = new Date();
     this.joinned = false;
     this.chatForm = this.fb.group({
-    message: ['', []],
-    nickname: ['', []],
-    room: ['', []]});
+      message: ['', []],
+      nickname: ['', []],
+      room: ['', []]
+    });
     this.socket = this.chat.socket;
     this.chat.messages.subscribe(msg => {
       console.log(msg);
@@ -39,17 +42,26 @@ export class InteractionsComponent implements OnInit, AfterViewChecked {
     const user = JSON.parse(localStorage.getItem('user'));
     if (!user) {
       this.getChatByRoom(user.room);
-      this.msgData = { room: user.room, nickname: user.nickname, message: '' }
+      this.msgData = { room: user.room, nickname: user.nickname, message: '' };
       this.joinned = true;
       this.scrollToBottom();
     }
-    this.socket.on('new-message', function (data) {
-      if (data.message.room === JSON.parse(localStorage.getItem('user')).room) {
-        this.chats.push(data.message);
-        this.msgData = { room: user.room, nickname: user.nickname, message: '' }
-        this.scrollToBottom();
-      }
-    }.bind(this));
+    this.socket.on(
+      'new-message',
+      function(data) {
+        if (
+          data.message.room === JSON.parse(localStorage.getItem('user')).room
+        ) {
+          this.chats.push(data.message);
+          this.msgData = {
+            room: user.room,
+            nickname: user.nickname,
+            message: ''
+          };
+          this.scrollToBottom();
+        }
+      }.bind(this)
+    );
   }
   ngAfterViewChecked() {
     this.scrollToBottom();
@@ -58,15 +70,18 @@ export class InteractionsComponent implements OnInit, AfterViewChecked {
   scrollToBottom(): void {
     try {
       this.myScrollContainer.nativeElement.scrollTop = this.myScrollContainer.nativeElement.scrollHeight;
-    } catch (err) { }
+    } catch (err) {}
   }
 
   getChatByRoom(room) {
-    this.chat.getChatByRoom(room).then((res) => {
-      this.chats.push(res);
-    }, (err) => {
-      console.log(err);
-    });
+    this.chat.getChatByRoom(room).then(
+      res => {
+        this.chats.push(res);
+      },
+      err => {
+        console.log(err);
+      }
+    );
   }
 
   joinRoom() {
@@ -74,24 +89,37 @@ export class InteractionsComponent implements OnInit, AfterViewChecked {
     this.joinned = true;
     localStorage.setItem('user', JSON.stringify(this.newUser));
     this.getChatByRoom(this.newUser.room);
-    this.msgData = { room: this.newUser.room, nickname: this.newUser.nickname, message: '' };
+    this.msgData = {
+      room: this.newUser.room,
+      nickname: this.newUser.nickname,
+      message: ''
+    };
 
-    this.socket.emit('save-message', { room: this.newUser.room,
-    nickname: this.newUser.nickname, message: 'Join this room', updated_at: date });
+    this.socket.emit('save-message', {
+      room: this.newUser.room,
+      nickname: this.newUser.nickname,
+      message: 'Join this room',
+      updated_at: date
+    });
   }
 
   sendMessage() {
     this.chat.sendMsg(this.msgData);
     this.date = new Date();
   }
-sendMessages() {
-  this.chat.sendMsg(this.chatForm.controls['message'].value)
-}
+  sendMessages() {
+    this.chat.sendMsg(this.chatForm.controls['message'].value);
+  }
   logout() {
+    this.joinned = false;
     const date = new Date();
     const user = JSON.parse(localStorage.getItem('user'));
-    this.socket.emit('save-message', { room: user.room, nickname: user.nickname, message: 'Left this room', updated_at: date });
+    this.socket.emit('save-message', {
+      room: user.room,
+      nickname: user.nickname,
+      message: 'Left this room',
+      updated_at: date
+    });
     localStorage.removeItem('user');
-    this.joinned = false;
   }
 }
