@@ -11,7 +11,7 @@
             <button pButton icon="fa fa-sign-out" type="button" (click)="logout()" class="btnLeave" id="btnLeave"></button>
           </div>
         </div>
-        <div #scrollMe class="panel-body" style="height: 70vh;">
+        <div #scrollMe class="panel-body" style="min-height: 70vh;">
           <ul class="chat list-unstyled">
             <li *ngFor="let c of chats">
               <div class="left clearfix" *ngIf="c.nickname===msgData.nickname; else rightchat">
