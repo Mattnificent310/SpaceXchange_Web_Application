@@ -18,7 +18,7 @@ export class InteractionsComponent implements OnInit, AfterViewChecked {
   chatForm: FormGroup;
   joinned: boolean;
   newUser = { nickname: '', room: '' };
-  msgData = { room: '', nickname: '', message: '' };
+  msgData = { room: '', nickname: '', message: '' , date: new Date() };
   users: any[] = [];
   socket: any;
   date: Date;
@@ -42,7 +42,7 @@ export class InteractionsComponent implements OnInit, AfterViewChecked {
     const user = JSON.parse(localStorage.getItem('user'));
     if (!user) {
       this.getChatByRoom(user.room);
-      this.msgData = { room: user.room, nickname: user.nickname, message: '' };
+      this.msgData = { room: user.room, nickname: user.nickname, message: '', date: new Date() };
       this.joinned = true;
       this.scrollToBottom();
     }
@@ -56,7 +56,8 @@ export class InteractionsComponent implements OnInit, AfterViewChecked {
           this.msgData = {
             room: user.room,
             nickname: user.nickname,
-            message: ''
+            message: '',
+            date: new Date()
           };
           this.scrollToBottom();
         }
@@ -92,20 +93,21 @@ export class InteractionsComponent implements OnInit, AfterViewChecked {
     this.msgData = {
       room: this.newUser.room,
       nickname: this.newUser.nickname,
-      message: ''
+      message: '',
+      date: date
     };
 
     this.socket.emit('save-message', {
       room: this.newUser.room,
       nickname: this.newUser.nickname,
       message: 'Join this room',
-      updated_at: date
+      date: date
     });
   }
 
   sendMessage() {
+    this.msgData.date = new Date();
     this.chat.sendMsg(this.msgData);
-    this.date = new Date();
   }
   sendMessages() {
     this.chat.sendMsg(this.chatForm.controls['message'].value);
@@ -118,7 +120,7 @@ export class InteractionsComponent implements OnInit, AfterViewChecked {
       room: user.room,
       nickname: user.nickname,
       message: 'Left this room',
-      updated_at: date
+      date: date
     });
     localStorage.removeItem('user');
   }

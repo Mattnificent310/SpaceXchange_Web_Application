@@ -17,7 +17,7 @@
 .btnLeave {
   height: 30px;
 }
-.btnLeave:hover {
+#btnLeave:hover {
   background-color: rgb(184, 0, 0);
 }
 #btn-input {

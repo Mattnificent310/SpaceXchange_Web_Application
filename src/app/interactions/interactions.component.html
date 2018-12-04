@@ -5,35 +5,45 @@
         <div class="panel-heading">
           <h1> </h1>
           <h1> </h1>
-<h1> </h1>
-<span class="fa fa-comments-o"></span> {{ msgData.room }}
+          <h1> </h1>
+          <span class="fa fa-comments-o"></span> {{ msgData.room }}
           <div class="btn-group pull-right">
-            <button pButton icon="fa fa-sign-out" type="button" (click)="logout()" class="btnLeave"></button>
+            <button pButton icon="fa fa-sign-out" type="button" (click)="logout()" class="btnLeave" id="btnLeave"></button>
           </div>
         </div>
-<div #scrollMe class="panel-body" style="height: 70vh;">
+        <div #scrollMe class="panel-body" style="height: 70vh;">
           <ul class="chat list-unstyled">
             <li *ngFor="let c of chats">
               <div class="left clearfix" *ngIf="c.nickname===msgData.nickname; else rightchat">
                 <span class="chat-img pull-left">
-<img src="http://placehold.it/50/55C1E7/fff&text=ME" alt="User Avatar" class="img-raised img-border" />
+                  <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSpsfP61YoFd2Cu5HrC0QFOlzWEN9pA_mcEZ5z0B0ejw2XOxcFz"
+                    width="80px" height="80px" alt="User Avatar" class="img-raised img-border" />
                 </span>
                 <div class="chat-body clearfix">
                   <div class="header">
-                    <pre class="apple-font ui-g-8 text-center"><strong class="primary-font">{{ c.nickname }} </strong><i class="fa fa-commenting-o"></i> {{ c.message }}
-<i class="fa fa-clock-o"></i>  {{ date | date: 'medium' }}</pre>
+                    <pre class="apple-font ui-g-8 text-center" style="white-space:pre-wrap; overflow: visible; min-height: 80px;">
+<h4><strong>{{ c.nickname }} <i class="fa fa-commenting-o"></i></strong></h4>
+<p style="margin: -20px 0 -50px 0"> {{ c.message }}
+
+  <i class="pull-right fa fa-clock-o text-muted"> {{ c.date | date: 'medium' }}</i></p>
+</pre>
                   </div>
                 </div>
               </div>
               <ng-template #rightchat>
                 <div class="right clearfix">
                   <span class="chat-img pull-right">
-<img src="http://placehold.it/50/FA6F57/fff&text=U" alt="User Avatar" class="img-raised img-border" />
+<img src="http://iconsetc.com/icons-watermarks/flat-rounded-square-white-on-orange/raphael/raphael_user/raphael_user_flat-rounded-square-white-on-orange_512x512.png"
+                      width="100px" height="100px" alt="User Avatar" class="img-raised" />
                   </span>
                   <div class="chat-body clearfix">
                     <div class="header">
-                      <pre class="apple-font ui-g-8 pull-right text-center"><i class="fa fa-clock-o"></i>  {{ date | date: 'medium' }}
-<strong class="primary-font">{{ c.nickname }} </strong> <span class="fa fa-commenting-o"></span> {{ c.message }}</pre>
+                      <pre class="apple-font ui-g-8 text-center pull-right" style="white-space:pre-wrap; overflow: visible; min-height: 80px;">
+<h4><strong>{{ c.nickname }} <i class="fa fa-commenting-o"></i></strong></h4>
+<p style="margin: -20px 0 -50px 0"> {{ c.message }}
+
+  <i class="pull-left fa fa-clock-o text-muted"> {{ c.date | date: 'medium' }}</i></p>
+</pre>
                     </div>
 
                   </div>
@@ -51,8 +61,8 @@
             <input id="btn-input" type="text" [(ngModel)]="msgData.message" name="message" class="form-control input-sm"
               placeholder="Type your message here..." required="" />
             <span class="input-group-btn">
-              <button class="btn btn-warning btn-sm"  id="btn-chat" [disabled]="!msgForm.form.valid">
-<span class="material-icons" style="padding: 0 10px;">send</span></button>
+              <button class="btn btn-warning btn-sm" id="btn-chat" [disabled]="!msgForm.form.valid">
+                <span class="material-icons" style="padding: 0 10px;">send</span></button>
             </span>
           </div>
         </form>
@@ -74,8 +84,8 @@
                   <option value="Storage Wars">Storage Wars</option>
                   <option value="Big Rig Wars">Biig Rig Wars</option>
                   <option value="Battleship">Battleship</option>
-<option value="Fight or Flight">Fight or Flight</option>
-<option value="Train Surfing">Train Surfing</option>
+                  <option value="Fight or Flight">Fight or Flight</option>
+                  <option value="Train Surfing">Train Surfing</option>
                 </select>
               </div>
               <div class="form-group">
