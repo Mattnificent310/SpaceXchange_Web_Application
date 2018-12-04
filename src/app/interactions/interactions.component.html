@@ -1,26 +1,25 @@
 <div class="container">
   <div class="row">
-    <div class="ui-lg-10 ui-md-10 ui-sm-8 ui-xs-6 ui-g-10">
+    <div class="col-md-5">
       <div class="panel panel-primary" *ngIf="joinned; else joinroom">
         <div class="panel-heading">
-          <h1> </h1>
-          <h1> </h1>
-<h1> </h1>
-<span class="fa fa-comments-o"></span> {{ msgData.room }}
+          <span class="glyphicon glyphicon-comment"></span> {{ msgData.room }}
           <div class="btn-group pull-right">
-            <button pButton icon="fa fa-sign-out" type="button" (click)="logout()" class="btnLeave"></button>
+            <button type="button" class="btn btn-default btn-xs">
+              Logout
+            </button>
           </div>
         </div>
-<div #scrollMe class="panel-body" style="height: 70vh;">
+        <div #scrollMe class="panel-body">
           <ul class="chat list-unstyled">
             <li *ngFor="let c of chats">
               <div class="left clearfix" *ngIf="c.nickname===msgData.nickname; else rightchat">
                 <span class="chat-img pull-left">
-<img src="http://placehold.it/50/55C1E7/fff&text=ME" alt="User Avatar" class="img-raised img-border" />
+                  <img src="http://placehold.it/50/55C1E7/fff&text=ME" alt="User Avatar" class="img-circle" />
                 </span>
                 <div class="chat-body clearfix">
                   <div class="header">
-                    <pre class="apple-font ui-g-8 text-center"><strong class="primary-font">{{ c.nickname }} </strong><i class="fa fa-commenting-o"></i> {{ c.message }}
+<pre class="apple-font ui-g-8 text-center"><strong class="primary-font">{{ c.nickname }} </strong><i class="fa fa-comments-o"></i> {{ c.message }}
 <i class="fa fa-clock-o"></i>  {{ date | date: 'medium' }}</pre>
                   </div>
                 </div>
@@ -28,12 +27,12 @@
               <ng-template #rightchat>
                 <div class="right clearfix">
                   <span class="chat-img pull-right">
-<img src="http://placehold.it/50/FA6F57/fff&text=U" alt="User Avatar" class="img-raised img-border" />
+                    <img src="http://placehold.it/50/FA6F57/fff&text=U" alt="User Avatar" class="img-circle" />
                   </span>
-                  <div class="chat-body clearfix">
+<div class="chat-body clearfix">
                     <div class="header">
-                      <pre class="apple-font ui-g-8 pull-right text-center"><i class="fa fa-clock-o"></i>  {{ date | date: 'medium' }}
-<strong class="primary-font">{{ c.nickname }} </strong> <span class="fa fa-commenting-o"></span> {{ c.message }}</pre>
+<pre class="apple-font ui-g-8 pull-right text-center"><i class="fa fa-clock-o"></i>  {{ date | date: 'medium' }}
+<strong class="primary-font">{{ c.nickname }} </strong> <span class="fa fa-comments-o"></span> {{ c.message }}</pre>
                     </div>
 
                   </div>
@@ -51,8 +50,8 @@
             <input id="btn-input" type="text" [(ngModel)]="msgData.message" name="message" class="form-control input-sm"
               placeholder="Type your message here..." required="" />
             <span class="input-group-btn">
-              <button class="btn btn-warning btn-sm"  id="btn-chat" [disabled]="!msgForm.form.valid">
-<span class="material-icons" style="padding: 0 10px;">send</span></button>
+              <button class="btn btn-warning btn-sm" id="btn-chat" [disabled]="!msgForm.form.valid">
+                Send</button>
             </span>
           </div>
         </form>
