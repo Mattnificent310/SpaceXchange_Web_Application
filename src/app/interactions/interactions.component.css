@@ -12,13 +12,13 @@
 }
 .img-border {
   border: 1px solid;
-  border-radius: 10px;
+  border-radius: 15px;
 }
 .btnLeave {
   height: 30px;
 }
 #btnLeave:hover {
-  background-color: rgb(184, 0, 0);
+  background-color: rgba(216, 30, 30, 0.767);
 }
 #btn-input {
   height: 40px;

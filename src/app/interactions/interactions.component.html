@@ -1,6 +1,6 @@
-<div class="container">
+<div class="container ui-lg-12 ui-md-10 ui-sm-8 ui-xs-6 ui-g-12">
   <div class="row">
-    <div class="ui-lg-10 ui-md-10 ui-sm-8 ui-xs-6 ui-g-10">
+    <div class="ui-lg-12 ui-md-10 ui-sm-8 ui-xs-6 ui-g-12">
       <div class="panel panel-primary" *ngIf="joinned; else joinroom">
         <div class="panel-heading">
           <h1> </h1>
@@ -11,13 +11,13 @@
             <button pButton icon="fa fa-sign-out" type="button" (click)="logout()" class="btnLeave" id="btnLeave"></button>
           </div>
         </div>
-        <div #scrollMe class="panel-body" style="min-height: 65vh; max-height: 65vh; overflow: auto;">
+        <div #scrollMe class="panel-body" style="min-height: 70vh; max-height: 70vh; overflow: auto;">
           <ul class="chat list-unstyled">
             <li *ngFor="let c of chats">
               <div class="left clearfix" *ngIf="c.nickname===msgData.nickname; else rightchat">
                 <span class="chat-img pull-left">
                   <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSpsfP61YoFd2Cu5HrC0QFOlzWEN9pA_mcEZ5z0B0ejw2XOxcFz"
-                    width="80px" height="80px" alt="User Avatar" class="img-raised img-border" />
+                    width="70px" height="70px" alt="User Avatar" class="img-raised img-border" />
                 </span>
                 <div class="chat-body clearfix">
                   <div class="header">
@@ -34,7 +34,7 @@
                 <div class="right clearfix">
                   <span class="chat-img pull-right">
 <img src="http://iconsetc.com/icons-watermarks/flat-rounded-square-white-on-orange/raphael/raphael_user/raphael_user_flat-rounded-square-white-on-orange_512x512.png"
-                      width="100px" height="100px" alt="User Avatar" class="img-raised" />
+                      width="70px" height="70px" alt="User Avatar" class="img-raised" style="opacity: 0.6" />
                   </span>
                   <div class="chat-body clearfix">
                     <div class="header">
@@ -82,7 +82,7 @@
                 <select class="form-control" [(ngModel)]="newUser.room" name="room" required="">
                   <option>Select Room</option>
                   <option value="Storage Wars">Storage Wars</option>
-                  <option value="Big Rig Wars">Biig Rig Wars</option>
+                  <option value="Big Rig Battle">Big Rig Battle</option>
                   <option value="Battleship">Battleship</option>
                   <option value="Fight or Flight">Fight or Flight</option>
                   <option value="Train Surfing">Train Surfing</option>
