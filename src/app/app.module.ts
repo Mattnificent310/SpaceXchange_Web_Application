@@ -54,7 +54,9 @@ const appRoutes: Routes = [
   { path: "bookings", component: BookingsComponent },
   { path: "landing", component: LandingComponent },
   { path: "listings", component: ListingsComponent },
-  { path: "construction", component: ConstructionComponent }
+  { path: "construction", component: ConstructionComponent },
+  { path: 'interactions', component: InteractionsComponent }
+
 ];
 
 @NgModule({
@@ -72,7 +74,8 @@ const appRoutes: Routes = [
     BookingsComponent,
     LandingComponent,
     ListingsComponent,
-    ConstructionComponent
+    ConstructionComponent,
+    InteractionComponent
   ],
   imports: [
     BrowserModule,
