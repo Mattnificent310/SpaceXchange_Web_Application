@@ -41,6 +41,7 @@ import { AppService } from './app.service';
 import { NgxPageScrollModule } from 'ngx-page-scroll';
 import { CountoModule } from 'angular2-counto';
 import { UcWidgetModule } from "ngx-uploadcare-widget";
+import { InteractionsComponent } from './interactions/interactions.component';
 
 const appRoutes: Routes = [
   { path: "", redirectTo: "/landing", pathMatch: "full" },
