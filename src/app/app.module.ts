@@ -75,7 +75,7 @@ const appRoutes: Routes = [
     LandingComponent,
     ListingsComponent,
     ConstructionComponent,
-    InteractionComponent
+    InteractionsComponent
   ],
   imports: [
     BrowserModule,
