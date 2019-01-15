@@ -245,3 +245,7 @@ p-calendar>>>.ui-inputtext {
 
     }
     }
+    .overflow {
+      overflow: hidden;
+      height: 200px;
+    }
