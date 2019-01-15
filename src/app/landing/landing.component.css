@@ -1,39 +1,51 @@
 @import url('../../assets/css/style.css');
+
 main {
-  width: 121%;
+  width: 100vw;
   text-align: center;
+  margin-left: -208px;
 }
-p-galleria >>> .ui-galleria-panel-wrapper img {
+
+p-galleria>>>.ui-galleria-panel-wrapper img {
   width: 100vw;
   min-height: 100vh;
 }
-p-galleria >>> .ui-galleria {
+
+p-galleria>>>.ui-galleria {
   width: 100vw;
   height: 100vh;
-  
+  margin-left: -15px;
+
 }
+
 p-galleria>>>.ui-galleria-nav-next {
-   font-size: 80px;
+  font-size: 80px;
   color: transparent;
 }
+
 p-galleria>>>.ui-galleria-nav-prev {
   font-size: 80px;
- color: transparent;
+  color: transparent;
 }
+
 #intro {
+  width: 100vw;
   overflow: hidden;
-  background: #575757;
+  background: #252525;
 }
+
 #msgSubmit {
-  background: rgb(20,20,20,0.5);
+  background: rgb(20, 20, 20, 0.5);
   border: 2px rgba(236, 156, 135) outset;
   border-radius: 5px;
 }
+
 #msgSubmit:hover {
   transition: 0.5s ease-in-out;
   color: white;
   background: rgba(6, 97, 235, 0.7);
 }
+
 .firstScroll {
   width: 80px;
   color: white;
@@ -41,9 +53,10 @@ p-galleria>>>.ui-galleria-nav-prev {
   height: 80px;
   border-radius: 50%;
   border: 2px powderblue outset;
-  background: rgb(20,20,20,0.5);
+  background: rgb(20, 20, 20, 0.5);
 
 }
+
 .firstScroll:hover {
   transition: 0.5s ease-in-out;
   background: rgba(248, 91, 18, 0.7);
@@ -52,30 +65,48 @@ p-galleria>>>.ui-galleria-nav-prev {
 .scrollNext {
   border: 2px rgb(248, 151, 138) outset;
 }
+
 .scrollNext:hover {
   transition: 0.5s ease-in-out;
   background: rgba(6, 97, 235, 0.7);
 }
+
 .og-grid img {
   width: 300px;
   height: 250px;
 }
 
+.bg-dark {
+  background: #252525;
+  width: 100vw;
+}
+
+#services,
+#team,
+#parallax1,
+#parallax2,
+#bottom-widget,
+#footer {
+  width: 100vw;
+}
+
 @media (max-width: 2500px) and (min-width: 999.5px) {
 
-  p-galleria >>> .ui-galleria-panel-wrapper img {
-max-height: 100vh;
+  p-galleria>>>.ui-galleria-panel-wrapper img {
+    max-height: 100vh;
   }
 
 }
+
 @media (max-width: 999px) and (min-width: 320px) {
   main {
     margin-left: -80px;
   }
-  p-galleria >>> .ui-galleria-panel-wrapper img {
+
+  p-galleria>>>.ui-galleria-panel-wrapper img {
     width: 120vw;
     margin-left: -45px;
-   }
+  }
 
 
 }
