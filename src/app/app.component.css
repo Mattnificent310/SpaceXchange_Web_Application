@@ -249,3 +249,11 @@ p-calendar>>>.ui-inputtext {
       overflow: hidden;
       height: 200px;
     }
+    .scroll {
+      overflow: auto;
+      height: 300px;
+    }
+
+    .footer button{
+      margin-top: 15px;
+    }
