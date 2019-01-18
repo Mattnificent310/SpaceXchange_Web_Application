@@ -42,7 +42,6 @@ import { NgxPageScrollModule } from 'ngx-page-scroll';
 import { CountoModule } from 'angular2-counto';
 import { UcWidgetModule } from "ngx-uploadcare-widget";
 import { InteractionsComponent } from './interactions/interactions.component';
-import { DeferLoadModule } from '@trademe/ng-defer-load';
 
 const appRoutes: Routes = [
   { path: "", redirectTo: "/landing", pathMatch: "full" },
@@ -132,8 +131,7 @@ const appRoutes: Routes = [
     CountoModule,
     FileUploadModule,
     UcWidgetModule,
-    SelectButtonModule,
-    DeferLoadModule
+    SelectButtonModule
   ],
   providers: [ConfirmationService, BuyerService, AppComponent],
   bootstrap: [AppComponent]

@@ -3,8 +3,8 @@
 
   <!-- intro area -->
 
-<div id="intro" (deferLoad)="showAbout = true">
-      <p-galleria *ngIf="showAbout" class="embed-responsive-16by9" [showFilmstrip]="false" #galleria class="col-lg-12 col-md-12 col-sm-12 col-xs-12" panelWidth="100vw" [images]="images" [showCaption]="false">
+<div id="intro">
+      <p-galleria class="embed-responsive-16by9" [showFilmstrip]="false" #galleria class="col-lg-12 col-md-12 col-sm-12 col-xs-12" panelWidth="100vw" [images]="images" [showCaption]="false">
         </p-galleria>
 
 <div class="intro-text" style="color: white; background: linear-gradient(to top, rgba(10, 10, 10, 0.15) 0%, rgba(10, 10, 10, 0.15) 100%),
@@ -45,7 +45,7 @@
     </div>
     <div class="row wow fadeInUp">
       <div class="col-md-6 about-img">
-        <img *ngIf="showAbout" src="../../assets/img/world-map-network-circuit-board.jpg" alt="Network Circle">
+        <img src="../../assets/img/world-map-network-circuit-board.jpg" alt="">
       </div>
 
       <div class="col-md-6 content">
@@ -59,16 +59,12 @@
     </div>
 
     </div>
-    <div style="margin-top: 80px; margin-bottom: -80px;">
-      <a class="firstScroll" pageScroll href="#services">
-        <i class="fa fa-chevron-down"></i>
-      </a>
-    </div>
+    <div style="margin-top: 80px; margin-bottom: -80px;"><a class="firstScroll" pageScroll href="#services"><i class="fa fa-chevron-down"></i></a> </div>
 
 </section>
 
 <!-- Parallax 1 -->
-<section *ngIf="showAbout" id="parallax1" (deferLoad)="showSvc = true" class="home-section parallax" data-stellar-background-ratio="0.5">
+<section id="parallax1" class="home-section parallax" data-stellar-background-ratio="0.5">
 
   <div class="container">
     <div class="row">
@@ -83,7 +79,7 @@
 </section>
 
 <!-- Services -->
-<section id="services" (deferLoad)="showSlides = true" class="home-section bg-white">
+<section id="services" class="home-section bg-white">
     <div style="margin-bottom: 40px; margin-top: -30px;"><a class="firstScroll scrollNext" pageScroll href="#portfolio"><i class="fa fa-fast-forward"></i></a></div>
 
   <div class="container">
@@ -112,7 +108,7 @@
                 </div>
                 <div class="col-sm-12 col-md-5">
                   <div class="screenshot wow bounceInRight">
-                    <img *ngIf="showSvc" src="../../assets/img/blue-grid.png" class="img-responsive" alt="" />
+                    <img src="../../assets/img/blue-grid.png" class="img-responsive" alt="" />
                     <br/>
                   </div>
                 </div>
@@ -128,7 +124,7 @@
                 </div>
                 <div class="col-sm-12 col-md-5">
                   <div class="screenshot wow bounceInRight">
-<img *ngIf="showSvc" style="height: 300px" src="../../assets/img/cockpit-wallpapers.jpg" class="img-responsive" alt="" />
+                    <img style="height: 300px" src="../../assets/img/cockpit-wallpapers.jpg" class="img-responsive" alt="" />
                     <br/>
                   </div>
                 </div>
@@ -144,8 +140,7 @@
                 </div>
                 <div class="col-sm-12 col-md-5">
                   <div class="screenshot wow bounceInRight">
-<img *ngIf="showSvc" src="../../assets/img/29344733-monde-numérique-de-style-de-la-technologie-de-la-carte-du-monde-avec-des-systèmes-électroniques-les-voyage.jpg"
-  class="img-responsive" alt="" />
+                    <img src="../../assets/img/29344733-monde-numérique-de-style-de-la-technologie-de-la-carte-du-monde-avec-des-systèmes-électroniques-les-voyage.jpg" class="img-responsive" alt="" />
                   </div>
                 </div>
               </div>
@@ -184,11 +179,65 @@
     <div class="row">
       <div class="col-lg-12">
 
-<ul id="og-grid" class="og-grid" *ngIf="showSlides">
-
-<li *ngFor="let item of images" class="wow bounceInUp" data-wow-delay="0.1s">
-            <a href="#" data-title="Portfolio title" data-description="Duo te dico volutpat, unum elit oblique per id. Ne duo mollis sapientem intellegebat. Per at augue vidisse percipit, pri vocibus assueverit interesset ut, no dolore luptatum incorrupte nec. In mentitum forensibus nec, nibh eripuit ut pri, tale illud voluptatum ut sea. Sed oratio repudiare ei, cum an magna labitur, eu atqui augue mei. Pri consul detracto eu, solet nusquam accusam ex vim, an movet interesset necessitatibus mea.">
-              <img src="{{item.source}}" alt="{{item.alt}}"/>
+        <ul id="og-grid" class="og-grid">
+          <li class="wow bounceInUp" data-wow-delay="0.1s">
+            <a href="#" data-largesrc="../../assets/img/works/1.jpg" data-title="Portfolio title" data-description="Duo te dico volutpat, unum elit oblique per id. Ne duo mollis sapientem intellegebat. Per at augue vidisse percipit, pri vocibus assueverit interesset ut, no dolore luptatum incorrupte nec. In mentitum forensibus nec, nibh eripuit ut pri, tale illud voluptatum ut sea. Sed oratio repudiare ei, cum an magna labitur, eu atqui augue mei. Pri consul detracto eu, solet nusquam accusam ex vim, an movet interesset necessitatibus mea.">
+              <img src="../../assets/img/galleria1.jpg" alt=""/>
+            </a>
+          </li>
+          <li class="wow bounceInUp" data-wow-delay="0.1s">
+            <a href="#" data-largesrc="img/works/2.jpg" data-title="Portfolio title" data-description="Mea an eros periculis dignissim, quo mollis nostrum elaboraret et. Id quem perfecto mel, no etiam perfecto qui. No nisl legere recusabo nam, ius an tale pericula evertitur, dicat phaedrum qui in. Usu numquam legendos in, voluptaria sadipscing ut vel. Eu eum mandamus volutpat gubergren, eos ad detracto nominati, ne eum idque elitr aliquam.">
+              <img src="../../assets/img/galleria2.jpg" alt=""/>
+            </a>
+          </li>
+          <li class="wow bounceInUp" data-wow-delay="0.1s">
+            <a href="#" data-largesrc="img/works/3.jpg" data-title="Portfolio title" data-description="Vim ad persecuti appellantur. Eam ignota deterruisset eu, in omnis fierent convenire sed. Ne nulla veritus vel, liber euripidis in eos. Postea comprehensam vis in, detracto deseruisse mei ea. Ex sadipscing deterruisset concludaturque quo.">
+              <img src="../../assets/img/galleria3.jpg" alt="img01"/>
+            </a>
+          </li>
+          <li class="wow bounceInUp" data-wow-delay="0.1s">
+            <a href="#" data-largesrc="img/works/4.jpg" data-title="Portfolio title" data-description="In mentitum forensibus nec, nibh eripuit ut pri, tale illud voluptatum ut sea. Sed oratio repudiare ei, cum an magna labitur, eu atqui augue mei. Pri consul detracto eu, solet nusquam accusam ex vim, an movet interesset necessitatibus mea.">
+              <img src="../../assets/img/galleria4.jpg" alt="img01"/>
+            </a>
+          </li>
+          <li class="wow bounceInUp" data-wow-delay="0.1s">
+            <a href="#" data-largesrc="img/works/5.jpg" data-title="Portfolio title" data-description="Duo te dico volutpat, unum elit oblique per id. Ne duo mollis sapientem intellegebat. Per at augue vidisse percipit, pri vocibus assueverit interesset ut, no dolore luptatum incorrupte nec. In mentitum forensibus nec, nibh eripuit ut pri, tale illud voluptatum ut sea">
+              <img src="../../assets/img/galleria5.jpg" alt="img01"/>
+            </a>
+          </li>
+          <li class="wow bounceInUp" data-wow-delay="0.1s">
+            <a href="#" data-largesrc="img/works/6.jpg" data-title="Portfolio title" data-description="Id elit saepe pro. In atomorum constituam definitionem quo, at torquatos sadipscing eum, ut eum wisi meis mentitum. Probo feugiat ea duo. An usu platonem instructior, qui dolores inciderint ad. Te elit essent mea, vim ne atqui legimus invenire, ad dolor vitae sea.">
+              <img src="../../assets/img/galleria6.jpg" alt="img01"/>
+            </a>
+          </li>
+          <li class="wow bounceInUp" data-wow-delay="0.1s">
+            <a href="#" data-largesrc="img/works/7.jpg" data-title="Portfolio title" data-description="Duo te dico volutpat, unum elit oblique per id. Ne duo mollis sapientem intellegebat. Per at augue vidisse percipit, pri vocibus assueverit interesset ut, no dolore luptatum incorrupte nec. In mentitum forensibus nec, nibh eripuit ut pri, tale illud voluptatum ut sea. Sed oratio repudiare ei, cum an magna labitur, eu atqui augue mei.">
+              <img src="../../assets/img/galleria7.jpg" alt="img01"/>
+            </a>
+          </li>
+          <li class="wow bounceInUp" data-wow-delay="0.1s">
+            <a href="#" data-largesrc="img/works/8.jpg" data-title="Portfolio title" data-description="No nisl legere recusabo nam, ius an tale pericula evertitur, dicat phaedrum qui in. Usu numquam legendos in, voluptaria sadipscing ut vel. Eu eum mandamus volutpat gubergren, eos ad detracto nominati, ne eum idque elitr aliquam.">
+              <img src="../../assets/img/galleria8.jpg" alt="img01"/>
+            </a>
+          </li>
+          <li class="wow bounceInUp" data-wow-delay="0.1s">
+            <a href="#" data-largesrc="../../assets/img/galleria9.jpg" data-title="Portfolio title" data-description="Lorem ipsum dolor sit amet, ex pri quod ferri fastidii. Mazim philosophia eum ad, facilisis laboramus te est. Eam magna fabellas ut. Ne vis diceret accumsan salutandi, pro in impedit accusamus dissentias, ut nonumy eloquentiam ius.">
+              <img src="../../assets/img/galleria9.jpg" alt="img01"/>
+            </a>
+          </li>
+          <li class="wow bounceInUp" data-wow-delay="0.1s">
+            <a href="#" data-largesrc="img/works/10.jpg" data-title="Portfolio title" data-description="Duo te dico volutpat, unum elit oblique per id. Ne duo mollis sapientem intellegebat. Per at augue vidisse percipit, pri vocibus assueverit interesset ut, no dolore luptatum incorrupte nec. In mentitum forensibus nec, nibh eripuit ut pri, tale illud voluptatum ut sea. Sed oratio repudiare ei, cum an magna labitur, eu atqui augue mei. Pri consul detracto eu, solet nusquam accusam ex vim.">
+              <img src="../../assets/img/galleria10.jpg" alt="img01"/>
+            </a>
+          </li>
+          <li class="wow bounceInUp" data-wow-delay="0.1s">
+            <a href="#" data-largesrc="../../assets/img/works/11.jpg" data-title="Portfolio title" data-description="Vim ad persecuti appellantur. Eam ignota deterruisset eu, in omnis fierent convenire sed. Ne nulla veritus vel, liber euripidis in eos. Postea comprehensam vis in, detracto deseruisse mei ea. Ex sadipscing deterruisset concludaturque quo.">
+              <img src="../../assets/img/galleria11.jpg" alt="img01"/>
+            </a>
+          </li>
+          <li class="wow bounceInUp" data-wow-delay="0.1s">
+            <a href="#" data-largesrc="../../assets/img/works/12.jpg" data-title="Portfolio title" data-description="Mea an eros periculis dignissim, quo mollis nostrum elaboraret et. Id quem perfecto mel, no etiam perfecto qui. No nisl legere recusabo nam, ius an tale pericula evertitur, dicat phaedrum qui in. Usu numquam legendos in, voluptaria sadipscing ut vel. Eu eum mandamus volutpat gubergren, eos ad detracto nominati, ne eum idque elitr aliquam.">
+              <img src="../../assets/img/galleria12.jpg" alt="img01"/>
             </a>
           </li>
         </ul>
