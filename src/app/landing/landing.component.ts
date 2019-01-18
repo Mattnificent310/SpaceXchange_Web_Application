@@ -9,16 +9,22 @@ import { Component, OnInit } from "@angular/core";
 
 export class LandingComponent implements OnInit {
   images: any[];
+  showSlides: boolean;
+  showSvc: boolean;
+  showAbout: boolean;
   constructor(private myApp: AppComponent) {
 
   }
 
 
   ngOnInit() {
+    this.showSlides = false;
+    this.showSvc = false;
+    this.showAbout = false;
     this.myApp.hideMenu();
     this.images = [];
-    this.images.push({source: '../../assets/img/galleria1.jpg', alt: 'Description for Image 1', title:'Title 1'});
-    this.images.push({source: '../../assets/img/galleria2.jpg', alt: 'Description for Image 2', title:'Title 2'});
+    this.images.push({source: '../../assets/img/galleria1.webp', alt: 'Description for Image 1', title:'Title 1'});
+    this.images.push({source: '../../assets/img/galleria2.webp', alt: 'Description for Image 2', title:'Title 2'});
     this.images.push({source: '../../assets/img/galleria3.jpg', alt: 'Description for Image 3', title:'Title 3'});
     this.images.push({source: '../../assets/img/galleria4.jpg', alt: 'Description for Image 4', title:'Title 4'});
     this.images.push({source: '../../assets/img/galleria5.jpg', alt: 'Description for Image 5', title:'Title 5'});
