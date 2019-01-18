@@ -1,6 +1,6 @@
 import { AppComponent } from './../app.component';
 import { Component, OnInit } from "@angular/core";
-
+import { DeferModule } from 'primeng/defer';
 @Component({
   selector: "app-landing",
   templateUrl: "./landing.component.html",
@@ -31,6 +31,7 @@ export class LandingComponent implements OnInit {
     this.images.push({ source: '../../assets/img/galleria12.webp', alt: 'Description for Image 12', title:'Title 12'});
 
   }
+
   scrollTop(event) {
     const scrollToTop = window.setInterval(() => {
         let pos = window.pageYOffset;
