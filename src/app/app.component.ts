@@ -384,7 +384,6 @@ if (localStorage.getItem('loggedIn') === 'Buyer') {
             summary: `Sorry ${this.loginForm.controls['emailAddress'].value}`,
             detail: 'Something went wrong during login'
           });
-          this.router.navigate(['/dashboard']);
         }
       });
       localStorage.setItem('loggedIn', 'Buyer');
@@ -440,36 +439,35 @@ if (localStorage.getItem('loggedIn') === 'Buyer') {
 this.router.navigate(['landing']);
   }
   registerUser() {
-    this.http.post('http://18.203.81.222:8083/users',
-      {
-        "avatar": "string",
-        "name": this.registerForm.controls['regName'].value,
-        "surname": this.registerForm.controls['regSurname'].value,
-        "birthDate": this.registerForm.controls['regBirthDate'].value,
-        "phone": this.registerForm.controls['regPhoneNumber'].value,
-        "email": this.registerForm.controls['regEmailAddress'].value,
-        "password": this.registerForm.controls['regPassword'].value
+    this.http
+      .post("http://63.32.26.64:8083/users", {
+        avatar: "string",
+        name: this.registerForm.controls["regName"].value,
+        surname: this.registerForm.controls["regSurname"].value,
+        birthDate: this.registerForm.controls["regBirthDate"].value,
+        phone: this.registerForm.controls["regPhoneNumber"].value,
+        email: this.registerForm.controls["regEmailAddress"].value,
+        password: this.registerForm.controls["regPassword"].value
       })
-      .subscribe(
-        data => {
-          console.log('POST Request is successful ', data);
+      .subscribe(data => {
+          console.log("POST Request is successful ", data);
 
           this.messages.push({
-            severity: 'success',
-            summary: `Welcome ${this.registerForm.controls['regName'].value}`,
-            detail: 'You signed up for the ultimate SpaceXperience'
+            severity: "success",
+            summary: `Welcome ${
+              this.registerForm.controls["regName"].value
+            }`,
+            detail: "You signed up for the ultimate SpaceXperience"
           });
-        },
-        error => {
+        }, error => {
           console.log("Error", error);
           this.messages = [];
           this.messages.push({
-            severity: 'warn',
-            summary: `Sorry ${this.registerForm.controls['regName'].value}`,
-            detail: 'Something went wrong during registration'
+            severity: "warn",
+            summary: `Sorry ${this.registerForm.controls["regName"].value}`,
+            detail: "Something went wrong during registration"
           });
-        }
-      );
+        });
     this.register = false;
   }
   public hideMenu() {
