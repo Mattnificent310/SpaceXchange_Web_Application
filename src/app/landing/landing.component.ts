@@ -23,7 +23,7 @@ export class LandingComponent implements OnInit {
     this.showAbout = false;
     this.showSvc = false;
     this.showPort = false;
-    this.this.myApp.hideMenu();
+    this.myApp.hideMenu();
     this.images = [];
     this.images.push({source: '../../assets/img/galleria1.webp', alt: 'Description for Image 1', title:'Title 1'});
     this.images.push({ source: '../../assets/img/galleria2.webp', alt: 'Description for Image 2', title:'Title 2'});
