@@ -1,6 +1,6 @@
 import { AppComponent } from './../app.component';
 import { Component, OnInit } from "@angular/core";
-
+import { DeferModule } from 'primeng/defer';
 @Component({
   selector: "app-landing",
   templateUrl: "./landing.component.html",
