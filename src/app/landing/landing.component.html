@@ -3,7 +3,7 @@
 
   <!-- intro area -->
 
-<div pDefer (deferLoad)="showGallaria = true" id="intro">
+<div (deferLoad)="showGallaria = true" id="intro">
       <p-galleria *ngIf="showGallaria" class="embed-responsive-16by9" [showFilmstrip]="false" #galleria class="col-lg-12 col-md-12 col-sm-12 col-xs-12" panelWidth="100vw" [images]="images" [showCaption]="false">
         </p-galleria>
 
@@ -43,7 +43,7 @@
         </div>
       </div>
     </div>
-    <div class="row wow fadeInUp" pDefer>
+    <div class="row wow fadeInUp">
       <div class="col-md-6 about-img">
         <img *ngIf="showAbout" src="../../assets/img/world-map-network-circuit-board.jpg" alt="">
       </div>
@@ -64,7 +64,7 @@
 </section>
 
 <!-- Parallax 1 -->
-<section pDefer id="parallax1" class="home-section parallax" data-stellar-background-ratio="0.5">
+<section id="parallax1" class="home-section parallax" data-stellar-background-ratio="0.5">
 
   <div (deferLoad)="showSvc = true" class="container">
     <div class="row">
@@ -106,7 +106,7 @@
                     <p>This Hub centralizes communications for buyers and suppliers alike through an internal messaging service. This service allows people with similar supply or demand requirements to engage in discussion and negotiation about a particular offer.</p>
                   </div>
                 </div>
-                <div class="col-sm-12 col-md-5" pDefer>
+                <div class="col-sm-12 col-md-5">
                   <div class="screenshot wow bounceInRight">
                     <img *ngIf="showSvc" src="../../assets/img/blue-grid.png" class="img-responsive" alt="" />
                     <br/>
@@ -122,7 +122,7 @@
                     <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna.</p>
                   </div>
                 </div>
-                <div class="col-sm-12 col-md-5" pDefer>
+                <div class="col-sm-12 col-md-5">
                   <div class="screenshot wow bounceInRight">
                     <img *ngIf="showSvc" style="height: 300px" src="../../assets/img/cockpit-wallpapers.jpg" class="img-responsive" alt="" />
                     <br/>
@@ -138,7 +138,7 @@
                     <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna.</p>
                   </div>
                 </div>
-                <div class="col-sm-12 col-md-5" pDefer>
+                <div class="col-sm-12 col-md-5">
                   <div class="screenshot wow bounceInRight">
                     <img *ngIf="showSvc" src="../../assets/img/29344733-monde-numérique-de-style-de-la-technologie-de-la-carte-du-monde-avec-des-systèmes-électroniques-les-voyage.jpg" class="img-responsive" alt="" />
                   </div>
@@ -177,7 +177,7 @@
       </div>
     </div>
     <div class="row">
-      <div class="col-lg-12" pDefer>
+      <div class="col-lg-12">
 
         <ul id="og-grid" class="og-grid">
           <li *ngFor="let item of images" class="wow bounceInUp" data-wow-delay="0.1s">
@@ -199,7 +199,7 @@
 <section id="parallax2" class="home-section parallax" data-stellar-background-ratio="0.5">
   <div class="container">
     <div class="row">
-      <div class="col-md-12" pDefer>
+      <div class="col-md-12">
         <ul class="clients">
           <li class="wow fadeInDown" data-wow-delay="0.3s"><a href="#"><img src="../../assets/img/clients/1.png" alt="" /></a></li>
           <li class="wow fadeInDown" data-wow-delay="0.6s"><a href="#"><img src="../../assets/img/clients/2.png" alt="" /></a></li>
@@ -227,42 +227,42 @@
     </div>
     <div class="row">
       <div class="col-xs-12 col-sm-3 col-md-3 col-lg-3">
-        <div class="box-team wow bounceInUp" pDefer data-wow-delay="0.1s">
+        <div class="box-team wow bounceInUp" data-wow-delay="0.1s">
           <img width="180" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSePYH0l73i-OgzhmHIgztXFb6p2wZFfcAETx9-AL4Y3ndU-KLt" alt="" class="img-circle img-responsive" />
           <h4>Ilan</h4>
           <p>Director</p>
         </div>
       </div>
       <div class="col-xs-12 col-sm-3 col-md-3 col-lg-3" data-wow-delay="0.3s">
-        <div class="box-team wow bounceInUp" pDefer>
+        <div class="box-team wow bounceInUp">
           <img width="180" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSePYH0l73i-OgzhmHIgztXFb6p2wZFfcAETx9-AL4Y3ndU-KLt" alt="" class="img-circle img-responsive" />
           <h4>Faan</h4>
           <p>Director</p>
         </div>
       </div>
       <div class="col-xs-12 col-sm-3 col-md-3 col-lg-3" data-wow-delay="0.5s">
-        <div class="box-team wow bounceInUp" pDefer>
+        <div class="box-team wow bounceInUp">
           <img width="180" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSePYH0l73i-OgzhmHIgztXFb6p2wZFfcAETx9-AL4Y3ndU-KLt" alt="" class="img-circle img-responsive" />
           <h4>Matt Maree</h4>
           <p>Developer</p>
         </div>
       </div>
       <div class="col-xs-12 col-sm-3 col-md-3 col-lg-3" data-wow-delay="0.7s">
-        <div class="box-team wow bounceInUp" pDefer>
+        <div class="box-team wow bounceInUp">
           <img width="180" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSePYH0l73i-OgzhmHIgztXFb6p2wZFfcAETx9-AL4Y3ndU-KLt" alt="" class="img-circle img-responsive" />
           <h4>Phillip Maree</h4>
           <p>Director</p>
         </div>
       </div>
       <div class="col-xs-12 col-sm-3 col-md-3 col-lg-3" data-wow-delay="0.7s">
-        <div class="box-team wow bounceInUp" pDefer>
+        <div class="box-team wow bounceInUp">
           <img width="180" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSePYH0l73i-OgzhmHIgztXFb6p2wZFfcAETx9-AL4Y3ndU-KLt" alt="" class="img-circle img-responsive" />
           <h4>Thinus</h4>
           <p>Business Analyst</p>
         </div>
       </div>
       <div class="col-xs-12 col-sm-3 col-md-3 col-lg-3" data-wow-delay="0.7s">
-        <div class="box-team wow bounceInUp" pDefer>
+        <div class="box-team wow bounceInUp">
           <img style="width: 170px; height: 185px;"  src="https://www.activehealthclinic.ca/storage/app/media/cartoon_avatar-blonde-female.png" alt="" class="img-circle img-responsive" />
           <h4>Arona</h4>
           <p>Business Analyst</p>
