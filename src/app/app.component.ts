@@ -105,6 +105,8 @@ export class AppComponent implements OnInit, AfterViewInit {
 
   PageNames = PageNames;
 
+  loggedIn: String;
+
   @ViewChild("bigMenu") bigMenu: Menu;
   @ViewChild("smallMenu") smallMenu: Menu;
   @ViewChild("searchBox") searchBox: ElementRef;
@@ -119,6 +121,10 @@ export class AppComponent implements OnInit, AfterViewInit {
     private service: BuyerService
   ) {}
   ngOnInit() {
+    if (!localStorage.getItem('loggedIn')) {
+      this.loggedIn = 'None';
+    }
+    this.loggedIn = localStorage.getItem('loggedIn');
     this.loginForm = this.fb.group({
       names: [""],
       phoneNumber: ["", [Validators.required, Validators.minLength(10)]],
@@ -575,7 +581,8 @@ export class AppComponent implements OnInit, AfterViewInit {
     this.service.getAllBuyers().subscribe(data => {
       this.buyer = data;
       this.buyer.forEach(item => {
-        if (item.email === this.loginForm.controls["emailAddress"].value) {
+        if (item.email === this.loginForm.controls["emailAddress"].value ||
+        item.phone === this.loginForm.controls['phoneNumber'].value) {
           if (item.password === this.loginForm.controls["password"].value) {
             console.log("POST Request is successful ", data);
             this.valid = true;
@@ -591,7 +598,7 @@ export class AppComponent implements OnInit, AfterViewInit {
           summary: `Welcome ${name}`,
           detail: "Your SpaceXperience starts now"
         });
-        localStorage.setItem("loggedIn", "Buyer");
+           localStorage.setItem("loggedIn", "Buyer");
 
         this.router.navigate(["dashboard"]);
       } else {
@@ -653,6 +660,8 @@ export class AppComponent implements OnInit, AfterViewInit {
   logout() {
     this.hideMenu();
     this.valid = false;
+    this.loggedIn = 'None';
+    localStorage.setItem('loggedIn', null);
     this.landed = false;
     this.messages = [];
     this.messages.push({

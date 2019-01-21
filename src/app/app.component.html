@@ -6,20 +6,20 @@
     <div class="ui-g-10">
       <div class="ui-g-12" id="header2">
         <p-menubar *ngIf="width.innerWidth >= 1000" styleClass="menubar" [model]="items">
-          <div [ngSwitch]="valid" style="margin-top: -5px">
+          <div [ngSwitch]="loggedIn" style="margin-top: -5px">
 
             <div class="iconContainer">
               <i class="material-icons" style="color: silver;"><span *ngSwitchCase="false">fingerprint</span><span
-                  *ngSwitchCase="true">pause_circle</span></i>
+                  *ngSwitchCase="'Buyer'">pause_circle</span></i>
             </div>
-            <button *ngSwitchCase="true" class="authButtons" type="button" (click)="logout()" pButton label="Sign Out"></button>
+            <button *ngSwitchCase="'Buyer'" class="authButtons" type="button" (click)="logout()" pButton label="Sign Out"></button>
 
-            <button *ngSwitchCase="false" class="authButtons" type="button" (click)="showDialog()" pButton label="Sign In"></button>
+            <button *ngSwitchCase="'None'" class="authButtons" type="button" (click)="showDialog()" pButton label="Sign In"></button>
 
-            <div class="iconContainer" *ngSwitchCase="false">
+            <div class="iconContainer" *ngSwitchCase="'None'">
               <i class="material-icons" style="color: silver;">power_settings_new</i>
             </div>
-            <button *ngSwitchCase="false" class="authButtons" type="button" (click)="showRegister()" pButton label="Sign Up"></button>
+            <button *ngSwitchCase="'None'" class="authButtons" type="button" (click)="showRegister()" pButton label="Sign Up"></button>
           </div>
 
         </p-menubar>
