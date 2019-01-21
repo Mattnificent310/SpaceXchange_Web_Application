@@ -121,10 +121,11 @@ export class AppComponent implements OnInit, AfterViewInit {
     private service: BuyerService
   ) {}
   ngOnInit() {
+    this.loggedIn = 'None';
     if (!localStorage.getItem('loggedIn')) {
       this.loggedIn = 'None';
     }
-    this.loggedIn = localStorage.getItem('loggedIn');
+    this.loggedIn = localStorage.getItem('loggedIn') === 'Buyer' ? 'Buyer' : 'None';
     this.loginForm = this.fb.group({
       names: [""],
       phoneNumber: ["", [Validators.required, Validators.minLength(10)]],
@@ -599,6 +600,7 @@ export class AppComponent implements OnInit, AfterViewInit {
           detail: "Your SpaceXperience starts now"
         });
            localStorage.setItem("loggedIn", "Buyer");
+           this.loggedIn = 'Buyer';
 
         this.router.navigate(["dashboard"]);
       } else {

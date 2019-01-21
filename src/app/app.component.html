@@ -9,7 +9,7 @@
           <div [ngSwitch]="loggedIn" style="margin-top: -5px">
 
             <div class="iconContainer">
-              <i class="material-icons" style="color: silver;"><span *ngSwitchCase="false">fingerprint</span><span
+              <i class="material-icons" style="color: silver;"><span *ngSwitchCase="'None'">fingerprint</span><span
                   *ngSwitchCase="'Buyer'">pause_circle</span></i>
             </div>
             <button *ngSwitchCase="'Buyer'" class="authButtons" type="button" (click)="logout()" pButton label="Sign Out"></button>
