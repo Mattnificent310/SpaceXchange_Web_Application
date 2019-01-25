@@ -247,8 +247,8 @@ export class AppComponent implements OnInit, AfterViewInit {
         command: event => handleSelect(event, "about")
       },
       {
-        label: "Downloads",
-        icon: "fa-download",
+        label: "Careers",
+        icon: "fa-building",
         routerLink: ["/2"],
         command: event => handleSelect(event, "portfolio")
       },
@@ -260,7 +260,7 @@ export class AppComponent implements OnInit, AfterViewInit {
       },
       {
         label: "Contact Us",
-        icon: "fa-mobile",
+        icon: "fa-comments",
         routerLink: ["/4"],
         command: event => handleSelect(event, "contact")
       }
