@@ -479,7 +479,6 @@ export class AppComponent implements OnInit, AfterViewInit {
   login() {
     let name: string;
 
-    console.log(this.registerForm.controls["regGender"].value.name);
     this.service.getAllBuyers().subscribe(data => {
       this.buyer = data;
       this.buyer.forEach(item => {
@@ -504,6 +503,7 @@ export class AppComponent implements OnInit, AfterViewInit {
       });
       if (this.valid) {
         this.display = false;
+        this.renderMenus();
         this.messages = [];
         this.messages.push({
           severity: "success",
