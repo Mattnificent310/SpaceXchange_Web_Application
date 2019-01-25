@@ -15,6 +15,7 @@
 
 
 
+
     <div
         class="ui-g-12"
         style="margin-top: -10px;"
@@ -43,6 +44,7 @@
                         [ngSwitch]="loggedIn"
                         style="margin-top: -5px"
                     >
+
 
 
 
@@ -86,6 +88,7 @@
 
 
 
+
                         <button
                             *ngSwitchCase="'None'"
                             class="authButtons"
@@ -94,6 +97,7 @@
                             pButton
                             label="Sign In"
                         ></button>
+
 
 
 
@@ -140,6 +144,7 @@
 
 
 
+
                 </p-menubar>
             </div>
 
@@ -155,7 +160,9 @@
 
 
 
+
         </div>
+
 
 
 
@@ -195,12 +202,14 @@
 
 
 
+
         <p-sidebar
             [style]="{'background':'linear-gradient(to top, rgba(10,10,10,0.5) 0%,rgba(10,10,10,0.5) 100%), url() repeat 0 0'}"
             [(visible)]="mobileSidebar"
             position="right"
             [baseZIndex]="999999999999999999999"
         >
+
 
 
 
@@ -231,10 +240,12 @@
 
 
 
+
                 <p-menu
                     #bigMenu
                     [model]="items"
                 ></p-menu>
+
 
 
 
@@ -312,8 +323,10 @@
 
 
 
+
         </p-sidebar>
     </div>
+
 
 
 
@@ -378,12 +391,14 @@
 
 
 
+
 </p-overlayPanel>
 <p-growl
     [baseZIndex]="99999999999999999999"
     [value]="messages"
     [life]="5000"
 ></p-growl>
+
 
 
 
@@ -422,12 +437,14 @@
 
 
 
+
     <p-steps
         [model]="dialogPages"
         [(activeIndex)]="index"
         (activeIndexChange)="index + 1"
         [readonly]="true"
     >
+
 
 
 
@@ -563,6 +580,7 @@
 
 
 
+
         <button
             type="button"
             pButton
@@ -572,6 +590,7 @@
             class="ui-button-secondary"
         ></button>
     </p-footer>
+
 
 
 
@@ -616,10 +635,12 @@
 
 
 
+
                 <div
                     [formGroup]="registerForm"
                     class="ui-g"
                 >
+
 
 
 
@@ -820,7 +841,9 @@
 
 
 
+
                             <div class="ui-g-12 ui-md-5">
+
 
 
 
@@ -840,6 +863,7 @@
                                     nicename="Gender"
                                 >
                                 </at-fielderrors>
+
 
 
 
@@ -892,6 +916,7 @@
 
 
 
+
                     </div>
                 </div>
             </div>
@@ -923,6 +948,7 @@
                     [formGroup]="supplierForm"
                     class="ui-g"
                 >
+
 
 
 
@@ -1054,6 +1080,7 @@
 
 
 
+
                                 <p-calendar
                                     [(ngModel)]="date"
                                     [showIcon]="true"
@@ -1105,6 +1132,7 @@
 
 
 
+
                             </div>
                             <div class="ui-g-12 ui-md-12">
                                 <at-fielderrors
@@ -1127,6 +1155,80 @@
 
 
 
+                        <div class="ui-g-12 ui-md-6">
+                            <div class="ui-inputgroup">
+                                <span class="ui-inputgroup-addon">
+                                    <i class="fa fa-transgender-alt"></i>
+                                </span>
+                                <p-selectButton
+                                    [options]="genders"
+                                    [(ngModel)]="selectedGender"
+                                    formControlName="supGender"
+                                >
+                                    <ng-template let-item>
+                                        <div style="padding: .35em 1em; margin-left: -10px; width: 110px;">
+                                            <img
+                                                style="vertical-align: left; align-text: left;"
+                                                src="../assets/img/{{item.flag}}"
+                                                height="15px"
+                                            >
+                                            <span>{{item.name}}</span>
+                                        </div>
+                                    </ng-template>
+                                </p-selectButton>
+                            </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                            <div class="ui-g-12 ui-md-5">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                                <at-fielderrors
+                                    [form]="supplierForm"
+                                    field="supGender"
+                                    nicename="Gender"
+                                >
+                                </at-fielderrors>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                            </div>
+                        </div>
                         <div class="ui-g-12 ui-md-6">
                             <div class="ui-inputgroup">
                                 <span class="ui-inputgroup-addon">
@@ -1185,7 +1287,9 @@
 
 
 
+
     </p-tabView>
+
 
 
 
@@ -1237,6 +1341,7 @@
 
 
 
+
     <p-gmap
         [options]="options"
         (onOverlayDrag)="handleDrag($event);"
@@ -1274,11 +1379,13 @@
 
 
 
+
     <div
         *ngIf="!landed"
         class="ui-g-nopad"
         id="sidegutter"
     >
+
 
 
 
@@ -1309,10 +1416,12 @@
 
 
 
+
             <p-menu
                 #bigMenu
                 [model]="menuItems"
             ></p-menu>
+
 
 
 
@@ -1340,7 +1449,9 @@
 
 
 
+
     </div>
+
 
 
 
@@ -1372,7 +1483,9 @@
 
 
 
+
         <div id="sidenav-mini">
+
 
 
 
@@ -1403,7 +1516,9 @@
 
 
 
+
         </div>
+
 
 
 
@@ -1435,7 +1550,9 @@
 
 
 
+
         <router-outlet></router-outlet>
+
 
 
 

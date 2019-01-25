@@ -164,6 +164,7 @@ export class AppComponent implements OnInit, AfterViewInit {
       supEmailAddress: ["", [Validators.required, Validators.minLength(10)]],
       supResAddress: ["", [Validators.required, Validators.minLength(10)]],
       supBirthDate: ["", [Validators.required, Validators.minLength(10)]],
+      supGender: ['None', [Validators.required]],
       supPassword: ["", [Validators.required, Validators.minLength(10)]]
     });
   }
@@ -579,6 +580,7 @@ export class AppComponent implements OnInit, AfterViewInit {
     this.birth = this.registerForm.controls["regBirthDate"].value;
     this.phone = this.registerForm.controls["regPhoneNumber"].value;
     this.email = this.registerForm.controls["regEmailAddress"].value;
+    this.gender = this.registerForm.controls['regGender'].value;
     this.password = this.registerForm.controls["regPassword"].value;
   }
   registerUser() {
