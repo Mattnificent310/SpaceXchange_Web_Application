@@ -164,15 +164,15 @@ export class AppComponent implements OnInit, AfterViewInit {
       supEmailAddress: ["", [Validators.required, Validators.minLength(10)]],
       supResAddress: ["", [Validators.required, Validators.minLength(10)]],
       supBirthDate: ["", [Validators.required, Validators.minLength(10)]],
-      supGender: ['None', [Validators.required]],
+      supGender: ["None", [Validators.required]],
       supPassword: ["", [Validators.required, Validators.minLength(10)]]
     });
   }
   renderMenus() {
     if (localStorage.getItem("loggedIn") === "Buyer") {
-      this.switchMenu("marketplace", "tag", "Marketplace");
+      this.switchMenu("marketplace", "tags", "Marketplace");
     } else if (localStorage.getItem("loggedIn") === "Supplier") {
-      this.switchMenu("listings", "clipboard-list", "My Listings");
+      this.switchMenu("listings", "cubes", "My Listings");
     } else {
       this.switchMenu("", "", "");
     }
@@ -477,7 +477,9 @@ export class AppComponent implements OnInit, AfterViewInit {
     this.mobileSidebar = true;
   }
   login() {
-    let name: String;
+    let name: string;
+
+    console.log(this.registerForm.controls["regGender"].value.name);
     this.service.getAllBuyers().subscribe(data => {
       this.buyer = data;
       this.buyer.forEach(item => {
@@ -487,6 +489,14 @@ export class AppComponent implements OnInit, AfterViewInit {
         ) {
           if (item.password === this.loginForm.controls["password"].value) {
             console.log("POST Request is successful ", data);
+            localStorage.setItem("names", item.name);
+            localStorage.setItem("surnames", item.surname);
+            localStorage.setItem("phones", item.phone);
+            localStorage.setItem("emails", item.email);
+            localStorage.setItem("birth", item.birthDate);
+            localStorage.setItem("avatar", item.avatar);
+            localStorage.setItem("gender", "None");
+            localStorage.setItem("loggedIn", "Buyer");
             this.valid = true;
             name = item.name + " " + item.surname;
           }
@@ -500,7 +510,6 @@ export class AppComponent implements OnInit, AfterViewInit {
           summary: `Welcome ${name}`,
           detail: "Your SpaceXperience starts now"
         });
-        localStorage.setItem("loggedIn", "Buyer");
         this.loggedIn = "Buyer";
 
         this.router.navigate(["dashboard"]);
@@ -564,7 +573,15 @@ export class AppComponent implements OnInit, AfterViewInit {
     this.hideMenu();
     this.valid = false;
     this.loggedIn = "None";
+    this.index = 0;
     localStorage.setItem("loggedIn", null);
+    localStorage.setItem("names", null);
+    localStorage.setItem("surnames", null);
+    localStorage.setItem("phones", null);
+    localStorage.setItem("emails", null);
+    localStorage.setItem("birth", null);
+    localStorage.setItem("avatar", null);
+    localStorage.setItem("gender", null);
     this.landed = false;
     this.messages = [];
     this.messages.push({
@@ -580,14 +597,18 @@ export class AppComponent implements OnInit, AfterViewInit {
     this.birth = this.registerForm.controls["regBirthDate"].value;
     this.phone = this.registerForm.controls["regPhoneNumber"].value;
     this.email = this.registerForm.controls["regEmailAddress"].value;
-    this.gender = this.registerForm.controls['regGender'].value;
+    this.gender = this.registerForm.controls["regGender"].value.name;
     this.password = this.registerForm.controls["regPassword"].value;
+    this.avatar =
+      this.gender === "Male"
+        ? "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSePYH0l73i-OgzhmHIgztXFb6p2wZFfcAETx9-AL4Y3ndU-KLt"
+        : "https://www.activehealthclinic.ca/storage/app/media/cartoon_avatar-blonde-female.png";
   }
   registerUser() {
     this.extractForm();
     this.http
       .post("http://63.32.26.64:8083/users", {
-        avatar: "string",
+        avatar: this.avatar,
         name: this.name,
         surname: this.surname,
         birthDate: this.birth,
@@ -605,7 +626,7 @@ export class AppComponent implements OnInit, AfterViewInit {
           localStorage.setItem("birth", this.birth);
           localStorage.setItem("avatar", this.avatar);
           localStorage.setItem("gender", this.gender);
-
+          this.messages = [];
           this.messages.push({
             severity: "success",
             summary: `Welcome ${this.registerForm.controls["regName"].value}`,

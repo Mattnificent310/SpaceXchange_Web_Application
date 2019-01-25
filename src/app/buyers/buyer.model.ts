@@ -1,10 +1,10 @@
 export class Buyer {
-    id: number;
-    avatar: String;
-    name: String;
-    surname: String;
-    birthDate: String;
-    phone: String;
-    email: String;
-    password: String;
+  id: number;
+  avatar: string;
+  name: string;
+  surname: string;
+  birthDate: string;
+  phone: string;
+  email: string;
+  password: string;
 }
