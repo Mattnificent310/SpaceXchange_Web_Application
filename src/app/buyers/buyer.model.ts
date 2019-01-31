@@ -1,8 +1,10 @@
 export class Buyer {
-contractId: number;
-classification: string;
-type: string;
-criteria: string;
-restriction: string;
-status: string;
+  id: number;
+  avatar: string;
+  name: string;
+  surname: string;
+  birthDate: string;
+  phone: string;
+  email: string;
+  password: string;
 }

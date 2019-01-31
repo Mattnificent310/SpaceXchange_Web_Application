@@ -1,4 +1,4 @@
-<div class="timesheet header ui-g-12">
+<div class="timesheet header ui-g-12" style="margin-left: 10px;">
   <h2>
     {{ "Exchanges" }}
   </h2>
@@ -6,72 +6,222 @@
     {{ dateAndMonth }}
   </h3>
 </div>
+<div class="ui-g-12" style="margin-left: 3px;">
+  <p-tabView class="u-g-12 tabs" (onChange)="onChangeTabs($event)">
+    <p-tabPanel *ngFor="let tab of months" header="{{tab}}">
 
-<p-tabView class="u-g-12 tabs" (onChange)="onChangeTabs($event)">
-  <p-tabPanel *ngFor="let tab of months" header="{{tab}}">
+      <p-dataView #dv filterBy="category" [value]="getTimesForDay(tab)" [sortField]="sortField" [sortOrder]="sortOrder"
+        [rows]="16">
+        <p-header>
+          <div class="ui-helper-clearfix">
+            <div class="ui-g">
+              <div class="ui-g-12 ui-md-4">
+                <p-dropdown [options]="sortOptions" [(ngModel)]="sortKey" placeholder="Sort By" (onChange)="onSortChange($event)"
+                  [autoWidth]="false" [style]="{'min-width':'15em'}"></p-dropdown>
+              </div>
+              <div class="ui-g-6 ui-md-4 filter-container">
+                <div style="position:relative">
+                  <input type="search" pInputText placeholder="Search by brand" (keyup)="dv.filter($event.target.value)">
+                </div>
+              </div>
+              <div class="ui-g-6 ui-md-4" style="text-align:right">
+                <p-dataViewLayoutOptions></p-dataViewLayoutOptions>
+              </div>
+            </div>
+          </div>
+        </p-header>
+        <ng-template let-car pTemplate="listItem" let-i="index">
+          <p-panel class="text-center wow fadeInUp" header="{{car.day}} {{car.month}} 2018">
+            <button pButton icon="fa fa-close" id="btnDelete"></button>
+            <div (click)="viewDetails(car)" class="ui-g car-item">
+              <div class="ui-g-12 ui-md-5 wow fadeInLeft">
+                <img width="300px" height="200px" src="../../assets/img/{{car.avatar}}">
+              </div>
+              <div class="ui-g-12 ui-md-7">
+                <div class="ui-g text-center">
+                  <div class="ui-g-3 ui-sm-6">
+                    <pre>Category: </pre>
+                  </div>
+                  <div class="text-left ui-g-9 ui-sm-6">
+                    <pre>{{car.project}}</pre>
+                  </div>
 
-    <p-dataTable [value]="getTimesForDay(tab)" class="timesheet-grid">
-      <p-column field="project" header="Exchange Type"></p-column>
-      <p-column field="category" header="Category"></p-column>
-      <p-column field="startTime" header="Start Time"></p-column>
-      <p-column field="endTime" header="End Time"></p-column>
-    </p-dataTable>
+                  <div class="ui-g-3 ui-sm-6">
+                    <pre>Type: </pre>
+                  </div>
+                  <div class="text-left ui-g-9 ui-sm-6">
+                    <pre>{{car.category}}</pre>
+                  </div>
 
+                  <div class="ui-g-3 ui-sm-6">
+                    <pre>From: </pre>
+                  </div>
+                  <div class="text-left ui-g-9 ui-sm-6">
+                    <pre>{{car.startTime}}</pre>
+                  </div>
 
-  </p-tabPanel>
-</p-tabView>
-
-<button pButton label="Edit Entry" (click)="displayEditDialog = true"></button>
-
-
-<p-dialog header="Create Time" [modal]="true" [(visible)]="displayEditDialog" [ngSwitch]="dialogPageIndex" width="700"
-          height="550">
-
-  <div class="dialogBody">
-    <p-steps [model]="dialogPages" [(activeIndex)]="dialogPageIndex" [readonly]="false">
-
-    </p-steps>
-
-    <div *ngSwitchCase="PageNames.TimePage">
-
-      <p-schedule [events]="events" [header]="headerConfig" styleClass="calendar" defaultView="agendaWeek"
-                  [editable]="true" [nowIndicator]="true"
-                  [allDaySlot]="false">
-
-      </p-schedule>
-
-    </div>
-    <div *ngSwitchCase="PageNames.ProjectPage">
-
-      <p-tree [value]="projectsTree" layout="horizontal" selectionMode="single"
-              [(selection)]="selectedProject"></p-tree>
-
-    </div>
-    <div *ngSwitchCase="PageNames.PlacePage">
-
-      <p-gmap [options]="mapOptions" [overlays]="mapOverlays" styleClass="gmap"
-              (onOverlayClick)="onMarkerClick($event)"></p-gmap>
-
-    </div>
-    <div *ngSwitchCase="PageNames.PeoplePage">
-
-      <p-dataGrid [value]="people" [paginator]="true" [rows]="4">
-        <ng-template let-person pTemplate="item">
-          <p-panel header="{{person.firstName}} {{person.lastName}}" class="ui-g-12 ui-md-3">
-            <img [src]="person.avatar" [pTooltip]="person.email" tooltipPosition="bottom"/>
+                  <div class="ui-g-3 ui-sm-6">
+                    <pre>To: </pre>
+                  </div>
+                  <div class="text-left ui-g-9 ui-sm-6">
+                    <pre>{{car.endTime}}</pre>
+                  </div>
+                </div>
+              </div>
+            </div>
           </p-panel>
         </ng-template>
-      </p-dataGrid>
+        <ng-template let-person pTemplate="gridItem">
+          <p-panel header="{{person.day}} {{person.month}}" class="ui-g-12 ui-md-3 ui-sm-6 ui-xs-12 wow fadeInUp">
+            <button pButton icon="fa fa-close" id="btnDelete"></button>
+            <div id="center" class="ui-g-12">
+              <img id="center" width="200" height="200" src="../../assets/img/{{person.avatar}}" [pTooltip]="person.email"
+                tooltipPosition="bottom" />
+            </div>
+
+            <div class="ui-grid-row">
+              <div class="ui-grid-col-5 text-center">
+                <pre><b>Type</b></pre>
+              </div>
+              <div class="ui-grid-col-6 text-center">
+                <pre>{{person.project}}</pre>
+              </div>
+
+            </div>
+            <div class="ui-grid-row">
+              <div class="ui-grid-col-5 text-center">
+                <pre><b>From</b></pre>
+              </div>
+              <div class="ui-grid-col-6 text-center">
+                <pre>{{person.startTime}}</pre>
+              </div>
+
+            </div>
+            <div class="ui-grid-row">
+              <div class="ui-grid-col-5 text-center">
+                <pre><b>To</b></pre>
+              </div>
+              <div class="ui-grid-col-6 text-center">
+                <pre>{{person.endTime}}</pre>
+              </div>
+
+            </div>
+            <div class="ui-grid-row">
+              <div class="ui-grid-col-5 text-center">
+                <pre><b>Category</b></pre>
+              </div>
+              <div class="ui-grid-col-6 text-center">
+                <pre>{{person.category}}</pre>
+                <h1> </h1>
+              </div>
+
+            </div>
+
+            <div class="ui-grid-row">
+              <div class="ui-grid-col-12">
+                <button class="ui-g-6 ui-md-6" label="Preview" pButton></button>
+                <button class="ui-g-5 ui-md-5" label="Edit" pButton></button>
+              </div>
+            </div>
+          </p-panel>
+        </ng-template>
+      </p-dataView>
+
+    </p-tabPanel>
+  </p-tabView>
+
+  <button pButton label="Edit Entry" (click)="displayEditDialog = true"></button>
+</div>
+
+<p-dialog [(visible)]="viewDetail" [modal]="true" [responsive]="true" [width]="750" [minWidth]="350" [baseZIndex]="9999999999">
+  <p-header class="header">Exchange</p-header>
+
+
+  <div class="ui-md-12 inputContainers">
+    <img class="ui-g-offset-2" src="../../assets/img/{{userData[0].avatar}}" width="150" height="170" />
+
+    <div class="inputContainer">
+      <div class="iconContainer">
+        <i class="material-icons">account_circle</i>
+      </div>
+
+      <label class="ui-md-10 inputHolder">{{userData[0].user}}</label>
+    </div>
+
+    <div class="inputContainer">
+      <div class="iconContainer">
+        <i class="material-icons">mail_outline</i>
+      </div>
+
+      <a href="mailto:{{userData[0].email}}?subject={{userData[0].category}}" class="ui-md-10 inputHolder">{{userData.email}}</a>
+    </div>
+
+    <div class="inputContainer">
+      <div class="iconContainer">
+        <i class="material-icons">phone_android</i>
+      </div>
+
+      <a href="tel:{{userData[0].phone}}" class="ui-md-10 inputHolder">{{userData[0].phone}}</a>
 
     </div>
+
+    <div class="inputContainer">
+      <div class="iconContainer">
+        <i class="material-icons">location_on</i>
+      </div>
+
+      <a class="ui-md-10 inputHolder unstyled" href="https://www.google.co.za/maps/place/{{userData[0].startTime}}" id="projectId">{{userData[0].startTime}}</a>
+      <i class="fa fa-globe"></i> <i class="fa fa-chevron-right"></i> <a class="ui-md-10 inputHolder unstyled" href="https://www.google.co.za/maps/place/{{userData[0].endTime}}"
+        id="projectId">{{userData[0].endTime}}</a>
+
+    </div>
+
+
+    <div class="inputContainer">
+      <div class="iconContainer">
+        <i class="material-icons" [ngSwitch]="userData[0].category">
+          <span *ngSwitchCase="'Road Freight'">local_shipping</span>
+          <span *ngSwitchCase="'Sea Freight'">directions_boat</span>
+          <span *ngSwitchCase="'Air Freight'">local_airport</span>
+          <span *ngSwitchCase="'Rail Freight'">directions_railway</span>
+          <span *ngSwitchCase="'Bus Trip'">directions_bus</span>
+        </i>
+      </div>
+
+      <label class="ui-md-10 inputHolder">{{userData[0].category}}</label>
+    </div>
+    <div class="inputContainer">
+      <div class="iconContainer">
+        <i class="material-icons">update</i>
+      </div>
+
+      <label class="ui-md-10 inputHolder">{{userData[0].day}} {{userData[0].month}} 2018</label>
+    </div>
+    <div class="inputContainer">
+      <div style="float: left;" class="iconContainer">
+        <i class="material-icons">stars</i>
+
+      </div>
+      <span class="ui-g-12 inputHolder" style="margin: -11px 0 0 -10px;">
+        <p-rating [ngModel]="userData[0].rating" readonly="true" stars="5" [cancel]="false"></p-rating>
+      </span>
+
+    </div>
+
   </div>
-
-
-  <p-footer>
-    <button pButton label="Save" icon="fa-check" (click)="saveNewEntry()"></button>
-    <button pButton label="Cancel" icon="fa-times" (click)="cancelDialog()" class="ui-button-secondary"></button>
-  </p-footer>
-
+  <div class="ui-grid ui-grid-responsive">
+    <div class="ui-grid-row">
+      <div class="ui-grid-col-6" style="margin-right: 5px;">
+        <button class="ui-g-12" id="btnBook" icon="fa fa-cart-plus" label="Book" pButton></button>
+      </div>
+      <div class="ui-grid-col-6">
+        <button class="ui-g-12" id="btnView" icon="fa fa-eye" label="Watch" pButton></button>
+      </div>
+      <div class="ui-grid-col-6">
+        <button class="ui-g-12" id="btnContact" icon="fa fa-address-book" label="Contact" pButton></button>
+      </div>
+    </div>
+  </div>
 </p-dialog>
 
 
@@ -79,8 +229,7 @@
 
   <p-footer>
     <button type="button" pButton icon="fa-close" label="No, go back" (click)="confirmDialog.reject()"></button>
-    <button type="button" pButton icon="fa-check" label="Yes, lose changes"
-            (click)="confirmDialog.accept() && confirmDialog.hide()"></button>
+    <button type="button" pButton icon="fa-check" label="Yes, lose changes" (click)="confirmDialog.accept() && confirmDialog.hide()"></button>
   </p-footer>
 
 

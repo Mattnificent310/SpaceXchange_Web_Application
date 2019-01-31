@@ -1,17 +1,55 @@
 <div class="ui-g">
 
+<at-statistic label="On The Way" counto [step]="100" [countTo]="14" [countFrom]="200" [duration]="3" (countoChange)="onTheWay = math.round($event)"
+ value="{{onTheWay}}" icon="fa-clock-o" colour="#00ACAC" class="ui-g-12 ui-md-6 ui-lg-3 animated flash" style="
+animation-duration: 3.6s; animation-delay: 0.25s;">
 
-  <at-statistic label="On The Way" value="6" icon="fa-clock-o" colour="#00ACAC" class="ui-g-12 ui-md-6 ui-lg-3"></at-statistic>
+</at-statistic>
+<!-- <div id="counter" class="animated">
+  <ul class="digits digits-first luckie">
+    <li *ngFor="let item of numbers.reverse();"> {{item}} </li>
+  </ul>
+
+</div> -->
+
+<at-statistic label="Online" counto [step]="100" [countTo]="8" [countFrom]="200" [duration]="3" (countoChange)="online = math.round($event)"
+ value="{{online}}" icon="fa-users" colour="#2F8EE5" class="ui-g-12 ui-md-6 ui-lg-3 animated flash"style="
+animation-duration: 3.6s; animation-delay: 0.5s;">
+
+</at-statistic>
+<!-- <div id="counter" class="animated">
+
+  <ul class="digits digits-second luckie">
+<li *ngFor="let item of numbers.reverse();"> {{item}} </li>
+  </ul>
+</div> -->
+
+<at-statistic label="Contacts" counto [step]="100" [countTo]="25" [countFrom]="200" [duration]="3" (countoChange)="contacts = math.round($event)"
+ value="{{contacts}}" icon="fa-mobile"
+  colour="#6C76AF" class="ui-g-12 ui-md-6 ui-lg-3 animated flash" style="
+animation-duration: 3.6s; animation-delay: 0.75s;">
+
+</at-statistic>
+
+<!-- <div id="counter" class="animated">
+
+ <ul class="digits digits-third luckie">
+<li *ngFor="let item of numbers.reverse();"> {{item}} </li>
+  </ul>
+</div> -->
+  <at-statistic label="Exchanges" counto [step]="100" [countTo]="12" [countFrom]="200" [duration]="3" (countoChange)="exchanges = math.round($event)"
+ value="{{exchanges}}" icon="fa-area-chart" colour="#EFA64C" class="ui-g-12 ui-md-6 ui-lg-3 animated flash" style="
+  animation-duration: 3.6s; animation-delay: 1s;"></at-statistic>
 
 
-  <at-statistic label="Online" value="35" icon="fa-users" colour="#2F8EE5" class="ui-g-12 ui-md-6 ui-lg-3"></at-statistic>
 
 
-  <at-statistic label="Contacts" value="23" icon="fa-mobile" colour="#6C76AF" class="ui-g-12 ui-md-6 ui-lg-3"></at-statistic>
+<!-- <div id="counter" class="animated">
 
-
-  <at-statistic label="Exchanges" value="4" icon="fa-area-chart" colour="#EFA64C" class="ui-g-12 ui-md-6 ui-lg-3"></at-statistic>
-
+  <ul class="digits digits-fourth luckie">
+<li *ngFor="let item of numbers.reverse();"> {{item}} </li>
+  </ul>
+</div> -->
 
 </div>
 
@@ -42,11 +80,11 @@
 
 <div class="ui-g">
 
-  <p-panel header="Exchanges By Road (radar)" class="ui-g-12 ui-md-6">
+  <p-panel header="Trips By Road (radar)" class="ui-g-12 ui-md-6">
     <p-chart type="radar" height="150" [data]="hoursByTeamChartData"></p-chart>
   </p-panel>
 
-  <p-panel header="Exhchanges By Sea (mixed)" class="ui-g-12 ui-md-6">
+  <p-panel header="Trips By Sea (mixed)" class="ui-g-12 ui-md-6">
     <p-chart type="bar" [data]="hoursByTeamChartDataMixed" #mixedChart
     (onDataSelect)="onDataSelect($event)"></p-chart>
   </p-panel>

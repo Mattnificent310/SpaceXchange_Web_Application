@@ -1,17 +1,95 @@
+
+@import url('../../assets/css/animate.css');
 .alltimesheets {
   background-color: white;
   font-family: "Roboto";
 }
+#center {
+  width: 100%;
+  height: 35vh;
+  margin-bottom: 10px;
+}
+p-carousel>>>.ui-carousel-header-title {
+  color: white;
+}
+p-carousel>>>.ui-carousel-header {
+  background: linear-gradient(to top, rgba(18, 37, 78, 0.65) 0%,rgba(82, 42, 24, 0.65) 100%), url(../../assets/img/Carousel-Heading.jpg) repeat 0 0;
+  background-size: 90% 100%;
+  background-attachment: fixed;
+ font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  font-size: 20px;
+}
+p-carousel>>>.ui-carousel-next-button:hover, p-carousel>>>.ui-carousel-prev-button:hover {
+  color: silver;
 
+}
+p-carousel>>>.ui-carousel-next-button, p-carousel>>>.ui-carousel-prev-button {
+  font-size: 25px;
+}
+#btnBook {
+  background: linear-gradient(to top, rgba(2, 196, 60, 0.767) 0%,rgba(2, 196, 60, 0.767) 60%,rgba(0, 71, 27, 0.637) 100%), url(../../assets/img/Book-Btn.jpg) repeat 0 0;
+  background-size: 100%;
+  background-attachment: fixed;
+  color: white;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+
+}
+
+#btnContact {
+  background: linear-gradient(to top, rgba(0, 26, 43, 0.822) 0%,rgba(0, 26, 43, 0.705) 60%,rgba(0, 41, 58, 0.63) 100%), url(../../assets/img/View-Btn.jpg) repeat 0 0;
+  background-size: 100%;
+  background-attachment: fixed;
+  color: white;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+
+}
+#btnView {
+  background: linear-gradient(to top, rgba(1, 153, 255, 0.822) 0%,rgba(1, 153, 255, 0.822) 60%,rgba(0, 41, 58, 0.63) 100%), url(../../assets/img/View-Btn.jpg) repeat 0 0;
+  background-size: 100%;
+  background-attachment: fixed;
+  color: white;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+}
+p-panel>>>.ui-panel-titlebar {
+  background: linear-gradient(to top, rgba(0, 53, 114, 0.733) 0%,rgba(0, 119, 255, 0.849) 65%,rgba(0, 174, 255, 0.76) 100%), url(../../assets/img/Panel-Heading.jpg) repeat 0 0;
+  background-size: 100%;
+  background-attachment: fixed;
+  color: white;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+
+}
+p-panel>>>.ui-panel-content {
+  background: linear-gradient(to top, rgba(116, 0, 0, 0.15) 0%,rgba(0, 106, 167, 0.15) 100%), url() repeat 0 0;
+  background-size: 90% 100%;
+  background-attachment: fixed;
+  color: white;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+
+}
 .header {
   padding: 1em;
   color: white;
   background-color: #0275D8;
+  margin-left: 5px;
   margin-top: 1.25em;
   margin-bottom: 1em;
   border-radius: 2.5px;
 }
+p-rating >>> .ui-rating a {
+  text-decoration: none;
+  color: rgb(173, 137, 43);
 
+}
+p-rating>>>.ui-rating {
+  background: whitesmoke;
+  padding: 9px 5px;
+  border: 0.5px rgb(189, 187, 187) solid;
+  border-radius: 5px;
+}
+pre {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  overflow: hidden;
+}
 h2 {
   font-weight: bolder;
   font-size: xx-large;
@@ -44,4 +122,51 @@ p-dataTable >>> .selectBoxColumn {
 
 p-contextMenu >>> .ui-menuitem-active a {
   background-color: #F15B2A !important;
+}
+.iconContainer {
+	display: inline-block;
+	border-right: 1px solid #ccc;
+	height: 35px;
+	width: 35px;
+	/*margin-left: -30px;*/
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	-o-box-sizing: border-box;
+	-ms-box-sizing: border-box;
+	box-sizing: border-box;
+}
+	.iconContainer i {
+		top: 5px;
+		left: 5px;
+		position: relative;
+		color: #54626c;
+  }
+  .inputContainers {
+    margin-top: 20px;
+    margin-bottom: 20px;
+    text-align: left;
+
+}
+
+.inputContainer {
+    /*display: inline;*/
+    position: relative;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+    width: 100%;
+    /*left: 50%;
+    margin-left: -125px;*/
+    height: 36px;
+    overflow: hidden;
+    margin-top: 10px;
+}
+
+.inputHolder {
+  text-decoration: none;
+  border: none;
+  background: none;
+  margin-left: -5px;
+  width: 90%;
+  height: 36px;
+  z-index: 99999999999999;
 }

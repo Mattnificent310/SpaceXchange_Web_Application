@@ -1,1 +1,63 @@
+@import url('../../assets/css/animate.css');
 
+#counter {
+  height: 6em;
+  width: 10em;
+  overflow: hidden;
+  margin-left: -160px;
+}
+
+.digits {
+  list-style-type: none;
+  font-size: 3em;
+  line-height: 3em;
+  text-align: left;
+  color: rgba(194, 194, 194, 0.705);
+}
+.digits-first {
+  margin-top: 0em;
+  /* number 4! */
+}
+
+.digits-second {
+  margin-top: 0em;
+  /* number 0! */
+}
+
+.digits-third {
+  margin-top: 0em;
+  /* number 4! */
+}
+
+.digits-fourth {
+  margin-top: 0em;
+  /* number 4! */
+}
+.digits {
+  animation-duration: 4s;
+  animation-timing-function: ease;
+  animation-delay: 0s;
+  animation-fill-mode: forwards;
+}
+
+.luckie {
+  animation-name: luckie;
+}
+@media (min-width: 450px) and (max-width: 640px) {
+  .digits {
+    margin-left: -40px;
+  }
+}
+@media (min-width: 300px) and (max-width: 440px) {
+  .digits {
+    margin-left: -20px;
+  }
+}
+
+/* Animations */
+@keyframes luckie {
+
+  100% {
+    margin-top: -120em;
+  }
+}

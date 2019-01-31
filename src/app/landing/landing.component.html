@@ -1,0 +1,526 @@
+
+<main id="main" class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+
+  <!-- intro area -->
+
+<div (deferLoad)="showGallaria = true" id="intro">
+      <p-galleria *ngIf="showGallaria" class="embed-responsive-16by9" [showFilmstrip]="false" #galleria class="col-lg-12 col-md-12 col-sm-12 col-xs-12" panelWidth="100vw" [images]="images" [showCaption]="false">
+        </p-galleria>
+
+<div class="intro-text" style="color: white; background: linear-gradient(to top, rgba(10, 10, 10, 0.15) 0%, rgba(10, 10, 10, 0.15) 100%),
+  url() repeat 0 0;">
+        <div class="container">
+          <div class="col-md-12">
+            <div id="rotator">
+              <h1><span class="1strotate">Welcome to SpaceXchange</span></h1>
+              <div class="line-spacer"></div>
+              <p><span class="2ndrotate">For all your available space needs.</span></p>
+              <h1> </h1><h1> </h1>
+
+              <a class="firstScroll" pageScroll href="#next"><i class="fa fa-chevron-down"></i></a>
+
+
+            </div>
+
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+<!-- About -->
+<section id="about" class="home-section bg-dark color-light">
+
+  <div class="container" (deferLoad)="showAbout = true">
+    <div class="row">
+      <div id="next" class="col-md-offset-2 col-md-8">
+        <div  class="section-heading color-light">
+
+          <h2>About us</h2>
+          <div  class="heading-line"></div>
+          <p>Our vision is to provide a unique digital platform aimed at bringing people together with similar supply and demand needs.
+            This web portal gives you and your business the opportunity to experience the future of global trading in any form of available space and commerce.</p>
+        </div>
+      </div>
+    </div>
+    <div class="row wow fadeInUp">
+      <div class="col-md-6 about-img">
+        <img *ngIf="showAbout" src="../../assets/img/world-map-network-circuit-board.jpg" alt="">
+      </div>
+
+      <div class="col-md-6 content">
+        <h2 style="color: powderblue;">The goal here is to set up a diverse interface where people can view and upload listings of nearly any available space and enter in discussions and negotiations about these offerings.</h2>
+        <h3 style="color: powderblue;">The listing and booking of these offers will be subject to full disclosure and declaration for the security and protection of all our users, and any personal or sensitive information undergoes deep encryption and validation.</h3>
+        <p>
+          We put you in the center of the action with full control of the best available space experience with the potential to find or upload  offers such as Living Space, Factory Units, Storage Units, Livestock Space, Passenger Space, and Cargo Space on the Road, Sea, Rail, and even in the Air.
+       </p>
+
+      </div>
+    </div>
+
+    </div>
+    <div style="margin-top: 80px; margin-bottom: -80px;"><a class="firstScroll" pageScroll href="#services"><i class="fa fa-chevron-down"></i></a> </div>
+
+</section>
+
+<!-- Parallax 1 -->
+<section id="parallax1" class="home-section parallax" data-stellar-background-ratio="0.5">
+
+  <div (deferLoad)="showSvc = true" class="container">
+    <div class="row">
+      <div class="col-md-12">
+        <div class="color-light">
+          <h2 class="wow bounceInDown" data-wow-delay="0.5s">Details are the key for perfection</h2>
+          <p class="lead wow bounceInUp" data-wow-delay="1s">We give you a full breakdown of everything you need to know when buying or supplying available space.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Services -->
+<section id="services" class="home-section bg-white">
+    <div style="margin-bottom: 40px; margin-top: -30px;"><a class="firstScroll scrollNext" pageScroll href="#portfolio"><i class="fa fa-fast-forward"></i></a></div>
+
+  <div class="container">
+    <div class="row">
+      <div class="col-md-offset-2 col-md-8">
+        <div class="section-heading">
+          <h2>Services</h2>
+          <div class="heading-line"></div>
+          <p>We offer a unique blend of digital products and features on this platform, to ensure the best experiences for you.</p>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-12">
+        <div id="carousel-service" class="carousel slide" data-ride="carousel">
+
+          <!-- slides -->
+          <div class="carousel-inner">
+            <div class="carousel-item">
+              <div class="row">
+                <div class="col-sm-12 col-md-offset-1 col-md-6">
+                  <div class="wow bounceInLeft">
+                    <h4>Interaction Hub</h4>
+                    <p>This Hub centralizes communications for buyers and suppliers alike through an internal messaging service. This service allows people with similar supply or demand requirements to engage in discussion and negotiation about a particular offer.</p>
+                  </div>
+                </div>
+                <div class="col-sm-12 col-md-5">
+                  <div class="screenshot wow bounceInRight">
+                    <img *ngIf="showSvc" src="../../assets/img/blue-grid.png" class="img-responsive" alt="" />
+                    <br/>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="carousel-item active">
+              <div class="row">
+                <div class="col-sm-12 col-md-offset-1 col-md-6">
+                  <div class="wow bounceInLeft">
+                    <h4>Full Control</h4>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna.</p>
+                  </div>
+                </div>
+                <div class="col-sm-12 col-md-5">
+                  <div class="screenshot wow bounceInRight">
+                    <img *ngIf="showSvc" style="height: 300px" src="../../assets/img/cockpit-wallpapers.jpg" class="img-responsive" alt="" />
+                    <br/>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="carousel-item">
+              <div class="row">
+                <div class="col-sm-12 col-md-offset-1 col-md-6">
+                  <div class="wow bounceInLeft">
+                    <h4>Global Tracking</h4>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna.</p>
+                  </div>
+                </div>
+                <div class="col-sm-12 col-md-5">
+                  <div class="screenshot wow bounceInRight">
+                    <img *ngIf="showSvc" src="../../assets/img/29344733-monde-numérique-de-style-de-la-technologie-de-la-carte-du-monde-avec-des-systèmes-électroniques-les-voyage.jpg" class="img-responsive" alt="" />
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Indicators -->
+          <ol class="carousel-indicators">
+            <li data-target="#carousel-service" data-slide-to="0" class="active"></li>
+            <li data-target="#carousel-service" data-slide-to="1"></li>
+            <li data-target="#carousel-service" data-slide-to="2"></li>
+          </ol>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div (deferLoad)="showPort = true" style="margin-top: 80px; margin-bottom: -80px;"><a class="firstScroll" pageScroll href="#portfolio"><i class="fa fa-chevron-down"></i></a> </div>
+
+</section>
+
+
+<!-- Works -->
+<section id="portfolio" class="home-section bg-dark color-light">
+    <div style="margin-bottom: 40px; margin-top: -30px;"><a class="firstScroll scrollNext" pageScroll href="#team"><i class="fa fa-fast-forward"></i></a> </div>
+
+  <div class="container">
+    <div class="row">
+      <div class="col-md-offset-2 col-md-8">
+        <div class="section-heading">
+          <h2>Industries</h2>
+          <div class="heading-line"></div>
+          <p>Our platform is built to include all comercial and private industries with the need to supply or demand available space.</p>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-lg-12">
+
+        <ul id="og-grid" class="og-grid">
+          <li *ngFor="let item of images" class="wow bounceInUp" data-wow-delay="0.1s">
+            <a href="#" data-largesrc="../../assets/img/works/1.jpg" data-title="Portfolio title" data-description="Duo te dico volutpat, unum elit oblique per id. Ne duo mollis sapientem intellegebat. Per at augue vidisse percipit, pri vocibus assueverit interesset ut, no dolore luptatum incorrupte nec. In mentitum forensibus nec, nibh eripuit ut pri, tale illud voluptatum ut sea. Sed oratio repudiare ei, cum an magna labitur, eu atqui augue mei. Pri consul detracto eu, solet nusquam accusam ex vim, an movet interesset necessitatibus mea.">
+              <img *ngIf="showPort" src="{{item.source}}" alt="{{item.alt}}"/>
+            </a>
+          </li>
+        </ul>
+
+      </div>
+    </div>
+  </div>
+  <div style="margin-top: 80px; margin-bottom: -80px;"><a class="firstScroll" pageScroll href="#team"><i class="fa fa-chevron-down"></i></a> </div>
+
+</section>
+
+
+<!-- Parallax 2 -->
+<section id="parallax2" class="home-section parallax" data-stellar-background-ratio="0.5">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12">
+        <ul class="clients">
+          <li class="wow fadeInDown" data-wow-delay="0.3s"><a href="#"><img src="../../assets/img/clients/1.png" alt="" /></a></li>
+          <li class="wow fadeInDown" data-wow-delay="0.6s"><a href="#"><img src="../../assets/img/clients/2.png" alt="" /></a></li>
+          <li class="wow fadeInDown" data-wow-delay="0.9s"><a href="#"><img src="../../assets/img/clients/3.png" alt="" /></a></li>
+          <li class="wow fadeInDown" data-wow-delay="1.1s"><a href="#"><img src="../../assets/img/clients/4.png" alt="" /></a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Team -->
+<section id="team" class="home-section bg-white">
+    <div style="margin-top: -30px; margin-bottom: 40px;"><a class="firstScroll scrollNext" pageScroll href="#contact"><i class="fa fa-fast-forward"></i></a> </div>
+
+  <div class="container">
+    <div class="row">
+      <div class="col-md-offset-2 col-md-8">
+        <div class="section-heading">
+          <h2>Our Team</h2>
+          <div class="heading-line"></div>
+          <p>Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum</p>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-xs-12 col-sm-3 col-md-3 col-lg-3">
+        <div class="box-team wow bounceInUp" data-wow-delay="0.1s">
+          <img width="180" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSePYH0l73i-OgzhmHIgztXFb6p2wZFfcAETx9-AL4Y3ndU-KLt" alt="" class="img-circle img-responsive" />
+          <h4>Ilan</h4>
+          <p>Director</p>
+        </div>
+      </div>
+      <div class="col-xs-12 col-sm-3 col-md-3 col-lg-3" data-wow-delay="0.3s">
+        <div class="box-team wow bounceInUp">
+          <img width="180" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSePYH0l73i-OgzhmHIgztXFb6p2wZFfcAETx9-AL4Y3ndU-KLt" alt="" class="img-circle img-responsive" />
+          <h4>Faan</h4>
+          <p>Director</p>
+        </div>
+      </div>
+      <div class="col-xs-12 col-sm-3 col-md-3 col-lg-3" data-wow-delay="0.5s">
+        <div class="box-team wow bounceInUp">
+          <img width="180" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSePYH0l73i-OgzhmHIgztXFb6p2wZFfcAETx9-AL4Y3ndU-KLt" alt="" class="img-circle img-responsive" />
+          <h4>Matt Maree</h4>
+          <p>Developer</p>
+        </div>
+      </div>
+      <div class="col-xs-12 col-sm-3 col-md-3 col-lg-3" data-wow-delay="0.7s">
+        <div class="box-team wow bounceInUp">
+          <img width="180" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSePYH0l73i-OgzhmHIgztXFb6p2wZFfcAETx9-AL4Y3ndU-KLt" alt="" class="img-circle img-responsive" />
+          <h4>Phillip Maree</h4>
+          <p>Director</p>
+        </div>
+      </div>
+      <div class="col-xs-12 col-sm-3 col-md-3 col-lg-3" data-wow-delay="0.7s">
+        <div class="box-team wow bounceInUp">
+          <img width="180" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSePYH0l73i-OgzhmHIgztXFb6p2wZFfcAETx9-AL4Y3ndU-KLt" alt="" class="img-circle img-responsive" />
+          <h4>Thinus</h4>
+          <p>Business Analyst</p>
+        </div>
+      </div>
+      <div class="col-xs-12 col-sm-3 col-md-3 col-lg-3" data-wow-delay="0.7s">
+        <div class="box-team wow bounceInUp">
+          <img style="width: 170px; height: 185px;"  src="https://www.activehealthclinic.ca/storage/app/media/cartoon_avatar-blonde-female.png" alt="" class="img-circle img-responsive" />
+          <h4>Arona</h4>
+          <p>Business Analyst</p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div style="margin-top: 80px; margin-bottom: -80px;"><a class="firstScroll" pageScroll href="#contact"><i class="fa fa-chevron-down"></i></a> </div>
+
+</section>
+
+<!-- Contact -->
+<section id="contact" class="home-section bg-dark color-light">
+    <div style="margin-top: -30px; margin-bottom: 40px;"><a class="firstScroll scrollNext" pageScroll href="#bottom-widget"><i class="fa fa-fast-forward"></i></a> </div>
+  <div class="container">
+    <div class="row">
+      <div class="col-md-offset-2 col-md-8">
+        <div class="section-heading">
+          <h2>Contact us</h2>
+          <div class="heading-line"></div>
+          <p>If you have any question or just want to say 'hello' to SpaceXchange please fill out form below and we will be get in touch with you within 24 hours. </p>
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-md-offset-2 col-md-8">
+        <div id="sendmessage">Your message has been sent. Thank you!</div>
+        <div id="errormessage"></div>
+
+        <form action="" method="post" class="form-horizontal contactForm" role="form">
+          <div class="col-md-offset-2 col-md-8">
+            <div class="form-group">
+              <input type="text" name="name" class="form-control" id="name" placeholder="Your Name" data-rule="minlen:4" data-msg="Please enter at least 4 chars" />
+              <div class="validation"></div>
+            </div>
+          </div>
+
+          <div class="col-md-offset-2 col-md-8">
+            <div class="form-group">
+              <input type="email" class="form-control" name="email" id="email" placeholder="Your Email" data-rule="email" data-msg="Please enter a valid email" />
+              <div class="validation"></div>
+            </div>
+          </div>
+
+          <div class="col-md-offset-2 col-md-8">
+            <div class="form-group">
+              <input type="text" class="form-control" name="subject" id="subject" placeholder="Subject" data-rule="minlen:4" data-msg="Please enter at least 8 chars of subject" />
+              <div class="validation"></div>
+            </div>
+          </div>
+
+          <div class="col-md-offset-2 col-md-8">
+            <div class="form-group">
+              <textarea class="form-control" name="message" rows="5" data-rule="required" data-msg="Please write something for us" placeholder="Message"></textarea>
+              <div class="validation"></div>
+            </div>
+          </div>
+          <div class="form-group">
+            <div class="col-md-offset-2 col-md-8">
+              <button id="msgSubmit" type="submit" class="btn btn-theme btn-lg btn-block" >Send message</button>
+            </div>
+          </div>
+        </form>
+
+      </div>
+    </div>
+
+  </div>
+  <div style="margin-top: 80px; margin-bottom: -80px;"><a class="firstScroll" pageScroll href="#bottom-widget"><i class="fa fa-chevron-down"></i></a> </div>
+
+</section>
+
+<!-- Bottom widget -->
+<section id="bottom-widget" class="home-section bg-white">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-4">
+        <div class="contact-widget wow bounceInLeft">
+          <i class="fa fa-map-marker fa-4x"></i>
+          <h5>Main Office</h5>
+          <p>
+            109 Borough High Street,<br />London SE1 1NL
+          </p>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="contact-widget wow bounceInUp">
+          <i class="fa fa-phone fa-4x"></i>
+          <h5>Call</h5>
+          <p>
+            +1 111 9998 7774<br> +1 245 4544 6855
+
+          </p>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="contact-widget wow bounceInRight">
+          <i class="fa fa-envelope fa-4x"></i>
+          <h5>Email us</h5>
+          <p>
+            hello@spacexchange.net<br />sales@spacexchange.net
+          </p>
+        </div>
+      </div>
+    </div>
+    <div class="row mar-top30">
+      <div class="col-md-12">
+        <h5>We're on social networks</h5>
+        <ul class="social-network">
+          <li><a href="#">
+          <span class="fa-stack fa-2x text-primary">
+            <i class="fa fa-circle fa-stack-2x"></i>
+            <i class="fa fa-facebook fa-stack-1x fa-inverse"></i>
+          </span></a>
+          </li>
+          <li><a href="#">
+          <span class="fa-stack fa-2x text-success">
+            <i class="fa fa-circle fa-stack-2x"></i>
+            <i class="fa fa-dribbble fa-stack-1x fa-inverse"></i>
+          </span></a>
+          </li>
+          <li><a href="#">
+          <span class="fa-stack fa-2x">
+            <i class="fa fa-circle fa-stack-2x text-info"></i>
+            <i class="fa fa-twitter fa-stack-1x fa-inverse"></i>
+          </span></a>
+          </li>
+          <li><a href="#">
+          <span class="fa-stack fa-2x text-danger">
+            <i class="fa fa-circle fa-stack-2x"></i>
+            <i class="fa fa-pinterest fa-stack-1x fa-inverse"></i>
+          </span></a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Footer -->
+<footer class="page-footer font-small blue pt-4" id="footer">
+  <div class="container-fluid text-center text-md-left">
+    <div class="row">
+      <div class="col-md-12 mt-md-0 mt-3">
+         <div class="credits">
+
+          <h5 class="text-uppercase">NAVIGATE YOUR EXPERIENCE</h5>
+
+        </div>
+        <!-- Grid column -->
+
+        <hr class="clearfix w-100 d-md-none pb-3">
+
+        <!-- Grid column -->
+        <div class="col-md-3 mb-md-0 mb-3">
+
+            <!-- Links -->
+            <h5 class="text-uppercase">Resources</h5>
+
+            <ul class="list-unstyled">
+              <li>
+                <a href="#!">Link 1</a>
+              </li>
+              <li>
+                <a href="#!">Link 2</a>
+              </li>
+              <li>
+                <a href="#!">Link 3</a>
+              </li>
+              <li>
+                <a href="#!">Link 4</a>
+              </li>
+            </ul>
+
+          </div>
+          <!-- Grid column -->
+
+          <!-- Grid column -->
+          <div class="col-md-3 mb-md-0 mb-3">
+
+            <!-- Links -->
+            <h5 class="text-uppercase">Services</h5>
+
+            <ul class="list-unstyled">
+              <li>
+                <a href="#!">Link 1</a>
+              </li>
+              <li>
+                <a href="#!">Link 2</a>
+              </li>
+              <li>
+                <a href="#!">Link 3</a>
+              </li>
+              <li>
+                <a href="#!">Link 4</a>
+              </li>
+            </ul>
+
+          </div>
+          <!-- Grid column -->
+          <div class="col-md-3 mb-md-0 mb-3">
+
+            <!-- Links -->
+            <h5 class="text-uppercase">Careers</h5>
+
+            <ul class="list-unstyled">
+              <li>
+                <a href="#!">Link 1</a>
+              </li>
+              <li>
+                <a href="#!">Link 2</a>
+              </li>
+              <li>
+                <a href="#!">Link 3</a>
+              </li>
+              <li>
+                <a href="#!">Link 4</a>
+              </li>
+            </ul>
+
+          </div>
+          <div class="col-md-3 mb-md-0 mb-3">
+
+            <!-- Links -->
+            <h5 class="text-uppercase">Communit</h5>
+
+            <ul class="list-unstyled">
+              <li>
+                <a href="#!">Link 1</a>
+              </li>
+              <li>
+                <a href="#!">Link 2</a>
+              </li>
+              <li>
+                <a href="#!">Link 3</a>
+              </li>
+              <li>
+                <a href="#!">Link 4</a>
+              </li>
+            </ul>
+
+          </div>
+      </div>
+      <!-- Grid row -->
+
+    </div>
+    <!-- Footer Links -->
+    <hr class="clearfix w-100 d-md-none pb-3">
+
+    <!-- Copyright -->
+    <div class="footer-copyright text-center py-3">© 2018 Copyright:
+      <a href="https://mdbootstrap.com/education/bootstrap/"> spacexchange.net All rights reserved</a>
+    </div>
+  </div>
+</footer>
+
+<button style="border-radius: 20px" pButton (click)="scrollTop($event);" class="back-to-top"><i class="fa fa-chevron-up"></i></button>
+
+</main>
+

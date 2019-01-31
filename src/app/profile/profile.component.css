@@ -1,17 +1,25 @@
 .profile {
   background-color: white;
   font-family: "Roboto";
+  margin-left: 2px;
 }
-
+p-galleria>>>.ui-galleria-panel-wrapper img {
+  width: 300px;
+  height: 350px;
+}
 .header {
   padding: 1em;
   color: white;
   background-color: #0275D8;
+  margin-left: 10px;
   margin-top: 1.25em;
   margin-bottom: 1em;
   border-radius: 2px;
 }
-
+.input-box {
+  height: 38.5px;
+  margin-bottom: -5px;
+}
 h2 {
   font-weight: bolder;
   font-size: xx-large;
@@ -23,16 +31,29 @@ h3 {
   font-size: xx-large;
   display: inline;
 }
-
-p-panel >>> .ui-panel-content {
-  height: 320px;
+.panel-content >>> .ui-panel-content{
+  height: 550px;
 }
+/* p-panel >>> .ui-panel-content {
+  height: 500px;
+} */
 
-p-panel img {
-  width: 100%;
+
+
+.btnEdit {
+   margin-bottom: 10px;
+   float: right;
+   background-color:transparent;
+   color: black;
+   margin-left: 10px;
 }
-
-
+.btnEdit:focus { color: white;}
+p-calendar {
+  width: 400px;
+}
+.btnEdit:hover{
+  color: white;
+}
 #drop-message {
   font-size: xx-large;
   color: #2D353C;
@@ -42,6 +63,53 @@ p-panel img {
   border: 3px solid #2D353C;
   text-align: center;
 }
+.iconContainer {
+	display: inline-block;
+	border-right: 1px solid #ccc;
+	height: 35px;
+	width: 35px;
+	/*margin-left: -30px;*/
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	-o-box-sizing: border-box;
+	-ms-box-sizing: border-box;
+	box-sizing: border-box;
+}
+	.iconContainer i {
+		top: 5px;
+		left: 5px;
+		position: relative;
+		color: #54626c;
+  }
+  .inputContainers {
+    margin-top: 20px;
+    margin-bottom: 20px;
+    text-align: left;
 
+}
+
+.inputContainer {
+    /*display: inline;*/
+    position: relative;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+    width: 100%;
+    /*left: 50%;
+    margin-left: -125px;*/
+    height: 36px;
+    overflow: hidden;
+    margin-top: 10px;
+    margin-bottom: 5px;
+}
+
+.inputHolder {
+
+  border: none;
+  background: none;
+  margin-left: -5px;
+  width: 90%;
+  height: 36px;
+
+}
 
 

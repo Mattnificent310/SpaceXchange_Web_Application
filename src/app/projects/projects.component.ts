@@ -5,13 +5,35 @@ import { FormBuilder, FormGroup, Validators } from "@angular/forms";
 @Component({
   selector: 'at-projects',
   templateUrl: './projects.component.html',
-  styleUrls: ['./projects.component.css']
+  styleUrls: ['./projects.component.css', '../../../node_modules/material-icons/iconfont/material-icons.css']
 })
 export class ProjectsComponent implements OnInit {
 
   projectForm: FormGroup;
 
   minProjectDate = new Date();
+
+  val1: number;
+
+  val2: number;
+
+  val3: number;
+
+  val4: number;
+
+  val5: number;
+
+  accIndex: number;
+
+  blockSpecial: RegExp = /^[a-z\d\-_\s]+$/i;
+
+  msg: string;
+
+  name: String;
+
+  phone: String;
+
+  email: String;
 
   allDevs = [
 
@@ -31,17 +53,35 @@ export class ProjectsComponent implements OnInit {
   constructor(private fb: FormBuilder) { }
 
   ngOnInit() {
+    this.name = '';
+    this.phone = '';
+    this.email = '';
+    if (sessionStorage.getItem('email') || sessionStorage.getItem('phone')) {
+      this.name = sessionStorage.getItem('name');
+      this.phone = sessionStorage.getItem('phone');
+      this.email = sessionStorage.getItem('email');
+    }
     this.projectForm = this.fb.group({
-      projectId: ['', [Validators.required, Validators.minLength(5)]],
-      description: ['My cool project', [Validators.required, Validators.maxLength(140)]],
-      startDate: [new Date(), Validators.required],
-      projectType: ['B'],
-      selectedDevs: [[]],
+      names: [this.name, [Validators.required, Validators.minLength(3)]],
+      phoneNumber: [this.phone, [Validators.required, Validators.minLength(10)]],
+      emailAddress: [this.email, [Validators.required, Validators.minLength(10)]],
+      description: ['Add Description Here...', [Validators.required, Validators.maxLength(140)]],
+      verificationDate: [new Date(), Validators.required],
+      contactType: ['B'],
+      selectedContacts: [[]],
       rating: [3]
     })
 
+this.val2 =  5;
+this.accIndex = 0;
+  }
+  handleRate(event) {
+      this.msg = 'You have rated ' + event.value;
   }
 
+  handleCancel(event) {
+      this.msg = 'Rating Cancelled';
+  }
   hasFormErrors() {
     return !this.projectForm.valid;
   }
@@ -50,11 +90,15 @@ export class ProjectsComponent implements OnInit {
     alert(JSON.stringify(this.projectForm.value));
   }
 
+  openNext() {
+    this.accIndex = (this.accIndex === 5) ? 0 : this.accIndex + 1;
+  }
 
-
-
-
-
-
+  openPrev() {
+    this.accIndex = (this.accIndex <= 0) ? 5 : this.accIndex - 1;
+  }
+clickTab(event) {
+  this.accIndex = event.index;
+}
 
 }

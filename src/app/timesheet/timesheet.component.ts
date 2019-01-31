@@ -1,5 +1,6 @@
+import { OnInit } from '@angular/core';
 import { Component } from '@angular/core';
-import { MenuItem, TreeNode, ConfirmationService, Message } from 'primeng/primeng';
+import { MenuItem, TreeNode, ConfirmationService, Message, SelectItem } from 'primeng/primeng';
 import { SampleProjectsData } from 'app/timesheet/sample.projects.data';
 import { SamplePeopleData } from 'app/timesheet/sample.people.data';
 
@@ -18,17 +19,53 @@ export enum PageNames {
 @Component({
   selector: 'at-timesheet',
   templateUrl: './timesheet.component.html',
-  styleUrls: ['./timesheet.component.css']
+  styleUrls: ['./timesheet.component.css', '../../../node_modules/material-icons/iconfont/material-icons.css']
 })
-export class TimesheetComponent {
+export class TimesheetComponent implements OnInit {
+   userData: any;
+   viewDetail: boolean;
+   userTimeData = [
 
-  private userTimeData = [
-
-    { month: 'January', day: '10', startTime: '9:00', endTime: '17:00', project: 'Cargo Transit', category: 'Road Freight' },
-    { month: 'February', day: '27', startTime: '9:00', endTime: '17:00', project: 'Passenger Transit', category: 'Car Pool' },
-    { month: 'March', day: '6', startTime: '9:00', endTime: '17:00', project: 'Cargo Transit', category: 'Air Freight' },
-    { month: 'April', day: '16', startTime: '9:00', endTime: '17:00', project: 'Passenger Transit', category: 'Bus Trip' },
-    { month: 'May', day: '23', startTime: '9:00', endTime: '17:00', project: 'Cargo Transit', category: 'Sea Freight' },
+    { avatar: 'galleria5.jpg', month: 'January', day: 10, startTime: 'Pretoria', endTime: 'Bloemfontein',
+      project: 'Cargo Transit', category: 'Road Freight' },
+    { avatar: 'galleria4.jpg', month: 'February', day: 27, startTime: 'Johannesburg', endTime: 'Durban',
+      project: 'Passenger Transit', category: 'Commuter Flight' },
+    { avatar: 'galleria8.jpg', month: 'March', day: 6, startTime: 'Rustenburg', endTime: 'Brits',
+      project: 'Cargo Transit', category: 'Air Freight' },
+    { avatar: 'galleria13.jpg', month: 'April', day: 16, startTime: 'Krugersdorp', endTime: 'Witbank',
+      project: 'Passenger Transit', category: 'Bus Trip' },
+    { avatar: 'galleria1.jpg', month: 'May', day: 23, startTime: 'Harrismith', endTime: 'Clarens',
+      project: 'Cargo Transit', category: 'Sea Freight' },
+      { avatar: 'galleria5.jpg', month: 'January', day: 19, startTime: 'Pretoria', endTime: 'Bloemfontein',
+      project: 'Cargo Transit', category: 'Road Freight' },
+    { avatar: 'galleria4.jpg', month: 'February', day: 7, startTime: 'Johannesburg', endTime: 'Durban',
+      project: 'Passenger Transit', category: 'Commuter Flight' },
+    { avatar: 'galleria8.jpg', month: 'March', day: 14, startTime: 'Rustenburg', endTime: 'Brits',
+      project: 'Cargo Transit', category: 'Air Freight' },
+    { avatar: 'galleria13.jpg', month: 'April', day: 9, startTime: 'Krugersdorp', endTime: 'Witbank',
+      project: 'Passenger Transit', category: 'Bus Trip' },
+    { avatar: 'galleria1.jpg', month: 'May', day: 23, startTime: 'Harrismith', endTime: 'Clarens',
+      project: 'Cargo Transit', category: 'Sea Freight' },
+      { avatar: 'galleria5.jpg', month: 'January', day: 2, startTime: 'Pretoria', endTime: 'Bloemfontein',
+      project: 'Cargo Transit', category: 'Road Freight' },
+    { avatar: 'galleria4.jpg', month: 'February', day: 17, startTime: 'Johannesburg', endTime: 'Durban',
+      project: 'Passenger Transit', category: 'Commuter Flight' },
+    { avatar: 'galleria8.jpg', month: 'March', day: 26, startTime: 'Rustenburg', endTime: 'Brits',
+      project: 'Cargo Transit', category: 'Air Freight' },
+    { avatar: 'galleria13.jpg', month: 'April', day: 16, startTime: 'Krugersdorp', endTime: 'Witbank',
+      project: 'Passenger Transit', category: 'Bus Trip' },
+    { avatar: 'galleria1.jpg', month: 'May', day: 23, startTime: 'Harrismith', endTime: 'Clarens',
+      project: 'Cargo Transit', category: 'Sea Freight' },
+      { avatar: 'galleria5.jpg', month: 'January', day: 15, startTime: 'Pretoria', endTime: 'Bloemfontein',
+      project: 'Cargo Transit', category: 'Road Freight' },
+    { avatar: 'galleria4.jpg', month: 'February', day: 28, startTime: 'Johannesburg', endTime: 'Durban',
+      project: 'Passenger Transit', category: 'Commuter Flight' },
+    { avatar: 'galleria8.jpg', month: 'March', day: 19, startTime: 'Rustenburg', endTime: 'Brits',
+      project: 'Cargo Transit', category: 'Air Freight' },
+    { avatar: 'galleria13.jpg', month: 'April', day: 8, startTime: 'Krugersdorp', endTime: 'Witbank',
+      project: 'Passenger Transit', category: 'Bus Trip' },
+    { avatar: 'galleria1.jpg', month: 'May', day: 12, startTime: 'Harrismith', endTime: 'Clarens',
+      project: 'Cargo Transit', category: 'Sea Freight' }
 
   ]
 
@@ -49,13 +86,13 @@ export class TimesheetComponent {
     { label: 'People' }
   ];
 
-  private headerConfig = {
+   public headerConfig = {
     left: 'prev,next today',
     center: 'title',
     right: 'month,agendaWeek,agendaDay'
   };
 
-  private events = [
+   public events = [
     {
       title: 'Recent Trips',
       start: moment().format(), // '2017-06-02 07:00:00'
@@ -67,13 +104,21 @@ export class TimesheetComponent {
 
   selectedProject: TreeNode;
 
-  private mapOptions = {
+  sortOptions: SelectItem[];
+
+  sortKey: string;
+
+  sortField: string;
+
+  sortOrder: number;
+
+    mapOptions = {
 
     center: { lat: -33.8688, lng: 151.2093 },
     zoom: 5
   };
 
-  private mapOverlays = [
+  mapOverlays = [
     new google.maps.Marker({ position: { lat: -35.3075, lng: 149.124417 }, title: 'Canberra Mall' }),
     new google.maps.Marker({ position: { lat: -33.8688, lng: 151.2093 }, title: 'Sydney Harbour' }),
     new google.maps.Marker({ position: { lat: -37.813611, lng: 144.963056 }, title: 'Melbourne Stadium' }),
@@ -88,8 +133,118 @@ export class TimesheetComponent {
   constructor(private confirmationService: ConfirmationService) {
 
   }
+  ngOnInit() {
+    this.viewDetail = false;
+    this.userData = [
 
+    { avatar: 'galleria5.jpg', month: 'January', day: 10, startTime: 'Pretoria', endTime: 'Bloemfontein',
+      project: 'Cargo Transit', category: 'Road Freight' },
+    ]; this.sortOptions = [
+      { label: 'Newest First', value: '!day' },
+      { label: 'Oldest First', value: 'day' },
+      { label: 'Type', value: 'category' }
+    ];
+  }
+
+  onSortChange(event) {
+    const value = event.value;
+
+    if (value.indexOf('!') === 0) {
+      this.sortOrder = -1;
+      this.sortField = value.substring(1, value.length);
+    } else {
+      this.sortOrder = 1;
+      this.sortField = value;
+    }
+  }
+  loadData() {
+    this.userTimeData = [
+      {
+        avatar: 'galleria5.jpg', month: 'January', day: 10, startTime: 'Pretoria', endTime: 'Bloemfontein',
+        project: 'Cargo Transit', category: 'Road Freight'
+      },
+      {
+        avatar: 'galleria4.jpg', month: 'February', day: 27, startTime: 'Johannesburg', endTime: 'Durban',
+        project: 'Passenger Transit', category: 'Commuter Flight'
+      },
+      {
+        avatar: 'galleria8.jpg', month: 'March', day: 6, startTime: 'Rustenburg', endTime: 'Brits',
+        project: 'Cargo Transit', category: 'Air Freight'
+      },
+      {
+        avatar: 'galleria13.jpg', month: 'April', day: 16, startTime: 'Krugersdorp', endTime: 'Witbank',
+        project: 'Passenger Transit', category: 'Bus Trip'
+      },
+      {
+        avatar: 'galleria1.jpg', month: 'May', day: 23, startTime: 'Harrismith', endTime: 'Clarens',
+        project: 'Cargo Transit', category: 'Sea Freight'
+      },
+      {
+        avatar: 'galleria5.jpg', month: 'January', day: 19, startTime: 'Pretoria', endTime: 'Bloemfontein',
+        project: 'Cargo Transit', category: 'Road Freight'
+      },
+      {
+        avatar: 'galleria4.jpg', month: 'February', day: 7, startTime: 'Johannesburg', endTime: 'Durban',
+        project: 'Passenger Transit', category: 'Commuter Flight'
+      },
+      {
+        avatar: 'galleria8.jpg', month: 'March', day: 14, startTime: 'Rustenburg', endTime: 'Brits',
+        project: 'Cargo Transit', category: 'Air Freight'
+      },
+      {
+        avatar: 'galleria13.jpg', month: 'April', day: 9, startTime: 'Krugersdorp', endTime: 'Witbank',
+        project: 'Passenger Transit', category: 'Bus Trip'
+      },
+      {
+        avatar: 'galleria1.jpg', month: 'May', day: 23, startTime: 'Harrismith', endTime: 'Clarens',
+        project: 'Cargo Transit', category: 'Sea Freight'
+      },
+      {
+        avatar: 'galleria5.jpg', month: 'January', day: 2, startTime: 'Pretoria', endTime: 'Bloemfontein',
+        project: 'Cargo Transit', category: 'Road Freight'
+      },
+      {
+        avatar: 'galleria4.jpg', month: 'February', day: 17, startTime: 'Johannesburg', endTime: 'Durban',
+        project: 'Passenger Transit', category: 'Commuter Flight'
+      },
+      {
+        avatar: 'galleria8.jpg', month: 'March', day: 26, startTime: 'Rustenburg', endTime: 'Brits',
+        project: 'Cargo Transit', category: 'Air Freight'
+      },
+      {
+        avatar: 'galleria13.jpg', month: 'April', day: 16, startTime: 'Krugersdorp', endTime: 'Witbank',
+        project: 'Passenger Transit', category: 'Bus Trip'
+      },
+      {
+        avatar: 'galleria1.jpg', month: 'May', day: 23, startTime: 'Harrismith', endTime: 'Clarens',
+        project: 'Cargo Transit', category: 'Sea Freight'
+      },
+      {
+        avatar: 'galleria5.jpg', month: 'January', day: 15, startTime: 'Pretoria', endTime: 'Bloemfontein',
+        project: 'Cargo Transit', category: 'Road Freight'
+      },
+      {
+        avatar: 'galleria4.jpg', month: 'February', day: 28, startTime: 'Johannesburg', endTime: 'Durban',
+        project: 'Passenger Transit', category: 'Commuter Flight'
+      },
+      {
+        avatar: 'galleria8.jpg', month: 'March', day: 19, startTime: 'Rustenburg', endTime: 'Brits',
+        project: 'Cargo Transit', category: 'Air Freight'
+      },
+      {
+        avatar: 'galleria13.jpg', month: 'April', day: 8, startTime: 'Krugersdorp', endTime: 'Witbank',
+        project: 'Passenger Transit', category: 'Bus Trip'
+      },
+      {
+        avatar: 'galleria1.jpg', month: 'May', day: 12, startTime: 'Harrismith', endTime: 'Clarens',
+        project: 'Cargo Transit', category: 'Sea Freight'
+      }
+    ];
+  }
   getTimesForDay(tabName: string) {
+
+    this.userTimeData.sort((a, b) => (b.day - a.day));
+
     return this.userTimeData.filter((row) => {
       return row.month === tabName;
     })
@@ -100,9 +255,11 @@ export class TimesheetComponent {
   dateAndMonth = moment().month(this.dateMonth).format('MMMM, YYYY');
 
   onChangeTabs(event) {
-    let index = event.index;
+    const index = event.index;
     this.dateMonth = this.months[index];
     this.dateAndMonth = moment().month(this.dateMonth).format('MMMM, YYYY');
+    this.userTimeData = [];
+    this.loadData();
   }
 
   cancelDialog() {
@@ -125,8 +282,8 @@ export class TimesheetComponent {
 
   onMarkerClick(markerEvent) {
 
-    let markerTitle = markerEvent.overlay.title;
-    let markerPosition = markerEvent.overlay.position;
+    const markerTitle = markerEvent.overlay.title;
+    const markerPosition = markerEvent.overlay.position;
 
     alert(`You clicked on ${markerTitle} at ${markerPosition}`);
 
@@ -140,7 +297,11 @@ export class TimesheetComponent {
     this.messages.push({ severity: 'success', summary: 'Entry Created', detail: 'Your entry has been created' });
   }
 
-
+viewDetails(item: any) {
+ this.userData = [];
+ this.userData.push(item);
+ this.viewDetail = true;
+}
 
 
 }
