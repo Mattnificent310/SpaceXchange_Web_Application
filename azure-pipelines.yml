@@ -19,3 +19,9 @@ steps:
     npm install
     npm build
   displayName: 'npm install and start'
+
+  -task CopyFiles@2
+    inputs:targetFolder:$(Build.ArtifactStagingDirectory)
+    -task:PublishBuildArtifacts@1
+    inputs:pathtoPublish:$(Build.ArtifactStagingDirectory)
+    artifactName:api 
