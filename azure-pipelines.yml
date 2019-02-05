@@ -2,13 +2,14 @@
 # Build a general Node.js project with npm.
 # Add steps that analyze code, save build artifacts, deploy, and more:
 # https://docs.microsoft.com/azure/devops/pipelines/languages/javascript
-queue: 
- name: Hosted VS2017 
- timeoutInMinutes: 240
+
  
 trigger:
 - master
 
+queue: 
+ name: Hosted VS2017 
+ timeoutInMinutes: 240
 pool:
   vmImage: 'Ubuntu-16.04'
   
