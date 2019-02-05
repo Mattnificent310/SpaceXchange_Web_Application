@@ -7,9 +7,10 @@
 trigger:
 - master
 
-queue: 
- name: 'Ubuntu-16.04'
+pool: 
+ vmImage: 'Ubuntu-16.04' 'Ubuntu-16.04'
  timeoutInMinutes: 240
+ cancelTimeoutInMinutes: 240
  
 steps:
 - task: NodeTool@0
