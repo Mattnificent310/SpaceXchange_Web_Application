@@ -11,9 +11,6 @@ queue:
  name: Hosted Ubuntu-16.04
  timeoutInMinutes: 240
  
-#pool:
- # vmImage: 'Ubuntu-16.04'
-  
 steps:
 - task: NodeTool@0
   inputs:
