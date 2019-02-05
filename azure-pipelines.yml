@@ -8,7 +8,7 @@ trigger:
 - master
 
 queue: 
- name: Hosted Ubuntu-16.04
+ name: Ubuntu-16.04
  timeoutInMinutes: 240
  
 steps:
