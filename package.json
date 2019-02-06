@@ -10,9 +10,10 @@
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e",
-    "build": "ng build --prod --base-href https://glenasmith.github.io/pluralsight-primeng/",
-    "deploy": "angular-cli-ghpages --repo=git@github.com:glenasmith/pluralsight-primeng.git",
-    "shiptogithub": "npm run dist && npm run 404 && npm run deploy"
+    "build": "ng build",
+    "dist": "ng build --prod --base-href https://github.com/Mattnificent310/SpaceXchange_Web_Application",
+    "deploy": "angular-cli-ghpages --repo=git@github.com:Mattnificent310/SpaceXchange_Web_Application.git",
+     "shiptogithub": "npm run dist && npm run 404 && npm run deploy"
   },
   "private": true,
   "dependencies": {
