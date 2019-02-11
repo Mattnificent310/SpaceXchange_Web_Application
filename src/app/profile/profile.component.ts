@@ -1,8 +1,11 @@
-import { Component, OnInit } from '@angular/core';
+import { ProfileService } from "./profile.service";
+import { Component, OnInit } from "@angular/core";
 import { Galleria, Message } from "primeng/primeng";
 import { FormBuilder, FormGroup, Validators } from "@angular/forms";
-import { Title } from '@angular/platform-browser';
-import uploadcareTabEffects from 'uploadcare-widget-tab-effects';
+import { Title } from "@angular/platform-browser";
+import uploadcareTabEffects from "uploadcare-widget-tab-effects";
+import { RequestOptions, Headers } from "@angular/http";
+import { IfObservable } from "rxjs/observable/IfObservable";
 
 @Component({
   selector: "at-profile",
@@ -46,12 +49,12 @@ export class ProfileComponent implements OnInit {
   genders: any[];
   selectedGender: any;
   images: any[];
-  constructor(private fb: FormBuilder) { }
+  constructor(private fb: FormBuilder, private svc: ProfileService) {}
   setDefault() {
     this.iconDate = "fa fa-edit";
     this.labelDate = "Edit";
-    this.iconGender = 'fa fa-edit';
-    this.labelGender = 'Edit';
+    this.iconGender = "fa fa-edit";
+    this.labelGender = "Edit";
     this.iconEmail = "fa fa-edit";
     this.labelEmail = "Edit";
     this.iconPhone = "fa fa-edit";
@@ -72,16 +75,14 @@ export class ProfileComponent implements OnInit {
   onUpload(event) {
     this.uploadedFiles.push(event.cdnUrl);
     this.profileImage = event.cdnUrl;
-    localStorage.setItem('avatar', event.cdnUrl);
+    localStorage.setItem("avatar", event.cdnUrl);
     this.images.push({
       source: event.cdnUrl,
-      title: this.name + ' ' + this.surname
+      title: this.name + " " + this.surname
     });
     console.log(event);
-
   }
   ngOnInit() {
-
     this.name = !localStorage.getItem("names")
       ? ""
       : localStorage.getItem("names");
@@ -94,41 +95,63 @@ export class ProfileComponent implements OnInit {
     this.email = !localStorage.getItem("emails")
       ? ""
       : localStorage.getItem("emails");
-    this.date = new Date(!localStorage.getItem('birth') ? '2000-01-01' : localStorage.getItem('birth'));
+    this.date = new Date(
+      !localStorage.getItem("birth")
+        ? "2000-01-01"
+        : localStorage.getItem("birth")
+    );
     this.selectedProfile = !localStorage.getItem("avatar")
       ? ""
       : localStorage.getItem("avatar");
-    this.selectedGender = { name: !localStorage.getItem('gender') ? 'None' : localStorage.getItem('gender'), flag: 'None.png' };
+    this.selectedGender = {
+      name: !localStorage.getItem("gender")
+        ? "None"
+        : localStorage.getItem("gender"),
+      flag: "None.png"
+    };
     this.profileImage = this.selectedProfile;
     if (!this.images) {
-      this.images = [{
-        source:
-          "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSePYH0l73i-OgzhmHIgztXFb6p2wZFfcAETx9-AL4Y3ndU-KLt",
-        title: this.name + " " + this.surname
-      },
-      {
-        source: 'https://www.activehealthclinic.ca/storage/app/media/cartoon_avatar-blonde-female.png',
-        title: this.name + ' ' + this.surname
-      },
-      {
-        source: !localStorage.getItem("avatar")
-          ? "" : localStorage.getItem("avatar"),
-        title: this.name + " " + this.surname
-      }];
+      this.images = [
+        {
+          source:
+            "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSePYH0l73i-OgzhmHIgztXFb6p2wZFfcAETx9-AL4Y3ndU-KLt",
+          title: this.name + " " + this.surname
+        },
+        {
+          source:
+            "https://www.activehealthclinic.ca/storage/app/media/cartoon_avatar-blonde-female.png",
+          title: this.name + " " + this.surname
+        },
+        {
+          source: !localStorage.getItem("avatar")
+            ? ""
+            : localStorage.getItem("avatar"),
+          title: this.name + " " + this.surname
+        }
+      ];
       this.changed = false;
       this.genders = [
-        { name: 'Male', flag: 'Male.png' },
-        { name: 'Female', flag: 'Female_Icon.png' },
-        { name: 'None', flag: 'None.png' }
+        { name: "Male", flag: "Male.png" },
+        { name: "Female", flag: "Female_Icon.png" },
+        { name: "None", flag: "None.png" }
       ];
     }
     this.registerForm = this.fb.group({
       regName: [this.name, [Validators.required, Validators.minLength(3)]],
-      regSurname: [this.surname, [Validators.required, Validators.minLength(3)]],
-      regPhoneNumber: [this.phone, [Validators.required, Validators.maxLength(10)]],
-      regEmailAddress: [this.email, [Validators.required, Validators.minLength(10)]],
+      regSurname: [
+        this.surname,
+        [Validators.required, Validators.minLength(3)]
+      ],
+      regPhoneNumber: [
+        this.phone,
+        [Validators.required, Validators.maxLength(10)]
+      ],
+      regEmailAddress: [
+        this.email,
+        [Validators.required, Validators.minLength(10)]
+      ],
       regDOB: [this.date, [Validators.required, Validators.minLength(10)]],
-      regGender: ['', [Validators.required]]
+      regGender: ["", [Validators.required]]
     });
     this.switchOff();
     this.setDefault();
@@ -235,9 +258,9 @@ export class ProfileComponent implements OnInit {
     }
   }
   editTitle() {
-    this.images.forEach((item) => {
-      item.title = this.name + ' ' + this.surname;
-    })
+    this.images.forEach(item => {
+      item.title = this.name + " " + this.surname;
+    });
   }
   saveChanges() {
     localStorage.setItem("names", this.name);
@@ -246,13 +269,24 @@ export class ProfileComponent implements OnInit {
     localStorage.setItem("emails", this.email);
     localStorage.setItem("birth", this.date.toDateString());
     localStorage.setItem("avatar", this.profileImage);
-    localStorage.setItem('gender', this.selectedGender.name);
+    localStorage.setItem("gender", this.selectedGender.name);
+    const profile = {
+      avatar: this.profileImage,
+      name: this.name,
+      surname: this.surname,
+      birth: this.date.toDateString(),
+      phone: this.phone,
+      email: this.email
+    };
     this.messages = [];
-    this.messages.pop();
-    this.messages.push({
-      severity: "success",
-      summary: "Saved Changes",
-      detail: `Your new details have been saved.`
+    this.svc.updateProfile(profile).subscribe(res => {
+      if (res.ok) {
+        this.messages.push({
+          severity: "success",
+          summary: "Saved Changes",
+          detail: `Your changes has been discarded.`
+        });
+      }
     });
   }
   discardChanges() {
