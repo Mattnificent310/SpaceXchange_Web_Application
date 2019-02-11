@@ -600,10 +600,7 @@ export class AppComponent implements OnInit, AfterViewInit {
       this.email = this.registerForm.controls["regEmailAddress"].value;
       this.gender = this.registerForm.controls["regGender"].value.name;
       this.password = this.registerForm.controls["regPassword"].value;
-      this.avatar =
-        this.gender === "Male"
-          ? "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSePYH0l73i-OgzhmHIgztXFb6p2wZFfcAETx9-AL4Y3ndU-KLt"
-          : "https://www.activehealthclinic.ca/storage/app/media/cartoon_avatar-blonde-female.png";
+      this.getAvatar(this.gender);
     } else if (type === "Supplier") {
       this.name = this.supplierForm.controls["supName"].value;
       this.surname = this.supplierForm.controls["supSurname"].value;
@@ -612,11 +609,14 @@ export class AppComponent implements OnInit, AfterViewInit {
       this.email = this.supplierForm.controls["supEmailAddress"].value;
       this.gender = this.supplierForm.controls["supGender"].value.name;
       this.password = this.supplierForm.controls["supPassword"].value;
-      this.avatar =
-        this.gender === "Male"
-          ? "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSePYH0l73i-OgzhmHIgztXFb6p2wZFfcAETx9-AL4Y3ndU-KLt"
-          : "https://www.activehealthclinic.ca/storage/app/media/cartoon_avatar-blonde-female.png";
+      this.getAvatar(this.gender);
     }
+  }
+  getAvatar(gender) {
+    this.avatar =
+      gender === "Male"
+        ? "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSePYH0l73i-OgzhmHIgztXFb6p2wZFfcAETx9-AL4Y3ndU-KLt"
+        : "https://www.activehealthclinic.ca/storage/app/media/cartoon_avatar-blonde-female.png";
   }
   registerUser() {
     this.extractForm("Buyer");
