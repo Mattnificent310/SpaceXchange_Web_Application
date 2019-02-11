@@ -170,7 +170,7 @@ export class AppComponent implements OnInit, AfterViewInit {
   }
   renderMenus() {
     if (localStorage.getItem("loggedIn") === "Buyer") {
-      this.switchMenu("marketplace", "tags", "Marketplace");
+      this.switchMenu("listings", "cubes", "My Listings");
     } else if (localStorage.getItem("loggedIn") === "Supplier") {
       this.switchMenu("listings", "cubes", "My Listings");
     } else {
@@ -591,21 +591,35 @@ export class AppComponent implements OnInit, AfterViewInit {
     });
     this.router.navigate(["landing"]);
   }
-  extractForm() {
-    this.name = this.registerForm.controls["regName"].value;
-    this.surname = this.registerForm.controls["regSurname"].value;
-    this.birth = this.registerForm.controls["regBirthDate"].value;
-    this.phone = this.registerForm.controls["regPhoneNumber"].value;
-    this.email = this.registerForm.controls["regEmailAddress"].value;
-    this.gender = this.registerForm.controls["regGender"].value.name;
-    this.password = this.registerForm.controls["regPassword"].value;
-    this.avatar =
-      this.gender === "Male"
-        ? "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSePYH0l73i-OgzhmHIgztXFb6p2wZFfcAETx9-AL4Y3ndU-KLt"
-        : "https://www.activehealthclinic.ca/storage/app/media/cartoon_avatar-blonde-female.png";
+  extractForm(type) {
+    if (type === "Buyer") {
+      this.name = this.registerForm.controls["regName"].value;
+      this.surname = this.registerForm.controls["regSurname"].value;
+      this.birth = this.registerForm.controls["regBirthDate"].value;
+      this.phone = this.registerForm.controls["regPhoneNumber"].value;
+      this.email = this.registerForm.controls["regEmailAddress"].value;
+      this.gender = this.registerForm.controls["regGender"].value.name;
+      this.password = this.registerForm.controls["regPassword"].value;
+      this.avatar =
+        this.gender === "Male"
+          ? "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSePYH0l73i-OgzhmHIgztXFb6p2wZFfcAETx9-AL4Y3ndU-KLt"
+          : "https://www.activehealthclinic.ca/storage/app/media/cartoon_avatar-blonde-female.png";
+    } else if (type === "Supplier") {
+      this.name = this.supplierForm.controls["supName"].value;
+      this.surname = this.supplierForm.controls["supSurname"].value;
+      this.birth = this.supplierForm.controls["supBirthDate"].value;
+      this.phone = this.supplierForm.controls["supPhoneNumber"].value;
+      this.email = this.supplierForm.controls["supEmailAddress"].value;
+      this.gender = this.supplierForm.controls["supGender"].value.name;
+      this.password = this.supplierForm.controls["supPassword"].value;
+      this.avatar =
+        this.gender === "Male"
+          ? "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSePYH0l73i-OgzhmHIgztXFb6p2wZFfcAETx9-AL4Y3ndU-KLt"
+          : "https://www.activehealthclinic.ca/storage/app/media/cartoon_avatar-blonde-female.png";
+    }
   }
   registerUser() {
-    this.extractForm();
+    this.extractForm("Buyer");
     this.http
       .post("http://63.32.26.64:8083/users", {
         avatar: this.avatar,
@@ -629,7 +643,7 @@ export class AppComponent implements OnInit, AfterViewInit {
           this.messages = [];
           this.messages.push({
             severity: "success",
-            summary: `Welcome ${this.registerForm.controls["regName"].value}`,
+            summary: `Welcome ${this.name}`,
             detail: "You signed up for the ultimate SpaceXperience"
           });
         },
@@ -638,7 +652,48 @@ export class AppComponent implements OnInit, AfterViewInit {
           this.messages = [];
           this.messages.push({
             severity: "warn",
-            summary: `Sorry ${this.registerForm.controls["regName"].value}`,
+            summary: `Sorry ${this.name}`,
+            detail: "Something went wrong during registration"
+          });
+        }
+      );
+    this.register = false;
+  }
+  registerSup() {
+    this.extractForm("Supplier");
+    this.http
+      .post("http://63.32.26.64:8083/users", {
+        avatar: this.avatar,
+        name: this.name,
+        surname: this.surname,
+        birthDate: this.birth,
+        phone: this.phone,
+        email: this.email,
+        password: this.password
+      })
+      .subscribe(
+        data => {
+          console.log("POST Request is successful ", data);
+          localStorage.setItem("names", this.name);
+          localStorage.setItem("surnames", this.surname);
+          localStorage.setItem("phones", this.phone);
+          localStorage.setItem("emails", this.email);
+          localStorage.setItem("birth", this.birth);
+          localStorage.setItem("avatar", this.avatar);
+          localStorage.setItem("gender", this.gender);
+          this.messages = [];
+          this.messages.push({
+            severity: "success",
+            summary: `Welcome ${this.name}`,
+            detail: "You signed up for the ultimate SpaceXperience"
+          });
+        },
+        error => {
+          console.log("Error", error);
+          this.messages = [];
+          this.messages.push({
+            severity: "warn",
+            summary: `Sorry ${this.name}`,
             detail: "Something went wrong during registration"
           });
         }
