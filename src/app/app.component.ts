@@ -624,6 +624,7 @@ export class AppComponent implements OnInit, AfterViewInit {
     this.extractForm("Buyer");
     this.http
       .post("http://63.32.26.64:8083/users", {
+        id: 0,
         avatar: this.avatar,
         name: this.name,
         surname: this.surname,
@@ -666,6 +667,7 @@ export class AppComponent implements OnInit, AfterViewInit {
     this.extractForm("Supplier");
     this.http
       .post("http://63.32.26.64:8083/users", {
+        id: 0,
         avatar: this.avatar,
         name: this.name,
         surname: this.surname,
