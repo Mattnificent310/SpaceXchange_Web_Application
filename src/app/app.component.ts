@@ -584,6 +584,7 @@ export class AppComponent implements OnInit, AfterViewInit {
     localStorage.setItem("birth", null);
     localStorage.setItem("avatar", null);
     localStorage.setItem("gender", null);
+    localStorage.setItem('password', null);
     this.landed = false;
     this.messages = [];
     this.messages.push({
@@ -644,6 +645,7 @@ export class AppComponent implements OnInit, AfterViewInit {
           localStorage.setItem("birth", this.birth);
           localStorage.setItem("avatar", this.avatar);
           localStorage.setItem("gender", this.gender);
+          localStorage.setItem('password', this.password);
           this.messages = [];
           this.messages.push({
             severity: "success",

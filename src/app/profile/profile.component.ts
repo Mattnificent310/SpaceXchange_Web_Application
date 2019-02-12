@@ -85,7 +85,8 @@ export class ProfileComponent implements OnInit {
     console.log(event);
   }
   ngOnInit() {
-    this.id = Number(localStorage.getItem("userId"));
+    this.id = Number(localStorage.getItem('userId'));
+    this.password = localStorage.getItem('password');
     this.name = !localStorage.getItem("names")
       ? ""
       : localStorage.getItem("names");
