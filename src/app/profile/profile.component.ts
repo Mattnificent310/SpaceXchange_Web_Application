@@ -31,19 +31,21 @@ export class ProfileComponent implements OnInit {
   name: any;
   editSurname: boolean;
   surname: any;
-  iconDate: String;
+  iconDate: string;
   labelDate: String;
-  iconGender: String;
-  labelGender: String;
-  iconEmail: String;
-  labelEmail: String;
-  iconPhone: String;
-  labelPhone: String;
-  iconName: String;
-  labelName: String;
-  iconSurname: String;
-  labelSurname: String;
+  iconGender: string;
+  labelGender: string;
+  iconEmail: string;
+  labelEmail: string;
+  iconPhone: string;
+  labelPhone: string;
+  iconName: string;
+  labelName: string;
+  iconSurname: string;
+  labelSurname: string;
   changed: boolean;
+  password: string;
+  id: number;
   blockSpecial: RegExp = /^[a-z\d\-_\s]+$/i;
   uploadedFiles: any[] = [];
   genders: any[];
@@ -83,6 +85,7 @@ export class ProfileComponent implements OnInit {
     console.log(event);
   }
   ngOnInit() {
+    this.id = Number(localStorage.getItem("userId"));
     this.name = !localStorage.getItem("names")
       ? ""
       : localStorage.getItem("names");
@@ -271,12 +274,15 @@ export class ProfileComponent implements OnInit {
     localStorage.setItem("avatar", this.profileImage);
     localStorage.setItem("gender", this.selectedGender.name);
     const profile = {
+      id: this.id,
       avatar: this.profileImage,
       name: this.name,
       surname: this.surname,
-      birth: this.date.toDateString(),
+      birthDate: this.date.toDateString(),
+      gender: this.selectedGender.name,
       phone: this.phone,
-      email: this.email
+      email: this.email,
+      password: this.password
     };
     this.messages = [];
     this.svc.updateProfile(profile).subscribe(res => {

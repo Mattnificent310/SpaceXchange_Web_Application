@@ -488,13 +488,14 @@ export class AppComponent implements OnInit, AfterViewInit {
         ) {
           if (item.password === this.loginForm.controls["password"].value) {
             console.log("POST Request is successful ", data);
+            localStorage.setItem("userId", item.id.toString());
             localStorage.setItem("names", item.name);
             localStorage.setItem("surnames", item.surname);
             localStorage.setItem("phones", item.phone);
             localStorage.setItem("emails", item.email);
             localStorage.setItem("birth", item.birthDate);
             localStorage.setItem("avatar", item.avatar);
-            localStorage.setItem("gender", "None");
+            localStorage.setItem("gender", item.gender);
             localStorage.setItem("loggedIn", "Buyer");
             this.valid = true;
             name = item.name + " " + item.surname;
@@ -575,6 +576,7 @@ export class AppComponent implements OnInit, AfterViewInit {
     this.loggedIn = "None";
     this.index = 0;
     localStorage.setItem("loggedIn", null);
+    localStorage.setItem("userId", null);
     localStorage.setItem("names", null);
     localStorage.setItem("surnames", null);
     localStorage.setItem("phones", null);
@@ -626,6 +628,7 @@ export class AppComponent implements OnInit, AfterViewInit {
         name: this.name,
         surname: this.surname,
         birthDate: this.birth,
+        gender: this.gender,
         phone: this.phone,
         email: this.email,
         password: this.password
@@ -667,6 +670,7 @@ export class AppComponent implements OnInit, AfterViewInit {
         name: this.name,
         surname: this.surname,
         birthDate: this.birth,
+        gender: this.gender,
         phone: this.phone,
         email: this.email,
         password: this.password
