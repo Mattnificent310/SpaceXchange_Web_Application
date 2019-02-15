@@ -51,7 +51,7 @@ export class ProfileComponent implements OnInit {
   genders: any[];
   selectedGender: any;
   images: any[];
-  constructor(private fb: FormBuilder, private svc: ProfileService) {}
+  constructor(private fb: FormBuilder, private svc: ProfileService) { }
   setDefault() {
     this.iconDate = "fa fa-edit";
     this.labelDate = "Edit";
@@ -116,16 +116,6 @@ export class ProfileComponent implements OnInit {
     this.profileImage = this.selectedProfile;
     if (!this.images) {
       this.images = [
-        {
-          source:
-            "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSePYH0l73i-OgzhmHIgztXFb6p2wZFfcAETx9-AL4Y3ndU-KLt",
-          title: this.name + " " + this.surname
-        },
-        {
-          source:
-            "https://www.activehealthclinic.ca/storage/app/media/cartoon_avatar-blonde-female.png",
-          title: this.name + " " + this.surname
-        },
         {
           source: !localStorage.getItem("avatar")
             ? ""
@@ -266,14 +256,16 @@ export class ProfileComponent implements OnInit {
       item.title = this.name + " " + this.surname;
     });
   }
+  setStorage(item) {
+    localStorage.setItem("names", item.name);
+    localStorage.setItem("surnames", item.surname);
+    localStorage.setItem("phones", item.phone);
+    localStorage.setItem("emails", item.email);
+    localStorage.setItem("birth", item.birthDate);
+    localStorage.setItem("avatar", item.avatar);
+    localStorage.setItem("gender", item.gender);
+  }
   saveChanges() {
-    localStorage.setItem("names", this.name);
-    localStorage.setItem("surnames", this.surname);
-    localStorage.setItem("phones", this.phone);
-    localStorage.setItem("emails", this.email);
-    localStorage.setItem("birth", this.date.toDateString());
-    localStorage.setItem("avatar", this.profileImage);
-    localStorage.setItem("gender", this.selectedGender.name);
     const profile = {
       id: this.id,
       avatar: this.profileImage,
@@ -288,31 +280,30 @@ export class ProfileComponent implements OnInit {
     this.messages = [];
     this.svc.updateProfile(profile).subscribe(res => {
       if (res.ok) {
-        this.messages.push({
-          severity: "success",
-          summary: "Saved Changes",
-          detail: `Your changes has been discarded.`
-        });
+        this.setStorage(profile);
+        this.changed = false;
+        this.showMessage("success", "Saved Changes", "Your changes has been saved.", this.name);
       }
+    },
+      error => {
+        this.showMessage("warn", "Reverted Changes", "Your changes couldn't be saved.", this.name);
+      });
+  }
+  showMessage(type, summary, detail, data) {
+    this.messages = [];
+    this.messages.push({
+      severity: type,
+      summary: summary,
+      detail: `${data} ${detail}`
     });
   }
   discardChanges() {
     this.changed = false;
     this.ngOnInit();
-    this.messages = [];
-    this.messages.push({
-      severity: "warn",
-      summary: "Reverted Changes",
-      detail: `Your changes has been discarded.`
-    });
+    this.showMessage("warn", "Reverted Changes", "Your changes has been discarded.", this.name);
   }
   onPicDrop() {
     this.profileImage = this.selectedProfile.source;
-    this.messages = [];
-    this.messages.push({
-      severity: "info",
-      summary: "New Profile",
-      detail: `Changed pic to ${this.selectedProfile.title}`
-    });
+    this.showMessage("info", "Changed Pic", "Your profile picture was changed.", this.name);
   }
 }

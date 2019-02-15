@@ -488,15 +488,7 @@ export class AppComponent implements OnInit, AfterViewInit {
         ) {
           if (item.password === this.loginForm.controls["password"].value) {
             console.log("POST Request is successful ", data);
-            localStorage.setItem("userId", item.id.toString());
-            localStorage.setItem("names", item.name);
-            localStorage.setItem("surnames", item.surname);
-            localStorage.setItem("phones", item.phone);
-            localStorage.setItem("emails", item.email);
-            localStorage.setItem("birth", item.birthDate);
-            localStorage.setItem("avatar", item.avatar);
-            localStorage.setItem("gender", item.gender);
-            localStorage.setItem("loggedIn", "Buyer");
+            this.setStorage(item, 'Buyer');
             this.valid = true;
             name = item.name + " " + item.surname;
           }
@@ -575,16 +567,18 @@ export class AppComponent implements OnInit, AfterViewInit {
     this.valid = false;
     this.loggedIn = "None";
     this.index = 0;
-    localStorage.setItem("loggedIn", null);
-    localStorage.setItem("userId", null);
-    localStorage.setItem("names", null);
-    localStorage.setItem("surnames", null);
-    localStorage.setItem("phones", null);
-    localStorage.setItem("emails", null);
-    localStorage.setItem("birth", null);
-    localStorage.setItem("avatar", null);
-    localStorage.setItem("gender", null);
-    localStorage.setItem('password', null);
+    const model = {
+      id: 0,
+      avatar: null,
+      name: null,
+      surname: null,
+      birthDate: null,
+      gender: null,
+      phone: null,
+      email: null,
+      password: null
+    };
+    this.setStorage(model, 'null')
     this.landed = false;
     this.messages = [];
     this.messages.push({
@@ -615,6 +609,18 @@ export class AppComponent implements OnInit, AfterViewInit {
       this.getAvatar(this.gender);
     }
   }
+  setStorage(item, type) {
+    localStorage.setItem("userId", item.id.toString());
+    localStorage.setItem("names", item.name);
+    localStorage.setItem("surnames", item.surname);
+    localStorage.setItem("phones", item.phone);
+    localStorage.setItem("emails", item.email);
+    localStorage.setItem("birth", item.birthDate);
+    localStorage.setItem("avatar", item.avatar);
+    localStorage.setItem("gender", item.gender);
+    localStorage.setItem('password', item.password);
+    localStorage.setItem("loggedIn", type);
+  }
   getAvatar(gender) {
     this.avatar =
       gender === "Male"
@@ -629,29 +635,23 @@ export class AppComponent implements OnInit, AfterViewInit {
   }
   registerUser() {
     this.extractForm("Buyer");
+    const model = {
+      id: 0,
+      avatar: this.avatar,
+      name: this.name,
+      surname: this.surname,
+      birthDate: this.birth,
+      gender: this.gender,
+      phone: this.phone,
+      email: this.email,
+      password: this.password
+    };
     this.http
-      .post("http://63.32.26.64:8083/users", {
-        id: 0,
-        avatar: this.avatar,
-        name: this.name,
-        surname: this.surname,
-        birthDate: this.birth,
-        gender: this.gender,
-        phone: this.phone,
-        email: this.email,
-        password: this.password
-      })
+      .post("http://63.32.26.64:8083/users", model)
       .subscribe(
         data => {
           console.log("POST Request is successful ", data);
-          localStorage.setItem("names", this.name);
-          localStorage.setItem("surnames", this.surname);
-          localStorage.setItem("phones", this.phone);
-          localStorage.setItem("emails", this.email);
-          localStorage.setItem("birth", this.birth);
-          localStorage.setItem("avatar", this.avatar);
-          localStorage.setItem("gender", this.gender);
-          localStorage.setItem('password', this.password);
+          this.setStorage(model, 'Buyer');
           this.messages = [];
           this.messages.push({
             severity: "success",
@@ -673,28 +673,23 @@ export class AppComponent implements OnInit, AfterViewInit {
   }
   registerSup() {
     this.extractForm("Supplier");
+    const model = {
+      id: 0,
+      avatar: this.avatar,
+      name: this.name,
+      surname: this.surname,
+      birthDate: this.birth,
+      gender: this.gender,
+      phone: this.phone,
+      email: this.email,
+      password: this.password
+    };
     this.http
-      .post("http://63.32.26.64:8083/users", {
-        id: 0,
-        avatar: this.avatar,
-        name: this.name,
-        surname: this.surname,
-        birthDate: this.birth,
-        gender: this.gender,
-        phone: this.phone,
-        email: this.email,
-        password: this.password
-      })
+      .post("http://63.32.26.64:8083/users", model)
       .subscribe(
         data => {
           console.log("POST Request is successful ", data);
-          localStorage.setItem("names", this.name);
-          localStorage.setItem("surnames", this.surname);
-          localStorage.setItem("phones", this.phone);
-          localStorage.setItem("emails", this.email);
-          localStorage.setItem("birth", this.birth);
-          localStorage.setItem("avatar", this.avatar);
-          localStorage.setItem("gender", this.gender);
+         this.setStorage(model, 'Supplier');
           this.messages = [];
           this.messages.push({
             severity: "success",
