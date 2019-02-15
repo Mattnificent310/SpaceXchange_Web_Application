@@ -139,7 +139,7 @@ export class AppComponent implements OnInit, AfterViewInit {
     private ngZone: NgZone,
     private http: HttpClient,
     private service: BuyerService
-  ) {}
+  ) { }
   renderForms() {
     this.loginForm = this.fb.group({
       names: [""],
@@ -178,7 +178,7 @@ export class AppComponent implements OnInit, AfterViewInit {
     }
   }
   switchMenu(item: string, icon: string, label: string) {
-    const handleSelected = function(event) {
+    const handleSelected = function (event) {
       const allMenus = jQuery(event.originalEvent.target).closest("ul");
       const allLinks = allMenus.find(".menu-selected");
 
@@ -186,7 +186,7 @@ export class AppComponent implements OnInit, AfterViewInit {
       const selected = jQuery(event.originalEvent.target).closest("a");
       selected.addClass("menu-selected");
     };
-    const handleSelect = function(event, id) {
+    const handleSelect = function (event, id) {
       window.location.href = "landing/#" + id;
       const allMenus = jQuery(event.originalEvent.target).closest("ul");
       const allLinks = allMenus.find(".menu-selected");
@@ -554,7 +554,7 @@ export class AppComponent implements OnInit, AfterViewInit {
           severity: "warn",
           summary: `Note ${this.loginForm.controls["phoneNumber"].value} and ${
             this.loginForm.controls["emailAddress"].value
-          }`,
+            }`,
           detail:
             "Enter either a valid mobile number or email address, not both"
         });
@@ -620,6 +620,12 @@ export class AppComponent implements OnInit, AfterViewInit {
       gender === "Male"
         ? "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSePYH0l73i-OgzhmHIgztXFb6p2wZFfcAETx9-AL4Y3ndU-KLt"
         : "https://www.activehealthclinic.ca/storage/app/media/cartoon_avatar-blonde-female.png";
+  }
+  goHome() {
+    this.landed = false;
+    this.valid = true;
+    this.renderMenus();
+    this.router.navigate(["dashboard"]);
   }
   registerUser() {
     this.extractForm("Buyer");

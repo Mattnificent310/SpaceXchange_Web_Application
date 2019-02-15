@@ -20,6 +20,9 @@
   border: outset 1px silver;
   float: left;
 }
+.wide {
+  padding: 0 20px;
+}
 .authButtons {
   background-color: transparent;
   height: 36.5px;
