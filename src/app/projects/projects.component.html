@@ -1,159 +1,123 @@
-<form [formGroup]="projectForm" (ngSubmit)="onSubmit()" class="ui-g" style="margin-top: 8px;" >
-
-
-    <p-panel header="Contact Management" class="ui-g-12">
-
-           <p-tabView class="ui-g">
-
-<p-tabPanel  header="New Contact">
-    <h2></h2>
-    <div style="margin-bottom: 1em">
-        <button type="button" pButton icon="fa fa-chevron-up" (click)="openPrev()" style="margin-right:.25em; padding: 0 10px; border-radius: 50%;"></button>
-        <button type="button" pButton icon="fa fa-chevron-down" (click)="openNext()" style="border-radius: 50%; padding: 0 10px;"></button>
-    </div>
-    <p-accordion (onOpen)="clickTab($event)" (onClose)="clickTab($event)"  [activeIndex]="accIndex" [expandIcon]="'fa fa-chevron-right'" [collapseIcon]="'fa fa-chevron-down'">
-
-                <p-accordionTab >
-                  <p-header> <span style="margin-left: 10px; font-size: 20px;">Contact Info </span></p-header>
-
-    <div class="ui-g ui-fluid">
-        <div class="ui-g-12 ui-md-10" >
-            <div class="ui-inputgroup">
-                <span class="ui-inputgroup-addon"><i class="fa fa-user-circle"></i></span>
-                 <input autofocus [value]="projectForm.controls['names'].value" pInputText type="text" [pKeyFilter]="blockSpecial" required formControlName="names"  placeholder="Name Surname" />
-            </div>
-           <div class="ui-g-12 ui-md-5">
-            <at-fielderrors [form]="projectForm" field="names" nicename="Names"></at-fielderrors>
+<form [formGroup]="projectForm" (ngSubmit)="onSubmit()" class="ui-g" style="margin-top: 8px;">
+  <p-panel header="Contact Management" class="ui-g-12">
+    <p-tabView class="ui-g">
+      <p-tabPanel header="New Contact">
+        <h2></h2>
+        <div style="margin-bottom: 1em">
+          <button type="button" pButton icon="fa fa-chevron-up" (click)="openPrev()" style="margin-right:.25em; padding: 0 10px; border-radius: 50%;"></button>
+          <button type="button" pButton icon="fa fa-chevron-down" (click)="openNext()" style="border-radius: 50%; padding: 0 10px;"></button>
         </div>
-        </div>
-        <div class="ui-g-12 ui-md-10" >
-            <div class="ui-inputgroup">
-                <span class="ui-inputgroup-addon"><i style="zoom: 1.5;" class="fa fa-mobile"></i></span>
-                 <input autofocus [value]="projectForm.controls['phoneNumber'].value" pInputText type="text" pKeyFilter="pnum" required formControlName="phoneNumber"  placeholder="Mobile Number" />
-            </div>
-           <div class="ui-g-12 ui-md-5">
-            <at-fielderrors [form]="projectForm" field="phoneNumber" nicename="Mobile Number"></at-fielderrors>
-        </div>
-        </div>
-        <div class="ui-g-12 ui-md-10" >
-                <div class="ui-inputgroup">
-                    <span class="ui-inputgroup-addon"><i class="fa fa-at"></i></span>
-                     <input autofocus [value]="projectForm.controls['emailAddress'].value" pInputText type="text" pKeyFilter="email" required formControlName="emailAddress"  placeholder="example@domain.com" />
-                </div>
-               <div class="ui-g-12 ui-md-5">
-                <at-fielderrors [form]="projectForm" field="emailAddress" nicename="Email Address"></at-fielderrors>
-            </div>
-            </div>
-    </div>
-    </p-accordionTab>
-
-
-<p-accordionTab>
-    <p-header> <span style="margin-left: 10px; font-size: 20px;">Description</span></p-header>
-
-        <p-fieldset>
-        <p-editor id="description" formControlName="description" class="ui-g-12" [style]="{'height':'200px'}"></p-editor>
-
-            <div class="ui-g-12">
-                <at-fielderrors [form]="projectForm" field="description" nicename="Description"> </at-fielderrors>
-            </div>
-        </p-fieldset>
-        </p-accordionTab>
-
-
-
-
-
-              <p-accordionTab>
-                  <p-header> <span style="margin-left: 10px; font-size: 20px;">Contact Type</span></p-header>
-
-                  <p-fieldset>
-                <p-radioButton name="projGroup" label="Buyer" value="B" formControlName="contactType"></p-radioButton>
-                <p-radioButton name="projGroup" label="Passenger" value="P" formControlName="contactType"></p-radioButton>
-                <p-radioButton name="projGroup" label="Supplier" value="S" formControlName="contactType"></p-radioButton>
-                <p-radioButton name="projGroup" label="Driver" value="D" formControlName="contactType"></p-radioButton>
-
-            </p-fieldset>
-            </p-accordionTab>
-
-     <p-accordionTab>
-        <p-header> <span style="margin-left: 10px; font-size: 20px;">Update Existing</span></p-header>
-
-         <p-fieldset>
-            <p-listbox id="devs" [options]="allDevs" [multiple]="true" [filter]="true" formControlName="selectedContacts" class="ui-g-12 ui-md-8">
-                <ng-template let-dev pTemplate="item">
-                    <img src="http://i.pravatar.cc/100?u={{dev.label}}" class="avatar" />
-                    <span class="devName">{{dev.value}}</span>
-                </ng-template>
-            </p-listbox>
-        </p-fieldset>
-</p-accordionTab>
-
-        <p-accordionTab>
-            <p-header> <span style="margin-left: 10px; font-size: 20px;">Rating</span></p-header>
-
-       <p-fieldset>
-              <p-rating (onRate)="handleRate($event)" (onCancel)="handleCancel($event)"></p-rating> <span *ngIf="msg" style="margin-left:10px">{{msg}}</span>
-            <pre class="ui-g-12 ui-md-5">{{ projectForm.getRawValue() | json }}</pre>
-
-        </p-fieldset>
-</p-accordionTab>
-
-
-</p-accordion>
-
-
-
-        <button class="ui-g-2" pButton type="submit" [disabled]="hasFormErrors()" label="Save" icon="fa-floppy-o"></button>
-
-    </p-tabPanel>
-    <p-tabPanel header="Contact List" class="ui-g-10">
-
+        <p-accordion (onOpen)="clickTab($event)" (onClose)="clickTab($event)" [activeIndex]="accIndex" [expandIcon]="'fa fa-chevron-right'"
+          [collapseIcon]="'fa fa-chevron-down'">
+          <p-accordionTab>
+            <p-header> <span style="margin-left: 10px; font-size: 20px;">Contact Info </span></p-header>
             <div class="ui-g ui-fluid">
-                    <div class="ui-g-12" >
-                        <div class="ui-inputgroup">
-                            <input hidden [value]="projectForm.controls['names'].value" pInputText type="text" pKeyFilter="alpha" required formControlName="names"  placeholder="Name Surname" />
-                        </div>
-                       <div class="ui-g-12 ui-md-5">
-                        <at-fielderrors [form]="projectForm" field="names" nicename="Names"></at-fielderrors>
-
-
-
-                    </div>
-                </div>
-                <div class="ui-g-10" >
-                        <div class="ui-inputgroup">
-
-            <p-listbox id="devs" [options]="allDevs" [multiple]="true" [filter]="true" formControlName="selectedContacts" class="ui-grid-responsive ui-md-12">
-                <ng-template let-dev pTemplate="item">
-                    <img src="http://i.pravatar.cc/100?u={{dev.label}}" class="avatar" />
-                    <span class="devName">{{dev.value}}</span>
-                </ng-template>
-            </p-listbox>
-
-            <h2></h2>
-
-        </div>
-        </div>
-        <div class="ui-g-12 ui-md-12" >
+              <div class="ui-g-12 ui-md-10">
                 <div class="ui-inputgroup">
-
-        <button style="width:150px; margin-left: 32%;" class="ui-button-icon-left" pButton type="button" label="Edit" icon="fa-edit"></button>
-            <button style="width:150px;" class="ui-button-icon-left" pButton type="button" label="View" icon="fa-book"></button>
+                  <span class="ui-inputgroup-addon"><i class="fa fa-user-circle"></i></span>
+                  <input autofocus [value]="projectForm.controls['names'].value" pInputText type="text" [pKeyFilter]="blockSpecial"
+                    required formControlName="names" placeholder="Name Surname" />
                 </div>
+                <div class="ui-g-12 ui-md-5">
+                  <at-fielderrors [form]="projectForm" field="names" nicename="Names"></at-fielderrors>
+                </div>
+              </div>
+              <div class="ui-g-12 ui-md-10">
+                <div class="ui-inputgroup">
+                  <span class="ui-inputgroup-addon"><i style="zoom: 1.5;" class="fa fa-mobile"></i></span>
+                  <input autofocus [value]="projectForm.controls['phoneNumber'].value" pInputText type="text"
+                    pKeyFilter="pnum" required formControlName="phoneNumber" placeholder="Mobile Number" />
+                </div>
+                <div class="ui-g-12 ui-md-5">
+                  <at-fielderrors [form]="projectForm" field="phoneNumber" nicename="Mobile Number"></at-fielderrors>
+                </div>
+              </div>
+              <div class="ui-g-12 ui-md-10">
+                <div class="ui-inputgroup">
+                  <span class="ui-inputgroup-addon"><i class="fa fa-at"></i></span>
+                  <input autofocus [value]="projectForm.controls['emailAddress'].value" pInputText type="text"
+                    pKeyFilter="email" required formControlName="emailAddress" placeholder="example@domain.com" />
+                </div>
+                <div class="ui-g-12 ui-md-5">
+                  <at-fielderrors [form]="projectForm" field="emailAddress" nicename="Email Address"></at-fielderrors>
+                </div>
+              </div>
             </div>
-</div>
+          </p-accordionTab>
 
-
-
-
-
-
-
-    </p-tabPanel>
-</p-tabView>
-
-    </p-panel>
-
-
-    </form>
+          <p-accordionTab>
+            <p-header> <span style="margin-left: 10px; font-size: 20px;">Description</span></p-header>
+            <p-fieldset>
+              <p-editor id="description" formControlName="description" class="ui-g-12" [style]="{'height':'200px'}"></p-editor>
+              <div class="ui-g-12">
+                <at-fielderrors [form]="projectForm" field="description" nicename="Description"> </at-fielderrors>
+              </div>
+            </p-fieldset>
+          </p-accordionTab>
+          <p-accordionTab>
+            <p-header> <span style="margin-left: 10px; font-size: 20px;">Contact Type</span></p-header>
+            <p-fieldset>
+              <p-radioButton name="projGroup" label="Buyer" value="B" formControlName="contactType"></p-radioButton>
+              <p-radioButton name="projGroup" label="Passenger" value="P" formControlName="contactType"></p-radioButton>
+              <p-radioButton name="projGroup" label="Supplier" value="S" formControlName="contactType"></p-radioButton>
+              <p-radioButton name="projGroup" label="Driver" value="D" formControlName="contactType"></p-radioButton>
+            </p-fieldset>
+          </p-accordionTab>
+          <p-accordionTab>
+            <p-header> <span style="margin-left: 10px; font-size: 20px;">Update Existing</span></p-header>
+            <p-fieldset>
+              <p-listbox id="devs" [options]="allDevs" [multiple]="true" [filter]="true" formControlName="selectedContacts"
+                class="ui-g-12 ui-md-8">
+                <ng-template let-dev pTemplate="item">
+                  <img src="http://i.pravatar.cc/100?u={{dev.label}}" class="avatar" />
+                  <span class="devName">{{dev.value}}</span>
+                </ng-template>
+              </p-listbox>
+            </p-fieldset>
+          </p-accordionTab>
+          <p-accordionTab>
+            <p-header> <span style="margin-left: 10px; font-size: 20px;">Rating</span></p-header>
+            <p-fieldset>
+              <p-rating (onRate)="handleRate($event)" (onCancel)="handleCancel($event)"></p-rating> <span *ngIf="msg"
+                style="margin-left:10px">{{msg}}</span>
+              <pre class="ui-g-12 ui-md-5">{{ projectForm.getRawValue() | json }}</pre>
+            </p-fieldset>
+          </p-accordionTab>
+        </p-accordion>
+        <button class="ui-g-2" pButton type="submit" [disabled]="hasFormErrors()" label="Save" icon="fa-floppy-o"></button>
+      </p-tabPanel>
+      <p-tabPanel header="Contact List" class="ui-g-10">
+        <div class="ui-g ui-fluid">
+          <div class="ui-g-12">
+            <div class="ui-inputgroup">
+              <input hidden [value]="projectForm.controls['names'].value" pInputText type="text" pKeyFilter="alpha"
+                required formControlName="names" placeholder="Name Surname" />
+            </div>
+            <div class="ui-g-12 ui-md-5">
+              <at-fielderrors [form]="projectForm" field="names" nicename="Names"></at-fielderrors>
+            </div>
+          </div>
+          <div class="ui-g-10">
+            <div class="ui-inputgroup">
+              <p-listbox id="devs" [options]="allDevs" [multiple]="true" [filter]="true" formControlName="selectedContacts"
+                class="ui-grid-responsive ui-md-12">
+                <ng-template let-dev pTemplate="item">
+                  <img src="http://i.pravatar.cc/100?u={{dev.label}}" class="avatar" />
+                  <span class="devName">{{dev.value}}</span>
+                </ng-template>
+              </p-listbox>
+              <h2></h2>
+            </div>
+          </div>
+          <div class="ui-g-12 ui-md-12">
+            <div class="ui-inputgroup">
+              <button style="width:150px; margin-left: 32%;" class="ui-button-icon-left" pButton type="button" label="Edit"
+                icon="fa-edit"></button>
+              <button style="width:150px;" class="ui-button-icon-left" pButton type="button" label="View" icon="fa-book"></button>
+            </div>
+          </div>
+        </div>
+      </p-tabPanel>
+    </p-tabView>
+  </p-panel>
+</form>

@@ -23,6 +23,8 @@ export enum PageNames {
 })
 export class TimesheetComponent implements OnInit {
    userData: any;
+   tabIndex: number;
+   year: number;
    viewDetail: boolean;
    userTimeData = [
 
@@ -134,7 +136,9 @@ export class TimesheetComponent implements OnInit {
 
   }
   ngOnInit() {
+    this.tabIndex = 0;
     this.viewDetail = false;
+    this.year = new Date().getFullYear();
     this.userData = [
 
     { avatar: 'galleria5.jpg', month: 'January', day: 10, startTime: 'Pretoria', endTime: 'Bloemfontein',
@@ -260,6 +264,7 @@ export class TimesheetComponent implements OnInit {
     this.dateAndMonth = moment().month(this.dateMonth).format('MMMM, YYYY');
     this.userTimeData = [];
     this.loadData();
+    this.clickTab(event);
   }
 
   cancelDialog() {
@@ -303,5 +308,16 @@ viewDetails(item: any) {
  this.viewDetail = true;
 }
 
+openNext() {
+  this.tabIndex = (this.tabIndex === this.months.length - 1) ? 0 : this.tabIndex + 1;
+}
+
+openPrev() {
+  this.tabIndex = (this.tabIndex <= 0) ? this.months.length - 1 : this.tabIndex - 1;
+}
+clickTab(event) {
+this.tabIndex = event.index;
+console.log(event.seindex);
+}
 
 }

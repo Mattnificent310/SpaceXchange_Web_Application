@@ -100,7 +100,7 @@ p-galleria>>>.ui-galleria-nav-prev {
 
 @media (max-width: 999px) and (min-width: 320px) {
   main {
-    margin-left: -80px;
+    margin-left: -95px;
   }
 
   p-galleria>>>.ui-galleria-panel-wrapper img {
